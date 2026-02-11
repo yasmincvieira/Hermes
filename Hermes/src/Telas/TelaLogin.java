@@ -41,7 +41,21 @@ public class TelaLogin extends JFrame {
 		setBounds(100, 100, 800, 500);
 		getContentPane().setLayout(new MigLayout("", "[][][][]", "[][][][][][][][][][][]"));
 		
+		JLabel lblNewLabel = new JLabel("HERMES");
+		getContentPane().add(lblNewLabel, "cell 1 1");
+		
 		TelaInicial telaInicial = new TelaInicial();
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 telaInicial.setVisible(true);
+				
+			}
+		});
+		getContentPane().add(btnNewButton, "cell 1 6");
+		
+		
 
 	}
 }
