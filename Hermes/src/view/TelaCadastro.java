@@ -1,4 +1,4 @@
-package Telas;
+package view;
 
 import java.awt.EventQueue;
 
@@ -14,42 +14,41 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
+import javax.swing.JPasswordField;
 
-public class TelaCadastro extends JFrame {
+public class TelaCadastro extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfUsuarioC;
 	private JTextField tfEmailC;
-	private JTextField tfSenhaC;
+	private JPasswordField tfSenhaC;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastro frame = new TelaCadastro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public TelaCadastro() {
-		setTitle("Tela de Cadastro");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setTitle("Tela de Cadastro");
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[grow][90.00][260:n,grow 25][grow]", "[grow][grow 10][27:n,grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow]"));
+		//setContentPane(contentPane);
+		contentPane.setLayout(new MigLayout("", "[grow][grow 20][grow][grow]", "[grow 50][grow 10][27:n,grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow 50]"));
+		
+		TelaInicial telaInicial = new TelaInicial();
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				telaInicial.setVisible(true);
+				
+			}
+		});
 		
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -63,6 +62,7 @@ public class TelaCadastro extends JFrame {
 		contentPane.add(lblNewLabel_1, "cell 1 3,alignx trailing");
 		
 		tfUsuarioC = new JTextField();
+		tfUsuarioC.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		tfUsuarioC.setBackground(new Color(78, 153, 126));
 		contentPane.add(tfUsuarioC, "cell 2 3,grow");
 		tfUsuarioC.setColumns(10);
@@ -73,6 +73,7 @@ public class TelaCadastro extends JFrame {
 		contentPane.add(lblNewLabel_2, "cell 1 5,alignx trailing");
 		
 		tfEmailC = new JTextField();
+		tfEmailC.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		tfEmailC.setBackground(new Color(78, 153, 126));
 		contentPane.add(tfEmailC, "cell 2 5,grow");
 		tfEmailC.setColumns(10);
@@ -82,21 +83,10 @@ public class TelaCadastro extends JFrame {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(lblNewLabel_3, "cell 1 7,alignx trailing");
 		
-		tfSenhaC = new JTextField();
+		tfSenhaC = new JPasswordField();
 		tfSenhaC.setBackground(new Color(78, 153, 126));
+		tfSenhaC.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(tfSenhaC, "cell 2 7,grow");
-		tfSenhaC.setColumns(10);
-		
-		TelaInicial telaInicial = new TelaInicial();
-		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				telaInicial.setVisible(true);
-				
-			}
-		});
 		btnCadastrar.setForeground(new Color(39, 79, 65));
 		btnCadastrar.setBackground(new Color(160, 200, 172));
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));

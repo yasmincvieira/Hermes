@@ -1,4 +1,4 @@
-package Telas;
+package view;
 
 import java.awt.EventQueue;
 
@@ -14,64 +14,47 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JPasswordField;
 
-public class TelaLogin extends JFrame {
+public class TelaLogin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfUsuario;
-	private JTextField tfSenha;
+	private JPasswordField tfSenha;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaLogin frame = new TelaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public TelaLogin() {
-		getContentPane().setForeground(new Color(255, 255, 255));
-		setTitle("Tela de Login");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setForeground(new Color(255, 255, 255));
+		//setTitle("Tela de Login");
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
-		getContentPane().setLayout(new MigLayout("", "[grow][grow 5][204:n,grow 35][grow]", "[grow][grow 15][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow 5][grow 5][grow]"));
+		setLayout(new MigLayout("", "[grow][grow 5][204:n,grow][grow]", "[grow][grow 15][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow 5][grow 5][grow]"));
 		
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setIcon(new ImageIcon(TelaLogin.class.getResource("/Imagens/40.png")));
 		lblNewLabel.setForeground(new Color(39, 79, 65));
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 70));
-		getContentPane().add(lblNewLabel, "cell 1 1 2 1,alignx center,growy");
+		add(lblNewLabel, "cell 1 1 2 1,alignx center,growy");
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuário:");
 		lblNewLabel_1.setForeground(new Color(39, 79, 65));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		getContentPane().add(lblNewLabel_1, "cell 1 3,alignx center,growy");
+		add(lblNewLabel_1, "cell 1 3,alignx center,growy");
 		
 		tfUsuario = new JTextField();
+		tfUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		tfUsuario.setBackground(new Color(78, 153, 126));
-		getContentPane().add(tfUsuario, "cell 2 3,grow");
+		add(tfUsuario, "cell 2 3,grow");
 		tfUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Senha:");
 		lblNewLabel_2.setForeground(new Color(39, 79, 65));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		getContentPane().add(lblNewLabel_2, "cell 1 5,alignx center,growy");
-		
-		tfSenha = new JTextField();
-		tfSenha.setBackground(new Color(78, 153, 126));
-		getContentPane().add(tfSenha, "cell 2 5,grow");
-		tfSenha.setColumns(10);
+		add(lblNewLabel_2, "cell 1 5,alignx center,growy");
 		
 		TelaInicial telaInicial = new TelaInicial();
 		
@@ -85,11 +68,16 @@ public class TelaLogin extends JFrame {
 				
 			}
 		});
+		
+		tfSenha = new JPasswordField();
+		tfSenha.setBackground(new Color(78, 153, 126));
+		tfSenha.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(tfSenha, "cell 2 5,grow");
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		getContentPane().add(btnLogin, "cell 1 7 2 1,alignx center");
+		add(btnLogin, "cell 1 7 2 1,alignx center");
 		
 		JPanel panel = new JPanel();
-		getContentPane().add(panel, "flowx,cell 1 9 2 1,alignx center,growy");
+		add(panel, "flowx,cell 1 9 2 1,alignx center,growy");
 		
 		JLabel lblNewLabel_3 = new JLabel("Ainda não tem uma conta?");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -109,7 +97,7 @@ public class TelaLogin extends JFrame {
 				
 			}
 		});
-		getContentPane().add(btnCadastrarse, "cell 1 9 2 1");
+		add(btnCadastrarse, "cell 1 9 2 1");
 		
 		
 		
