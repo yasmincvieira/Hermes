@@ -28,11 +28,15 @@ public class TelaLogin extends JPanel {
 	 * Create the frame.
 	 */
 	public TelaLogin() {
+		setBackground(new Color(234, 242, 236));
 		setForeground(new Color(255, 255, 255));
 		//setTitle("Tela de Login");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
-		setLayout(new MigLayout("", "[grow][grow 5][204:n,grow][grow]", "[grow][grow 15][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow 5][grow 5][grow]"));
+		setLayout(new MigLayout("", "[grow][grow 5][204:n,grow][grow]", "[grow][grow 15][grow 5][grow 3][grow 5][grow 3][grow 8][grow 5][grow 5][grow 5][grow]"));
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		add(lblNewLabel_4, "flowx,cell 0 0");
 		
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setIcon(new ImageIcon(TelaLogin.class.getResource("/Imagens/40.png")));
@@ -77,6 +81,7 @@ public class TelaLogin extends JPanel {
 		add(btnLogin, "cell 1 7 2 1,alignx center");
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(234, 242, 236));
 		add(panel, "flowx,cell 1 9 2 1,alignx center,growy");
 		
 		JLabel lblNewLabel_3 = new JLabel("Ainda não tem uma conta?");
