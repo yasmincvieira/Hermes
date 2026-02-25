@@ -20,6 +20,7 @@ public class TelaChamado extends JPanel {
 	 */
 	public TelaChamado() {
 		setLayout(new BorderLayout(0, 0));
+		setBounds(100, 100, 800, 500);
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.WEST);
