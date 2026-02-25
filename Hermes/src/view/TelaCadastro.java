@@ -35,6 +35,7 @@ public class TelaCadastro extends JPanel {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(234, 242, 236));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[grow][grow 20][grow][grow]", "[grow 50][grow 10][27:n,grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow 50]"));
