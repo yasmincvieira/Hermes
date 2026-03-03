@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.LoginController;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -21,14 +24,18 @@ public class TelaLogin extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfUsuario;
 	private JPasswordField tfSenha;
-
+	private LoginController loginController;
 	
 
 	/**
 	 * Create the frame.
 	 */
 	public TelaLogin() {
-		setBackground(new Color(234, 242, 236));
+		// cria o objeto do controller
+		loginController = new LoginController();
+		
+		
+		setBackground(new Color(240, 240, 240));
 		setForeground(new Color(255, 255, 255));
 		//setTitle("Tela de Login");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +74,8 @@ public class TelaLogin extends JPanel {
 		btnLogin.setForeground(new Color(39, 79, 65));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				loginController.FazLogin(tfUsuario.getText(), tfSenha.getText());
 				
 				telaInicial.setVisible(true);
 				

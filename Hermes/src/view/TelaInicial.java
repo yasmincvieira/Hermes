@@ -25,7 +25,7 @@ public class TelaInicial extends JPanel {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
-		setBackground(new Color(234, 242, 236));
+		setBackground(new Color(240, 240, 240));
 		//setTitle("Tela Inicial");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -44,12 +44,12 @@ public class TelaInicial extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		add(btnHistorico, "cell 1 3");
+		add(btnHistorico, "cell 1 3,grow");
 		
 		JButton btnNewButton_1 = new JButton("Realizar novo Chamado");
 		btnNewButton_1.setBackground(new Color(122, 188, 170));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(btnNewButton_1, "cell 3 3");
+		add(btnNewButton_1, "cell 3 3,grow");
 
 	}
 }

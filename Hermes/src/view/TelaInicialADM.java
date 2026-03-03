@@ -17,8 +17,9 @@ public class TelaInicialADM extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaInicialADM() {
-		setBackground(new Color(234, 242, 236));
-		setLayout(new MigLayout("", "[grow][grow][grow 10][grow][grow]", "[grow][grow][grow 10][grow][grow 10][grow][grow]"));
+		setBackground(new Color(240, 240, 240));
+		setBounds(100, 100, 800, 500);
+		setLayout(new MigLayout("", "[grow][grow][grow 10][grow 50][grow]", "[grow][grow][grow 10][grow][grow 10][grow][grow]"));
 		
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -26,42 +27,25 @@ public class TelaInicialADM extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 70));
 		add(lblNewLabel, "cell 1 1 3 1,alignx center");
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(234, 242, 236));
-		add(panel, "cell 1 3,grow");
-		
 		JButton btnNewButton = new JButton("Ver Patrimônios");
-		btnNewButton.setBackground(new Color(160, 200, 172));
+		btnNewButton.setBackground(new Color(122, 188, 170));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel.add(btnNewButton);
+		add(btnNewButton, "cell 1 3,grow");
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(234, 242, 236));
-		add(panel_1, "cell 3 3,grow");
-		
-		JButton btnNewButton_1 = new JButton("Novos Chamados");
-		btnNewButton_1.setBackground(new Color(160, 200, 172));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_1.add(btnNewButton_1);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(234, 242, 236));
-		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-		add(panel_2, "cell 1 5,grow");
-		
-		JButton btnNewButton_2 = new JButton("Ver Perfil");
-		btnNewButton_2.setBackground(new Color(160, 200, 172));
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_2.add(btnNewButton_2);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(234, 242, 236));
-		add(panel_3, "cell 3 5,grow");
-		
-		JButton btnNewButton_3 = new JButton("Histórico de Chamados");
-		btnNewButton_3.setBackground(new Color(160, 200, 172));
+		JButton btnNewButton_3 = new JButton("Novos Chamados");
+		btnNewButton_3.setBackground(new Color(122, 188, 170));
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_3.add(btnNewButton_3);
+		add(btnNewButton_3, "cell 3 3,grow");
+		
+		JButton btnNewButton_1 = new JButton("Ver Perfil");
+		btnNewButton_1.setBackground(new Color(122, 188, 170));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(btnNewButton_1, "cell 1 5,grow");
+		
+		JButton btnNewButton_2 = new JButton("Histórico de Chamados");
+		btnNewButton_2.setBackground(new Color(122, 188, 170));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(btnNewButton_2, "cell 3 5,grow");
 
 	}
 
