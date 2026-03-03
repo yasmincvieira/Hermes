@@ -22,6 +22,7 @@ public class TelaConta extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(147, 195, 171));
+		setBounds(100, 100, 800, 500);
 		add(panel, BorderLayout.WEST);
 		panel.setLayout(new MigLayout("", "[]", "[grow,top][]"));
 		

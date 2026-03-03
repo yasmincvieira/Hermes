@@ -54,7 +54,7 @@ public class TelaChamado extends JPanel {
 		JLabel lbNomePatrimonio = new JLabel("Nome do Patrimônio:");
 		lbNomePatrimonio.setBackground(new Color(38, 76, 63));
 		lbNomePatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelChamado.add(lbNomePatrimonio, "cell 1 2,alignx trailing");
+		panelChamado.add(lbNomePatrimonio, "cell 1 2,alignx left");
 		
 		JComboBox cbNomePatrimonio = new JComboBox();
 		cbNomePatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -70,7 +70,9 @@ public class TelaChamado extends JPanel {
 		
 		JComboBox cbLocal = new JComboBox();
 		cbLocal.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbLocal.setModel(new DefaultComboBoxModel(new String[] {"Sala 1", "Sala 2", "Sala 3", "Sala 4"}));
+		cbLocal.setModel(new DefaultComboBoxModel(new String[] {"Sala 1", "Sala 2", "Sala 3", "Sala 4", "Sala 5", "Sala 6", "Sala 7", "Sala 8", "Sala 9", "Sala 10", "Sala 11", "Sala 12", "Sala 13", "Sala 14"
+				, "Sala 15", "Sala 16", "Sala 17", "Sala 17", "Sala 18", "Sala 19", "Lab Info 1", "Lab Info 2", "Lab Info 3", "Lab Info 4", "Lab Info 5", "Lab Info 6", "Lab Info 7", "Lab Química 1", "Lab Química 2", "Lab Química 3"
+				, "Lab Química 4", "Lab Química 5", "Lab Química 6"}));
 		cbLocal.setForeground(new Color(38, 76, 63));
 		cbLocal.setBackground(new Color(160, 200, 172));
 		panelChamado.add(cbLocal, "cell 2 4,growx");
@@ -95,6 +97,7 @@ public class TelaChamado extends JPanel {
 		panelChamado.add(scrollPane, "cell 2 8,grow");
 		
 		JTextArea taDescricao = new JTextArea();
+		taDescricao.setEditable(false);
 		taDescricao.setBackground(new Color(160, 200, 172));
 		scrollPane.setViewportView(taDescricao);
 		
