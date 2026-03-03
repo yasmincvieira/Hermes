@@ -19,6 +19,7 @@ public class TelaInicialADM extends JPanel {
 	public TelaInicialADM() {
 		setBackground(new Color(234, 242, 236));
 		setLayout(new MigLayout("", "[grow][grow][grow 10][grow][grow]", "[grow][grow][grow 10][grow][grow 10][grow][grow]"));
+		setBounds(100, 100, 800, 500);
 		
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));

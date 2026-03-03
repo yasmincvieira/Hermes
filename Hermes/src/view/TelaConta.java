@@ -24,6 +24,7 @@ public class TelaConta extends JPanel {
 		panel.setBackground(new Color(147, 195, 171));
 		add(panel, BorderLayout.WEST);
 		panel.setLayout(new MigLayout("", "[]", "[grow,top][]"));
+		setBounds(100, 100, 800, 500);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(TelaConta.class.getResource("/Imagens/30Menu.png")));
