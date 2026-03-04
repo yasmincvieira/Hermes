@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 
-public class TelaChamado extends JPanel {
+public class TelaNovoChamado extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfIPatrimonio;
@@ -22,7 +22,7 @@ public class TelaChamado extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TelaChamado() {
+	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
 		
@@ -33,11 +33,11 @@ public class TelaChamado extends JPanel {
 		panelMenu.setLayout(new MigLayout("", "[]", "[grow,top][]"));
 		
 		JLabel lbIconMenu = new JLabel("");
-		lbIconMenu.setIcon(new ImageIcon(TelaChamado.class.getResource("/Imagens/30Menu.png")));
+		lbIconMenu.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/30Menu.png")));
 		panelMenu.add(lbIconMenu, "cell 0 0,alignx right");
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaChamado.class.getResource("/Imagens/30Usuario.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/30Usuario.png")));
 		panelMenu.add(lblNewLabel, "cell 0 1");
 		
 		JPanel panelChamado = new JPanel();
@@ -47,7 +47,7 @@ public class TelaChamado extends JPanel {
 		
 		JLabel lblNewLabel_6 = new JLabel("HERMES");
 		lblNewLabel_6.setForeground(new Color(39, 79, 65));
-		lblNewLabel_6.setIcon(new ImageIcon(TelaChamado.class.getResource("/Imagens/40.png")));
+		lblNewLabel_6.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/40.png")));
 		lblNewLabel_6.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
 		panelChamado.add(lblNewLabel_6, "cell 2 0 2 1,alignx right");
 		

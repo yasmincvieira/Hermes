@@ -48,4 +48,14 @@ public class Janela extends JFrame {
 
 	}
 
+//	public void adicionarTela(String nome, JPanel tela) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	public void mostrarTela(String nome) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
 }

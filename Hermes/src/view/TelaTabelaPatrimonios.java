@@ -55,11 +55,11 @@ public class TelaTabelaPatrimonios extends JPanel {
 		lblNewLabel_1.setBackground(new Color(160, 200, 172));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		paneltabelaPatrimonio.add(scrollPane, "cell 1 2 2 3,growx,aligny center");
+		paneltabelaPatrimonio.add(scrollPane, "cell 1 2 2 3,grow");
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][] { 
 				{"Ar-condicionado", "lab 6", "736073", "Em an\u00E1lise"},
 				{"Cpu", "Lab 6", "770744", "Ativo"},
 				{null, null, null, null},
