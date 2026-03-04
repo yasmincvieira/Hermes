@@ -56,6 +56,7 @@ public class TelaVizuChamadosADM extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel, "cell 3 0");
 		
 		JLabel lblNewLabel_1 = new JLabel("Status:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelVizuChamadosADM.add(lblNewLabel_1, "cell 1 2,alignx trailing");
 		
 		JComboBox comboBox = new JComboBox();
@@ -64,21 +65,24 @@ public class TelaVizuChamadosADM extends JPanel {
 		panelVizuChamadosADM.add(comboBox, "cell 2 2,growx");
 		
 		JLabel lblNewLabel_2 = new JLabel("Nome do patrimônio:");
-		panelVizuChamadosADM.add(lblNewLabel_2, "cell 1 4");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panelVizuChamadosADM.add(lblNewLabel_2, "cell 1 4,alignx right");
 		
 		JTextArea taNomePatrimonio = new JTextArea();
 		taNomePatrimonio.setBackground(new Color(160, 200, 172));
-		panelVizuChamadosADM.add(taNomePatrimonio, "cell 2 4,grow");
+		panelVizuChamadosADM.add(taNomePatrimonio, "cell 2 4,growx,aligny center");
 		
 		JLabel lblNewLabel_3 = new JLabel("Local:");
-		panelVizuChamadosADM.add(lblNewLabel_3, "cell 1 6");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panelVizuChamadosADM.add(lblNewLabel_3, "cell 1 6,alignx right");
 		
 		JTextArea taLocal = new JTextArea();
 		taLocal.setBackground(new Color(160, 200, 172));
-		panelVizuChamadosADM.add(taLocal, "cell 2 6,grow");
+		panelVizuChamadosADM.add(taLocal, "cell 2 6,growx,aligny center");
 		
 		JLabel lblNewLabel_4 = new JLabel("Descrição:");
-		panelVizuChamadosADM.add(lblNewLabel_4, "cell 1 8");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panelVizuChamadosADM.add(lblNewLabel_4, "cell 1 8,alignx right");
 		
 		JTextArea taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
