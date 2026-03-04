@@ -60,6 +60,7 @@ public class TelaVizuChamadosADM extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_1, "cell 1 2,alignx trailing");
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBox.setBackground(new Color(160, 200, 172));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Em análise", "Inativo", "Resolvido", "Invalido"}));
 		panelVizuChamadosADM.add(comboBox, "cell 2 2,growx");

@@ -9,6 +9,8 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaConta extends JPanel {
 
@@ -52,18 +54,27 @@ public class TelaConta extends JPanel {
 		panel_1.add(lblNewLabel_1, "cell 1 2,alignx right");
 		
 		JLabel lblNewLabel_2 = new JLabel("Usuário:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(lblNewLabel_2, "cell 1 4");
 		
 		JLabel lblNewLabel_3 = new JLabel("Senha:");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(lblNewLabel_3, "cell 1 6");
 		
 		JLabel lblNewLabel_4 = new JLabel("E-Mail:");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(lblNewLabel_4, "cell 1 8");
 		
 		JLabel lblNewLabel_5 = new JLabel("Chamados feitos:");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(lblNewLabel_5, "flowx,cell 1 10");
 		
 		JButton btnNewButton = new JButton("Excluir conta");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBackground(new Color(160, 200, 172));
 		panel_1.add(btnNewButton, "cell 0 12,alignx right");
 
