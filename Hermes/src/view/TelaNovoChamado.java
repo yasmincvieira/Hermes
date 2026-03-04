@@ -7,12 +7,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ScrollPaneConstants;
 
 public class TelaNovoChamado extends JPanel {
 
@@ -80,7 +83,7 @@ public class TelaNovoChamado extends JPanel {
 		JLabel lbIDPatrimonio = new JLabel("ID do Patrimônio:");
 		lbIDPatrimonio.setBackground(new Color(240, 240, 240));
 		lbIDPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelChamado.add(lbIDPatrimonio, "cell 1 6,alignx left");
+		panelChamado.add(lbIDPatrimonio, "flowy,cell 1 6,alignx left");
 		
 		tfIPatrimonio = new JTextField();
 		tfIPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -94,18 +97,26 @@ public class TelaNovoChamado extends JPanel {
 		panelChamado.add(lbDescricao, "cell 1 8,alignx left,aligny top");
 		
 		JScrollPane scrollPane = new JScrollPane();
+        //scrollPane.setPreferredSize(new Dimension(250, 300)); // Largura fixa e altura variável
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panelChamado.add(scrollPane, "cell 2 8,grow");
 		
-		JTextArea taDescricao = new JTextArea();
-		taDescricao.setEditable(false);
-		taDescricao.setBackground(new Color(160, 200, 172));
-		scrollPane.setViewportView(taDescricao);
+		JTextArea textArea = new JTextArea();
+		textArea.setBackground(new Color(160, 200, 172));
+		textArea.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textArea.setWrapStyleWord(true); // Quebra de linha em palavras completas
+        textArea.setLineWrap(true); // Habilita a quebra de linha automática
+		scrollPane.setViewportView(textArea);
 		
 		JButton btnNewButton = new JButton("Realizar chamado");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setForeground(new Color(38, 76, 63));
 		btnNewButton.setBackground(new Color(160, 200, 172));
 		panelChamado.add(btnNewButton, "cell 2 10,alignx center");
+		
+		JLabel lblNewLabel_1 = new JLabel("(opcional)");
+		lblNewLabel_1.setForeground(new Color(91, 91, 91));
+		panelChamado.add(lblNewLabel_1, "cell 1 6");
 
 	}
 

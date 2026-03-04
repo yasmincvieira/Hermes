@@ -22,7 +22,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 	 */
 	public TelaTabelaPatrimonios() {
 
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1100, 700);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel MenuTabelaPatrimonio = new JPanel();
@@ -36,17 +36,11 @@ public class TelaTabelaPatrimonios extends JPanel {
 		
 		JPanel paneltabelaPatrimonio = new JPanel();
 		add(paneltabelaPatrimonio, BorderLayout.CENTER);
-		paneltabelaPatrimonio.setLayout(new MigLayout("", "[][grow][][grow 3]", "[][grow 5][grow][][grow][grow]"));
-		
-		JLabel lblNewLabel = new JLabel("HERMES");
-		lblNewLabel.setForeground(new Color(39, 79, 65));
-		lblNewLabel.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/40.png")));
-		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
-		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 0 3 0");
+		paneltabelaPatrimonio.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow][grow][::60px]", "[::60px,grow][100px:n,grow][grow][grow][grow]"));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(160, 200, 172));
-		paneltabelaPatrimonio.add(panel, "cell 0 0 1 0");
+		paneltabelaPatrimonio.add(panel, "cell 0 0 2 1");
 		
 		JLabel lblNewLabel_1 = new JLabel("Patrimônios");
 		lblNewLabel_1.setForeground(new Color(38, 76, 63));
@@ -54,14 +48,39 @@ public class TelaTabelaPatrimonios extends JPanel {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1.setBackground(new Color(160, 200, 172));
 		
+		JLabel lblNewLabel = new JLabel("HERMES");
+		lblNewLabel.setForeground(new Color(39, 79, 65));
+		lblNewLabel.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/40.png")));
+		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
+		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 0 4 1,alignx right");
+		
 		JScrollPane scrollPane = new JScrollPane();
+<<<<<<< HEAD
 		paneltabelaPatrimonio.add(scrollPane, "cell 1 2 2 3,grow");
+=======
+		paneltabelaPatrimonio.add(scrollPane, "cell 1 1 5 3,grow");
+>>>>>>> 702e60757e56b4be9a7547140530c08f31e7df0a
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] { 
 				{"Ar-condicionado", "lab 6", "736073", "Em an\u00E1lise"},
 				{"Cpu", "Lab 6", "770744", "Ativo"},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -88,19 +107,22 @@ public class TelaTabelaPatrimonios extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		JButton btEditarPatri = new JButton("Editar patrimônios");
+		btEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btEditarPatri.setForeground(new Color(39, 79, 65));
 		btEditarPatri.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btEditarPatri, "cell 0 5,alignx right,growy");
+		paneltabelaPatrimonio.add(btEditarPatri, "cell 1 4,alignx right");
 		
 		JButton btnNewButton_2 = new JButton("Adicionar patrimônio");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.setForeground(new Color(39, 79, 65));
 		btnNewButton_2.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_2, "cell 1 5,alignx center,growy");
+		paneltabelaPatrimonio.add(btnNewButton_2, "cell 2 4,alignx center");
 		
 		JButton btnNewButton_1 = new JButton("Excluir patrimônio");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setForeground(new Color(39, 79, 65));
 		btnNewButton_1.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_1, "cell 3 5,alignx left,growy");
+		paneltabelaPatrimonio.add(btnNewButton_1, "cell 3 4,alignx left");
 	}
 
 }
