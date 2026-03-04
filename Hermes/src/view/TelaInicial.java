@@ -25,7 +25,7 @@ public class TelaInicial extends JPanel {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
-		setBackground(new Color(234, 242, 236));
+		setBackground(new Color(240, 240, 240));
 		//setTitle("Tela Inicial");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 //import java.awt.CardLayout;
 
 public class Janela extends JFrame {
@@ -41,6 +42,7 @@ public class Janela extends JFrame {
 		//setTitle("Tela de Login");
 //		contentPane = new JPanel(this.cardLayout);
 		contentPane = new TelaLogin();
+		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
