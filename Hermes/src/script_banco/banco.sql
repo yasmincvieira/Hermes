@@ -4,10 +4,11 @@ create database banco;
 use banco;
 
 create table Usuarios(
-	ID INT primary key,
-    NOME VARCHAR(255) not null,
-    EMAIL varchar(255) not null,
+	 id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) not null,
+    email varchar(255) not null,
     senha varchar(255) not null
 );
 
-insert into Usuarios VALUES(1, 'Yasmin', 'yasmin@email.com', '123');
+insert into Usuarios VALUES(null, 'Yasmin', 'yasmin@email.com', '123');
+
