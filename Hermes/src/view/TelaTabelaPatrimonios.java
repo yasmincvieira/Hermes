@@ -40,7 +40,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(160, 200, 172));
-		paneltabelaPatrimonio.add(panel, "cell 0 0 2 1");
+		paneltabelaPatrimonio.add(panel, "cell 0 0 2 1,alignx center");
 		
 		JLabel lblNewLabel_1 = new JLabel("Patrimônios");
 		lblNewLabel_1.setForeground(new Color(38, 76, 63));
@@ -55,52 +55,52 @@ public class TelaTabelaPatrimonios extends JPanel {
 		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 0 4 1,alignx right");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		paneltabelaPatrimonio.add(scrollPane, "cell 1 2 2 3,grow");
-
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] { 
-				{"Ar-condicionado", "lab 6", "736073", "Em an\u00E1lise"},
-				{"Cpu", "Lab 6", "770744", "Ativo"},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Patrim\u00F4nio", "Espa\u00E7o", "Id", "Status"
-			}
-		));
-		scrollPane.setViewportView(table);
+		paneltabelaPatrimonio.add(scrollPane, "cell 1 1 3 1,grow");
+		
+				table = new JTable();
+				table.setModel(new DefaultTableModel(
+					new Object[][] { 
+						{"Ar-condicionado", "lab 6", "736073", "Em an\u00E1lise"},
+						{"Cpu", "Lab 6", "770744", "Ativo"},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+					},
+					new String[] {
+						"Patrim\u00F4nio", "Espa\u00E7o", "Id", "Status"
+					}
+				));
+				scrollPane.setViewportView(table);
 		
 		JButton btEditarPatri = new JButton("Editar patrimônios");
 		btEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
