@@ -55,70 +55,70 @@ public class TelaTabelaPatrimonios extends JPanel {
 		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 0 4 1,alignx right");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		paneltabelaPatrimonio.add(scrollPane, "cell 1 2 2 3,grow");
-
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] { 
-				{"Ar-condicionado", "lab 6", "736073", "Em an\u00E1lise"},
-				{"Cpu", "Lab 6", "770744", "Ativo"},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Patrim\u00F4nio", "Espa\u00E7o", "Id", "Status"
-			}
-		));
-		scrollPane.setViewportView(table);
+		paneltabelaPatrimonio.add(scrollPane, "cell 1 1 5 2,grow");
+		
+				table = new JTable();
+				table.setModel(new DefaultTableModel(
+					new Object[][] { 
+						{"Ar-condicionado", "lab 6", "736073", "Em an\u00E1lise"},
+						{"Cpu", "Lab 6", "770744", "Ativo"},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+					},
+					new String[] {
+						"Patrim\u00F4nio", "Espa\u00E7o", "Id", "Status"
+					}
+				));
+				scrollPane.setViewportView(table);
 		
 		JButton btEditarPatri = new JButton("Editar patrimônios");
 		btEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btEditarPatri.setForeground(new Color(39, 79, 65));
 		btEditarPatri.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btEditarPatri, "cell 1 4,alignx right");
+		paneltabelaPatrimonio.add(btEditarPatri, "cell 2 4,alignx right");
 		
 		JButton btnNewButton_2 = new JButton("Adicionar patrimônio");
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.setForeground(new Color(39, 79, 65));
 		btnNewButton_2.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_2, "cell 2 4,alignx center");
+		paneltabelaPatrimonio.add(btnNewButton_2, "cell 3 4,alignx center");
 		
 		JButton btnNewButton_1 = new JButton("Excluir patrimônio");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setForeground(new Color(39, 79, 65));
 		btnNewButton_1.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_1, "cell 3 4,alignx left");
+		paneltabelaPatrimonio.add(btnNewButton_1, "cell 4 4,alignx left");
 	}
 
 }
