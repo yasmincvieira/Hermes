@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 import java.awt.Color;
+
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 
@@ -25,6 +27,7 @@ public class TelaLogin extends JPanel {
 	private JTextField tfUsuario;
 	private JPasswordField tfSenha;
 	private LoginController loginController;
+	private Object btnLogin;
 	
 
 	/**
@@ -75,9 +78,10 @@ public class TelaLogin extends JPanel {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				loginController.FazLogin(tfUsuario.getText(), tfSenha.getText());
+//				loginController.FazLogin(tfUsuario.getText(), tfSenha.getText());
+//				
+//				telaInicial.setVisible(true);
 				
-				telaInicial.setVisible(true);
 				
 			}
 		});
@@ -112,10 +116,22 @@ public class TelaLogin extends JPanel {
 			}
 		});
 		add(btnCadastrarse, "cell 1 9 2 1");
-		
-		
-		
-		
-
 	}
+
+
+	public void adicionarOuvinte(LoginController loginController) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void addActionListener(ActionListener l) {
+        listenerList.add(ActionListener.class, l);
+    }
+	
+//	public void proximo(ActionListener actionListener) {
+//		this.btnLogin.addActionListener(actionListener);
+//	}
+
+
+	
 }

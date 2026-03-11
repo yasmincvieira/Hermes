@@ -24,7 +24,7 @@ public class Espaco {
 		System.out.println("Nome: "+ this.nome_local);
 		System.out.println("Formação: "+ this.bloco);
 		System.out.println("Área de Interesse: "+ this.andar);
-		System.out.println("Contratado: "+ this.contratado);
+		//System.out.println("Contratado: "+ this.contratado);
 		System.out.println("##################################");
 	}
 

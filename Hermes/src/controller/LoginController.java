@@ -7,6 +7,7 @@ import models.Usuario;
 public class LoginController {
 	
 	private Database db;
+	private Object view;
 	
 	// Construtor da classe
 	public LoginController () {
@@ -26,6 +27,13 @@ public class LoginController {
 	
 	public void CriaUsuario(String Email, String Senha, String Nome) {
 		System.out.println("Criando Usuário");
-	}
+	};{
+	
+//	this.view.proximo(e -> {
+//		if(model.listarTodos().size() > 0)
+//			this.navegador.navegarPara("INICIAL");
+//		else
+//			this.view.exibirMensagem("Erro", "Nenhum candidato cadastrado! Cadastre antes de avançar." , 0);
+//	});
 
-}
+}}

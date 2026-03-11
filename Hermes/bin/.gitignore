@@ -1,7 +1,9 @@
 /models/
-/script_banco/
 /view/
+<<<<<<< HEAD
 /models/
 /script_banco/
+=======
+>>>>>>> refs/heads/branchYasmin_05
 /controller/
 /main/
