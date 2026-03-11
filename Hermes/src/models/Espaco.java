@@ -22,13 +22,21 @@ public class Espaco {
 	 */
 	public void imprimir() {
 		System.out.println("Nome: "+ this.nome_local);
-		System.out.println("Formação: "+ this.bloco);
-		System.out.println("Área de Interesse: "+ this.andar);
-		//System.out.println("Contratado: "+ this.contratado);
+
+		System.out.println("Bloco: "+ this.bloco);
+		System.out.println("Andar: "+ this.andar);
+
 		System.out.println("##################################");
 	}
 
 	//Getters e setters.
+	public String getNomeLocal() {
+		return nome_local;
+	}
+
+	public void setNomeLocal(String nome_local) {
+		this.nome_local = nome_local;
+	}
 	public String getBloco() {
 		return bloco;
 	}
