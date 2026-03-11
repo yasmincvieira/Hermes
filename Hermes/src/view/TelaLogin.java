@@ -25,6 +25,7 @@ public class TelaLogin extends JPanel {
 	private JTextField tfUsuario;
 	private JPasswordField tfSenha;
 	private LoginController loginController;
+	private JButton btCadastrase;
 	
 
 	/**
@@ -51,10 +52,10 @@ public class TelaLogin extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 70));
 		add(lblNewLabel, "cell 1 1 2 1,alignx center,growy");
 		
-		JLabel lblNewLabel_1 = new JLabel("Usuário:");
-		lblNewLabel_1.setForeground(new Color(39, 79, 65));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(lblNewLabel_1, "cell 1 3,alignx center,growy");
+		JLabel lbUsuario = new JLabel("Usuário:");
+		lbUsuario.setForeground(new Color(39, 79, 65));
+		lbUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(lbUsuario, "cell 1 3,alignx center,growy");
 		
 		tfUsuario = new JTextField();
 		tfUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -62,10 +63,10 @@ public class TelaLogin extends JPanel {
 		add(tfUsuario, "cell 2 3,grow");
 		tfUsuario.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Senha:");
-		lblNewLabel_2.setForeground(new Color(39, 79, 65));
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(lblNewLabel_2, "cell 1 5,alignx center,growy");
+		JLabel lbSenha = new JLabel("Senha:");
+		lbSenha.setForeground(new Color(39, 79, 65));
+		lbSenha.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(lbSenha, "cell 1 5,alignx center,growy");
 		
 		TelaInicial telaInicial = new TelaInicial();
 		
@@ -90,7 +91,7 @@ public class TelaLogin extends JPanel {
 		add(btnLogin, "cell 1 7 2 1,alignx center");
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(234, 242, 236));
+		panel.setBackground(new Color(240, 240, 240));
 		add(panel, "flowx,cell 1 9 2 1,alignx center,growy");
 		
 		JLabel lblNewLabel_3 = new JLabel("Ainda não tem uma conta?");
@@ -104,18 +105,7 @@ public class TelaLogin extends JPanel {
 		btnCadastrarse.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnCadastrarse.setForeground(new Color(39, 79, 65));
 		btnCadastrarse.setBackground(new Color(160, 200, 172));
-		btnCadastrarse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				telaCadastro.setVisible(true);
-				
-			}
-		});
 		add(btnCadastrarse, "cell 1 9 2 1");
-		
-		
-		
-		
 
 	}
 }
