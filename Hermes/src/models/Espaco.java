@@ -22,7 +22,6 @@ public class Espaco {
 	 */
 	public void imprimir() {
 		System.out.println("Nome: "+ this.nome_local);
-
 		System.out.println("Bloco: "+ this.bloco);
 		System.out.println("Andar: "+ this.andar);
 

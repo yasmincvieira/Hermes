@@ -12,22 +12,22 @@ create table Usuarios(
 
 insert into Usuarios VALUES(null, 'Yasmin', 'yasmin@email.com', '123');
 
-create table chamado(
+create table chamados(
 	idChamado INT AUTO_INCREMENT PRIMARY KEY,
     status enum ('Inativo', 'Em análise', 'Resolvido', 'Inválido') not null,
     descricao text not null
     );
     
-insert into chamado VALUES(null, 'Inativo', 'A mesa está com um dos pé quebrado');
+insert into chamados VALUES(null, 'Inativo', 'A mesa está com um dos pé quebrado');
 
 
-create table patrimonio(
+create table patrimonios(
 	idPatrimonio INT AUTO_INCREMENT PRIMARY KEY,
     status enum ('Inativo', 'Ativo', 'Em manutenção') not null,
     nome varchar(255) not null
     );
     
-insert into patrimonio VALUES(null, 'Em manutenção', 'Cadeira');
+insert into patrimonios VALUES(null, 'Em manutenção', 'Cadeira');
 
 create table espacos(
 nome_local varchar(255) PRIMARY KEY,

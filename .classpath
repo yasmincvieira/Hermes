@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Hermes/src"/>
+	<classpathentry kind="lib" path="Hermes/com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
+	<classpathentry kind="lib" path="Hermes/com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
+	<classpathentry kind="lib" path="Hermes/com.miglayout.core_11.4.2.jar"/>
+	<classpathentry kind="lib" path="Hermes/com.miglayout.swing_11.4.2.jar"/>
+	<classpathentry kind="lib" path="Hermes/lib/mysql-connector-j-9.6.0.jar"/>
+	<classpathentry kind="output" path="Hermes/bin"/>
+</classpath>

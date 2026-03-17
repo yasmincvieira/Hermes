@@ -24,9 +24,9 @@ public class Chamado {
 	 * Método para exibir os dados do candidato.
 	 */
 	public void imprimir() {
-		System.out.println("Nome: "+ this.id_chamado);
-		System.out.println("Formação: "+ this.status);
-		System.out.println("Área de Interesse: "+ this.descricao);
+		System.out.println("Id chamado: "+ this.id_chamado);
+		System.out.println("Status: "+ this.status);
+		System.out.println("descricao: "+ this.descricao);
 		System.out.println("##################################");
 	}
 
@@ -45,5 +45,14 @@ public class Chamado {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getId_chamado() {
+		// TODO Auto-generated method stub
+		return id_chamado;
+	}
+	public String setId_chamado(String id_chamado) {
+		// TODO Auto-generated method stub
+		return id_chamado;
 	}
 }

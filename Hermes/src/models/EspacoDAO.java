@@ -11,7 +11,7 @@ public class EspacoDAO {
 
     // CREATE - Adicionar um novo usuário
     public void adicionarEspaco(Espaco espaco) {
-        String sql = "INSERT INTO espaco (bloco, nome_local, andar) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO espacos (bloco, nome_local, andar) VALUES (?, ?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 		
@@ -67,7 +67,7 @@ public class EspacoDAO {
     }
 
     // UPDATE - Atualizar um usuário existente
-    public void atualizarUsuario(Espaco espaco) {
+    public void atualizarEspaco(Espaco espaco) {
         String sql = "UPDATE espacos SET bloco = ?, andar = ? WHERE nome_local = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
@@ -87,20 +87,20 @@ public class EspacoDAO {
         }
     }
     // DELETE - Excluir um usuário pelo ID
-    public void excluirUsuario(int id) {
-        String sql = "DELETE FROM usuarios WHERE id = ?";
+    public void excluirEspaco(String nome_local) {
+        String sql = "DELETE FROM espacos WHERE id = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
-//        try {
-//            conexao = BancoDeDados.conectar();
-//            pstm = conexao.prepareStatement(sql);
-//            pstm.setString(1, nome_local);
-//            pstm.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//        	BancoDeDados.desconectar(conexao);
-//        }
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            pstm.setString(2, nome_local);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	BancoDeDados.desconectar(conexao);
+        }
     }
 }

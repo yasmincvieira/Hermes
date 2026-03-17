@@ -1,89 +1,106 @@
 package models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Classe responsável por gerenciar todos os candidatos 
- * cadastrados durante a execução da aplicação. Os candidatos
- * são armazenados em um Arraylist.
- */
+import models.BancoDeDados;
+
 public class ChamadoDAO {
-	private final ArrayList<Chamado> listaDeChamado;
 
-	/**
-	 * Construtor.
-	 */
-	public ChamadoDAO() {
-		this.listaDeChamado = new ArrayList<>();
-	}
+    // CREATE - Adicionar um novo usuário
+    public void adicionarUsuario(Chamado chamado) {
+        String sql = "INSERT INTO chamados (id_chamado, status, descricao) VALUES (?, ?, ?)";
+        Connection conexao = null;
+        PreparedStatement pstm = null;
+//        String id_chamado, String status, String descricao
 
-	/**
-	 * Método responsável por adicionar um candidato à lista de candidatos.
-	 * @param chamado Candidato que será adicionado na lista.
-	 */
-	public void adicionar(Chamado chamado) {
-		if (chamado != null) {
-			this.listaDeChamado.add(chamado);
-		}
-	}
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, chamado.getId_chamado());
+            pstm.setString(2, chamado.getStatus());
+            pstm.setString(3, chamado.getDescricao());
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	BancoDeDados.desconectar(conexao);
+            if (pstm != null) {
+                try {
+                    pstm.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
-	/**
-	 * Método responsável por recuperar a lista de candidatos.
-	 * @return Arraylist com a lista de candidatos.
-	 */
-	public List<Chamado> listarTodos() {
-		return new ArrayList<>(this.listaDeChamado);
-	}
+    // READ - Listar todos os usuários
+    public List<Chamado> listarChamados() {
+        String sql = "SELECT * FROM chamados";
+        List<Chamado> chamados = new ArrayList<>();
+        Connection conexao = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null; // Objeto que guarda o resultado da consulta
 
-	/**
-	 * Método responsável por buscar por nome um candidato na lista de candidatos cadastrados.
-	 * @param nome Nome do candidato que se deseja buscar.
-	 * @return O candidato caso ele seja encontrado e null caso contrário.
-	 */
-	public Chamado buscarPorNome(String nome) {
-		for (Chamado candidato : this.listaDeChamado) {
-			if (candidato.getDescricao().equalsIgnoreCase(nome)) {
-				return candidato;
-			}
-		}
-		return null;
-	}
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            rset = pstm.executeQuery();
 
-	/**
-	 * Método responsável por atualizar um candidato da lista. 
-	 * Ao encontrar o candidato pelo nome, altera-se o elemento na lista pelo recebido por parâmetro. 
-	 * @param candidatoAtualizado Candidato com os dados atualizados.
-	 * @return
-	 */
-	public boolean atualizar(Chamado chamadoAtualizado) {
-		for (int i = 0; i < this.listaDeChamado.size(); i++) {
-			Chamado candidatoExistente = this.listaDeChamado.get(i);
+            while (rset.next()) {
+                Chamado chamado = new Chamado (sql, sql, sql);
+                chamado.setId_chamado(rset.getString("id_chamado"));
+                chamado.setStatus(rset.getString("status"));
+                chamado.setDescricao(rset.getString("descricao"));
+                chamados.add(chamado);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	BancoDeDados.desconectar(conexao);
+            // Fechar recursos
+        }
+        return chamados;
+    }
 
-			if (candidatoExistente.getStatus().equalsIgnoreCase(chamadoAtualizado.getStatus())) {
-				this.listaDeChamado.set(i, chamadoAtualizado);
-				return true;
-			}
-		}
-		return false;
-	}
+    // UPDATE - Atualizar um usuário existente
+    public void atualizarChamado(Chamado chamado) {
+        String sql = "UPDATE chamados SET status = ?, WHERE id_chamado = ?";
+        Connection conexao = null;
+        PreparedStatement pstm = null;
 
-	/**
-	 * Método responsável por alterar o status de todos 
-	 * os candidatos da lista para 'contratado'.
-	 */
-//	public void contratarTodos() {
-//		for (int i = 0; i < this.listaDeChamado.size(); i++) {
-//			this.listaDeChamado.get(i).setContratado(true);
-//		}
-////	}
-//
-//	/**
-//	 * Método responsável por alterar o status de todos
-//	 * os candidatos da lista para 'candidato'.
-//	 */
-//	public void demitirTodos() {
-//		for (int i = 0; i < this.listaDeChamado.size(); i++) {
-//			this.listaDeChamado.get(i).setContratado(false);
-//		}
-	}
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            pstm.setString(2, chamado.getStatus());
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	BancoDeDados.desconectar(conexao);
+        }
+    }
+
+    // DELETE - Excluir um usuário pelo ID
+    public void excluirChamado(int id) {
+        String sql = "DELETE FROM chamados WHERE id = ?";
+        Connection conexao = null;
+        PreparedStatement pstm = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, id);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	BancoDeDados.desconectar(conexao);
+        }
+    }
+}
