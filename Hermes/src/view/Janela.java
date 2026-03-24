@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.Navegador;
+
 import java.awt.Color;
 
 import java.awt.CardLayout;
@@ -14,8 +17,7 @@ public class Janela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Object cardLayout;
-//	private CardLayout cardLayout;
+	private CardLayout cardLayout;
 
 	/**
 	 * Launch the application.
@@ -26,6 +28,10 @@ public class Janela extends JFrame {
 				try {
 					Janela frame = new Janela();
 					frame.setVisible(true);
+					
+					Navegador navegador = new Navegador(frame);
+	               
+	                
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,10 +47,15 @@ public class Janela extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		
+		cardLayout = new CardLayout();
+        contentPane = new JPanel(cardLayout);
+        contentPane.setBackground(new Color(240, 240, 240));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+		
 //		this.cardLayout = new CardLayout();
 		
-		//setTitle("Tela de Login");
-//		contentPane = new JPanel(this.cardLayout);
+		setTitle("Tela de Login");
 		contentPane = new TelaLogin();
 		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

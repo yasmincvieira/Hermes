@@ -3,24 +3,26 @@ package controller;
 import javax.swing.JPanel;
 
 import view.Janela;
+import view.TelaLogin;
 
 public class Navegador {
 	
 	private Janela janela;
 
-	/**
-	 * Construtor da classe.
-	 * @param janela Referência ao JFrame.
-	 */
-	public Navegador(Janela janela) {
-		this.janela = janela;
-	}
+	TelaLogin telaLogin = new TelaLogin();
 
-	/**
-	 * Método responsável por chamar o método da view que adiciona as telas ao painel principal.
-	 * @param nome Nome do painel.
-	 * @param tela Painel que será adicionado.
-	 */
+	public Navegador(Janela janela,  TelaLogin telaLogin) {
+		this.janela = janela;
+		
+		this.telaLogin = telaLogin;
+
+		this.telaLogin.logar(e ->{
+		navegarPara("INICIO");
+
+		});
+
+}
+		
 	public void adicionarPainel(String nome, JPanel tela) {
 		this.janela.adicionarTela(nome, tela);
 	}

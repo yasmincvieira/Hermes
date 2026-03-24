@@ -40,11 +40,6 @@ public class TelaInicial extends JPanel {
 		JButton btnHistorico = new JButton("Histórico de Chamados");
 		btnHistorico.setBackground(new Color(122, 188, 170));
 		btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnHistorico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		add(btnHistorico, "cell 1 3,grow");
 		
 		JButton btnNewButton_1 = new JButton("Realizar novo Chamado");
 		btnNewButton_1.setBackground(new Color(122, 188, 170));

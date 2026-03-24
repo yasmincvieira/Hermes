@@ -13,7 +13,7 @@ public class UsuarioDAO {
 
     // CREATE - Adicionar um novo usuário
     public void adicionarUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (id, nome, email, senha) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (nome, email, senha) VALUES ( ?, ?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -22,6 +22,7 @@ public class UsuarioDAO {
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getNome());
             pstm.setString(2, usuario.getEmail());
+            pstm.setString(3, usuario.getSenha());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,7 +37,8 @@ public class UsuarioDAO {
             }
         }
     }
-
+    
+   
     // READ - Listar todos os usuários
     public List<Usuario> listarUsuarios() {
         String sql = "SELECT * FROM usuarios";
@@ -63,13 +65,20 @@ public class UsuarioDAO {
         } finally {
         	BancoDeDados.desconectar(conexao);
             // Fechar recursos
+        	
+        	 try {
+        	        if (rset != null) rset.close();
+        	        if (pstm != null) pstm.close();
+        	    } catch (SQLException e) {
+        	        e.printStackTrace();
+        	    }
         }
         return usuarios;
     }
 
     // UPDATE - Atualizar um usuário existente
     public void atualizarUsuario(Usuario usuario) {
-        String sql = "UPDATE usuarios SET nome = ?, email = ? WHERE id = ?";
+        String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -78,7 +87,8 @@ public class UsuarioDAO {
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getNome());
             pstm.setString(2, usuario.getEmail());
-            pstm.setInt(3, usuario.getId());
+            pstm.setString(3, usuario.getSenha());
+            pstm.setInt(4, usuario.getId());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

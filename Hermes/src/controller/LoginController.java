@@ -2,38 +2,69 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import models.Usuario;
+import models.UsuarioDAO;
+import view.TelaCadastro;
+import view.TelaLogin;
 
 public class LoginController {
 	
+	private TelaLogin login;
+	private UsuarioDAO usuarioDAO;
+	private Navegador navegador;
 	private Database db;
 	private Object view;
+	private Navegador controller;
 	
-	// Construtor da classe
-	public LoginController () {
-		db = new Database();
+	public LoginController(TelaLogin login, UsuarioDAO usuarioDAO, Navegador navegador) {
+		super();
+		this.login = login;
+		this.usuarioDAO = usuarioDAO;
+		this.navegador = navegador;
+		
+		this.login.logar(e -> {
+			verificarCadastroUsuario();
+		});
+		
 	}
 	
-	public void FazLogin (String Email, String Senha) {
-		List<Usuario> retornoDoBanco = db.executarSQL("SELECT * FROM Usuarios where email = '" + Email + "' and Senha = '" + Senha + "'");
-		// Se o retorno do banco não for vazio
-		if(!retornoDoBanco.isEmpty()) {
-			System.out.println(retornoDoBanco);
+	public void verificarCadastroUsuario() {
+		
+		List<Usuario> usuarios = usuarioDAO.listarUsuarios();
+		
+		if(login.getUsuario().isEmpty() || login.getSenha().isEmpty() ) {
+			
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+			return;
 		}
 		else {
-			System.out.println("Usuario não encontrado");
+			boolean usuarioEncontrado = false;
+			
+			for (Usuario usuario : usuarios) {
+				if(usuario.getNome().equals(login.getUsuario()) && 
+				usuario.getSenha().equals(login.getSenha())) {
+					
+					usuarioEncontrado = true;
+					break;
+				}
+			}
+			
+		if(usuarioEncontrado) {
+			this.navegador.navegarPara("INICIO");
+		}else {
+			JOptionPane.showMessageDialog(null, "Usuario não encontrado!", "Informação",1);
 		}
+		
 	}
+		}
+	public void limparCamposLogin() {
+		login.setUsuario("");
+		login.setSenha("");
+	}
+}
 	
-	public void CriaUsuario(String Email, String Senha, String Nome) {
-		System.out.println("Criando Usuário");
-	};{
+		
 	
-//	this.view.proximo(e -> {
-//		if(model.listarTodos().size() > 0)
-//			this.navegador.navegarPara("INICIAL");
-//		else
-//			this.view.exibirMensagem("Erro", "Nenhum candidato cadastrado! Cadastre antes de avançar." , 0);
-//	});
-
-}}

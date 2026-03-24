@@ -14,10 +14,9 @@ public class Patrimonio {
 	 * @param areaDeInteresse Áreas de interesse do candidato.
 	 * @param contratado Booleano para representar se o candidato se tornou um contratado.
 	 */
-	public Patrimonio(String id_patrimonio, String status, String tipo_patrimonio, String nome){
+	public Patrimonio(String id_patrimonio, String status, String nome){
 		this.id_patrimonio = id_patrimonio;
 		this.nome = status;
-		this.tipo_patrimonio = tipo_patrimonio;
 		
 	}
 
@@ -32,6 +31,14 @@ public class Patrimonio {
 	}
 
 	//Getters e setters.
+	public String getIdpatrimonio(){
+		return id_patrimonio;
+	}
+	
+	public void setIdpatrimonio(String id_patrimonio) {
+		this.id_patrimonio = id_patrimonio;
+	}
+	
 	public String getStatus() {
 		return nome;
 	}
@@ -40,11 +47,11 @@ public class Patrimonio {
 		this.nome = status;
 	}
 
-	public String getDescricao() {
-		return tipo_patrimonio;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.tipo_patrimonio = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

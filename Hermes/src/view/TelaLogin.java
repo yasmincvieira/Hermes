@@ -26,9 +26,8 @@ public class TelaLogin extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfUsuario;
 	private JPasswordField tfSenha;
-	private LoginController loginController;
-
-	private Object btnLogin;
+	private JButton btnCadastrarse;
+	private JButton btnLogin;
 
 	
 
@@ -37,7 +36,6 @@ public class TelaLogin extends JPanel {
 	 */
 	public TelaLogin() {
 		// cria o objeto do controller
-		loginController = new LoginController();
 		
 		
 		setBackground(new Color(240, 240, 240));
@@ -61,39 +59,30 @@ public class TelaLogin extends JPanel {
 		lbUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lbUsuario, "cell 1 3,alignx center,growy");
 		
-		tfUsuario = new JTextField();
-		tfUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		tfUsuario.setBackground(new Color(78, 153, 126));
-		add(tfUsuario, "cell 2 3,grow");
-		tfUsuario.setColumns(10);
+		this.tfUsuario = new JTextField();
+		this.tfUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		this.tfUsuario.setBackground(new Color(78, 153, 126));
+		add(this.tfUsuario, "cell 2 3,grow");
+		this.tfUsuario.setColumns(10);
 		
 		JLabel lbSenha = new JLabel("Senha:");
 		lbSenha.setForeground(new Color(39, 79, 65));
 		lbSenha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lbSenha, "cell 1 5,alignx center,growy");
 		
-		TelaInicial telaInicial = new TelaInicial();
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setBackground(new Color(160, 200, 172));
-		btnLogin.setForeground(new Color(39, 79, 65));
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-//				loginController.FazLogin(tfUsuario.getText(), tfSenha.getText());
-//				
-//				telaInicial.setVisible(true);
-				
-				
-			}
-		});
+		this.btnLogin = new JButton("Login");
+		this.btnLogin.setBackground(new Color(160, 200, 172));
+		this.btnLogin.setForeground(new Color(39, 79, 65));
+		this.btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(this.btnLogin, "cell 1 7 2 1,alignx center");
+	
 		
-		tfSenha = new JPasswordField();
-		tfSenha.setBackground(new Color(78, 153, 126));
-		tfSenha.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(tfSenha, "cell 2 5,grow");
-		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btnLogin, "cell 1 7 2 1,alignx center");
+		this.tfSenha = new JPasswordField();
+		this.tfSenha.setBackground(new Color(78, 153, 126));
+		this.tfSenha.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(this.tfSenha, "cell 2 5,grow");
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 240, 240));
@@ -104,29 +93,50 @@ public class TelaLogin extends JPanel {
 		lblNewLabel_3.setForeground(new Color(39, 79, 65));
 		panel.add(lblNewLabel_3);
 		
-		TelaCadastro telaCadastro = new TelaCadastro();
 		
-		JButton btnCadastrarse = new JButton("Cadastre-se");
-		btnCadastrarse.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCadastrarse.setForeground(new Color(39, 79, 65));
-		btnCadastrarse.setBackground(new Color(160, 200, 172));
-		add(btnCadastrarse, "cell 1 9 2 1");
+		this.btnCadastrarse = new JButton("Cadastra-se");
+		this.btnCadastrarse.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		this.btnCadastrarse.setForeground(new Color(39, 79, 65));
+		this.btnCadastrarse.setBackground(new Color(160, 200, 172));
+		add(this.btnCadastrarse, "cell 1 9 2 1");
 
 	}
 
+	
+	 public String getUsuario() {
+	        return tfUsuario.getText();
+	    }
 
+	    public String getSenha() {
+	        return new String(tfSenha.getPassword());
+	    }
+
+	    public void setUsuario(String usuario) {
+	        tfUsuario.setText(usuario);
+	    }
+
+	    public void setSenha(String senha) {
+	        tfSenha.setText(senha);
+	    }
+	
 	public void adicionarOuvinte(LoginController loginController) {
 		// TODO Auto-generated method stub
 		
 	}
+	public void logar(ActionListener actionListener) {
+		this.btnLogin.addActionListener(actionListener);
+	}
+
 	
 	public void addActionListener(ActionListener l) {
         listenerList.add(ActionListener.class, l);
     }
 	
-//	public void proximo(ActionListener actionListener) {
-//		this.btnLogin.addActionListener(actionListener);
-//	}
+	public void btnCadastrar(ActionListener actionListener) {
+		this.btnCadastrarse.addActionListener(actionListener);
+	}
+
+
 
 
 	
