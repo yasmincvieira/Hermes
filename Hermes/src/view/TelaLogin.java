@@ -80,9 +80,9 @@ public class TelaLogin extends JPanel {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//				loginController.FazLogin(tfUsuario.getText(), tfSenha.getText());
-//				
-//				telaInicial.setVisible(true);
+				loginController.FazLogin(tfUsuario.getText(), tfSenha.getText());
+				
+				telaInicial.setVisible(true);
 				
 				
 			}

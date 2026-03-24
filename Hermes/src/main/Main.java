@@ -25,13 +25,16 @@ public class Main {
 		
 		TelaLogin telaLogin = new TelaLogin();
 		LoginController loginController = new LoginController();
-		//telaLogin.adicionarOuvinte(loginController);
-
 		
-
 		navegador.adicionarPainel("CADASTRO", telaCadastro);
 		navegador.adicionarPainel("LOGIN", telaLogin);
 		navegador.adicionarPainel("INICIO", telaInicial);
+		
+		//Seta o jframe para abrir no meio da tela.
+		janela.setLocationRelativeTo(null);
+		janela.setVisible(true);
+
+		navegador.navegarPara("INICIO");
 		
 
 	}
