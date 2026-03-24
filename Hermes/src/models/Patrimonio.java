@@ -4,6 +4,7 @@ package models;
  * Classe que representa um candidato.
  */
 public class Patrimonio {
+
 	private String nome, tipo_patrimonio, id_patrimonio, status;
 	private boolean contratado;
 
@@ -14,16 +15,15 @@ public class Patrimonio {
 	 * @param areaDeInteresse Áreas de interesse do candidato.
 	 * @param contratado Booleano para representar se o candidato se tornou um contratado.
 	 */
-	public Patrimonio(String id_patrimonio, String status, String tipo_patrimonio, String nome){
+	public Patrimonio(String id_patrimonio, String status, String nome){
 		this.id_patrimonio = id_patrimonio;
 		this.nome = status;
-		this.tipo_patrimonio = tipo_patrimonio;
-		
 	}
 
 	/**
 	 * Método para exibir os dados do candidato.
 	 */
+
 	public void imprimir() {
 		System.out.println("Id: "+ this.id_patrimonio);
 		System.out.println("Nome: "+ this.nome);
@@ -32,6 +32,14 @@ public class Patrimonio {
 	}
 
 	//Getters e setters.
+	public String getIdpatrimonio(){
+		return id_patrimonio;
+	}
+
+	public void setIdpatrimonio(String id_patrimonio) {
+		this.id_patrimonio = id_patrimonio;
+	}
+
 	public String getStatus() {
 		return nome;
 	}
@@ -40,11 +48,12 @@ public class Patrimonio {
 		this.nome = status;
 	}
 
-	public String getDescricao() {
-		return tipo_patrimonio;
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.tipo_patrimonio = descricao;
-	}
 }
