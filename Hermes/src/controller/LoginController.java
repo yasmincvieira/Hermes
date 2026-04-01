@@ -26,6 +26,7 @@ public class LoginController {
 		
 		this.login.cadastrarse(e -> {
 			navegador.navegarPara("CADASTRO USUARIO");
+			//menu.removerMenu();
 		});
 	}
 

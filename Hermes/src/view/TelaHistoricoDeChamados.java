@@ -33,7 +33,16 @@ public class TelaHistoricoDeChamados extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, "cell 0 0,alignx left,growy");
-		panel_1.setLayout(new MigLayout("", "[]", "[]"));
+		panel_1.setLayout(new MigLayout("", "[]", "[][][]"));
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		panel_1.add(lblNewLabel_3, "cell 0 0");
+		
+		JLabel lblNewLabel_4 = new JLabel("New label");
+		panel_1.add(lblNewLabel_4, "cell 0 1");
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		panel_1.add(lblNewLabel_2, "cell 0 2");
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, "cell 1 0,grow");
