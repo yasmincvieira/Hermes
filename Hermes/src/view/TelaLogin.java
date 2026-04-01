@@ -70,7 +70,7 @@ public class TelaLogin extends JPanel {
 		
 		TelaInicial telaInicial = new TelaInicial();
 		
-		this.btnLogin = new JButton("Login");
+		btnLogin = new JButton("Login");
 		this.btnLogin.setBackground(new Color(160, 200, 172));
 		this.btnLogin.setForeground(new Color(39, 79, 65));
 		this.btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -101,7 +101,7 @@ public class TelaLogin extends JPanel {
 	}
 
 
-	 public JTextField gettfUsuario() {
+	 	public JTextField gettfUsuario() {
 			return tfUsuario;
 		}
 	    
@@ -124,7 +124,5 @@ public class TelaLogin extends JPanel {
 		public void cadastrarse(ActionListener actionListener) {
 			this.btnCadastrarse.addActionListener(actionListener);
 		}
-
-
 	
 }

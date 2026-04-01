@@ -47,5 +47,6 @@ public class TelaInicialADM extends JPanel {
 		add(btnNewButton_2, "cell 3 5,grow");
 
 	}
+	
 
 }

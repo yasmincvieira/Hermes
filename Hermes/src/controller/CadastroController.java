@@ -52,6 +52,7 @@ public class CadastroController {
 	    user.adicionarUsuario(novoUsuario); 
 	    
 	    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+	    this.navegador.navegarPara("INICIO");
 	    
 	    limparCamposLogin();
 		

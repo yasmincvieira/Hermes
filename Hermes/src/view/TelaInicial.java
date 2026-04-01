@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -19,6 +21,8 @@ import javax.swing.ImageIcon;
 public class TelaInicial extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JButton btnHistorico;
+	private JButton btnRealizarChamado;
 
 
 	/**
@@ -37,19 +41,26 @@ public class TelaInicial extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 55));
 		add(lblNewLabel, "cell 1 1 3 1,alignx center");
 		
-		JButton btnHistorico = new JButton("Histórico de Chamados");
-		btnHistorico.setBackground(new Color(122, 188, 170));
-		btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnHistorico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		add(btnHistorico, "cell 1 3,grow");
+		this.btnHistorico = new JButton("Histórico de Chamados");
+		this.btnHistorico.setBackground(new Color(122, 188, 170));
+		this.btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		add(this.btnHistorico, "cell 1 3,grow");
 		
-		JButton btnNewButton_1 = new JButton("Realizar novo Chamado");
-		btnNewButton_1.setBackground(new Color(122, 188, 170));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(btnNewButton_1, "cell 3 3,grow");
+		this.btnRealizarChamado = new JButton("Realizar novo Chamado");
+		this.btnRealizarChamado.setBackground(new Color(122, 188, 170));
+		this.btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		add(this.btnRealizarChamado, "cell 3 3,grow");
 
 	}
+	
+	
+	public void historico(ActionListener actionListener) {
+		this.btnHistorico.addActionListener(actionListener);
+	}
+	public void irChamado(ActionListener actionListener) {
+		this.btnRealizarChamado.addActionListener(actionListener);
+	}
+	
+	
+
 }

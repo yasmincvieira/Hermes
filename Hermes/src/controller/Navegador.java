@@ -15,6 +15,7 @@ public class Navegador {
 	private TelaLogin login;
 	private LoginController loginController;
 	private CadastroController cadastroController;
+	private InicialController inicialController;
 
 	/**
 	 * Construtor da classe.
@@ -59,6 +60,13 @@ public class Navegador {
 	
 	public void setCadastroController(CadastroController cadastroController) {
 		this.cadastroController = cadastroController;	
+	}
+	public InicialController getInicialController(InicialController inicialController) {
+		return inicialController;
+	}
+	
+	public void setInicialController(InicialController inicialController) {
+		this.inicialController = inicialController;	
 	}
 	
     

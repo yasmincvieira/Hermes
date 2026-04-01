@@ -13,7 +13,7 @@ public class UsuarioDAO {
 
     // CREATE - Adicionar um novo usuário
     public void adicionarUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (id, nome, email, senha) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (id, nome, email, senha) VALUES (0, ?, ?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 

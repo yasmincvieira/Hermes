@@ -5,6 +5,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
 import controller.CadastroController;
+import controller.InicialController;
 import controller.LoginController;
 import controller.Navegador;
 import models.UsuarioDAO;
@@ -47,15 +48,19 @@ public class Main {
 		Navegador navegador = new Navegador(janela, telaLogin);
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
+		InicialController inicialController = new InicialController(telaInicial, navegador);
 		
 		
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
+		navegador.setInicialController(inicialController);
 
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastro);
 		navegador.adicionarPainel("LOGIN", telaLogin);
 		navegador.adicionarPainel("INICIO", telaInicial);
+		navegador.adicionarPainel("HISTORICO", telaHistoricoChamados);
+		navegador.adicionarPainel("CHAMADO", telaNovoChamado);
 
 		//Seta o jframe para abrir no meio da tela.
 		janela.setLocationRelativeTo(null);
