@@ -1,39 +1,68 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import models.Usuario;
+import models.UsuarioDAO;
+import view.TelaLogin;
 
 public class LoginController {
 	
-	private Database db;
-	private Object view;
+	private TelaLogin login;
+	private UsuarioDAO user;
+	private Navegador navegador;
 	
-	// Construtor da classe
-	public LoginController () {
-		db = new Database();
+	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador) {
+		super();
+		this.login = login;
+		this.user = user;
+		this.navegador = navegador;
+		
+		this.login.logar(e -> {
+			verificarCadastroUsuario();
+		});
+		
+		this.login.cadastrarse(e -> {
+			navegador.navegarPara("CADASTRO USUARIO");
+		});
 	}
-	
-	public void FazLogin (String Email, String Senha) {
-		List<Usuario> retornoDoBanco = db.executarSQL("SELECT * FROM Usuarios where email = '" + Email + "' and Senha = '" + Senha + "'");
-		// Se o retorno do banco não for vazio
-		if(!retornoDoBanco.isEmpty()) {
-			System.out.println(retornoDoBanco);
+
+	private void verificarCadastroUsuario() {
+		List<Usuario> usuarios = user.listarUsuarios();
+		
+		if(login.gettfUsuario().getText().isEmpty() || login.getpfSenha().getText().isEmpty()) {
+			
+			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
 		}
 		else {
-			System.out.println("Usuario não encontrado");
+			boolean usuarioEncontrado = false;
+			
+			for(Usuario user : usuarios) {
+				
+				if(user.getNome().equals(login.gettfUsuario().getText()) 
+					&& user.getSenha().equals(login.getpfSenha().getText())){
+					
+					usuarioEncontrado = true;
+					break;
+				}
+			}
+			
+			if(usuarioEncontrado == true) {
+				this.navegador.navegarPara("INICIO");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Usuário não encontrado");
+			}
 		}
+		
 	}
 	
-	public void CriaUsuario(String Email, String Senha, String Nome) {
-		System.out.println("Criando Usuário");
-	};{
+	public void limparCamposLogin() {
+		login.gettfUsuario().setText("");
+		login.getpfSenha().setText("");
+	}
 	
-//	this.view.proximo(e -> {
-//		if(model.listarTodos().size() > 0)
-//			this.navegador.navegarPara("INICIAL");
-//		else
-//			this.view.exibirMensagem("Erro", "Nenhum candidato cadastrado! Cadastre antes de avançar." , 0);
-//	});
 
-}}
+}

@@ -22,6 +22,7 @@ public class UsuarioDAO {
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getNome());
             pstm.setString(2, usuario.getEmail());
+            pstm.setString(3, usuario.getSenha());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

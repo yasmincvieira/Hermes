@@ -8,6 +8,8 @@ public class Usuario {
 
     // construtor
     
+    public Usuario() {}
+    
     public Usuario(int id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;

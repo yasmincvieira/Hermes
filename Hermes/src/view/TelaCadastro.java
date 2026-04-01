@@ -13,8 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 
 public class TelaCadastro extends JPanel {
@@ -23,7 +25,8 @@ public class TelaCadastro extends JPanel {
 	private JPanel contentPane;
 	private JTextField tfUsuarioC;
 	private JTextField tfEmailC;
-	private JPasswordField tfSenhaC;
+	private JPasswordField pfSenhaC;
+	private JButton btnCadastrar;
 
 	
 
@@ -46,14 +49,8 @@ public class TelaCadastro extends JPanel {
 		
 		TelaInicial telaInicial = new TelaInicial();
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				telaInicial.setVisible(true);
-				
-			}
-		});
+		this.btnCadastrar = new JButton("Cadastrar");
+
 		
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -66,37 +63,67 @@ public class TelaCadastro extends JPanel {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_1, "cell 1 3,alignx trailing");
 		
-		tfUsuarioC = new JTextField();
-		tfUsuarioC.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		tfUsuarioC.setBackground(new Color(78, 153, 126));
-		add(tfUsuarioC, "cell 2 3,grow");
-		tfUsuarioC.setColumns(10);
+		this.tfUsuarioC = new JTextField();
+		this.tfUsuarioC.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		this.tfUsuarioC.setBackground(new Color(78, 153, 126));
+		add(this.tfUsuarioC, "cell 2 3,grow");
+		this.tfUsuarioC.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("E-mail:");
 		lblNewLabel_2.setForeground(new Color(39, 79, 65));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_2, "cell 1 5,alignx trailing");
 		
-		tfEmailC = new JTextField();
-		tfEmailC.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		tfEmailC.setBackground(new Color(78, 153, 126));
-		add(tfEmailC, "cell 2 5,grow");
-		tfEmailC.setColumns(10);
+		this.tfEmailC = new JTextField();
+		this.tfEmailC.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		this.tfEmailC.setBackground(new Color(78, 153, 126));
+		add(this.tfEmailC, "cell 2 5,grow");
+		this.tfEmailC.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Senha:");
 		lblNewLabel_3.setForeground(new Color(39, 79, 65));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_3, "cell 1 7,alignx trailing");
 		
-		tfSenhaC = new JPasswordField();
-		tfSenhaC.setBackground(new Color(78, 153, 126));
-		tfSenhaC.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(tfSenhaC, "cell 2 7,grow");
-		btnCadastrar.setForeground(new Color(39, 79, 65));
-		btnCadastrar.setBackground(new Color(160, 200, 172));
-		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btnCadastrar, "cell 1 9 2 1,alignx center");
+		this.pfSenhaC = new JPasswordField();
+		this.pfSenhaC.setBackground(new Color(78, 153, 126));
+		this.pfSenhaC.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(this.pfSenhaC, "cell 2 7,grow");
+		
+		this.btnCadastrar.setForeground(new Color(39, 79, 65));
+		this.btnCadastrar.setBackground(new Color(160, 200, 172));
+		this.btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(this.btnCadastrar, "cell 1 9 2 1,alignx center");
 
+	}
+	
+    public JTextField gettfUsuarioC() {
+		return tfUsuarioC;
+	}
+    
+    public void settfUsuarioC(JTextField tfUsuarioC) {
+		this.tfUsuarioC = tfUsuarioC;
+	}
+    
+    public JTextField gettfEmailC() {
+		return tfEmailC;
+	}
+    
+    public void settfEmailC(JTextField tfEmailC) {
+		this.tfEmailC = tfEmailC;
+	}
+    public JTextField getpfSenhaC() {
+		return pfSenhaC;
+	}
+    
+    public void setpfSenhaC(JPasswordField pfSenhaC) {
+		this.pfSenhaC = pfSenhaC;
+	}
+
+
+    
+	public void cadastrar(ActionListener actionListener) {
+		this.btnCadastrar.addActionListener(actionListener);
 	}
 
 }
