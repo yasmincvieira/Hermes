@@ -38,7 +38,7 @@ public class CadastroController {
 		
 		if(cadastro.gettfUsuarioC().getText().isEmpty() 
 			|| cadastro.gettfEmailC().getText().isEmpty() 
-			|| cadastro.gettfSenhaC().getText().isEmpty()) {
+			|| cadastro.getpfSenhaC().getText().isEmpty()) {
 			
 			
 			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
