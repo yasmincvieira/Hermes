@@ -5,6 +5,8 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,7 +22,10 @@ import javax.swing.ScrollPaneConstants;
 public class TelaNovoChamado extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField tfIPatrimonio;
+	private JTextField tfPatrimonio;
+	private JButton btnRealizarChamado;
+	private JComboBox cbLocal, cbNomePatrimonio;
+	private JTextArea daDescricao;
 
 	/**
 	 * Create the panel.
@@ -85,11 +90,11 @@ public class TelaNovoChamado extends JPanel {
 		lbIDPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelChamado.add(lbIDPatrimonio, "flowy,cell 1 6,alignx left");
 		
-		tfIPatrimonio = new JTextField();
-		tfIPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		tfIPatrimonio.setBackground(new Color(160, 200, 172));
-		panelChamado.add(tfIPatrimonio, "cell 2 6,growx");
-		tfIPatrimonio.setColumns(10);
+		tfPatrimonio = new JTextField();
+		tfPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tfPatrimonio.setBackground(new Color(160, 200, 172));
+		panelChamado.add(tfPatrimonio, "cell 2 6,growx");
+		tfPatrimonio.setColumns(10);
 		
 		JLabel lbDescricao = new JLabel("Descrição:");
 		lbDescricao.setBackground(new Color(240, 240, 240));
@@ -101,23 +106,26 @@ public class TelaNovoChamado extends JPanel {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panelChamado.add(scrollPane, "cell 2 8,grow");
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(new Color(160, 200, 172));
-		textArea.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		textArea.setWrapStyleWord(true); // Quebra de linha em palavras completas
-        textArea.setLineWrap(true); // Habilita a quebra de linha automática
-		scrollPane.setViewportView(textArea);
+		JTextArea taDescricao = new JTextArea();
+		taDescricao.setBackground(new Color(160, 200, 172));
+		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		taDescricao.setWrapStyleWord(true); // Quebra de linha em palavras completas
+        taDescricao.setLineWrap(true); // Habilita a quebra de linha automática
+		scrollPane.setViewportView(taDescricao);
 		
-		JButton btnNewButton = new JButton("Realizar chamado");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setForeground(new Color(38, 76, 63));
-		btnNewButton.setBackground(new Color(160, 200, 172));
-		panelChamado.add(btnNewButton, "cell 2 10,alignx center");
+		JButton btnRealizarChamado = new JButton("Realizar chamado");
+		btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRealizarChamado.setForeground(new Color(38, 76, 63));
+		btnRealizarChamado.setBackground(new Color(160, 200, 172));
+		panelChamado.add(btnRealizarChamado, "cell 2 10,alignx center");
 		
 		JLabel lblNewLabel_1 = new JLabel("(opcional)");
 		lblNewLabel_1.setForeground(new Color(91, 91, 91));
 		panelChamado.add(lblNewLabel_1, "cell 1 6");
 
+	}
+	public void realizarChamado(ActionListener actionListener) {
+		this.btnRealizarChamado.addActionListener(actionListener);
 	}
 
 }

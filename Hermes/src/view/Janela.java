@@ -56,9 +56,6 @@ public class Janela extends JFrame {
 		
 		this.cardLayout = new CardLayout();
 
-
-		
-
 		contentPane.add(panelTelas, BorderLayout.CENTER);
 
 		panelTelas.setLayout(cardLayout);

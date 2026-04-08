@@ -1,28 +1,19 @@
 package models;
 
-/**
- * Classe que representa um candidato.
- */
 public class Chamado {
-	private String status, descricao, id_chamado;
+	private String status, descricao, id_chamado, nome, local, idPatrimonio;
 
-	/**
-	 * Construtor da classe candidato.
-	 * @param nome Nome do candidato.
-	 * @param formacao Formação do candidato.
-	 * @param areaDeInteresse Áreas de interesse do candidato.
-	 * @param contratado Booleano para representar se o candidato se tornou um contratado.
-	 */
-	public Chamado(String id_chamado, String status, String descricao){
+	
+	public Chamado(String id_chamado, String status, String descricao, String nome, String local, String idPatrimonio){
 		this.id_chamado = id_chamado;
 		this.status = status;
 		this.descricao = descricao;
-		
+		this.nome = nome;
+		this.local = local;
+		this.idPatrimonio = idPatrimonio;
 	}
 
-	/**
-	 * Método para exibir os dados do candidato.
-	 */
+	
 	public void imprimir() {
 		System.out.println("Nome: "+ this.id_chamado);
 		System.out.println("Formação: "+ this.status);
@@ -46,4 +37,30 @@ public class Chamado {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome() {
+		this.nome = nome;
+	}
+	
+	public String getLocal() {
+		return local;
+	}
+	
+	public void setLocal() {
+		this.local = local;
+	}
+	
+	public String getIdPatrimonio() {
+		return idPatrimonio;
+	}
+	
+	public void setIsPatrimonio() {
+		this.idPatrimonio = idPatrimonio;
+	}
+	
+	
 }
