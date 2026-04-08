@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Menu;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -13,12 +14,14 @@ public class LoginController {
 	private TelaLogin login;
 	private UsuarioDAO user;
 	private Navegador navegador;
+	private Menu menu;
 	
-	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador) {
+	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
 		this.login = login;
 		this.user = user;
 		this.navegador = navegador;
+		
 		
 		this.login.logar(e -> {
 			verificarCadastroUsuario();

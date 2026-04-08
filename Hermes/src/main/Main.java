@@ -1,6 +1,9 @@
 package main;
 
 import java.awt.Font;
+import java.awt.Menu;
+
+import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
@@ -10,6 +13,8 @@ import controller.LoginController;
 import controller.Navegador;
 import models.UsuarioDAO;
 import view.Janela;
+import view.MenuContraidoTeste;
+import view.MenuExpandidoTeste;
 import view.TelaCadastro;
 import view.TelaConta;
 import view.TelaHistoricoDeChamados;
@@ -30,6 +35,12 @@ public class Main {
 		UIManager.put("OptionPane.messageFont", new FontUIResource(
 				new Font("Arial", Font.PLAIN, 18)
 				));
+		
+		ToolTipManager manager = ToolTipManager.sharedInstance();
+
+        manager.setInitialDelay(100);   // tempo até aparecer (ms)
+        manager.setDismissDelay(3000);   // tempo que fica visível (ms)
+        manager.setReshowDelay(100);     // tempo para reaparecer rápido
 
 		Janela janela = new Janela();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -44,11 +55,14 @@ public class Main {
 		TelaNovoChamado telaNovoChamado = new TelaNovoChamado();
 		TelaTabelaPatrimonios telaTabelaPatrimonios = new TelaTabelaPatrimonios();
 		TelaVizuChamadosADM telaVizuChamadosADm = new TelaVizuChamadosADM();
+		MenuContraidoTeste menuCont = new MenuContraidoTeste();
+		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
 		
+		Menu menu = new Menu();
 		Navegador navegador = new Navegador(janela, telaLogin);
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador);
-		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
-		InicialController inicialController = new InicialController(telaInicial, navegador);
+		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
+		InicialController inicialController = new InicialController(telaInicial, usuarioDAO, navegador, null);
 		
 		
 		navegador.setCadastroController(cadastroController);

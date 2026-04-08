@@ -12,11 +12,16 @@ public class InicialController {
 	
 	private TelaInicial inicio;
 	private Navegador navegador;
+	private UsuarioDAO usuarioDAO;
+	private Menu menu;
 	
-	public InicialController(TelaInicial inicio, Navegador navegador) {
+	public InicialController(TelaInicial inicio, UsuarioDAO usuarioDAO, Navegador navegador, Menu menu) {
 		super();
 		this.inicio = inicio;
+		this.usuarioDAO = usuarioDAO;
 		this.navegador = navegador;
+		this.menu = menu;
+		
 		
 		this.inicio.historico(e -> {
 			navegador.navegarPara("HISTORICO");
