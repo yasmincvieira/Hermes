@@ -40,7 +40,7 @@ public class TelaVizuChamadosADM extends JPanel {
 		JPanel panelVizuChamadosADM = new JPanel();
 		panelVizuChamadosADM.setBackground(new Color(234, 242, 236));
 		add(panelVizuChamadosADM, BorderLayout.CENTER);
-		panelVizuChamadosADM.setLayout(new MigLayout("", "[][grow 5][grow][grow 5]", "[][][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 3]"));
+		panelVizuChamadosADM.setLayout(new MigLayout("", "[][grow 5][grow][grow 5]", "[][][61.00,grow 3][][78.00,grow 3][grow 2][grow 3][grow 2][grow 3][grow 3]"));
 		
 		Panel panel_2 = new Panel();
 		panel_2.setBackground(new Color(160, 200, 172));

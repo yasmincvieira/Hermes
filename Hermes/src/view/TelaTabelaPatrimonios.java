@@ -22,13 +22,13 @@ public class TelaTabelaPatrimonios extends JPanel {
 	 */
 	public TelaTabelaPatrimonios() {
 
-		setBounds(100, 100, 1100, 700);
+		setBounds(100, 100, 800, 500);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel MenuTabelaPatrimonio = new JPanel();
 		MenuTabelaPatrimonio.setBackground(new Color(147, 195, 171));
 		add(MenuTabelaPatrimonio, BorderLayout.WEST);
-		MenuTabelaPatrimonio.setLayout(new MigLayout("", "[]", "[grow]"));
+		MenuTabelaPatrimonio.setLayout(new MigLayout("", "[47.00,grow 5]", "[grow]"));
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/voltar20.png")));
@@ -36,7 +36,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 		
 		JPanel paneltabelaPatrimonio = new JPanel();
 		add(paneltabelaPatrimonio, BorderLayout.CENTER);
-		paneltabelaPatrimonio.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow][grow][::60px]", "[::60px,grow][100px:n,grow][grow][grow][grow]"));
+		paneltabelaPatrimonio.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow][grow][::60px]", "[::60px,grow][100px:n,grow][grow][grow]"));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(160, 200, 172));
@@ -106,19 +106,19 @@ public class TelaTabelaPatrimonios extends JPanel {
 		btEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btEditarPatri.setForeground(new Color(39, 79, 65));
 		btEditarPatri.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btEditarPatri, "cell 2 4,alignx right");
+		paneltabelaPatrimonio.add(btEditarPatri, "cell 2 3,alignx right");
 		
 		JButton btnNewButton_2 = new JButton("Adicionar patrimônio");
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.setForeground(new Color(39, 79, 65));
 		btnNewButton_2.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_2, "cell 3 4,alignx center");
+		paneltabelaPatrimonio.add(btnNewButton_2, "cell 3 3,alignx center");
 		
 		JButton btnNewButton_1 = new JButton("Excluir patrimônio");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setForeground(new Color(39, 79, 65));
 		btnNewButton_1.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_1, "cell 4 4,alignx left");
+		paneltabelaPatrimonio.add(btnNewButton_1, "cell 4 3,alignx left");
 	}
 
 }
