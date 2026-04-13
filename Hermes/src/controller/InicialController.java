@@ -13,7 +13,7 @@ public class InicialController {
 	private TelaInicial inicio;
 	private Navegador navegador;
 	
-	public InicialController(TelaInicial inicio, Navegador navegador) {
+	public InicialController(TelaInicial inicio, Navegador navegador, Menu menu) {
 		super();
 		this.inicio = inicio;
 		this.navegador = navegador;

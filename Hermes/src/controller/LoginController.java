@@ -14,7 +14,7 @@ public class LoginController {
 	private UsuarioDAO user;
 	private Navegador navegador;
 	
-	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador) {
+	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
 		this.login = login;
 		this.user = user;
