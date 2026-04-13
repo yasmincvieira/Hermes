@@ -6,9 +6,6 @@ import javax.swing.JTextField;
 import view.Janela;
 import view.TelaLogin;
 
-/**
- * Classe responsável por gerenciar a troca de telas.
- */
 public class Navegador {
 
 	private Janela janela;
@@ -17,20 +14,12 @@ public class Navegador {
 	private CadastroController cadastroController;
 	private InicialController inicialController;
 
-	/**
-	 * Construtor da classe.
-	 * @param janela Referência ao JFrame.
-	 */
+	
 	public Navegador(Janela janela, TelaLogin login) {
 		this.janela = janela;
 		this.login = login;
 	}
 
-	/**
-	 * Método responsável por chamar o método da view que adiciona as telas ao painel principal.
-	 * @param nome Nome do painel.
-	 * @param tela Painel que será adicionado.
-	 */
 	public void adicionarPainel(String nome, JPanel tela) {
 		this.janela.adicionarTela(nome, tela);
 	}
@@ -39,9 +28,6 @@ public class Navegador {
 		this.janela.mostrarTela(nome);
 	}
 
-	/**
-	 * Método responsável por chamar o método da view que fecha a aplicação.
-	 */
 	public void sair() {
 		this.janela.dispose();
 	}
@@ -51,7 +37,6 @@ public class Navegador {
 	
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
-		
 	}
 	
 	public CadastroController getCadastroController() {
@@ -61,6 +46,7 @@ public class Navegador {
 	public void setCadastroController(CadastroController cadastroController) {
 		this.cadastroController = cadastroController;	
 	}
+	
 	public InicialController getInicialController(InicialController inicialController) {
 		return inicialController;
 	}

@@ -20,10 +20,7 @@ import view.TelaNovoChamado;
 import view.TelaTabelaPatrimonios;
 import view.TelaVizuChamadosADM;
 
-/**
- * Classe responsável por inicializar os elementos das 3 camadas: model, view e controller.
- * A execução do programa começa por aqui.
- */
+
 public class Main {
 	public static void main(String[] args) {
 		//Altera a fonte dos JOptionPane para Arial, 18.

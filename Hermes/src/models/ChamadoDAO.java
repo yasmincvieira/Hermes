@@ -8,7 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class ChamadoDAO {
+	
+	public void adcionarChamado(Chamado chamado) {
+		String sql = "INSERT INTO produtos (id, nome, local, patrimonio) VALUES (?, ?, ?, ?)";
+		
+		try (Connection conn = BancoDeDados.conectar();
+	            PreparedStatement stmt = conn.prepareStatement(sql)) {
+	
+	           stmt.setString(1, chamado.getNome());
+	           stmt.setString(2, chamado.getLocal());
+	           stmt.setInt(3, chamado.getIdPatrimonio());
+	           stmt.executeUpdate();
+	           System.out.println("Chamado feito com sucesso!");
+	
+	       } catch (SQLException e) {
+	           System.err.println("Erro ao fazer chamado: " + e.getMessage());
+	       }
+   }
+	
 	private final ArrayList<Chamado> listaDeChamado;
 
 	public ChamadoDAO() {
@@ -35,18 +54,17 @@ public class ChamadoDAO {
 //            rset = pstm.executeQuery();
 //
 //            while (rset.next()) {
-//                Chamado chamado = new Chamado(0, sql, sql, sql);
-//                chamado.setId(rset.getInt("idChamado"));
+//                Chamado chamado = new Chamado(sql, sql, sql, sql);
 //                chamado.setNome(rset.getString("nome"));
 //                chamado.setLocal(rset.getString("lugar"));
 //                chamado.setIdPatrimonio(rset.getInt("IdPatrimonio"));
-//                chamado.add(null);
+//                chamado.setDescricao(rset.getString("descricao"));
 //            }
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        } finally {
 //        	BancoDeDados.desconectar(conexao);
-//            // Fechar recursos
+//            
 //        }
 //        return chamado;
 //    }
@@ -74,18 +92,5 @@ public class ChamadoDAO {
 		return false;
 	}
 
-//	public void contratarTodos() {
-//		for (int i = 0; i < this.listaDeChamado.size(); i++) {
-//			this.listaDeChamado.get(i).setContratado(true);
-//		}
-//	}
-//
-//	/**
-//	 * Método responsável por alterar o status de todos
-//	 * os candidatos da lista para 'candidato'.
-//	 */
-//	public void demitirTodos() {
-//		for (int i = 0; i < this.listaDeChamado.size(); i++) {
-//			this.listaDeChamado.get(i).setContratado(false);
-//		}
+
 	}

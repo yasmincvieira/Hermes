@@ -1,10 +1,11 @@
 package models;
 
 public class Chamado {
-	private String status, descricao, id_chamado, nome, local, idPatrimonio;
+	private String status, descricao, id_chamado, nome, local;
+	int idPatrimonio;
 
 	
-	public Chamado(String id_chamado, String status, String descricao, String nome, String local, String idPatrimonio){
+	public Chamado(String id_chamado, String status, String descricao, String nome, String local, int idPatrimonio){
 		this.id_chamado = id_chamado;
 		this.status = status;
 		this.descricao = descricao;
@@ -42,7 +43,7 @@ public class Chamado {
 		return nome;
 	}
 	
-	public void setNome() {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
@@ -50,17 +51,21 @@ public class Chamado {
 		return local;
 	}
 	
-	public void setLocal() {
+	public void setLocal(String local) {
 		this.local = local;
 	}
 	
-	public String getIdPatrimonio() {
+	public int getIdPatrimonio() {
 		return idPatrimonio;
 	}
 	
-	public void setIsPatrimonio() {
+	public void setIdPatrimonio(int idPatrimonio) {
 		this.idPatrimonio = idPatrimonio;
 	}
+
+
+
+	
 	
 	
 }
