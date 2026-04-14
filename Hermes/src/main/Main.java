@@ -8,6 +8,8 @@ import controller.CadastroController;
 import controller.InicialController;
 import controller.LoginController;
 import controller.Navegador;
+import controller.NovoChamadoController;
+import models.ChamadoDAO;
 import models.UsuarioDAO;
 import view.Janela;
 import view.TelaCadastro;
@@ -42,11 +44,13 @@ public class Main {
 		TelaTabelaPatrimonios telaTabelaPatrimonios = new TelaTabelaPatrimonios();
 		TelaVizuChamadosADM telaVizuChamadosADm = new TelaVizuChamadosADM();
 		
+		
 		Navegador navegador = new Navegador(janela, telaLogin);
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
 		InicialController inicialController = new InicialController(telaInicial, navegador);
-		
+		ChamadoDAO chamadoDAO = new ChamadoDAO();
+		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
