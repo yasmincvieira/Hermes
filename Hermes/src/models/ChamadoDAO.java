@@ -40,34 +40,33 @@ public class ChamadoDAO {
 		}
 	}
 
-//	public List<Chamado> listarChamados() {
-//		return new ArrayList<>(this.listaDeChamado);
-//		String sql = "SELECT * FROM chamado";
-//        List<Chamado> chamado = new ArrayList<>();
-//        Connection conexao = null;
-//        PreparedStatement pstm = null;
-//        ResultSet rset = null; // Objeto que guarda o resultado da consulta
-//
-//        try {
-//            conexao = BancoDeDados.conectar();
-//            pstm = conexao.prepareStatement(sql);
-//            rset = pstm.executeQuery();
-//
-//            while (rset.next()) {
-//                Chamado chamado = new Chamado(sql, sql, sql, sql);
-//                chamado.setNome(rset.getString("nome"));
-//                chamado.setLocal(rset.getString("lugar"));
-//                chamado.setIdPatrimonio(rset.getInt("IdPatrimonio"));
-//                chamado.setDescricao(rset.getString("descricao"));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//        	BancoDeDados.desconectar(conexao);
-//            
-//        }
-//        return chamado;
-//    }
+	public List<Chamado> listarChamados() {
+		return new ArrayList<>(this.listaDeChamado);
+		String sql = "SELECT * FROM chamado";
+        List<Chamado> chamado = new ArrayList<>();
+        Connection conexao = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null; // Objeto que guarda o resultado da consulta
+
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            rset = pstm.executeQuery();
+
+            while (rset.next()) {
+                Chamado chamado = new Chamado();
+                chamado.setIdChamado(rset.getInt("idChamado"));
+                chamado.setNome(rset.getString("nome"));
+                chamado.setLocal(rset.getString("lugar"));
+                chamado.setIdPatrimonio(rset.getInt("idPatrimonio"));
+                chamado.setDescricao(rset.getString("descricao"));
+                chamados.add(chamado);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        return chamado;
+    }
 	
 
 	public Chamado buscarPorNome(String nome) {

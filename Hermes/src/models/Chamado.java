@@ -1,71 +1,40 @@
 package models;
 
 public class Chamado {
-	private String status, descricao, id_chamado, nome, local;
-	int idPatrimonio;
+	private int idChamado;
+    private String nome;
+    private String local;
+    private int idPatrimonio;
+    private String descricao;
+    private String status;
 
-	
-	public Chamado(String id_chamado, String status, String descricao, String nome, String local, int idPatrimonio){
-		this.id_chamado = id_chamado;
-		this.status = status;
-		this.descricao = descricao;
-		this.nome = nome;
-		this.local = local;
-		this.idPatrimonio = idPatrimonio;
-	}
+    public Chamado() {}
 
-	
-	public void imprimir() {
-		System.out.println("Nome: "+ this.id_chamado);
-		System.out.println("Formação: "+ this.status);
-		System.out.println("Área de Interesse: "+ this.descricao);
-		System.out.println("##################################");
-	}
+    public Chamado(String nome, String local, int idPatrimonio, String descricao) {
+        this.nome = nome;
+        this.local = local;
+        this.idPatrimonio = idPatrimonio;
+        this.descricao = descricao;
+    }
 
 	//Getters e setters.
-	public String getStatus() {
-		return status;
-	}
+	public int getIdChamado() { return idChamado; }
+    public void setIdChamado(int idChamado) { this.idChamado = idChamado; }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public String getLocal() { return local; }
+    public void setLocal(String local) { this.local = local; }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getLocal() {
-		return local;
-	}
-	
-	public void setLocal(String local) {
-		this.local = local;
-	}
-	
-	public int getIdPatrimonio() {
-		return idPatrimonio;
-	}
-	
-	public void setIdPatrimonio(int idPatrimonio) {
-		this.idPatrimonio = idPatrimonio;
-	}
+    public int getIdPatrimonio() { return idPatrimonio; }
+    public void setIdPatrimonio(int idPatrimonio) { this.idPatrimonio = idPatrimonio; }
 
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
 
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-	
-	
 	
 }

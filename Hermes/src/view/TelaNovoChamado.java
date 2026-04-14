@@ -24,7 +24,7 @@ public class TelaNovoChamado extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfPatrimonio;
 	private JButton btnRealizarChamado;
-	private JComboBox cbLocal, cbNomePatrimonio;
+	private JComboBox cbLocal, cbNome;
 	private JTextArea daDescricao;
 
 	/**
@@ -64,12 +64,12 @@ public class TelaNovoChamado extends JPanel {
 		lbNomePatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelChamado.add(lbNomePatrimonio, "cell 1 2,alignx left");
 		
-		JComboBox cbNomePatrimonio = new JComboBox();
-		cbNomePatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbNomePatrimonio.setModel(new DefaultComboBoxModel(new String[] {"Cadeira", "Mesa", "Quadro", "Ar-Condicionado"}));
-		cbNomePatrimonio.setForeground(new Color(38, 76, 63));
-		cbNomePatrimonio.setBackground(new Color(160, 200, 172));
-		panelChamado.add(cbNomePatrimonio, "cell 2 2,growx");
+		JComboBox cbcbNome = new JComboBox();
+		cbcbNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cbcbNome.setModel(new DefaultComboBoxModel(new String[] {"Cadeira", "Mesa", "Quadro", "Ar-Condicionado"}));
+		cbcbNome.setForeground(new Color(38, 76, 63));
+		cbcbNome.setBackground(new Color(160, 200, 172));
+		panelChamado.add(cbcbNome, "cell 2 2,growx");
 		
 		JLabel lbLocal = new JLabel("Local:");
 		lbLocal.setBackground(new Color(38, 76, 63));
@@ -113,7 +113,7 @@ public class TelaNovoChamado extends JPanel {
         taDescricao.setLineWrap(true); // Habilita a quebra de linha automática
 		scrollPane.setViewportView(taDescricao);
 		
-		JButton btnRealizarChamado = new JButton("Realizar chamado");
+		btnRealizarChamado = new JButton("Realizar chamado");
 		btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRealizarChamado.setForeground(new Color(38, 76, 63));
 		btnRealizarChamado.setBackground(new Color(160, 200, 172));
@@ -127,5 +127,37 @@ public class TelaNovoChamado extends JPanel {
 	public void realizarChamado(ActionListener actionListener) {
 		this.btnRealizarChamado.addActionListener(actionListener);
 	}
+	
+	public JTextArea getDescricao() {
+		return daDescricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.daDescricao = daDescricao;
+	}
+	
+	public void setNome(String nome) {
+		this.cbNome = cbNome;
+	}
+	
+	public void setLocal(String local) {
+		this.cbLocal = cbLocal;
+	}
+	
+	public JTextField getIdPatrimonio() {
+		return tfPatrimonio;
+	}
+	
+	public void setIdPatrimonio(int IdPatrimonio) {
+		this.tfPatrimonio = tfPatrimonio;
+	}
+	
+	public String getNome() {
+        return (String) cbNome.getSelectedItem();
+    }
+
+    public String getLocal() {
+    	return (String) cbLocal.getSelectedItem();
+    }
 
 }
