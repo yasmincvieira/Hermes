@@ -37,6 +37,8 @@ public class Menu {
 
 		menuAtual = mnCont;
 		
+		janela.mudarMenu(menuAtual);
+		
 
 		this.mnExp.mostrarMenuContraido(new MouseAdapter() {
 
@@ -116,10 +118,8 @@ public class Menu {
 	public void iniciar() {
 
 		if(janela.getPanelAtual().equals("LOGIN") || janela.getPanelAtual().equals("CADASTRO")) {
-
-			removerMenu();
-
             janela.setVisible(true);
+            removerMenu();
 
 		} else {
 

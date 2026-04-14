@@ -83,5 +83,6 @@ public class Main {
 		janela.setVisible(true);
 
 		navegador.navegarPara("LOGIN");
+		menu.iniciar();
 	}
 }

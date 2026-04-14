@@ -17,7 +17,8 @@ import net.miginfocom.swing.MigLayout;
 public class MenuExpandidoTeste extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JLabel lbMostrarMenuCont;
+	private JLabel lbFechar;
+	private JButton btnHistorico;
 
 	public MenuExpandidoTeste() {
 
@@ -29,30 +30,33 @@ public class MenuExpandidoTeste extends JPanel {
 
 		setLayout(new MigLayout("gap 18", "[200.00,grow]", "[35.00][31.00][31.00][372.00][31.00][31.00]"));
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MenuExpandidoTeste.class.getResource("/Imagens/30FecharMenu.png")));
-		add(lblNewLabel, "cell 0 0,alignx right");
+		lbFechar = new JLabel("");
+		lbFechar.setIcon(new ImageIcon(MenuExpandidoTeste.class.getResource("/Imagens/30FecharMenu.png")));
+		add(lbFechar, "cell 0 0,alignx right");
 		
-		JButton btnNewButton = new JButton("Inicio");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBackground(new Color(175, 207, 198));
-		add(btnNewButton, "cell 0 1,grow");
+		JButton btnInicio = new JButton("Inicio");
+		btnInicio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnInicio.setBackground(new Color(175, 207, 198));
+		add(btnInicio, "cell 0 1,grow");
 		
-		JButton btnNewButton_3 = new JButton("Histórico");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(btnNewButton_3, "cell 0 2,grow");
+		btnHistorico = new JButton("Histórico");
+		btnHistorico.setBackground(new Color(175, 207, 198));
+		btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(btnHistorico, "cell 0 2,grow");
 		
-		JButton btnNewButton_1 = new JButton("Sair");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(btnNewButton_1, "cell 0 4,grow");
+		JButton btnSair = new JButton("Sair");
+		btnSair.setBackground(new Color(175, 207, 198));
+		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(btnSair, "cell 0 4,grow");
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(MenuExpandidoTeste.class.getResource("/Imagens/30Usuario.png")));
 		add(lblNewLabel_1, "flowx,cell 0 5");
 		
-		JButton btnNewButton_2 = new JButton("Ver Perfil");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(btnNewButton_2, "cell 0 5,growx");
+		JButton btnPerfil = new JButton("Ver Perfil");
+		btnPerfil.setBackground(new Color(175, 207, 198));
+		btnPerfil.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(btnPerfil, "cell 0 5,growx");
 
 
 
@@ -60,7 +64,7 @@ public class MenuExpandidoTeste extends JPanel {
 	
 	public void mostrarMenuContraido(MouseListener mouseListener) {
 
-		this.lbMostrarMenuCont.addMouseListener(mouseListener);
+		this.lbFechar.addMouseListener(mouseListener);
 
 	}
 

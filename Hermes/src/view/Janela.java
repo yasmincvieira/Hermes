@@ -17,9 +17,10 @@ public class Janela extends JFrame {
 	private JPanel contentPane;
 	
 	private CardLayout cardLayout;
+	
 	JPanel panelTelas = new JPanel();
-	private String panelAtual;
 	JPanel panelMenu;
+	private String panelAtual;
 
 	public Janela() {
 
@@ -47,26 +48,23 @@ public class Janela extends JFrame {
 		setBounds(100, 100, 800, 500);
 
 		contentPane = new JPanel();
-
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		this.cardLayout = new CardLayout();
 		
-		panelMenu = new JPanel();
-		panelMenu.setLayout(new BorderLayout());
-		panelMenu.setPreferredSize(new Dimension(200, 0));
-
-		panelTelas = new JPanel();
-		panelTelas.setLayout(cardLayout);
+		panelMenu = new JPanel(new BorderLayout());
 		
-		contentPane.add(panelMenu, BorderLayout.WEST);
 		contentPane.add(panelTelas, BorderLayout.CENTER);
+//		panelMenu.setPreferredSize(new Dimension(200, 0));
+//
+//		panelTelas = new JPanel();
+		contentPane.add(panelMenu, BorderLayout.WEST);
 
 		panelTelas.setLayout(cardLayout);
+		//panelTelas.setLayout(cardLayout);
 
 		
 

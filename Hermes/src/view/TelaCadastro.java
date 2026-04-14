@@ -27,7 +27,8 @@ public class TelaCadastro extends JPanel {
 	private JTextField tfEmailC;
 	private JPasswordField pfSenhaC;
 	private JButton btnCadastrar;
-
+	private JLabel lbVoltar;
+	
 	
 
 	/**
@@ -50,6 +51,10 @@ public class TelaCadastro extends JPanel {
 		TelaInicial telaInicial = new TelaInicial();
 		
 		this.btnCadastrar = new JButton("Cadastrar");
+		
+		lbVoltar = new JLabel("");
+		lbVoltar.setIcon(new ImageIcon(TelaCadastro.class.getResource("/Imagens/voltar20.png")));
+		add(lbVoltar, "cell 0 0");
 
 		
 		JLabel lblNewLabel = new JLabel("HERMES");
@@ -119,11 +124,17 @@ public class TelaCadastro extends JPanel {
     public void setpfSenhaC(JPasswordField pfSenhaC) {
 		this.pfSenhaC = pfSenhaC;
 	}
-
-
     
 	public void cadastrar(ActionListener actionListener) {
 		this.btnCadastrar.addActionListener(actionListener);
 	}
+	
+	public void voltar(MouseListener mouseListener) {
+
+		this.lbVoltar.addMouseListener(mouseListener);
+
+	}
 
 }
+
+

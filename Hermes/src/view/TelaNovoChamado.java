@@ -34,20 +34,6 @@ public class TelaNovoChamado extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
 		
-		JPanel panelMenu = new JPanel();
-		panelMenu.setBackground(new Color(147, 195, 171));
-		panelMenu.setForeground(new Color(147, 195, 171));
-		add(panelMenu, BorderLayout.WEST);
-		panelMenu.setLayout(new MigLayout("", "[]", "[grow,top][]"));
-		
-		JLabel lbIconMenu = new JLabel("");
-		lbIconMenu.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/30Menu.png")));
-		panelMenu.add(lbIconMenu, "cell 0 0,alignx right");
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/30Usuario.png")));
-		panelMenu.add(lblNewLabel, "cell 0 1");
-		
 		JPanel panelChamado = new JPanel();
 		panelChamado.setBackground(new Color(234, 242, 236));
 		add(panelChamado, BorderLayout.CENTER);

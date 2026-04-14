@@ -19,16 +19,19 @@ public class LoginController {
 		this.login = login;
 		this.user = user;
 		this.navegador = navegador;
+		menu.removerMenu();
 		
 		this.login.logar(e -> {
 			verificarCadastroUsuario();
+			
 		});
 		
 		this.login.cadastrarse(e -> {
 			navegador.navegarPara("CADASTRO USUARIO");
-			//menu.removerMenu();
+			menu.removerMenu();
 		});
 	}
+
 
 	private void verificarCadastroUsuario() {
 		List<Usuario> usuarios = user.listarUsuarios();
