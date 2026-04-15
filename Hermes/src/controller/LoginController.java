@@ -35,7 +35,7 @@ public class LoginController {
 		
 		if(login.gettfUsuario().getText().isEmpty() || login.getpfSenha().getText().isEmpty()) {
 			
-			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+			JOptionPane.showMessageDialog(login, "Prencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
 		}
 		else {
 			boolean usuarioEncontrado = false;
@@ -54,7 +54,7 @@ public class LoginController {
 				this.navegador.navegarPara("INICIO");
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Usuário não encontrado");
+				JOptionPane.showMessageDialog(login, "Usuário não encontrado", "Atenção", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 		

@@ -14,42 +14,41 @@ import view.TelaNovoChamado;
 
 public class NovoChamadoController {
 	
-	private TelaNovoChamado view;
+	private TelaNovoChamado chamado;
 	private ChamadoDAO dao;
 	private Navegador navegador;
 	
-	public NovoChamadoController(TelaNovoChamado view, ChamadoDAO dao, Navegador navegador) {
+	public NovoChamadoController(TelaNovoChamado chamado, ChamadoDAO dao, Navegador navegador) {
 		super();
-		this.view = view;
+		this.chamado = chamado;
 		this.dao = dao;
 		this.navegador = navegador;
 		
-		this.view.realizarChamado(e -> {
+		this.chamado.realizarChamado(e -> {
 			realizarChamado();
 		});
 		
 	}
 	private void realizarChamado() {
-		List<Chamado> chamado = dao.listarChamados();
-        JComboBox nome = view.getcbNome();
-        JComboBox local = view.getcbLocal();
-        JTextField tfPatrimonioStr = view.gettfPatrimonio();
-        JTextArea descricao = view.gettaDescricao();
+        JComboBox nome = chamado.getcbNome();
+        JComboBox local = chamado.getcbLocal();
+        JTextField tfPatrimonioStr = chamado.gettfPatrimonio();
+        JTextArea descricao = chamado.gettaDescricao();
 
-        if(view.gettaDescricao().getText().isEmpty()) {
+        if(chamado.gettaDescricao().getText().isEmpty()) {
     			
-    		JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+    		JOptionPane.showMessageDialog(chamado, "Descreva qual o é problema", "Atenção", JOptionPane.ERROR_MESSAGE);
     		return;
     	}
     	Chamado novoChamado = new Chamado();
-    	novoChamado.setNome((String)view.getcbNome().getSelectedItem());
-    	novoChamado.setLocal((String)view.getcbLocal().getSelectedItem());
-        novoChamado.setIdPatrimonio(view.gettfPatrimonio().getText());
-        novoChamado.setDescricao(view.gettaDescricao().getText());
+    	novoChamado.setNome((String)chamado.getcbNome().getSelectedItem());
+    	novoChamado.setLocal((String)chamado.getcbLocal().getSelectedItem());
+        novoChamado.setIdPatrimonio(chamado.gettfPatrimonio().getText());
+        novoChamado.setDescricao(chamado.gettaDescricao().getText());
     	  
         dao.adicionarChamado(novoChamado); 
     	    
-        JOptionPane.showMessageDialog(null, "Chamado feito com sucesso!");
+        JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         this.navegador.navegarPara("INICIO");
     	   
     		

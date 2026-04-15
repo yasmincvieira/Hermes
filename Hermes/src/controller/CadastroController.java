@@ -41,7 +41,7 @@ public class CadastroController {
 			|| cadastro.getpfSenhaC().getText().isEmpty()) {
 			
 			
-			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+			JOptionPane.showMessageDialog(cadastro, "Prencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		Usuario novoUsuario = new Usuario();
@@ -51,7 +51,7 @@ public class CadastroController {
 	  
 	    user.adicionarUsuario(novoUsuario); 
 	    
-	    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+	    JOptionPane.showMessageDialog(cadastro, "Usuário cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 	    this.navegador.navegarPara("INICIO");
 	    
 	    limparCamposLogin();
