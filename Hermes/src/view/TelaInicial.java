@@ -25,43 +25,40 @@ public class TelaInicial extends JPanel {
 	private JButton btnHistorico;
 	private JButton btnRealizarChamado;
 
-
 	/**
 	 * Create the frame.
 	 */
 	public TelaInicial() {
 		setBackground(new Color(240, 240, 240));
-		//setTitle("Tela Inicial");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setTitle("Tela Inicial");
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		setLayout(new MigLayout("", "[grow][][][][grow]", "[grow][64.00][47.00][100.00][grow]"));
-		
+
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
 		lblNewLabel.setIcon(new ImageIcon(TelaInicial.class.getResource("/Imagens/40.png")));
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 55));
 		add(lblNewLabel, "cell 1 1 3 1,alignx center");
-		
+
 		this.btnHistorico = new JButton("Histórico de Chamados");
 		this.btnHistorico.setBackground(new Color(122, 188, 170));
 		this.btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(this.btnHistorico, "cell 1 3,grow");
-		
+
 		this.btnRealizarChamado = new JButton("Realizar novo Chamado");
 		this.btnRealizarChamado.setBackground(new Color(122, 188, 170));
 		this.btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(this.btnRealizarChamado, "cell 3 3,grow");
 
 	}
-	
-	
+
 	public void historico(ActionListener actionListener) {
 		this.btnHistorico.addActionListener(actionListener);
 	}
+
 	public void irChamado(ActionListener actionListener) {
 		this.btnRealizarChamado.addActionListener(actionListener);
 	}
-	
-	
 
 }

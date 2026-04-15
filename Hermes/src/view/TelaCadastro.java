@@ -28,15 +28,13 @@ public class TelaCadastro extends JPanel {
 	private JPasswordField pfSenhaC;
 	private JButton btnCadastrar;
 	private JLabel lbVoltar;
-	
-	
 
 	/**
 	 * Create the frame.
 	 */
 	public TelaCadastro() {
-		//setTitle("Tela de Cadastro");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setTitle("Tela de Cadastro");
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 
@@ -45,96 +43,93 @@ public class TelaCadastro extends JPanel {
 
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		//setContentPane(contentPane);
-		setLayout(new MigLayout("", "[grow][grow 20][grow][grow]", "[grow 50][grow 10][27:n,grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow 50]"));
-		
-		TelaInicial telaInicial = new TelaInicial();
-		
-		this.btnCadastrar = new JButton("Cadastrar");
-		
-		lbVoltar = new JLabel("");
-		lbVoltar.setIcon(new ImageIcon(TelaCadastro.class.getResource("/Imagens/voltar20.png")));
-		add(lbVoltar, "cell 0 0");
+		// setContentPane(contentPane);
+		setLayout(new MigLayout("", "[grow][grow 20][grow][grow]",
+				"[grow 50][grow 10][27:n,grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 5][grow 50]"));
 
-		
+		TelaInicial telaInicial = new TelaInicial();
+
+		this.btnCadastrar = new JButton("Cadastrar");
+
+		this.lbVoltar = new JLabel("");
+		this.lbVoltar.setIcon(new ImageIcon(TelaCadastro.class.getResource("/Imagens/voltar20.png")));
+		add(this.lbVoltar, "cell 0 0");
+
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastro.class.getResource("/Imagens/40.png")));
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 70));
 		add(lblNewLabel, "cell 1 1 2 1,alignx center");
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Usuário:");
 		lblNewLabel_1.setForeground(new Color(39, 79, 65));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_1, "cell 1 3,alignx trailing");
-		
+
 		this.tfUsuarioC = new JTextField();
 		this.tfUsuarioC.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		this.tfUsuarioC.setBackground(new Color(78, 153, 126));
 		add(this.tfUsuarioC, "cell 2 3,grow");
 		this.tfUsuarioC.setColumns(10);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("E-mail:");
 		lblNewLabel_2.setForeground(new Color(39, 79, 65));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_2, "cell 1 5,alignx trailing");
-		
+
 		this.tfEmailC = new JTextField();
 		this.tfEmailC.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		this.tfEmailC.setBackground(new Color(78, 153, 126));
 		add(this.tfEmailC, "cell 2 5,grow");
 		this.tfEmailC.setColumns(10);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Senha:");
 		lblNewLabel_3.setForeground(new Color(39, 79, 65));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_3, "cell 1 7,alignx trailing");
-		
+
 		this.pfSenhaC = new JPasswordField();
 		this.pfSenhaC.setBackground(new Color(78, 153, 126));
 		this.pfSenhaC.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(this.pfSenhaC, "cell 2 7,grow");
-		
+
 		this.btnCadastrar.setForeground(new Color(39, 79, 65));
 		this.btnCadastrar.setBackground(new Color(160, 200, 172));
 		this.btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(this.btnCadastrar, "cell 1 9 2 1,alignx center");
 
 	}
-	
-    public JTextField gettfUsuarioC() {
+
+	public JTextField gettfUsuarioC() {
 		return tfUsuarioC;
 	}
-    
-    public void settfUsuarioC(JTextField tfUsuarioC) {
+
+	public void settfUsuarioC(JTextField tfUsuarioC) {
 		this.tfUsuarioC = tfUsuarioC;
 	}
-    
-    public JTextField gettfEmailC() {
+
+	public JTextField gettfEmailC() {
 		return tfEmailC;
 	}
-    
-    public void settfEmailC(JTextField tfEmailC) {
+
+	public void settfEmailC(JTextField tfEmailC) {
 		this.tfEmailC = tfEmailC;
 	}
-    public JTextField getpfSenhaC() {
+
+	public JTextField getpfSenhaC() {
 		return pfSenhaC;
 	}
-    
-    public void setpfSenhaC(JPasswordField pfSenhaC) {
+
+	public void setpfSenhaC(JPasswordField pfSenhaC) {
 		this.pfSenhaC = pfSenhaC;
 	}
-    
+
 	public void cadastrar(ActionListener actionListener) {
 		this.btnCadastrar.addActionListener(actionListener);
 	}
-	
+
 	public void voltar(MouseListener mouseListener) {
-
 		this.lbVoltar.addMouseListener(mouseListener);
-
 	}
 
 }
-
-

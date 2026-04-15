@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ChamadoDAO {
 	private final ArrayList<Chamado> listaDeChamado;
 
@@ -50,7 +49,6 @@ public class ChamadoDAO {
 //        }
 //        return chamado;
 //    }
-	
 
 	public Chamado buscarPorNome(String nome) {
 		for (Chamado candidato : this.listaDeChamado) {
@@ -61,7 +59,6 @@ public class ChamadoDAO {
 		return null;
 	}
 
-	
 	public boolean atualizar(Chamado chamadoAtualizado) {
 		for (int i = 0; i < this.listaDeChamado.size(); i++) {
 			Chamado candidatoExistente = this.listaDeChamado.get(i);
@@ -88,4 +85,4 @@ public class ChamadoDAO {
 //		for (int i = 0; i < this.listaDeChamado.size(); i++) {
 //			this.listaDeChamado.get(i).setContratado(false);
 //		}
-	}
+}

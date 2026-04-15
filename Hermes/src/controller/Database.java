@@ -10,33 +10,29 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Database {
-	
+
 	private static final String URL = "jdbc:mysql://localhost:3306/banco";
-    private static final String USER = "root";
-    private static final String PASSWORD = "admin";
-	
+	private static final String USER = "root";
+	private static final String PASSWORD = "admin";
+
 	public List<Usuario> executarSQL(String sql) {
-	    List<Usuario> usuarios = new ArrayList<Usuario>();
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 
-	    try (Connection conexao = DriverManager.getConnection(URL, USER, PASSWORD);
-	         Statement statement = conexao.createStatement();
-	         ResultSet resultSet = statement.executeQuery(sql)) {
+		try (Connection conexao = DriverManager.getConnection(URL, USER, PASSWORD);
+				Statement statement = conexao.createStatement();
+				ResultSet resultSet = statement.executeQuery(sql)) {
 
-	        while (resultSet.next()) {
-	            Usuario usuario = new Usuario(
-	                resultSet.getInt("id"),
-	                resultSet.getString("nome"),
-	                resultSet.getString("email"),
-	                resultSet.getString("senha")
-	            );
+			while (resultSet.next()) {
+				Usuario usuario = new Usuario(resultSet.getInt("id"), resultSet.getString("nome"),
+						resultSet.getString("email"), resultSet.getString("senha"));
 
-	            usuarios.add(usuario);
-	        }
+				usuarios.add(usuario);
+			}
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-	    return usuarios;
+		return usuarios;
 	}
 }

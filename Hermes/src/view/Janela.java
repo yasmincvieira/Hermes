@@ -10,14 +10,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.CardLayout;
 
-
 public class Janela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
+
 	private CardLayout cardLayout;
-	
+
 	JPanel panelTelas = new JPanel();
 	JPanel panelMenu;
 	private String panelAtual;
@@ -42,7 +41,7 @@ public class Janela extends JFrame {
 //		
 //
 //		contentPane = new JPanel(this.cardLayout);
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setBounds(100, 100, 800, 500);
@@ -52,11 +51,11 @@ public class Janela extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		this.cardLayout = new CardLayout();
-		
+
 		panelMenu = new JPanel(new BorderLayout());
-		
+
 		contentPane.add(panelTelas, BorderLayout.CENTER);
 //		panelMenu.setPreferredSize(new Dimension(200, 0));
 //
@@ -64,17 +63,14 @@ public class Janela extends JFrame {
 		contentPane.add(panelMenu, BorderLayout.WEST);
 
 		panelTelas.setLayout(cardLayout);
-		//panelTelas.setLayout(cardLayout);
+		// panelTelas.setLayout(cardLayout);
 
-		
-
-		setPreferredSize(new Dimension(800,500)); // Tamanho de padrão
+		setPreferredSize(new Dimension(800, 500)); // Tamanho de padrão
 
 		setMinimumSize(new Dimension(800, 500)); // Tamanho minimo
 
 		setLocationRelativeTo(null); // Tela Centralizada
 
-		
 	}
 
 	public void adicionarTela(String nome, JPanel tela) {
@@ -105,13 +101,13 @@ public class Janela extends JFrame {
 
 	public void mudarMenu(JPanel menu) {
 
-	    panelMenu.removeAll();
+		panelMenu.removeAll();
 
-	    panelMenu.add(menu, BorderLayout.CENTER);
+		panelMenu.add(menu, BorderLayout.CENTER);
 
-	    panelMenu.revalidate();
+		panelMenu.revalidate();
 
-	    panelMenu.repaint();
+		panelMenu.repaint();
 
 	}
 
