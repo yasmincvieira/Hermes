@@ -27,7 +27,7 @@ public class NovoChamadoController {
 		this.chamado.realizarChamado(e -> {
 			realizarChamado();
 		});
-		
+
 	}
 	private void realizarChamado() {
         JComboBox nome = chamado.getcbNome();

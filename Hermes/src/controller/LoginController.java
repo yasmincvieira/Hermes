@@ -9,24 +9,25 @@ import models.UsuarioDAO;
 import view.TelaLogin;
 
 public class LoginController {
-	
+
 	private TelaLogin login;
 	private UsuarioDAO user;
 	private Navegador navegador;
-	
-	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador) {
+
+	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
 		this.login = login;
 		this.user = user;
 		this.navegador = navegador;
-		
+
 		this.login.logar(e -> {
 			verificarCadastroUsuario();
+
 		});
-		
+
 		this.login.cadastrarse(e -> {
 			navegador.navegarPara("CADASTRO USUARIO");
-			//menu.removerMenu();
+
 		});
 	}
 
@@ -39,31 +40,30 @@ public class LoginController {
 		}
 		else {
 			boolean usuarioEncontrado = false;
-			
-			for(Usuario user : usuarios) {
-				
-				if(user.getNome().equals(login.gettfUsuario().getText()) 
-					&& user.getSenha().equals(login.getpfSenha().getText())){
-					
+
+			for (Usuario user : usuarios) {
+
+				if (user.getNome().equals(login.gettfUsuario().getText())
+						&& user.getSenha().equals(login.getpfSenha().getText())) {
+
 					usuarioEncontrado = true;
 					break;
 				}
 			}
-			
-			if(usuarioEncontrado == true) {
+
+			if (usuarioEncontrado == true) {
 				this.navegador.navegarPara("INICIO");
 			}
 			else {
 				JOptionPane.showMessageDialog(login, "Usuário não encontrado", "Atenção", JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		
+
 	}
-	
+
 	public void limparCamposLogin() {
 		login.gettfUsuario().setText("");
 		login.getpfSenha().setText("");
 	}
-	
 
 }
