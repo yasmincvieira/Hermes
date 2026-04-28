@@ -10,8 +10,7 @@ public class Chamado {
     private String descricao;
     private String status;
 
-	public Chamado(String id_chamado, String status, String descricao, String nome, String local, String idPatrimonio) {
-		this.id_chamado = id_chamado;
+	public Chamado(String status, String descricao, String nome, String local, String idPatrimonio) {
 		this.status = status;
 		this.descricao = descricao;
 		this.nome = nome;
@@ -20,7 +19,6 @@ public class Chamado {
 	}
 
 	public void imprimir() {
-		System.out.println("Nome: " + this.id_chamado);
 		System.out.println("Formação: " + this.status);
 		System.out.println("Área de Interesse: " + this.descricao);
 		System.out.println("##################################");
@@ -55,21 +53,6 @@ public class Chamado {
 		this.descricao = descricao;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome() {
-		this.nome = nome;
-	}
-
-	public String getLocal() {
-		return local;
-	}
-
-	public void setLocal() {
-		this.local = local;
-	}
 
 	public String getIdPatrimonio() {
 		return idPatrimonio;
@@ -79,4 +62,21 @@ public class Chamado {
 		this.idPatrimonio = idPatrimonio;
 	}
 
+	public int getIdChamado() {
+		return idChamado;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setIdPatrimonio(String idPatrimonio) {
+		this.idPatrimonio = idPatrimonio;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
 }

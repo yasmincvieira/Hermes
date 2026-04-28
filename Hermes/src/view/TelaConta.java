@@ -13,6 +13,7 @@ import models.Usuario;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JEditorPane;
 
@@ -93,7 +94,9 @@ public class TelaConta extends JPanel {
 		panel_1.add(taChamadosFeitos, "cell 1 10");
 
 		btnAtualizar = new JButton("AtualizarDados");
-		panel_1.add(btnAtualizar, "cell 1 12");
+		btnAtualizar.setBackground(new Color(160, 200, 172));
+		btnAtualizar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(btnAtualizar, "cell 1 12,growy");
 
 		btnExcluirConta = new JButton("Excluir conta");
 		btnExcluirConta.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -106,6 +109,12 @@ public class TelaConta extends JPanel {
 		taUsuario.setText(usuario.getNome());
 		taSenha.setText(usuario.getSenha());
 		taEmail.setText(usuario.getEmail());
+	}
+	public void excluirConta(ActionListener actionListener) {
+		this.btnExcluirConta.addActionListener(actionListener);
+	}
+	public void atualizarConta(ActionListener actionListener) {
+		this.btnAtualizar.addActionListener(actionListener);
 	}
 
 }

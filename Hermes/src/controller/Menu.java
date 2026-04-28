@@ -50,6 +50,13 @@ public class Menu {
 		this.mnExp.sair(e -> {
 			dispose();
 		});
+		this.mnExp.irHistorico(e -> {
+			navegador.navegarPara("HISTORICO");
+		});
+		this.mnExp.irInicio(e -> {
+			navegador.navegarPara("INICIO");
+		});
+	
 	
 
 		this.mnCont.mostrarMenuExpandido(new MouseAdapter() {

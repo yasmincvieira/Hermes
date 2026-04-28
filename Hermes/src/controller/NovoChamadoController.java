@@ -40,7 +40,7 @@ public class NovoChamadoController {
     		JOptionPane.showMessageDialog(chamado, "Descreva qual o é problema", "Atenção", JOptionPane.ERROR_MESSAGE);
     		return;
     	}
-    	Chamado novoChamado = new Chamado();
+    	Chamado novoChamado = new Chamado(null, null, null, null, null);
     	novoChamado.setNome((String)chamado.getcbNome().getSelectedItem());
     	novoChamado.setLocal((String)chamado.getcbLocal().getSelectedItem());
         novoChamado.setIdPatrimonio(chamado.gettfPatrimonio().getText());

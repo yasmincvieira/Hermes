@@ -49,7 +49,7 @@ public class ChamadoDAO {
             rset = pstm.executeQuery();
 
             while (rset.next()) {
-                Chamado chamados = new Chamado();
+                Chamado chamados = new Chamado(sql, sql, sql, sql, sql);
                 chamados.setIdChamado(rset.getInt("idChamado"));
                 chamados.setNome(rset.getString("nome"));
                 chamados.setLocal(rset.getString("lugar"));

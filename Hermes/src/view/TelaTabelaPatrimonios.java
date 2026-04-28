@@ -7,7 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import models.Patrimonio;
+
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -16,6 +22,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
+	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
 
 	/**
 	 * Create the panel.
@@ -76,23 +83,44 @@ public class TelaTabelaPatrimonios extends JPanel {
 				new String[] { "Patrim\u00F4nio", "Espa\u00E7o", "Id", "Status" }));
 		scrollPane.setViewportView(table);
 
-		JButton btEditarPatri = new JButton("Editar patrimônios");
-		btEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btEditarPatri.setForeground(new Color(39, 79, 65));
-		btEditarPatri.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btEditarPatri, "cell 2 4,alignx right");
+		btnEditarPatri = new JButton("Editar patrimônios");
+		btnEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEditarPatri.setForeground(new Color(39, 79, 65));
+		btnEditarPatri.setBackground(new Color(144, 204, 171));
+		paneltabelaPatrimonio.add(btnEditarPatri, "cell 2 4,alignx right");
 
-		JButton btnNewButton_2 = new JButton("Adicionar patrimônio");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_2.setForeground(new Color(39, 79, 65));
-		btnNewButton_2.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_2, "cell 3 4,alignx center");
+		btnAdicionarPatri = new JButton("Adicionar patrimônio");
+		btnAdicionarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAdicionarPatri.setForeground(new Color(39, 79, 65));
+		btnAdicionarPatri.setBackground(new Color(144, 204, 171));
+		paneltabelaPatrimonio.add(btnAdicionarPatri, "cell 3 4,alignx center");
 
-		JButton btnNewButton_1 = new JButton("Excluir patrimônio");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setForeground(new Color(39, 79, 65));
-		btnNewButton_1.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnNewButton_1, "cell 4 4,alignx left");
+		btnExcluirPatri = new JButton("Excluir patrimônio");
+		btnExcluirPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnExcluirPatri.setForeground(new Color(39, 79, 65));
+		btnExcluirPatri.setBackground(new Color(144, 204, 171));
+		paneltabelaPatrimonio.add(btnExcluirPatri, "cell 4 4,alignx left");
 	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	
+	public void excluirPatri(ActionListener actionListener) {
+		this.btnExcluirPatri.addActionListener(actionListener);
+	}
+	public void editarPatri(ActionListener actionListener) {
+		this.btnEditarPatri.addActionListener(actionListener);
+	}
+	public void adicionarPatri(ActionListener actionListener) {
+		this.btnAdicionarPatri.addActionListener(actionListener);
+	}
+
+	
 
 }
