@@ -139,7 +139,7 @@ public class TelaNovoChamado extends JPanel {
 	}
 	
 	public void settfPatrimonio(JTextField tfPatrimonio) {
-		this.tfPatrimonio = tfPatrimonio;
+		this.tfPatrimonio = tfPatrimonio;      
 	}
 	
 	public JComboBox getcbNome() {

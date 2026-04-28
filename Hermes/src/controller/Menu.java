@@ -1,28 +1,20 @@
 package controller;
 
 import java.awt.event.MouseAdapter;
-
 import java.awt.event.MouseEvent;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import javax.swing.UIManager;
 import view.MenuContraidoTeste;
-
 import view.MenuExpandidoTeste;
-
 import view.Janela;
 
 public class Menu {
 
 	private MenuExpandidoTeste mnExp;
-
 	private MenuContraidoTeste mnCont;
-
 	private JPanel menuAtual;
-
 	private Janela janela;
-	
 	private Navegador navegador;
 
 	public Menu(Janela janela, MenuExpandidoTeste mnExp, MenuContraidoTeste mnCont, Navegador navegador) {
@@ -72,8 +64,10 @@ public class Menu {
 	}
 
 	private void dispose() {
+		UIManager.put("OptionPane.yesButtonText", "Sim");
+        UIManager.put("OptionPane.noButtonText", "Não");
 		
-		int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmar Ação", JOptionPane.YES_NO_OPTION);
+		int resposta = JOptionPane.showConfirmDialog(janela, "Deseja realmente sair?", "Confirmar Ação", JOptionPane.YES_NO_OPTION);
 		
 		if (resposta == JOptionPane.YES_OPTION) {
             System.exit(0); // Fecha o sistema
