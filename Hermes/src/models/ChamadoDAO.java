@@ -22,11 +22,17 @@ public class ChamadoDAO {
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, chamado.getNome());
             pstm.setString(2, chamado.getLocal());
-            pstm.setInt(3, chamado.getIdPatrimonio());
+            if (chamado.getIdPatrimonio() != null) {
+                pstm.setInt(3, chamado.getIdPatrimonio());
+            } else {
+                pstm.setNull(3, java.sql.Types.INTEGER);
+            }
+            
             pstm.setString(4, chamado.getDescricao());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("Erro ao salvar no banco: " + e.getMessage());
         } finally {
         BancoDeDados.desconectar(conexao);
            if (pstm != null) {
@@ -52,12 +58,7 @@ public class ChamadoDAO {
             rset = pstm.executeQuery();
 
             while (rset.next()) {
-            	
-            	
-                Chamado chamado = new Chamado(rset.getString("nome"),rset.getString("lugar"),  rset.getInt("idPatrimonio"),rset.getString("descricao") );
-               
-                
-                
+                Chamado chamado = new Chamado(rset.getString("nome"), rset.getString("lugar"), rset.getInt("idPatrimonio"), rset.getString("descricao") );
                 listaChamados.add(chamado);
             }
         } catch (SQLException e) {

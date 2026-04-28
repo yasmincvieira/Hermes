@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -38,13 +37,16 @@ public class NovoChamadoController {
 			JOptionPane.showMessageDialog(chamado, "Descreva qual é o problema", "Atenção", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-        int idPatrimonio=0;
-//        try {
-//        	idPatrimonio = Integer.parseInt(patrimonio);
-//		} catch (Exception e) {
-//			JOptionPane.showMessageDialog(chamado, "Informe o patrimônio corretamente", "Erro", JOptionPane.ERROR_MESSAGE);
-//			e.printStackTrace();
-//		}
+        
+        Integer idPatrimonio = null;
+        if (patrimonio != null && !patrimonio.trim().isEmpty()) {
+            try {
+            	idPatrimonio = Integer.valueOf(patrimonio);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(chamado, "O ID do Patrimônio deve conter apenas números!");
+                return;
+            }
+        }
         
         
         Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao);

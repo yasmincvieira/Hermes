@@ -6,11 +6,11 @@ public class Chamado {
 	private String idChamado;
     private String nome;
     private String local;
-    private int idPatrimonio;
+    private Integer idPatrimonio;
     private String descricao;
     private String status;
 
-    public Chamado(String nome, String local, int idPatrimonio, String descricao) {
+    public Chamado(String nome, String local, Integer idPatrimonio, String descricao) {
         this.nome = nome;
         this.local = local;
         this.idPatrimonio = idPatrimonio;
@@ -34,11 +34,11 @@ public class Chamado {
     	this.local = local; 
     }
 
-    public int getIdPatrimonio() { 
+    public Integer getIdPatrimonio() { 
     	return idPatrimonio; 
     }
     
-    public void setIdPatrimonio(int idPatrimonio) { 
+    public void setIdPatrimonio(Integer idPatrimonio) { 
     	this.idPatrimonio = idPatrimonio; 
     }
 

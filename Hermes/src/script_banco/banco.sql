@@ -6,7 +6,7 @@ use banco;
 create table Usuarios(
 	 id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) not null,
-    email varchar(255) not null,
+    email varchar(255) not null unique,
     senha varchar(255) not null
 );
 SELECT * FROM banco.Usuarios;

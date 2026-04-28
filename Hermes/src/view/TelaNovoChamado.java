@@ -32,7 +32,7 @@ public class TelaNovoChamado extends JPanel {
 	 */
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1400, 600);
 
 		JPanel panelChamado = new JPanel();
 		panelChamado.setBackground(new Color(234, 242, 236));
