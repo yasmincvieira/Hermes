@@ -10,27 +10,36 @@ import java.util.List;
 public class ChamadoDAO {
 	
 	public void adicionarChamado(Chamado chamado) {
-		String sql = "INSERT INTO novoChamado (nome, lugar, patrimonio, descricao) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO novoChamado (nome, lugar, idPatrimonio, descricao) VALUES (?, ?, ?, ?)";
 		Connection conexao = null;
         PreparedStatement pstm = null;
 		
         try {
             conexao = BancoDeDados.conectar();
+            if (conexao == null) {
+                throw new SQLException("Não foi possível conectar ao banco de dados.");
+            }
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, chamado.getNome());
             pstm.setString(2, chamado.getLocal());
-            pstm.setString(3, chamado.getIdPatrimonio());
+            if (chamado.getIdPatrimonio() != null) {
+                pstm.setInt(3, chamado.getIdPatrimonio());
+            } else {
+                pstm.setNull(3, java.sql.Types.INTEGER);
+            }
+            
             pstm.setString(4, chamado.getDescricao());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("Erro ao salvar no banco: " + e.getMessage());
         } finally {
-        	BancoDeDados.desconectar(conexao);
-            if (pstm != null) {
-                try {
-                    pstm.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+        BancoDeDados.desconectar(conexao);
+           if (pstm != null) {
+               try {
+            	   pstm.close();
+               } catch (SQLException e) {
+            	   e.printStackTrace();
                 }
             }
         }
@@ -38,10 +47,10 @@ public class ChamadoDAO {
 
 	public List<Chamado> listarChamados() {
 		String sql = "SELECT * FROM novoChamado";
-        List<Chamado> chamado = new ArrayList<>();
+        List<Chamado> listaChamados = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement pstm = null;
-        ResultSet rset = null; // Objeto que guarda o resultado da consulta
+        ResultSet rset = null;
 
         try {
             conexao = BancoDeDados.conectar();
@@ -49,20 +58,13 @@ public class ChamadoDAO {
             rset = pstm.executeQuery();
 
             while (rset.next()) {
-                Chamado chamados = new Chamado(sql, sql, sql, sql, sql);
-                chamados.setIdChamado(rset.getInt("idChamado"));
-                chamados.setNome(rset.getString("nome"));
-                chamados.setLocal(rset.getString("lugar"));
-                chamados.setIdPatrimonio(rset.getString("idPatrimonio"));
-                chamados.setDescricao(rset.getString("descricao"));
-                chamado.add(chamados);
+                Chamado chamado = new Chamado(rset.getString("nome"), rset.getString("lugar"), rset.getInt("idPatrimonio"), rset.getString("descricao") );
+                listaChamados.add(chamado);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } 
-        return chamado;
+        return listaChamados;
     }
-	
-
 
 	}

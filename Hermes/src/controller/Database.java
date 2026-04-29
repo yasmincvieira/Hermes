@@ -13,7 +13,7 @@ public class Database {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/banco";
 	private static final String USER = "root";
-	private static final String PASSWORD = "LCS@souza18_";
+	private static final String PASSWORD = "admin";
 
 	public List<Usuario> executarSQL(String sql) {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -24,7 +24,7 @@ public class Database {
 
 			while (resultSet.next()) {
 				Usuario usuario = new Usuario(resultSet.getInt("id"), resultSet.getString("nome"),
-						resultSet.getString("email"), resultSet.getString("senha"));
+						resultSet.getString("email"), resultSet.getString("senha"), resultSet.getBoolean("admin"));
 
 				usuarios.add(usuario);
 			}

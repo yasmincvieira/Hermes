@@ -52,15 +52,20 @@ public class LoginController {
 					break;
 				}
 			}
+			
 
-			if (usuarioEncontrado == true) {
+				if (!usuarioEncontrado) {
+					JOptionPane.showMessageDialog(login, "Usuário não encontrado", "Atenção", JOptionPane.WARNING_MESSAGE);
+					return;
+					
+				}
 				navegador.setUsuarioLogado(usuarioLogado); // <- passa para o navegador
-				this.navegador.navegarPara("INICIO");
-			}
-			else {
-				JOptionPane.showMessageDialog(login, "Usuário não encontrado", "Atenção", JOptionPane.WARNING_MESSAGE);
-			}
-		}
+				}
+			if (usuarioLogado.isAdmin()) {
+		        navegador.navegarPara("INICIO ADMIN");
+		    } else {
+		        navegador.navegarPara("INICIO");
+		    }
 
 	}
 

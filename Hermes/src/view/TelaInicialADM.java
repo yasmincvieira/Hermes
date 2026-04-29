@@ -5,6 +5,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.Color;
@@ -12,6 +14,7 @@ import java.awt.Color;
 public class TelaInicialADM extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	JButton btnVerPatrimonio, btnNovosChamados, btnHistoricoChamado, btnVerPerfil;
 
 	/**
 	 * Create the panel.
@@ -27,26 +30,40 @@ public class TelaInicialADM extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 70));
 		add(lblNewLabel, "cell 1 1 3 1,alignx center");
 
-		JButton btnNewButton = new JButton("Ver Patrimônios");
-		btnNewButton.setBackground(new Color(122, 188, 170));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btnNewButton, "cell 1 3,grow");
+		btnVerPatrimonio = new JButton("Ver Patrimônios");
+		btnVerPatrimonio.setBackground(new Color(122, 188, 170));
+		btnVerPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(btnVerPatrimonio, "cell 1 3,grow");
 
-		JButton btnNewButton_3 = new JButton("Novos Chamados");
-		btnNewButton_3.setBackground(new Color(122, 188, 170));
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btnNewButton_3, "cell 3 3,grow");
+		btnNovosChamados = new JButton("Novos Chamados");
+		btnNovosChamados.setBackground(new Color(122, 188, 170));
+		btnNovosChamados.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(btnNovosChamados, "cell 3 3,grow");
 
-		JButton btnNewButton_1 = new JButton("Ver Perfil");
-		btnNewButton_1.setBackground(new Color(122, 188, 170));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btnNewButton_1, "cell 1 5,grow");
+		btnVerPerfil = new JButton("Ver Perfil");
+		btnVerPerfil.setBackground(new Color(122, 188, 170));
+		btnVerPerfil.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(btnVerPerfil, "cell 1 5,grow");
 
-		JButton btnNewButton_2 = new JButton("Histórico de Chamados");
-		btnNewButton_2.setBackground(new Color(122, 188, 170));
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btnNewButton_2, "cell 3 5,grow");
+		btnHistoricoChamado = new JButton("Histórico de Chamados");
+		btnHistoricoChamado.setBackground(new Color(122, 188, 170));
+		btnHistoricoChamado.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(btnHistoricoChamado, "cell 3 5,grow");
 
+	}
+	public void patrimonio(ActionListener actionListener) {
+		this.btnVerPatrimonio.addActionListener(actionListener);
+	}
+
+	public void chamado(ActionListener actionListener) {
+		this.btnNovosChamados.addActionListener(actionListener);
+	}
+	public void historico(ActionListener actionListener) {
+		this.btnHistoricoChamado.addActionListener(actionListener);
+	}
+
+	public void verPerfil(ActionListener actionListener) {
+		this.btnVerPerfil.addActionListener(actionListener);
 	}
 
 }

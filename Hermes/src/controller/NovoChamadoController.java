@@ -1,12 +1,10 @@
 package controller;
 
 import java.util.List;
-
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 import models.Chamado;
 import models.ChamadoDAO;
 import models.Usuario;
@@ -30,27 +28,41 @@ public class NovoChamadoController {
 
 	}
 	private void realizarChamado() {
-        JComboBox nome = chamado.getcbNome();
-        JComboBox local = chamado.getcbLocal();
-        JTextField tfPatrimonioStr = chamado.gettfPatrimonio();
-        JTextArea descricao = chamado.gettaDescricao();
+		String nome = (String) chamado.getcbNome().getSelectedItem();
+		String local = (String) chamado.getcbLocal().getSelectedItem();
+        String patrimonio = chamado.gettfPatrimonio().getText();
+        String descricao = chamado.gettaDescricao().getText();
 
-        if(chamado.gettaDescricao().getText().isEmpty()) {
-    			
-    		JOptionPane.showMessageDialog(chamado, "Descreva qual o é problema", "Atenção", JOptionPane.ERROR_MESSAGE);
-    		return;
-    	}
-    	Chamado novoChamado = new Chamado(null, null, null, null, null);
-    	novoChamado.setNome((String)chamado.getcbNome().getSelectedItem());
-    	novoChamado.setLocal((String)chamado.getcbLocal().getSelectedItem());
-        novoChamado.setIdPatrimonio(chamado.gettfPatrimonio().getText());
-        novoChamado.setDescricao(chamado.gettaDescricao().getText());
-    	  
-        dao.adicionarChamado(novoChamado); 
-    	    
-        JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-        this.navegador.navegarPara("INICIO");
-    	   
+        if (descricao.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(chamado, "Descreva qual é o problema", "Atenção", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+        
+        Integer idPatrimonio = null;
+        if (patrimonio != null && !patrimonio.trim().isEmpty()) {
+            try {
+            	idPatrimonio = Integer.valueOf(patrimonio);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(chamado, "O ID do Patrimônio deve conter apenas números!");
+                return;
+            }
+        }
+        
+        
+        Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao);
+
+		try {
+			dao.adicionarChamado(novoChamado);
+			JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",
+					JOptionPane.INFORMATION_MESSAGE);
+			
+			chamado.gettaDescricao().setText("");
+			chamado.gettfPatrimonio().setText("");
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
     		
 	}
 

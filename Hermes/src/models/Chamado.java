@@ -3,36 +3,21 @@ package models;
 import java.awt.Toolkit;
 
 public class Chamado {
-	private int idChamado;
+	private String idChamado;
     private String nome;
     private String local;
-    private String idPatrimonio;
+    private Integer idPatrimonio;
     private String descricao;
     private String status;
 
-	public Chamado(String status, String descricao, String nome, String local, String idPatrimonio) {
-		this.status = status;
-		this.descricao = descricao;
-		this.nome = nome;
-		this.local = local;
-		this.idPatrimonio = idPatrimonio;
-	}
-
-	public void imprimir() {
-		System.out.println("Formação: " + this.status);
-		System.out.println("Área de Interesse: " + this.descricao);
-		System.out.println("##################################");
-	}
-
-	// Getters e setters.
-	public String getStatus() {
-		return status;
-	}
-	
-    public void setIdChamado(int idChamado) { 
-    	this.idChamado = idChamado; 
+    public Chamado(String nome, String local, Integer idPatrimonio, String descricao) {
+        this.nome = nome;
+        this.local = local;
+        this.idPatrimonio = idPatrimonio;
+        this.descricao = descricao;
     }
 
+	// Getters e setters.
     public String getNome() { 
     	return nome; 
     }
@@ -49,34 +34,20 @@ public class Chamado {
     	this.local = local; 
     }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public Integer getIdPatrimonio() { 
+    	return idPatrimonio; 
+    }
+    
+    public void setIdPatrimonio(Integer idPatrimonio) { 
+    	this.idPatrimonio = idPatrimonio; 
+    }
 
+    public String getDescricao() { 
+    	return descricao; 
+    }
+    
+    public void setDescricao(String descricao) { 
+    	this.descricao = descricao; 
+    }
 
-	public String getIdPatrimonio() {
-		return idPatrimonio;
-	}
-
-	public void setIsPatrimonio() {
-		this.idPatrimonio = idPatrimonio;
-	}
-
-	public int getIdChamado() {
-		return idChamado;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setIdPatrimonio(String idPatrimonio) {
-		this.idPatrimonio = idPatrimonio;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	
 }

@@ -5,6 +5,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
+	private boolean admin;
 	private String foto;
 
 	// construtor
@@ -12,11 +13,12 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(int id, String nome, String email, String senha) {
+	public Usuario(int id, String nome, String email, String senha, boolean admin) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.admin = admin;
 	}
 
 	public String getFoto() { return foto; }
@@ -59,5 +61,14 @@ public class Usuario {
 		this.id = id;
 
 	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+	
 
 }

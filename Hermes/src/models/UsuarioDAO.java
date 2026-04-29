@@ -13,7 +13,7 @@ public class UsuarioDAO {
 
 	// CREATE - Adicionar um novo usuário
 	public void adicionarUsuario(Usuario usuario) {
-		String sql = "INSERT INTO usuarios (id, nome, email, senha) VALUES (0, ?, ?, ?)";
+		String sql = "INSERT INTO usuarios (id, nome, email, senha, admin) VALUES (0, ?, ?, ?, ?)";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 
@@ -23,6 +23,7 @@ public class UsuarioDAO {
 			pstm.setString(1, usuario.getNome());
 			pstm.setString(2, usuario.getEmail());
 			pstm.setString(3, usuario.getSenha());
+			pstm.setBoolean(4,  usuario.isAdmin());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,11 +53,12 @@ public class UsuarioDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Usuario usuario = new Usuario(0, sql, sql, sql);
+				Usuario usuario = new Usuario();
 				usuario.setId(rset.getInt("id"));
 				usuario.setNome(rset.getString("nome"));
 				usuario.setEmail(rset.getString("email"));
 				usuario.setSenha(rset.getString("senha"));
+				usuario.setAdmin(rset.getBoolean("admin"));
 				usuario.setFoto(rset.getString("foto"));
 				usuarios.add(usuario);
 			}
@@ -71,7 +73,7 @@ public class UsuarioDAO {
 
 	// UPDATE - Atualizar um usuário existente
 	public void atualizarUsuario(Usuario usuario) {
-		String sql = "UPDATE usuarios SET nome = ?, email = ? WHERE id = ?";
+		String sql = "UPDATE usuarios SET nome = ?, email = ?, admin = ? WHERE id = ?";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 
@@ -80,7 +82,9 @@ public class UsuarioDAO {
 			pstm = conexao.prepareStatement(sql);
 			pstm.setString(1, usuario.getNome());
 			pstm.setString(2, usuario.getEmail());
-			pstm.setInt(3, usuario.getId());
+			pstm.setBoolean(3, usuario.isAdmin());
+			pstm.setInt(4, usuario.getId());
+			
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
