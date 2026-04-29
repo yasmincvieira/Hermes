@@ -57,6 +57,7 @@ public class UsuarioDAO {
 				usuario.setNome(rset.getString("nome"));
 				usuario.setEmail(rset.getString("email"));
 				usuario.setSenha(rset.getString("senha"));
+				usuario.setFoto(rset.getString("foto"));
 				usuarios.add(usuario);
 			}
 		} catch (SQLException e) {
@@ -87,6 +88,22 @@ public class UsuarioDAO {
 			BancoDeDados.desconectar(conexao);
 		}
 	}
+	public void atualizarSenha(int id, String novaSenha) {
+	    String sql = "UPDATE usuarios SET senha = ? WHERE id = ?";
+	    Connection conexao = null;
+	    PreparedStatement pstm = null;
+	    try {
+	        conexao = BancoDeDados.conectar();
+	        pstm = conexao.prepareStatement(sql);
+	        pstm.setString(1, novaSenha);
+	        pstm.setInt(2, id);
+	        pstm.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        BancoDeDados.desconectar(conexao);
+	    }
+	}
 
 	// DELETE - Excluir um usuário pelo ID
 	public void excluirUsuario(int id) {
@@ -104,5 +121,21 @@ public class UsuarioDAO {
 		} finally {
 			BancoDeDados.desconectar(conexao);
 		}
+	}
+	public void atualizarFoto(int id, String nomeFoto) {
+	    String sql = "UPDATE usuarios SET foto = ? WHERE id = ?";
+	    Connection conexao = null;
+	    PreparedStatement pstm = null;
+	    try {
+	        conexao = BancoDeDados.conectar();
+	        pstm = conexao.prepareStatement(sql);
+	        pstm.setString(1, nomeFoto);
+	        pstm.setInt(2, id);
+	        pstm.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        BancoDeDados.desconectar(conexao);
+	    }
 	}
 }

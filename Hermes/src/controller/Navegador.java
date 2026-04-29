@@ -3,6 +3,7 @@ package controller;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import models.Usuario;
 import view.Janela;
 import view.TelaLogin;
 
@@ -14,6 +15,8 @@ public class Navegador {
 	private CadastroController cadastroController;
 	private InicialController inicialController;
 	private Menu menu;
+	private Usuario usuarioLogado;
+	private ContaController contaController;
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
@@ -33,7 +36,11 @@ public class Navegador {
 		} else {
 			menu.mostrarPanelCont();
 		}
+		if (nome.equals("PERFIL") && usuarioLogado != null) {
+	        contaController.preencherDados();
+	    }
 	}
+	
 
 	public void sair() {
 		this.janela.dispose();
@@ -70,6 +77,16 @@ public class Navegador {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+	public Usuario getUsuarioLogado() {
+	    return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuario) {
+	    this.usuarioLogado = usuario;
+	}
+	public void setContaController(ContaController contaController) {
+	    this.contaController = contaController;
 	}
 
 }

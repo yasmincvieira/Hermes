@@ -12,40 +12,34 @@ import javax.swing.JTextArea;
 import models.Usuario;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JEditorPane;
+import javax.swing.JTextField;
+import java.awt.event.MouseEvent;
 
 public class TelaConta extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextArea taUsuario;
-	private JTextArea taSenha;
-	private JTextArea taEmail;
-	private JTextArea taChamadosFeitos;
-	private JButton btnExcluirConta, btnAtualizar;
+	private JButton btnExcluirConta;
+	private JTextField tfUsuario;
+	private JTextField tfSenha;
+	private JTextField tfEmail;
+	private JTextField tfChamados;
+	private JLabel lbEditarSenha;
+	private JLabel lbEditarNome;
+	private JLabel lbTrocarFoto; 
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaConta() {
 		setLayout(new BorderLayout(0, 0));
-
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(147, 195, 171));
 		setBounds(100, 100, 800, 500);
-		add(panel, BorderLayout.WEST);
-		panel.setLayout(new MigLayout("", "[]", "[grow,top][]"));
 		setBounds(100, 100, 800, 500);
-
-		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon(TelaConta.class.getResource("/Imagens/30Menu.png")));
-		panel.add(lblNewLabel_6, "cell 0 0,alignx center");
-
-		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setIcon(new ImageIcon(TelaConta.class.getResource("/Imagens/30Usuario.png")));
-		panel.add(lblNewLabel_7, "cell 0 1");
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(216, 233, 221));
@@ -60,17 +54,19 @@ public class TelaConta extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
 		panel_1.add(lblNewLabel, "cell 2 0,alignx right");
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaConta.class.getResource("/Imagens/adicionar-usuario150.png")));
-		panel_1.add(lblNewLabel_1, "cell 1 2,alignx right,aligny center");
+		
+		lbTrocarFoto = new JLabel("");
+		lbTrocarFoto.setIcon(new ImageIcon(TelaConta.class.getResource("/ImagensPerfil/foto1.png")));
+		lbTrocarFoto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		panel_1.add(lbTrocarFoto, "cell 1 2,alignx right,aligny center");
 
 		JLabel lblNewLabel_2 = new JLabel("Usuário:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_1.add(lblNewLabel_2, "cell 1 4");
+		panel_1.add(lblNewLabel_2, "flowx,cell 1 4");
 
 		JLabel lblNewLabel_3 = new JLabel("Senha:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_1.add(lblNewLabel_3, "cell 1 6");
+		panel_1.add(lblNewLabel_3, "flowx,cell 1 6");
 
 		JLabel lblNewLabel_4 = new JLabel("E-Mail:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -78,43 +74,84 @@ public class TelaConta extends JPanel {
 
 		JLabel lblNewLabel_5 = new JLabel("Chamados feitos:");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_1.add(lblNewLabel_5, "cell 1 10");
-
-		taUsuario = new JTextArea();
-		panel_1.add(taUsuario, "cell 1 4");
-
-		taSenha = new JTextArea();
-		panel_1.add(taSenha, "cell 1 6");
-
-		taEmail = new JTextArea();
-		panel_1.add(taEmail, "cell 1 8");
-
-		taChamadosFeitos = new JTextArea();
-		taChamadosFeitos.setEditable(false);
-		panel_1.add(taChamadosFeitos, "cell 1 10");
-
-		btnAtualizar = new JButton("AtualizarDados");
-		btnAtualizar.setBackground(new Color(160, 200, 172));
-		btnAtualizar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(btnAtualizar, "cell 1 12,growy");
+		panel_1.add(lblNewLabel_5, "flowx,cell 1 10");
 
 		btnExcluirConta = new JButton("Excluir conta");
 		btnExcluirConta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnExcluirConta.setBackground(new Color(160, 200, 172));
 		panel_1.add(btnExcluirConta, "cell 0 12,alignx right");
+		
+		tfUsuario = new JTextField();
+		panel_1.add(tfUsuario, "cell 1 4");
+		tfUsuario.setColumns(10);
+		
+		tfSenha = new JTextField();
+		panel_1.add(tfSenha, "cell 1 6");
+		tfSenha.setColumns(10);
+		
+		tfEmail = new JTextField();
+		tfEmail.setEditable(false);
+		panel_1.add(tfEmail, "cell 1 8");
+		tfEmail.setColumns(10);
+		
+		tfChamados = new JTextField();
+		panel_1.add(tfChamados, "cell 1 10");
+		tfChamados.setColumns(10);
+		
+		lbEditarSenha = new JLabel("Editar senha");
+		lbEditarSenha.setForeground(new Color(128, 0, 255));
+		panel_1.add(lbEditarSenha, "cell 1 6");
+		
+		lbEditarNome = new JLabel("Editar usuario");
+		lbEditarNome.setForeground(new Color(128, 0, 255));
+		panel_1.add(lbEditarNome, "cell 1 4");
+
+		lbEditarSenha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	    lbEditarSenha.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseEntered(MouseEvent e) {
+	            lbEditarSenha.setForeground(Color.BLUE);
+	        }
+	        @Override
+	        public void mouseExited(MouseEvent e) {
+	            lbEditarSenha.setForeground(new Color(128, 0, 255)); // volta à cor original
+	        }
+	    });
+	    
+	 lbEditarNome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	    lbEditarNome.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseEntered(MouseEvent e) {
+	            lbEditarNome.setForeground(Color.BLUE);
+	        }
+	        @Override
+	        public void mouseExited(MouseEvent e) {
+	            lbEditarNome.setForeground(new Color(128, 0, 255));
+	        }
+	    });
 
 	}
-
-	public void preencherDados(Usuario usuario) {
-		taUsuario.setText(usuario.getNome());
-		taSenha.setText(usuario.getSenha());
-		taEmail.setText(usuario.getEmail());
-	}
-	public void excluirConta(ActionListener actionListener) {
-		this.btnExcluirConta.addActionListener(actionListener);
-	}
-	public void atualizarConta(ActionListener actionListener) {
-		this.btnAtualizar.addActionListener(actionListener);
+	public void editarSenha(MouseListener mouseListener) {
+	    this.lbEditarSenha.addMouseListener(mouseListener);
 	}
 
+	public void editarNome(MouseListener mouseListener) {
+	    this.lbEditarNome.addMouseListener(mouseListener);
+	}
+	    
+	    public void excluirConta(ActionListener actionListener) {
+			this.btnExcluirConta.addActionListener(actionListener);
+		}
+	    public void preencherDados(Usuario usuario) {
+			tfUsuario.setText(usuario.getNome());
+			tfSenha.setText(usuario.getSenha());
+			tfEmail.setText(usuario.getEmail());
+		}
+	    public void atualizarFoto(String nomeFoto) {
+	        lbTrocarFoto.setIcon(new ImageIcon(TelaConta.class.getResource("/ImagensPerfil/" + nomeFoto)));
+	    }
+
+	    public void escolherFoto(MouseListener mouseListener) {
+	        this.lbTrocarFoto.addMouseListener(mouseListener);
+	    }
 }

@@ -13,6 +13,7 @@ public class LoginController {
 	private TelaLogin login;
 	private UsuarioDAO user;
 	private Navegador navegador;
+	private Usuario usuarioLogado;
 
 	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
@@ -46,12 +47,14 @@ public class LoginController {
 				if (user.getNome().equals(login.gettfUsuario().getText())
 						&& user.getSenha().equals(login.getpfSenha().getText())) {
 
+					usuarioLogado = user; // <- salva o usuário encontrado
 					usuarioEncontrado = true;
 					break;
 				}
 			}
 
 			if (usuarioEncontrado == true) {
+				navegador.setUsuarioLogado(usuarioLogado); // <- passa para o navegador
 				this.navegador.navegarPara("INICIO");
 			}
 			else {
@@ -60,6 +63,10 @@ public class LoginController {
 		}
 
 	}
+
+	public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
 
 	public void limparCamposLogin() {
 		login.gettfUsuario().setText("");

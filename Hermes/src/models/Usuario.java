@@ -5,6 +5,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
+	private String foto;
 
 	// construtor
 
@@ -18,6 +19,9 @@ public class Usuario {
 		this.senha = senha;
 	}
 
+	public String getFoto() { return foto; }
+	public void setFoto(String foto) { this.foto = foto; }
+	
 	public String toString() {
 		return this.id + ", " + this.nome + ", " + this.email + ", " + this.senha;
 	}

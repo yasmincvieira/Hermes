@@ -25,7 +25,7 @@ public class Menu {
 	
 	private Navegador navegador;
 
-	public Menu(Janela janela, MenuExpandidoTeste mnExp, MenuContraidoTeste mnCont, Navegador navegador) {
+	public Menu(Janela janela, MenuExpandidoTeste mnExp, MenuContraidoTeste mnCont) {
 
 		this.janela = janela;
 
@@ -36,6 +36,8 @@ public class Menu {
 		menuAtual = mnCont;
 
 		janela.mudarMenu(menuAtual);
+		
+		
 
 		this.mnExp.mostrarMenuContraido(new MouseAdapter() {
 
@@ -44,19 +46,24 @@ public class Menu {
 			public void mouseClicked(MouseEvent e) {
 
 				mostrarPanelCont();
-			}
+		}
 
+		
 		});
 		this.mnExp.sair(e -> {
 			dispose();
 		});
 		this.mnExp.irHistorico(e -> {
-			navegador.navegarPara("HISTORICO");
+			if (navegador != null) navegador.navegarPara("HISTORICO");
 		});
 		this.mnExp.irInicio(e -> {
-			navegador.navegarPara("INICIO");
+			if (navegador != null) navegador.navegarPara("INICIO");
 		});
-	
+		this.mnExp.irPerfil( e -> {
+			
+			if (navegador != null) navegador.navegarPara("PERFIL");
+			
+		});
 	
 
 		this.mnCont.mostrarMenuExpandido(new MouseAdapter() {
@@ -77,59 +84,61 @@ public class Menu {
 		});
 
 	}
+	public void setNavegador(Navegador navegador) {
+        this.navegador = navegador;
+    }
 
-	private void dispose() {
-		
-		int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmar Ação", JOptionPane.YES_NO_OPTION);
-		
-		if (resposta == JOptionPane.YES_OPTION) {
-            System.exit(0); // Fecha o sistema
+	
+		private void dispose() {
+			
+			int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmar Ação", JOptionPane.YES_NO_OPTION);
+			
+			if (resposta == JOptionPane.YES_OPTION) {
+	            System.exit(0); // Fecha o sistema
+			}
+			
 		}
-		
-	}
 
-	public void mostrarPanelCont() {
-
-		menuAtual = mnCont;
-
-		janela.mudarMenu(menuAtual);
-
-	}
-
-	public void mostrarPanelExp() {
-
-		menuAtual = mnExp;
-
-		janela.mudarMenu(menuAtual);
-
-	}
-
-	public void removerMenu() {
-
-		janela.getPanelMenu().removeAll();
-
-		janela.revalidate();
-
-		janela.repaint();
-
-	}
-
-	public void iniciar() {
-
-		if (janela.getPanelAtual().equals("LOGIN") || janela.getPanelAtual().equals("CADASTRO") || janela.getPanelAtual().equals("INICIO")) {
-			janela.setVisible(true);
-			removerMenu();
-
-		} else {
-
-			janela.setVisible(true);
-
+		public void mostrarPanelCont() {
+	
 			menuAtual = mnCont;
-
+	
 			janela.mudarMenu(menuAtual);
-
+	
 		}
 
-	}
+		public void mostrarPanelExp() {
+	
+			menuAtual = mnExp;
+	
+			janela.mudarMenu(menuAtual);
+	
+		}
 
+		public void removerMenu() {
+	
+			janela.getPanelMenu().removeAll();
+	
+			janela.revalidate();
+	
+			janela.repaint();
+	
+		}
+
+		public void iniciar() {
+	
+			if (janela.getPanelAtual().equals("LOGIN") || janela.getPanelAtual().equals("CADASTRO") || janela.getPanelAtual().equals("INICIO")) {
+				janela.setVisible(true);
+				removerMenu();
+	
+			} else {
+	
+				janela.setVisible(true);
+	
+				menuAtual = mnCont;
+	
+				janela.mudarMenu(menuAtual);
+	
+			}
+	}
 }

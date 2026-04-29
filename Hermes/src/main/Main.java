@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
 import controller.CadastroController;
+import controller.ContaController;
 import controller.InicialController;
 import controller.LoginController;
 import controller.Menu;
@@ -58,13 +59,17 @@ public class Main {
 		MenuContraidoTeste menuCont = new MenuContraidoTeste();
 		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
 
-		Menu menu = new Menu(janela, menuExp, menuCont, null);
-
+		Menu menu = new Menu(janela, menuExp, menuCont);
+		
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
+		
+		menu.setNavegador(navegador);
 
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
+		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu);
+		navegador.setContaController(contaController);
 
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
@@ -75,6 +80,7 @@ public class Main {
 		navegador.adicionarPainel("INICIO", telaInicial);
 		navegador.adicionarPainel("HISTORICO", telaHistoricoChamados);
 		navegador.adicionarPainel("CHAMADO", telaNovoChamado);
+		navegador.adicionarPainel("PERFIL", telaConta);
 
 		// Seta o jframe para abrir no meio da tela.
 		janela.setLocationRelativeTo(null);
