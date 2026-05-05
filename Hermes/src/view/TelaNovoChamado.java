@@ -32,12 +32,12 @@ public class TelaNovoChamado extends JPanel {
 	 */
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
-		setBounds(100, 100, 1400, 600);
+		setBounds(100, 100, 800, 500);
 
 		JPanel panelChamado = new JPanel();
 		panelChamado.setBackground(new Color(234, 242, 236));
 		add(panelChamado, BorderLayout.CENTER);
-		panelChamado.setLayout(new MigLayout("", "[grow][grow 5][204px:n,grow][grow]", "[][][][][][][][][grow][][][]"));
+		panelChamado.setLayout(new MigLayout("", "[grow][grow 5][grow][grow]", "[][][][][][][][][grow][][][]"));
 
 		JLabel lblNewLabel_6 = new JLabel("HERMES");
 		lblNewLabel_6.setForeground(new Color(39, 79, 65));

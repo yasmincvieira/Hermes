@@ -53,9 +53,16 @@ public class PatrimonioDAO {
 
 			while (rset.next()) {
 				Patrimonio patrimonios = new Patrimonio(sql, sql, sql);
-				patrimonios.setIdpatrimonio(rset.getString("id"));
+				patrimonios.setIdpatrimonio(rset.getString("idPatrimonio"));
 				patrimonios.setNome(rset.getString("nome"));
-				patrimonios.setStatus(rset.getString("email"));
+				patrimonios.setStatus(rset.getString("status"));
+				
+				String espaco = rset.getString("idEspaco");
+				
+				EspacoDAO espacoDao = new EspacoDAO();
+				Espaco espacoPatrimonio = espacoDao.BuscarEspacoPorID(espaco);
+				
+				patrimonios.setEspaco(espacoPatrimonio);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

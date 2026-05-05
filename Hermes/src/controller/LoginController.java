@@ -23,7 +23,6 @@ public class LoginController {
 
 		this.login.logar(e -> {
 			verificarCadastroUsuario();
-
 		});
 
 		this.login.cadastrarse(e -> {
