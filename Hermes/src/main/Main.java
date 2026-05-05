@@ -5,6 +5,7 @@ import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import controller.CadastroController;
+import controller.InicialADMController;
 import controller.InicialController;
 import controller.LoginController;
 import controller.Menu;
@@ -63,6 +64,7 @@ public class Main {
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
+		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
@@ -76,6 +78,7 @@ public class Main {
 		navegador.adicionarPainel("INICIO ADMIN", inicioADM);
 		navegador.adicionarPainel("PATRIMONIO", telaTabelaPatrimonios);
 		navegador.adicionarPainel("CHAMADO ADMIN", telaVizuChamadosADm);
+		navegador.adicionarPainel("PERFIL", telaConta);
 
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);

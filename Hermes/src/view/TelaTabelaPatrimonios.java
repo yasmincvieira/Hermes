@@ -8,10 +8,13 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import controller.PatrimonioTableModel;
 import models.Patrimonio;
+import models.PatrimonioDAO;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -31,15 +34,6 @@ public class TelaTabelaPatrimonios extends JPanel {
 
 		setBounds(100, 100, 1100, 700);
 		setLayout(new BorderLayout(0, 0));
-
-		JPanel MenuTabelaPatrimonio = new JPanel();
-		MenuTabelaPatrimonio.setBackground(new Color(147, 195, 171));
-		add(MenuTabelaPatrimonio, BorderLayout.WEST);
-		MenuTabelaPatrimonio.setLayout(new MigLayout("", "[]", "[grow]"));
-
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/voltar20.png")));
-		MenuTabelaPatrimonio.add(lblNewLabel_3, "cell 0 0,alignx center,aligny top");
 
 		JPanel paneltabelaPatrimonio = new JPanel();
 		add(paneltabelaPatrimonio, BorderLayout.CENTER);
@@ -66,21 +60,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 		paneltabelaPatrimonio.add(scrollPane, "cell 1 1 5 2,grow");
 
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-				new Object[][] { { "Ar-condicionado", "lab 6", "736073", "Em an\u00E1lise" },
-						{ "Cpu", "Lab 6", "770744", "Ativo" }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, },
-				new String[] { "Patrim\u00F4nio", "Espa\u00E7o", "Id", "Status" }));
+		atualizarTabela();
 		scrollPane.setViewportView(table);
 
 		btnEditarPatri = new JButton("Editar patrimônios");
@@ -119,6 +99,13 @@ public class TelaTabelaPatrimonios extends JPanel {
 	}
 	public void adicionarPatri(ActionListener actionListener) {
 		this.btnAdicionarPatri.addActionListener(actionListener);
+	}
+	public void atualizarTabela() {
+		PatrimonioDAO patrimonioDao = new PatrimonioDAO();
+		List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
+		PatrimonioTableModel model = new PatrimonioTableModel( lista);
+		table.setModel(model);
+		
 	}
 
 	

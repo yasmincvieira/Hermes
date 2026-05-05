@@ -5,8 +5,8 @@ package models;
  */
 public class Patrimonio {
 
-	private String nome, tipo_patrimonio, id_patrimonio, status;
-	private boolean contratado;
+	private String nome, id_patrimonio, status;
+	private Espaco espaco;
 
 	public Patrimonio(String id_patrimonio, String status, String nome) {
 		this.id_patrimonio = id_patrimonio;
@@ -43,6 +43,14 @@ public class Patrimonio {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Espaco getEspaco() {
+		return espaco;
+	}
+
+	public void setEspaco(Espaco espaco) {
+		this.espaco = espaco;
 	}
 
 }

@@ -14,11 +14,8 @@ import java.awt.Color;
 public class TelaInicialADM extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	JButton btnVerPatrimonio, btnNovosChamados, btnHistoricoChamado, btnVerPerfil;
+	private JButton btnVerPatrimonio, btnNovosChamados, btnHistoricoChamado, btnVerPerfil;
 
-	/**
-	 * Create the panel.
-	 */
 	public TelaInicialADM() {
 		setBackground(new Color(240, 240, 240));
 		setBounds(100, 100, 800, 500);
@@ -51,7 +48,7 @@ public class TelaInicialADM extends JPanel {
 		add(btnHistoricoChamado, "cell 3 5,grow");
 
 	}
-	public void patrimonio(ActionListener actionListener) {
+	public void verPatrimonio(ActionListener actionListener) {
 		this.btnVerPatrimonio.addActionListener(actionListener);
 	}
 

@@ -103,4 +103,31 @@ public class EspacoDAO {
 //        	BancoDeDados.desconectar(conexao);
 //        }
 	}
+	public Espaco BuscarEspacoPorID(String nome_local) {
+		String sql = "SELECT * FROM espacos WHERE nome_local = ? ";
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null; // Objeto que guarda o resultado da consulta
+
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, nome_local);
+			rset = pstm.executeQuery();
+
+			if(rset.next()) {
+				Espaco espaco = new Espaco(sql, sql, sql);
+				espaco.setBloco(rset.getString("bloco"));
+				espaco.setNomeLocal(rset.getString("nome_local"));
+				espaco.setAndar(rset.getString("andar"));
+				return espaco;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+			// Fechar recursos
+		}
+		return null;
+	}
 }

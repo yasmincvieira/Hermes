@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="Hermes/lib/com.miglayout.core_11.4.2.jar"/>
 	<classpathentry kind="lib" path="Hermes/lib/com.miglayout.swing_11.4.2.jar"/>
 	<classpathentry kind="lib" path="Hermes/lib/mysql-connector-j-9.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roger/Downloads/jakarta.activation-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/roger/Downloads/jakarta.mail-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/aluno/Downloads/jakarta.mail-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/aluno/Downloads/jakarta.activation-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
