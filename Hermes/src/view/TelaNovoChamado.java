@@ -49,19 +49,19 @@ public class TelaNovoChamado extends JPanel {
 		lbNomePatrimonio.setBackground(new Color(38, 76, 63));
 		lbNomePatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelChamado.add(lbNomePatrimonio, "cell 1 2,alignx left");
-		
+
 		cbNome = new JComboBox();
 		cbNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbNome.setModel(new DefaultComboBoxModel(new String[] {"Cadeira", "Mesa", "Quadro", "Ar-Condicionado"}));
+		cbNome.setModel(new DefaultComboBoxModel(new String[] { "Cadeira", "Mesa", "Quadro", "Ar-Condicionado" }));
 		cbNome.setForeground(new Color(38, 76, 63));
 		cbNome.setBackground(new Color(160, 200, 172));
 		panelChamado.add(cbNome, "cell 2 2,growx");
-		
+
 		JLabel lbLocal = new JLabel("Local:");
 		lbLocal.setBackground(new Color(38, 76, 63));
 		lbLocal.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelChamado.add(lbLocal, "cell 1 4,alignx left");
-		
+
 		cbLocal = new JComboBox();
 		cbLocal.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		cbLocal.setModel(new DefaultComboBoxModel(new String[] { "Sala 1", "Sala 2", "Sala 3", "Sala 4", "Sala 5",
@@ -94,14 +94,14 @@ public class TelaNovoChamado extends JPanel {
 		// altura variável
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panelChamado.add(scrollPane, "cell 2 8,grow");
-		
+
 		taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
 		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		taDescricao.setWrapStyleWord(true); // Quebra de linha em palavras completas
 		taDescricao.setLineWrap(true); // Habilita a quebra de linha automática
 		scrollPane.setViewportView(taDescricao);
-		
+
 		btnRealizarChamado = new JButton("Realizar chamado");
 		btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRealizarChamado.setForeground(new Color(38, 76, 63));
@@ -117,7 +117,7 @@ public class TelaNovoChamado extends JPanel {
 	public void realizarChamado(ActionListener actionListener) {
 		this.btnRealizarChamado.addActionListener(actionListener);
 	}
-	
+
 	public JTextArea gettaDescricao() {
 		return taDescricao;
 	}
@@ -125,29 +125,29 @@ public class TelaNovoChamado extends JPanel {
 	public void settaDescricao(JTextArea taDescricao) {
 		this.taDescricao = taDescricao;
 	}
-	
+
 	public void setcbNome(JComboBox cbNome) {
 		this.cbNome = cbNome;
 	}
-	
+
 	public void setcbLocal(JComboBox cbLocal) {
 		this.cbLocal = cbLocal;
 	}
-	
+
 	public JTextField gettfPatrimonio() {
 		return tfPatrimonio;
 	}
-	
-	public void settfPatrimonio(JTextField tfPatrimonio) {
-		this.tfPatrimonio = tfPatrimonio;      
-	}
-	
-	public JComboBox getcbNome() {
-        return cbNome;
-    }
 
-    public JComboBox getcbLocal() {
-    	return cbLocal;
-    }
+	public void settfPatrimonio(JTextField tfPatrimonio) {
+		this.tfPatrimonio = tfPatrimonio;
+	}
+
+	public JComboBox getcbNome() {
+		return cbNome;
+	}
+
+	public JComboBox getcbLocal() {
+		return cbLocal;
+	}
 
 }

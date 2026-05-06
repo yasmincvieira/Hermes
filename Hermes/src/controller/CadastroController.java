@@ -43,34 +43,34 @@ public class CadastroController {
 	}
 
 	private void verificarCadastroUsuario() {
-		
+
 		List<Usuario> usuarios = user.listarUsuarios();
 		// 1. Extrai os dados dos campos de texto para variáveis locais
 		String nome = cadastro.gettfUsuarioC().getText();
 		String email = cadastro.gettfEmailC().getText();
 		String senha = cadastro.getpfSenhaC().getText();
-		
+
 		// 2. Valida se algum campo está vazio
-		if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+		if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
 			JOptionPane.showMessageDialog(cadastro, "Preencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		// 3. Valida se o e-mail possui o caractere '@'
 		if (!email.contains("@")) {
-			JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "E-mail Inválido", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "E-mail Inválido",
+					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		// Verifica espaços antes do @
 		if (email.substring(0, email.indexOf("@")).contains(" ")) {
-		    JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "Erro", JOptionPane.ERROR_MESSAGE);
-		    return;
+			JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "Erro",
+					JOptionPane.ERROR_MESSAGE);
+			return;
 		}
-		
-		if(cadastro.gettfUsuarioC().getText().isEmpty() 
-			|| cadastro.gettfEmailC().getText().isEmpty() 
-			|| cadastro.getpfSenhaC().getText().isEmpty()) {
-			
-			
+
+		if (cadastro.gettfUsuarioC().getText().isEmpty() || cadastro.gettfEmailC().getText().isEmpty()
+				|| cadastro.getpfSenhaC().getText().isEmpty()) {
+
 			JOptionPane.showMessageDialog(cadastro, "Prencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
 			return;
 		}

@@ -21,9 +21,14 @@ public class Usuario {
 		this.admin = admin;
 	}
 
-	public String getFoto() { return foto; }
-	public void setFoto(String foto) { this.foto = foto; }
-	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public String toString() {
 		return this.id + ", " + this.nome + ", " + this.email + ", " + this.senha;
 	}
@@ -69,6 +74,5 @@ public class Usuario {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	
 
 }

@@ -30,11 +30,11 @@ public class Patrimonio {
 	}
 
 	public String getStatus() {
-		return nome;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		this.nome = status;
+		this.status = status;
 	}
 
 	public String getNome() {

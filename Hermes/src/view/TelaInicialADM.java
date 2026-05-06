@@ -48,6 +48,7 @@ public class TelaInicialADM extends JPanel {
 		add(btnHistoricoChamado, "cell 3 5,grow");
 
 	}
+
 	public void verPatrimonio(ActionListener actionListener) {
 		this.btnVerPatrimonio.addActionListener(actionListener);
 	}
@@ -55,6 +56,7 @@ public class TelaInicialADM extends JPanel {
 	public void chamado(ActionListener actionListener) {
 		this.btnNovosChamados.addActionListener(actionListener);
 	}
+
 	public void historico(ActionListener actionListener) {
 		this.btnHistoricoChamado.addActionListener(actionListener);
 	}

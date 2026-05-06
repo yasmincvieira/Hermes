@@ -90,24 +90,24 @@ public class TelaTabelaPatrimonios extends JPanel {
 		this.table = table;
 	}
 
-	
 	public void excluirPatri(ActionListener actionListener) {
 		this.btnExcluirPatri.addActionListener(actionListener);
 	}
+
 	public void editarPatri(ActionListener actionListener) {
 		this.btnEditarPatri.addActionListener(actionListener);
 	}
+
 	public void adicionarPatri(ActionListener actionListener) {
 		this.btnAdicionarPatri.addActionListener(actionListener);
 	}
+
 	public void atualizarTabela() {
 		PatrimonioDAO patrimonioDao = new PatrimonioDAO();
 		List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
-		PatrimonioTableModel model = new PatrimonioTableModel( lista);
+		PatrimonioTableModel model = new PatrimonioTableModel(lista);
 		table.setModel(model);
-		
-	}
 
-	
+	}
 
 }

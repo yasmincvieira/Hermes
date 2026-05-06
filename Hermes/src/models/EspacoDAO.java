@@ -103,6 +103,7 @@ public class EspacoDAO {
 //        	BancoDeDados.desconectar(conexao);
 //        }
 	}
+
 	public Espaco BuscarEspacoPorID(String nome_local) {
 		String sql = "SELECT * FROM espacos WHERE nome_local = ? ";
 		Connection conexao = null;
@@ -115,7 +116,7 @@ public class EspacoDAO {
 			pstm.setString(1, nome_local);
 			rset = pstm.executeQuery();
 
-			if(rset.next()) {
+			if (rset.next()) {
 				Espaco espaco = new Espaco(sql, sql, sql);
 				espaco.setBloco(rset.getString("bloco"));
 				espaco.setNomeLocal(rset.getString("nome_local"));

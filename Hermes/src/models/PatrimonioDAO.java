@@ -13,7 +13,7 @@ public class PatrimonioDAO {
 
 	// CREATE - Adicionar um novo usuário
 	public void adicionarPatrimonio(Patrimonio patrimonio) {
-		String sql = "INSERT INTO patrimonio (id_patrimonio, status, nome) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO patrimonio (idPatrimonio, status, nome) VALUES (?, ?, ?)";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 
@@ -38,10 +38,10 @@ public class PatrimonioDAO {
 		}
 	}
 
-	// READ - Listar todos os usuários
+	// READ - Listar todos os patrimônios
 	public List<Patrimonio> listarpatrimonio() {
 		String sql = "SELECT * FROM patrimonio";
-		List<Patrimonio> patrimonio = new ArrayList<>();
+		List<Patrimonio> listaPatrimonio = new ArrayList<>();
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null; // Objeto que guarda o resultado da consulta
@@ -52,17 +52,18 @@ public class PatrimonioDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Patrimonio patrimonios = new Patrimonio(sql, sql, sql);
-				patrimonios.setIdpatrimonio(rset.getString("idPatrimonio"));
-				patrimonios.setNome(rset.getString("nome"));
-				patrimonios.setStatus(rset.getString("status"));
-				
+				Patrimonio patrimonio = new Patrimonio(sql, sql, sql);
+				patrimonio.setIdpatrimonio(rset.getString("idPatrimonio"));
+				patrimonio.setNome(rset.getString("nome"));
+				patrimonio.setStatus(rset.getString("status"));
+
 				String espaco = rset.getString("idEspaco");
-				
+
 				EspacoDAO espacoDao = new EspacoDAO();
 				Espaco espacoPatrimonio = espacoDao.BuscarEspacoPorID(espaco);
-				
-				patrimonios.setEspaco(espacoPatrimonio);
+
+				patrimonio.setEspaco(espacoPatrimonio);
+				listaPatrimonio.add(patrimonio);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,10 +71,10 @@ public class PatrimonioDAO {
 			BancoDeDados.desconectar(conexao);
 			// Fechar recursos
 		}
-		return patrimonio;
+		return listaPatrimonio;
 	}
 
-	// UPDATE - Atualizar um usuário existente
+	// UPDATE - Atualizar um patrimônio existente
 	public void atualizarUsuario(Patrimonio patrimonio) {
 		String sql = "UPDATE patrimonio SET nome = ?, email = ? WHERE id = ?";
 		Connection conexao = null;
@@ -93,8 +94,8 @@ public class PatrimonioDAO {
 		}
 	}
 
-	// DELETE - Excluir um usuário pelo ID
-	public void excluirPatrimonio(String id_patrimonio) {
+	// DELETE - Excluir um patrimonio pelo ID
+	public void excluirPatrimonio(String idPatrimonio) {
 		String sql = "DELETE FROM patrimonio WHERE id = ?";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
@@ -102,7 +103,7 @@ public class PatrimonioDAO {
 		try {
 			conexao = BancoDeDados.conectar();
 			pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, id_patrimonio);
+			pstm.setString(1, idPatrimonio);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

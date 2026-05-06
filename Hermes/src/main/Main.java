@@ -53,17 +53,19 @@ public class Main {
 		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
 		TelaInicialADM inicioADM = new TelaInicialADM();
 
-
 		Menu menu = new Menu(janela, menuExp, menuCont);
-		
+
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
-		
+
 		menu.setNavegador(navegador);
 
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
-		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); // ← ajuste os parâmetros conforme seu construtor
+		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); // ← ajuste os
+																										// parâmetros
+																										// conforme seu
+																										// construtor
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
@@ -71,7 +73,7 @@ public class Main {
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
 		navegador.setInicialController(inicialController);
-		navegador.setContaController(contaController); 
+		navegador.setContaController(contaController);
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastro);
 		navegador.adicionarPainel("LOGIN", telaLogin);
@@ -89,6 +91,5 @@ public class Main {
 		navegador.navegarPara("LOGIN");
 		menu.iniciar();
 	}
-
 
 }

@@ -23,7 +23,7 @@ public class UsuarioDAO {
 			pstm.setString(1, usuario.getNome());
 			pstm.setString(2, usuario.getEmail());
 			pstm.setString(3, usuario.getSenha());
-			pstm.setBoolean(4,  usuario.isAdmin());
+			pstm.setBoolean(4, usuario.isAdmin());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class UsuarioDAO {
 			pstm.setString(2, usuario.getEmail());
 			pstm.setBoolean(3, usuario.isAdmin());
 			pstm.setInt(4, usuario.getId());
-			
+
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,21 +92,22 @@ public class UsuarioDAO {
 			BancoDeDados.desconectar(conexao);
 		}
 	}
+
 	public void atualizarSenha(int id, String novaSenha) {
-	    String sql = "UPDATE usuarios SET senha = ? WHERE id = ?";
-	    Connection conexao = null;
-	    PreparedStatement pstm = null;
-	    try {
-	        conexao = BancoDeDados.conectar();
-	        pstm = conexao.prepareStatement(sql);
-	        pstm.setString(1, novaSenha);
-	        pstm.setInt(2, id);
-	        pstm.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        BancoDeDados.desconectar(conexao);
-	    }
+		String sql = "UPDATE usuarios SET senha = ? WHERE id = ?";
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, novaSenha);
+			pstm.setInt(2, id);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+		}
 	}
 
 	// DELETE - Excluir um usuário pelo ID
@@ -126,20 +127,21 @@ public class UsuarioDAO {
 			BancoDeDados.desconectar(conexao);
 		}
 	}
+
 	public void atualizarFoto(int id, String nomeFoto) {
-	    String sql = "UPDATE usuarios SET foto = ? WHERE id = ?";
-	    Connection conexao = null;
-	    PreparedStatement pstm = null;
-	    try {
-	        conexao = BancoDeDados.conectar();
-	        pstm = conexao.prepareStatement(sql);
-	        pstm.setString(1, nomeFoto);
-	        pstm.setInt(2, id);
-	        pstm.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        BancoDeDados.desconectar(conexao);
-	    }
+		String sql = "UPDATE usuarios SET foto = ? WHERE id = ?";
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, nomeFoto);
+			pstm.setInt(2, id);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+		}
 	}
 }

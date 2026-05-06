@@ -10,25 +10,21 @@ import view.TelaCadastro;
 import view.TelaConta;
 
 public class CadastrarPatrimonioController {
-	
 
+	private TelaCadastrarPatrimonio cadastrarPatrimonio;
+	private PatrimonioDAO patrimonioDao;
+	private Navegador navegador;
 
-		private TelaCadastrarPatrimonio cadastrarPatrimonio;
-		private PatrimonioDAO patrimonioDao;
-		private Navegador navegador;
+	public CadastrarPatrimonioController(TelaCadastrarPatrimonio cadastrarPatrimonio, PatrimonioDAO patrimonioDao,
+			Navegador navegador) {
+		super();
+		this.cadastrarPatrimonio = cadastrarPatrimonio;
+		this.patrimonioDao = patrimonioDao;
+		this.navegador = navegador;
 
-		public CadastrarPatrimonioController(TelaCadastrarPatrimonio cadastrarPatrimonio, PatrimonioDAO patrimonioDao, Navegador navegador) {
-			super();
-			this.cadastrarPatrimonio = cadastrarPatrimonio;
-			this.patrimonioDao = patrimonioDao;
-			this.navegador = navegador;
-			
+		this.cadastrarPatrimonio.cadastrarPatrimonio(e -> {
+		});
 
-			this.cadastrarPatrimonio.cadastrarPatrimonio(e -> {
-			});
-		
-		
-		}
-
+	}
 
 }

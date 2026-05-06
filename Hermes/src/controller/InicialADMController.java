@@ -27,7 +27,7 @@ public class InicialADMController {
 		this.inicioADM.verPatrimonio(e -> {
 			navegador.navegarPara("PATRIMONIO");
 		});
-		
+
 		this.inicioADM.verPerfil(e -> {
 			navegador.navegarPara("PERFIL");
 		});

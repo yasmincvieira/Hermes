@@ -63,17 +63,21 @@ public class MenuExpandidoTeste extends JPanel {
 
 		this.lbFechar.addMouseListener(mouseListener);
 	}
+
 	public void irHistorico(ActionListener actionListener) {
 		this.btnHistorico.addActionListener(actionListener);
 	}
+
 	public void sair(ActionListener actionListener) {
 		this.btnSair.addActionListener(actionListener);
 	}
+
 	public void irInicio(ActionListener actionListener) {
 		this.btnInicio.addActionListener(actionListener);
 	}
+
 	public void irPerfil(ActionListener actionListener) {
 		this.btnPerfil.addActionListener(actionListener);
 	}
-	
+
 }

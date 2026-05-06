@@ -23,25 +23,6 @@ public class Janela extends JFrame {
 
 	public Janela() {
 
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setBounds(100, 100, 800, 500);
-//		contentPane = new JPanel();
-//		
-//		this.cardLayout = new CardLayout();
-//		
-//		this.panelTelas = new JPanel(this.cardLayout);
-//		
-//		setContentPane(panelTelas);
-//		
-//		setTitle("Tela de Login");
-//		
-//		contentPane = new TelaLogin();
-//		contentPane.setBackground(new Color(240, 240, 240));
-//		
-//		
-//
-//		contentPane = new JPanel(this.cardLayout);
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setBounds(100, 100, 800, 500);
@@ -57,13 +38,10 @@ public class Janela extends JFrame {
 		panelMenu = new JPanel(new BorderLayout());
 
 		contentPane.add(panelTelas, BorderLayout.CENTER);
-//		panelMenu.setPreferredSize(new Dimension(200, 0));
-//
-//		panelTelas = new JPanel();
+
 		contentPane.add(panelMenu, BorderLayout.WEST);
 
 		panelTelas.setLayout(cardLayout);
-		// panelTelas.setLayout(cardLayout);
 
 		setPreferredSize(new Dimension(800, 500)); // Tamanho de padrão
 

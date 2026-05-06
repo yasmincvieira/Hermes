@@ -14,12 +14,14 @@ public class LoginController {
 	private UsuarioDAO user;
 	private Navegador navegador;
 	private Usuario usuarioLogado;
+	private Menu menu;
 
 	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
 		this.login = login;
 		this.user = user;
 		this.navegador = navegador;
+		this.menu = menu;
 
 		this.login.logar(e -> {
 			verificarCadastroUsuario();
@@ -31,14 +33,15 @@ public class LoginController {
 		});
 	}
 
+	
+
 	private void verificarCadastroUsuario() {
 		List<Usuario> usuarios = user.listarUsuarios();
-		
-		if(login.gettfUsuario().getText().isEmpty() || login.getpfSenha().getText().isEmpty()) {
-			
+
+		if (login.gettfUsuario().getText().isEmpty() || login.getpfSenha().getText().isEmpty()) {
+
 			JOptionPane.showMessageDialog(login, "Prencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
-		}
-		else {
+		} else {
 			boolean usuarioEncontrado = false;
 
 			for (Usuario user : usuarios) {
@@ -51,27 +54,24 @@ public class LoginController {
 					break;
 				}
 			}
-			
 
-				if (!usuarioEncontrado) {
-					JOptionPane.showMessageDialog(login, "Usuário não encontrado", "Atenção", JOptionPane.WARNING_MESSAGE);
-					return;
-					
-				}
-				navegador.setUsuarioLogado(usuarioLogado); // <- passa para o navegador
-				
-				if (usuarioLogado.isAdmin()) {
-		        navegador.navegarPara("INICIO ADMIN");
-		    } else {
-		        navegador.navegarPara("INICIO");
-		    }
+			if (!usuarioEncontrado) {
+				JOptionPane.showMessageDialog(login, "Usuário não encontrado", "Atenção", JOptionPane.WARNING_MESSAGE);
+				return;
+
+			}
+			navegador.setUsuarioLogado(usuarioLogado); // <- passa para o navegador
+			this.menu.setUsuarioLogado(usuarioLogado); 
+
+			if (usuarioLogado.isAdmin()) {
+				navegador.navegarPara("INICIO ADMIN");
+			} else {
+				navegador.navegarPara("INICIO");
+			}
 		}
 
 	}
 
-	public Usuario getUsuarioLogado() {
-        return usuarioLogado;
-    }
 
 	public void limparCamposLogin() {
 		login.gettfUsuario().setText("");

@@ -37,10 +37,9 @@ public class Navegador {
 			menu.mostrarPanelCont();
 		}
 		if (nome.equals("PERFIL") && usuarioLogado != null) {
-	        contaController.preencherDados();
-	    }
+			contaController.preencherDados();
+		}
 	}
-	
 
 	public void sair() {
 		this.janela.dispose();
@@ -78,15 +77,17 @@ public class Navegador {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+
 	public Usuario getUsuarioLogado() {
-	    return usuarioLogado;
+		return usuarioLogado;
 	}
 
 	public void setUsuarioLogado(Usuario usuario) {
-	    this.usuarioLogado = usuario;
+		this.usuarioLogado = usuario;
 	}
+
 	public void setContaController(ContaController contaController) {
-	    this.contaController = contaController;
+		this.contaController = contaController;
 	}
 
 }
