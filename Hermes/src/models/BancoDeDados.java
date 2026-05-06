@@ -6,13 +6,20 @@ import java.sql.SQLException;
 
 public class BancoDeDados {
 
+<<<<<<< HEAD
 	private static final String URL = "jdbc:mysql://localhost:3306/banco"; // <-- substitua '/cadastro_db' pelo seu
 																			// banco de dados
 	private static final String USUARIO = "root"; // <-- Substitua pelo seu usuário
 	private static final String SENHA = "admin"; // <-- Substitua pela sua senha
+=======
+	private static final String URL = "jdbc:mysql://localhost:3306/banco"; 
+																			
+	private static final String USUARIO = "root";
+	private static final String SENHA = "admin"; 
+>>>>>>> 9a3f6d310398054299a6dbd98444b5b808d912c1
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
-	// Método para obter uma conexão com o banco de dados
+	
 	public static Connection conectar() {
 		Connection conexao = null;
 		try {
@@ -25,8 +32,7 @@ public class BancoDeDados {
 		}
 		return conexao;
 	}
-
-	// Método para fechar a conexão
+   
 	public static void desconectar(Connection conexao) {
 		if (conexao != null) {
 			try {

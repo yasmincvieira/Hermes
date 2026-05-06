@@ -19,30 +19,23 @@ public class TelaHistoricoDeChamados extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Create the panel.
-	 */
 	public TelaHistoricoDeChamados() {
 
 		setBounds(100, 100, 800, 500);
-		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
+		setLayout(new MigLayout("", "[][grow][][grow][]", "[][grow][][grow][]"));
+		
 		JPanel panel = new JPanel();
-		add(panel);
-		panel.setLayout(new MigLayout("", "[36px][743px,grow]", "[486px,grow]"));
-
+		add(panel, "cell 1 1,grow");
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, "cell 3 1,grow");
+		
 		JPanel panel_2 = new JPanel();
-		panel.add(panel_2, "cell 1 0,grow");
-		panel_2.setLayout(new MigLayout("", "[][grow][][][][]", "[][][grow]"));
-
-		JLabel lblNewLabel = new JLabel("New label");
-		panel_2.add(lblNewLabel, "cell 5 0");
-
+		add(panel_2, "cell 1 3,grow");
+		
 		JPanel panel_3 = new JPanel();
-		panel_2.add(panel_3, "cell 1 0");
-
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		panel_3.add(lblNewLabel_1);
+		add(panel_3, "cell 3 3,grow");
+		
 
 	}
 }

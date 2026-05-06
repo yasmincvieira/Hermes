@@ -62,10 +62,14 @@ public class Main {
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
+<<<<<<< HEAD
 		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); // ← ajuste os
 																										// parâmetros
 																										// conforme seu
 																										// construtor
+=======
+		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu);
+>>>>>>> 9a3f6d310398054299a6dbd98444b5b808d912c1
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);

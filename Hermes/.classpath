@@ -11,7 +11,12 @@
 	<classpathentry kind="lib" path="lib/com.miglayout.core_11.4.2.jar"/>
 	<classpathentry kind="lib" path="lib/com.miglayout.swing_11.4.2.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-j-9.6.0.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="lib/jakarta.mail-2.0.1 (1).jar"/>
 	<classpathentry kind="lib" path="lib/jakarta.activation-2.0.1 (1).jar"/>
+=======
+	<classpathentry kind="lib" path="lib/jakarta.activation-2.0.1 (1).jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.mail-2.0.1 (1).jar"/>
+>>>>>>> 9a3f6d310398054299a6dbd98444b5b808d912c1
 	<classpathentry kind="output" path="bin"/>
 </classpath>

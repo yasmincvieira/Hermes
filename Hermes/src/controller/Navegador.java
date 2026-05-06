@@ -2,7 +2,6 @@ package controller;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import models.Usuario;
 import view.Janela;
 import view.TelaLogin;
@@ -77,7 +76,11 @@ public class Navegador {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 9a3f6d310398054299a6dbd98444b5b808d912c1
 	public Usuario getUsuarioLogado() {
 		return usuarioLogado;
 	}
@@ -85,7 +88,11 @@ public class Navegador {
 	public void setUsuarioLogado(Usuario usuario) {
 		this.usuarioLogado = usuario;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 9a3f6d310398054299a6dbd98444b5b808d912c1
 	public void setContaController(ContaController contaController) {
 		this.contaController = contaController;
 	}
