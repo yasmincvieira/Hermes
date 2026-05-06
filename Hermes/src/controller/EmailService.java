@@ -4,6 +4,7 @@ import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.util.Properties;
 
+
 public class EmailService {
 
     private static final String REMETENTE = "hermes.pi.ifsc@gmail.com"; 
