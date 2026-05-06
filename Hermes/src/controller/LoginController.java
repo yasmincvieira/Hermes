@@ -59,12 +59,13 @@ public class LoginController {
 					
 				}
 				navegador.setUsuarioLogado(usuarioLogado); // <- passa para o navegador
-				}
-			if (usuarioLogado.isAdmin()) {
+				
+				if (usuarioLogado.isAdmin()) {
 		        navegador.navegarPara("INICIO ADMIN");
 		    } else {
 		        navegador.navegarPara("INICIO");
 		    }
+		}
 
 	}
 

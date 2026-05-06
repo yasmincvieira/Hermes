@@ -5,6 +5,7 @@ import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import controller.CadastroController;
+import controller.ContaController;
 import controller.InicialADMController;
 import controller.InicialController;
 import controller.LoginController;
@@ -62,6 +63,7 @@ public class Main {
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
+		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); // ← ajuste os parâmetros conforme seu construtor
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
@@ -69,6 +71,7 @@ public class Main {
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
 		navegador.setInicialController(inicialController);
+		navegador.setContaController(contaController); 
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastro);
 		navegador.adicionarPainel("LOGIN", telaLogin);

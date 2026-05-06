@@ -6,8 +6,8 @@ import java.util.Properties;
 
 public class EmailService {
 
-    private static final String REMETENTE = "souzalaracristina595@gmail.com"; 
-    private static final String SENHA_APP = "mngungboucodvxja"; 
+    private static final String REMETENTE = "hermes.pi.ifsc@gmail.com"; 
+    private static final String SENHA_APP = "tuzmipxspkbeiuob"; 
 
     public static void enviarCodigo(String destinatario, String codigo) throws MessagingException {
         Properties props = new Properties();
@@ -31,3 +31,4 @@ public class EmailService {
         Transport.send(message);
     }
 }
+
