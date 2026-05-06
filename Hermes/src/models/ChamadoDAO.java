@@ -10,7 +10,7 @@ import java.util.List;
 public class ChamadoDAO {
 	
 	public void adicionarChamado(Chamado chamado) {
-		String sql = "INSERT INTO novoChamado (nome, lugar, idPatrimonio, descricao) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO novoChamado (nome, lugar, idPatrimonio, descricao, idUsuario) VALUES (?, ?, ?, ?, ?)";
 		Connection conexao = null;
         PreparedStatement pstm = null;
 		
@@ -27,8 +27,8 @@ public class ChamadoDAO {
             } else {
                 pstm.setNull(3, java.sql.Types.INTEGER);
             }
-            
             pstm.setString(4, chamado.getDescricao());
+            pstm.setInt(5, chamado.getIdUsuario());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,7 +58,13 @@ public class ChamadoDAO {
             rset = pstm.executeQuery();
 
             while (rset.next()) {
-                Chamado chamado = new Chamado(rset.getString("nome"), rset.getString("lugar"), rset.getInt("idPatrimonio"), rset.getString("descricao") );
+            	Chamado chamado = new Chamado(
+            			rset.getString("nome"), 
+                        rset.getString("lugar"), 
+                        rset.getInt("idPatrimonio"), 
+                        rset.getString("descricao"),
+                        rset.getInt("idUsuario")
+                    );
                 listaChamados.add(chamado);
             }
         } catch (SQLException e) {

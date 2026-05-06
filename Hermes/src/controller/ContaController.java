@@ -3,9 +3,7 @@ package controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import jakarta.mail.MessagingException;
 import models.Usuario;
 import models.UsuarioDAO;

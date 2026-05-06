@@ -9,15 +9,16 @@ public class Chamado {
     private Integer idPatrimonio;
     private String descricao;
     private String status;
+    private Integer idUsuario;
 
-    public Chamado(String nome, String local, Integer idPatrimonio, String descricao) {
+    public Chamado(String nome, String local, Integer idPatrimonio, String descricao, Integer idUsuario) {
         this.nome = nome;
         this.local = local;
         this.idPatrimonio = idPatrimonio;
         this.descricao = descricao;
+        this.idUsuario = idUsuario;
     }
 
-	// Getters e setters.
     public String getNome() { 
     	return nome; 
     }
@@ -49,5 +50,14 @@ public class Chamado {
     public void setDescricao(String descricao) { 
     	this.descricao = descricao; 
     }
+    
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
 
 }

@@ -47,11 +47,12 @@ public class NovoChamadoController {
                 return;
             }
         }
-        
-        
-        Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao);
-
-		try {
+	        
+	        int idUsuario = navegador.getUsuarioLogado().getId();
+	        
+	        Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
+	
+			try {
 			dao.adicionarChamado(novoChamado);
 			JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",
 					JOptionPane.INFORMATION_MESSAGE);
