@@ -116,7 +116,7 @@ public class Menu {
 				JOptionPane.YES_NO_OPTION);
 
 		if (resposta == JOptionPane.YES_OPTION) {
-			System.exit(0); // Fecha o sistema
+			System.exit(0);
 		}
 
 	}

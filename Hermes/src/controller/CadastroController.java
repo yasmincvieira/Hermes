@@ -47,15 +47,8 @@ public class CadastroController {
 		String nome = cadastro.gettfUsuarioC().getText();
 		String email = cadastro.gettfEmailC().getText();
 		String senha = cadastro.getpfSenhaC().getText();
-<<<<<<< HEAD
 
-		// 2. Valida se algum campo está vazio
 		if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-=======
-		
-
-		if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
->>>>>>> 9a3f6d310398054299a6dbd98444b5b808d912c1
 			JOptionPane.showMessageDialog(cadastro, "Preencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
 			return;
 		}

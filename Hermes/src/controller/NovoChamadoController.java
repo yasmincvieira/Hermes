@@ -38,22 +38,7 @@ public class NovoChamadoController {
 			JOptionPane.showMessageDialog(chamado, "Descreva qual é o problema", "Atenção", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-<<<<<<< HEAD
 
-		Integer idPatrimonio = null;
-		if (patrimonio != null && !patrimonio.trim().isEmpty()) {
-			try {
-				idPatrimonio = Integer.valueOf(patrimonio);
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(chamado, "O ID do Patrimônio deve conter apenas números!");
-				return;
-			}
-		}
-
-		Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao);
-		try {
-=======
-        
         Integer idPatrimonio = null;
         if (patrimonio != null && !patrimonio.trim().isEmpty()) {
             try {
@@ -69,7 +54,6 @@ public class NovoChamadoController {
 	        Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
 	
 			try {
->>>>>>> 9a3f6d310398054299a6dbd98444b5b808d912c1
 			dao.adicionarChamado(novoChamado);
 			JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",
 					JOptionPane.INFORMATION_MESSAGE);
