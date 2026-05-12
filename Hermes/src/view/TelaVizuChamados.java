@@ -11,9 +11,11 @@ import java.awt.Label;
 import java.awt.Choice;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
-
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+
+import models.Chamado;
+
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -46,6 +48,8 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(panel_2, "cell 1 0");
 
 		taChamado = new JTextArea();
+		taChamado.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		taChamado.setEditable(false);
 		panel_2.add(taChamado);
 
 		JLabel lblNewLabel = new JLabel("HERMES");
@@ -59,6 +63,7 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_1, "cell 1 1,alignx trailing");
 		
 		taStatus = new JTextArea();
+		taStatus.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taStatus.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taStatus, "cell 2 1,growx,aligny center");
 
@@ -67,6 +72,7 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_2, "cell 1 3,alignx right");
 
 		taNomePatrimonio = new JTextArea();
+		taNomePatrimonio.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taNomePatrimonio.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taNomePatrimonio, "cell 2 3,growx,aligny center");
 
@@ -75,6 +81,7 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_3, "cell 1 5,alignx right");
 
 		taLocal = new JTextArea();
+		taLocal.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taLocal.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taLocal, "cell 2 5,growx,aligny center");
 
@@ -83,11 +90,20 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_4, "cell 1 7,alignx right");
 
 		taDescricao = new JTextArea();
+		taDescricao.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taDescricao.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taDescricao, "cell 2 7,grow");
-		
 
 	}
+	
+	public void preencherDados(Chamado chamado) {
+        taChamado.setText("Chamado #" + chamado.getIdChamado());
+        taStatus.setText(chamado.getStatus());
+        taNomePatrimonio.setText(chamado.getNome());
+        taLocal.setText(chamado.getLocal());
+        taDescricao.setText(chamado.getDescricao());
+    }
+	
 	public void voltar (ActionListener actionListener) {
 		this.btnVoltar.addActionListener(actionListener);
 	}

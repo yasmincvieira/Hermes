@@ -48,18 +48,20 @@ public class NovoChamadoController {
                 return;
             }
         }
+        if (navegador.getUsuarioLogado() == null) {
+            JOptionPane.showMessageDialog(chamado, "Erro: Nenhum usuário logado!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 	        
-	        int idUsuario = navegador.getUsuarioLogado().getId();
-	        
-	        Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
+	    int idUsuario = navegador.getUsuarioLogado().getId();
+	    Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
 	
-			try {
-			dao.adicionarChamado(novoChamado);
-			JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",
-					JOptionPane.INFORMATION_MESSAGE);
+	    try {
+		dao.adicionarChamado(novoChamado);
+		JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
 
-			chamado.gettaDescricao().setText("");
-			chamado.gettfPatrimonio().setText("");
+		chamado.gettaDescricao().setText("");
+		chamado.gettfPatrimonio().setText("");
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);

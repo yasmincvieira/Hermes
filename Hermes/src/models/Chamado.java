@@ -3,13 +3,13 @@ package models;
 import java.awt.Toolkit;
 
 public class Chamado {
-	private String idChamado;
+	private int idChamado;
 	private String nome;
 	private String local;
 	private Integer idPatrimonio;
 	private String descricao;
 	private String status;
-	 private Integer idUsuario;
+	private Integer idUsuario;
 
 
     public Chamado(String nome, String local, Integer idPatrimonio, String descricao, Integer idUsuario) {
@@ -18,6 +18,14 @@ public class Chamado {
         this.idPatrimonio = idPatrimonio;
         this.descricao = descricao;
         this.idUsuario = idUsuario;
+        this.status = "Em análise";
+    }
+    public int getIdChamado() {
+        return idChamado;
+    }
+
+    public void setIdChamado(int idChamado) {
+        this.idChamado = idChamado;
     }
 
     public String getNome() { 
@@ -51,6 +59,14 @@ public class Chamado {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Integer getIdUsuario() {
         return idUsuario;

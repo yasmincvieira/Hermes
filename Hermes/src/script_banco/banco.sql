@@ -24,6 +24,8 @@ create table novoChamado(
     FOREIGN KEY (idUsuario) REFERENCES Usuarios(id)
 );
 select * from banco.novochamado;
+ALTER TABLE novoChamado ADD COLUMN status VARCHAR(50) DEFAULT 'Em análise';
+
 
 create table chamado(
 	idChamado INT AUTO_INCREMENT PRIMARY KEY,

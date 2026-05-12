@@ -16,6 +16,7 @@ public class Navegador {
 	private Menu menu;
 	private Usuario usuarioLogado;
 	private ContaController contaController;
+	private HistoricoController historicoController;
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
@@ -38,6 +39,9 @@ public class Navegador {
 		if (nome.equals("PERFIL") && usuarioLogado != null) {
 			contaController.preencherDados();
 		}
+		if (nome.equals("HISTORICO") && historicoController != null) {
+            historicoController.carregarHistorico();
+        }
 	}
 
 	public void sair() {
@@ -50,7 +54,6 @@ public class Navegador {
 
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
-
 	}
 
 	public CadastroController getCadastroController() {
@@ -87,6 +90,10 @@ public class Navegador {
 
 	public void setContaController(ContaController contaController) {
 		this.contaController = contaController;
+	}
+	
+	public void setHistoricoController(HistoricoController historicoController) {
+		this.historicoController = historicoController;
 	}
 
 }
