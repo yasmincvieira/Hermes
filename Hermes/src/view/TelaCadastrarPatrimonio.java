@@ -26,7 +26,9 @@ public class TelaCadastrarPatrimonio extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfPatrimonio;
 	private JButton btnConcluir;
-	private JComboBox cbLocal, cbNome;
+	private JComboBox cbLocal, cbNome, cbStatus;
+
+
 
 	/**
 	 * Create the panel.
@@ -100,12 +102,12 @@ public class TelaCadastrarPatrimonio extends JPanel {
 		lbDescricao.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelChamado.add(lbDescricao, "cell 1 8,alignx left,aligny top");
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setForeground(new Color(38, 73, 63));
-		comboBox.setBackground(new Color(255, 255, 255));
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Inativo", "Ativo", "Em manutenção" }));
-		panelChamado.add(comboBox, "cell 2 8,grow");
+		cbStatus = new JComboBox();
+		cbStatus.setForeground(new Color(38, 73, 63));
+		cbStatus.setBackground(new Color(255, 255, 255));
+		cbStatus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cbStatus.setModel(new DefaultComboBoxModel(new String[] { "Inativo", "Ativo", "Em manutenção" }));
+		panelChamado.add(cbStatus, "cell 2 8,grow");
 
 		btnConcluir = new JButton("Concluir");
 		btnConcluir.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -115,57 +117,46 @@ public class TelaCadastrarPatrimonio extends JPanel {
 
 	}
 
-	public void cadastrarPatrimonio(ActionListener actionListener) {
-		this.btnConcluir.addActionListener(actionListener);
-	}
-
+	
 	public JTextField getTfPatrimonio() {
 		return tfPatrimonio;
 	}
+
 
 	public void setTfPatrimonio(JTextField tfPatrimonio) {
 		this.tfPatrimonio = tfPatrimonio;
 	}
 
+
 	public JComboBox getCbLocal() {
 		return cbLocal;
 	}
+
 
 	public void setCbLocal(JComboBox cbLocal) {
 		this.cbLocal = cbLocal;
 	}
 
+
 	public JComboBox getCbNome() {
 		return cbNome;
 	}
+
 
 	public void setCbNome(JComboBox cbNome) {
 		this.cbNome = cbNome;
 	}
 
-	public void setcbNome(JComboBox cbNome) {
-		this.cbNome = cbNome;
+
+	public JComboBox getCbStatus() {
+		return cbStatus;
 	}
 
-	public void setcbLocal(JComboBox cbLocal) {
-		this.cbLocal = cbLocal;
+
+	public void setCbStatus(JComboBox cbStatus) {
+		this.cbStatus = cbStatus;
 	}
 
-	public JTextField gettfPatrimonio() {
-		return tfPatrimonio;
-	}
-
-	public void settfPatrimonio(JTextField tfPatrimonio) {
-		this.tfPatrimonio = tfPatrimonio;
-	}
-
-	public JComboBox getcbNome() {
-		return cbNome;
-	}
-
-	public JComboBox getcbLocal() {
-		return cbLocal;
-	}
 
 	public void concluir(ActionListener actionListener) {
 		btnConcluir.addActionListener(actionListener);

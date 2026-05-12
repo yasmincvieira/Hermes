@@ -9,11 +9,13 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PatrimonioTableModel;
+import controller.TabelaController;
 import models.Patrimonio;
 import models.PatrimonioDAO;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,5 +111,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 		table.setModel(model);
 
 	}
-
+	public void adicionarOuvinte(ComponentListener listener) {
+		this.addComponentListener(listener);
+	}
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -10,7 +12,7 @@ import models.Patrimonio;
 import models.PatrimonioDAO;
 import view.TelaTabelaPatrimonios;
 
-public class TabelaController {
+public class TabelaController  extends ComponentAdapter {
 
 	private TelaTabelaPatrimonios telaTabelaPatrimonios;
 	private PatrimonioDAO patrimonioDAO;
@@ -25,6 +27,9 @@ public class TabelaController {
 		this.telaTabelaPatrimonios.excluirPatri(e -> {
 			excluirPatrimonio();
 		});
+		this.telaTabelaPatrimonios.adicionarPatri(e-> {
+			navegador.navegarPara("CADASTRAR PATRIMONIO");
+		});
 
 	}
 
@@ -37,11 +42,18 @@ public class TabelaController {
 
 		if (confirm == JOptionPane.YES_OPTION) {
 			patrimonioDAO.excluirPatrimonio(idPatrimonio);
-			
 
 		}
 
 	}
 
+	public void componentShown(ComponentEvent e) {
+		this.atualizarTabela();
+	}
+	public void atualizarTabela() {
+		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
+		List<Patrimonio> lista = patrimonioDAO.listarpatrimonio();
+		PatrimonioTableModel model = new PatrimonioTableModel(lista);
+	}
 
 }

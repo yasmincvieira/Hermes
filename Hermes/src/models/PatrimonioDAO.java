@@ -75,7 +75,7 @@ public class PatrimonioDAO {
 	}
 
 	// UPDATE - Atualizar um patrimônio existente
-	public void atualizarUsuario(Patrimonio patrimonio) {
+	public void atualizarPatrimonio(Patrimonio patrimonio) {
 		String sql = "UPDATE patrimonio SET nome = ?, email = ? WHERE id = ?";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
@@ -111,4 +111,5 @@ public class PatrimonioDAO {
 			BancoDeDados.desconectar(conexao);
 		}
 	}
+
 }

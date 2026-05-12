@@ -68,7 +68,7 @@ public class Menu {
 		this.mnExp.irPerfil(e -> {
 
 			if (navegador != null)
-				navegador.navegarPara("PERFIL");
+				irPerfil();
 
 		});
 
@@ -89,6 +89,17 @@ public class Menu {
 
 		});
 
+	}
+
+	private void irPerfil() {
+		navegador.setUsuarioLogado(usuarioLogado);
+		
+		if(this.usuarioLogado.isAdmin()) {
+			navegador.navegarPara("PERFIL ADM");
+		} else {
+			navegador.navegarPara("PERFIL");
+		}
+		
 	}
 
 	private void irInicio() {
