@@ -60,7 +60,7 @@ public class LoginController {
 				return;
 
 			}
-			navegador.setUsuarioLogado(usuarioLogado); // <- passa para o navegador
+			navegador.setUsuarioLogado(usuarioLogado);
 			this.menu.setUsuarioLogado(usuarioLogado); 
 
 			if (usuarioLogado.isAdmin()) {
