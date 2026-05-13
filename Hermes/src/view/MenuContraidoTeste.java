@@ -11,6 +11,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JLabel;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
@@ -42,6 +43,11 @@ public class MenuContraidoTeste extends JPanel {
 
 		this.lbAbrir.addMouseListener(mouseListener);
 
+	}
+
+	public void mostrarMenuExpandidoAdm(MouseAdapter mouseAdapter) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

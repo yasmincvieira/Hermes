@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import models.Usuario;
 import models.UsuarioDAO;
 import view.MenuContraidoTeste;
-
+import view.MenuExpandidoAdm;
 import view.MenuExpandidoTeste;
 
 import view.Janela;
@@ -19,6 +19,8 @@ import view.Janela;
 public class Menu {
 
 	private MenuExpandidoTeste mnExp;
+	
+	private MenuExpandidoAdm mnExpAdm;
 
 	private MenuContraidoTeste mnCont;
 
@@ -32,16 +34,19 @@ public class Menu {
 
 	private UsuarioDAO user;
 
-	public Menu(Janela janela, MenuExpandidoTeste mnExp, MenuContraidoTeste mnCont) {
+	public Menu(Janela janela, MenuExpandidoTeste mnExp, MenuContraidoTeste mnCont, MenuExpandidoAdm mnExpAdm) {
 
 		this.janela = janela;
 
 		this.mnExp = mnExp;
+		
+		this.mnExpAdm = mnExpAdm;
 
 		this.mnCont = mnCont;
 
 		menuAtual = mnCont;
-
+		
+		
 		janela.mudarMenu(menuAtual);
 
 		this.mnExp.mostrarMenuContraido(new MouseAdapter() {
@@ -49,7 +54,6 @@ public class Menu {
 			@Override
 
 			public void mouseClicked(MouseEvent e) {
-
 				mostrarPanelCont();
 			}
 
@@ -61,35 +65,64 @@ public class Menu {
 			if (navegador != null)
 				navegador.navegarPara("HISTORICO");
 		});
+		
+		this.mnExpAdm.irInicioADM(e -> {
+			if (navegador != null)
+				navegador.navegarPara("inicioADM");
+		});
+		
 		this.mnExp.irInicio(e -> {
 			if (navegador != null)
 				irInicio();
 		});
 		this.mnExp.irPerfil(e -> {
-
 			if (navegador != null)
 				navegador.navegarPara("PERFIL");
-
 		});
+	
+		this.mnExpAdm.irTabela(e -> {
+			if (navegador != null)
+				navegador.navegarPara("TABELA");
+		});
+		
+		this.mnExpAdm.irNovosChamados(e -> {
+			if (navegador != null)
+				navegador.navegarPara("NOVOS_CHAMADOS");
+		});
+		
+		
+		if (this.usuarioLogado.isAdmin()) {
+		this.mnCont.mostrarMenuExpandidoAdm(new MouseAdapter() {
 
+			@Override
+
+			public void mouseClicked(MouseEvent e) {
+				mostrarPanelExp();
+			}
+			
+			public void iniciarMenu() {
+				menuAtual = mnCont;
+				janela.mudarMenu(menuAtual);
+			}
+		});
+		}
+		else {
 		this.mnCont.mostrarMenuExpandido(new MouseAdapter() {
 
 			@Override
 
 			public void mouseClicked(MouseEvent e) {
-
 				mostrarPanelExp();
-
 			}
-
+			
 			public void iniciarMenu() {
 				menuAtual = mnCont;
 				janela.mudarMenu(menuAtual);
 			}
-
 		});
-
 	}
+	}
+
 
 	private void irInicio() {
 		navegador.setUsuarioLogado(usuarioLogado);
@@ -99,8 +132,9 @@ public class Menu {
 		} else {
 			navegador.navegarPara("INICIO");
 		}
-
+		
 	}
+	
 	
 	public void setUsuarioLogado(Usuario usuarios) {
 	    this.usuarioLogado = usuarios;
@@ -120,6 +154,8 @@ public class Menu {
 		}
 
 	}
+	
+	
 
 	public void mostrarPanelCont() {
 
@@ -128,7 +164,15 @@ public class Menu {
 		janela.mudarMenu(menuAtual);
 
 	}
+	
+	public void mostrarPanelExpAdm() {
 
+		menuAtual = mnExpAdm;
+
+		janela.mudarMenu(menuAtual);
+
+	}
+	
 	public void mostrarPanelExp() {
 
 		menuAtual = mnExp;

@@ -17,6 +17,7 @@ import models.ChamadoDAO;
 import models.UsuarioDAO;
 import view.Janela;
 import view.MenuContraidoTeste;
+import view.MenuExpandidoAdm;
 import view.MenuExpandidoTeste;
 import view.TelaCadastro;
 import view.TelaConta;
@@ -53,10 +54,11 @@ public class Main {
 		TelaVizuChamadosADM telaVizuChamadosADM = new TelaVizuChamadosADM();
 		MenuContraidoTeste menuCont = new MenuContraidoTeste();
 		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
+		MenuExpandidoAdm menuExpAdm = new MenuExpandidoAdm();
 		TelaInicialADM inicioADM = new TelaInicialADM();
 		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
 
-		Menu menu = new Menu(janela, menuExp, menuCont);
+		Menu menu = new Menu(janela, menuExp, menuCont, menuExpAdm);
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
 		menu.setNavegador(navegador);
 
@@ -87,6 +89,8 @@ public class Main {
 		navegador.adicionarPainel("CHAMADO ADMIN", telaVizuChamadosADM);
 		navegador.adicionarPainel("PERFIL", telaConta);
 		navegador.adicionarPainel("DETALHES_CHAMADO", telaVizuChamados);
+		navegador.adicionarPainel("TABELA", telaTabelaPatrimonios);
+		navegador.adicionarPainel("NOVOS_CHAMADOS", telaVizuChamados);
 
 
 		janela.setLocationRelativeTo(null);

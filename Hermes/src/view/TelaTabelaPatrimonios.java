@@ -26,6 +26,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
+	private Object btnTabela;
 
 	/**
 	 * Create the panel.
@@ -109,5 +110,4 @@ public class TelaTabelaPatrimonios extends JPanel {
 		table.setModel(model);
 
 	}
-
 }
