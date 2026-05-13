@@ -6,26 +6,26 @@ import java.util.List;
 import models.Chamado;
 import models.ChamadoDAO;
 import view.TelaHistoricoDeChamados;
+import view.TelaHistoricoDeChamadosADM;
 import view.TelaVizuChamados;
+import view.TelaVizuChamadosADM;
 
-public class HistoricoController {
-
-    private TelaHistoricoDeChamados telaHistorico;
-    private TelaVizuChamados telaDetalhes;
+public class HistoricoControllerADM {
+	
+	private TelaHistoricoDeChamadosADM telaHistoricoADM;
+    private TelaVizuChamadosADM telaDetalhesADM;
     private ChamadoDAO dao;
     private Navegador navegador;
-
-    public HistoricoController(TelaHistoricoDeChamados telaHistorico, TelaVizuChamados telaDetalhes, ChamadoDAO dao, Navegador navegador) {
-        this.telaHistorico = telaHistorico;
-        this.telaDetalhes = telaDetalhes;
+    
+    public HistoricoControllerADM(TelaHistoricoDeChamadosADM telaHistoricoADM, TelaVizuChamadosADM telaDetalhesADM, ChamadoDAO dao, Navegador navegador) {
+        this.telaHistoricoADM = telaHistoricoADM;
+        this.telaDetalhesADM = telaDetalhesADM;
         this.dao = dao;
         this.navegador = navegador;
         
-        this.telaDetalhes.voltar(e -> {
-            navegador.navegarPara("HISTORICO");
-        });
+          
     }
-
+    
     public void carregarHistorico() {
         if (navegador.getUsuarioLogado() == null) return;
         
@@ -39,7 +39,7 @@ public class HistoricoController {
             }
         };
 
-        telaHistorico.atualizarChamados(chamados, verDetalhesListener);
+        telaHistoricoADM.atualizarChamados(chamados, verDetalhesListener);
     }
 
     private void abrirDetalhes(int idChamado, List<Chamado> chamados) {
@@ -52,8 +52,9 @@ public class HistoricoController {
         }
 
         if (selecionado != null) {
-            telaDetalhes.preencherDados(selecionado);
-            navegador.navegarPara("DETALHES CHAMADO");
+            telaDetalhesADM.preencherDados(selecionado);
+            navegador.navegarPara("CHAMADO ADMIN");
         }
     }
+
 }

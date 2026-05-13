@@ -63,6 +63,7 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_1, "cell 1 1,alignx trailing");
 		
 		taStatus = new JTextArea();
+		taStatus.setEditable(false);
 		taStatus.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taStatus.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taStatus, "cell 2 1,growx,aligny center");
@@ -72,6 +73,7 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_2, "cell 1 3,alignx right");
 
 		taNomePatrimonio = new JTextArea();
+		taNomePatrimonio.setEditable(false);
 		taNomePatrimonio.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taNomePatrimonio.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taNomePatrimonio, "cell 2 3,growx,aligny center");
@@ -81,6 +83,7 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_3, "cell 1 5,alignx right");
 
 		taLocal = new JTextArea();
+		taLocal.setEditable(false);
 		taLocal.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taLocal.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taLocal, "cell 2 5,growx,aligny center");
@@ -90,6 +93,7 @@ public class TelaVizuChamados extends JPanel {
 		panelVizuChamadosADM.add(lblNewLabel_4, "cell 1 7,alignx right");
 
 		taDescricao = new JTextArea();
+		taDescricao.setEditable(false);
 		taDescricao.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taDescricao.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taDescricao, "cell 2 7,grow");

@@ -11,13 +11,13 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
-public class TelinhaHistorico extends JPanel {
+public class TelinhaHistoricoADM extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Chamado chamado;
     private JButton btnVerDetalhes;
 
-    public TelinhaHistorico(Chamado chamado, ActionListener verDetalhesListener) {
+    public TelinhaHistoricoADM(Chamado chamado, ActionListener verDetalhesListener) {
         this.chamado = chamado;
         
         setBackground(new Color(187, 215, 194));

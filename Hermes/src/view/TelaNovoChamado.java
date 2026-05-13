@@ -27,9 +27,7 @@ public class TelaNovoChamado extends JPanel {
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
 
-	/**
-	 * Create the panel.
-	 */
+	
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
@@ -52,7 +50,10 @@ public class TelaNovoChamado extends JPanel {
 
 		cbNome = new JComboBox();
 		cbNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbNome.setModel(new DefaultComboBoxModel(new String[] { "Cadeira", "Mesa", "Quadro", "Ar-Condicionado" }));
+		cbNome.setModel(new DefaultComboBoxModel(new String[] { "Ar-Condicionado", "Mesa", "Cadeira", "Banco", "Carteira", "Cortina", "Projetor",
+				"Tela de Projeção", "Lãmpada", "Tomada", "Computador", "Janela", "Porta", "Bebedouro", "Pia", "Vaso Sanitário", "Espelho",
+				"Porta Papel", "Chuveiro", "Microondas", "Geladeira", "Elevador", "Armário", "Painel de Aviso", "Quadro", "Televisão",
+				"Torre de Carregador", "Piso", "Controle", "Microscópio"}));
 		cbNome.setForeground(new Color(38, 76, 63));
 		cbNome.setBackground(new Color(160, 200, 172));
 		panelChamado.add(cbNome, "cell 2 2,growx");
@@ -68,7 +69,9 @@ public class TelaNovoChamado extends JPanel {
 				"Sala 6", "Sala 7", "Sala 8", "Sala 9", "Sala 10", "Sala 11", "Sala 12", "Sala 13", "Sala 14",
 				"Sala 15", "Sala 16", "Sala 17", "Sala 17", "Sala 18", "Sala 19", "Lab Info 1", "Lab Info 2",
 				"Lab Info 3", "Lab Info 4", "Lab Info 5", "Lab Info 6", "Lab Info 7", "Lab Química 1", "Lab Química 2",
-				"Lab Química 3", "Lab Química 4", "Lab Química 5", "Lab Química 6" }));
+				"Lab Química 3", "Lab Química 4", "Lab Química 5", "Lab Química 6", "Quadra", "Banheiro Feminino(Descreva Bloco e Andar)",
+				"Banheiro Masculino(Descreva Bloco e Andar)", "Corredor(Descreva Bloco e Andar)","Cantina", "Pátio", "Auditório", "Hall",
+				"Copa Alunos", "Copa Professores", "Portaria"}));
 		cbLocal.setForeground(new Color(38, 76, 63));
 		cbLocal.setBackground(new Color(160, 200, 172));
 		panelChamado.add(cbLocal, "cell 2 4,growx");
@@ -90,16 +93,14 @@ public class TelaNovoChamado extends JPanel {
 		panelChamado.add(lbDescricao, "cell 1 8,alignx left,aligny top");
 
 		JScrollPane scrollPane = new JScrollPane();
-		// scrollPane.setPreferredSize(new Dimension(250, 300)); // Largura fixa e
-		// altura variável
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panelChamado.add(scrollPane, "cell 2 8,grow");
 
 		taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
 		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		taDescricao.setWrapStyleWord(true); // Quebra de linha em palavras completas
-		taDescricao.setLineWrap(true); // Habilita a quebra de linha automática
+		taDescricao.setWrapStyleWord(true);
+		taDescricao.setLineWrap(true);
 		scrollPane.setViewportView(taDescricao);
 
 		btnRealizarChamado = new JButton("Realizar chamado");

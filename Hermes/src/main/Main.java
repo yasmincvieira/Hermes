@@ -7,6 +7,7 @@ import javax.swing.plaf.FontUIResource;
 import controller.CadastroController;
 import controller.ContaController;
 import controller.HistoricoController;
+import controller.HistoricoControllerADM;
 import controller.InicialADMController;
 import controller.InicialController;
 import controller.LoginController;
@@ -21,6 +22,7 @@ import view.MenuExpandidoTeste;
 import view.TelaCadastro;
 import view.TelaConta;
 import view.TelaHistoricoDeChamados;
+import view.TelaHistoricoDeChamadosADM;
 import view.TelaInicial;
 import view.TelaInicialADM;
 import view.TelaLogin;
@@ -55,6 +57,7 @@ public class Main {
 		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
 		TelaInicialADM inicioADM = new TelaInicialADM();
 		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
+		TelaHistoricoDeChamadosADM telaHistoricoChamadosADM = new TelaHistoricoDeChamadosADM();
 
 		Menu menu = new Menu(janela, menuExp, menuCont);
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
@@ -68,14 +71,14 @@ public class Main {
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
-
+		HistoricoControllerADM historicoControllerADM = new HistoricoControllerADM(telaHistoricoChamadosADM, telaVizuChamadosADM, chamadoDAO, navegador);
 		
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
 		navegador.setInicialController(inicialController);
 		navegador.setContaController(contaController);
 		navegador.setHistoricoController(historicoController);
-
+		navegador.setHistoricoControllerADM(historicoControllerADM);
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastro);
 		navegador.adicionarPainel("LOGIN", telaLogin);
@@ -86,8 +89,8 @@ public class Main {
 		navegador.adicionarPainel("PATRIMONIO", telaTabelaPatrimonios);
 		navegador.adicionarPainel("CHAMADO ADMIN", telaVizuChamadosADM);
 		navegador.adicionarPainel("PERFIL", telaConta);
-		navegador.adicionarPainel("DETALHES_CHAMADO", telaVizuChamados);
-
+		navegador.adicionarPainel("DETALHES CHAMADO", telaVizuChamados);
+		navegador.adicionarPainel("HISTORICO ADMIN", telaHistoricoChamadosADM);
 
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);

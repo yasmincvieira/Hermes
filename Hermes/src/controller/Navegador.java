@@ -17,6 +17,7 @@ public class Navegador {
 	private Usuario usuarioLogado;
 	private ContaController contaController;
 	private HistoricoController historicoController;
+	private HistoricoControllerADM historicoControllerADM;
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
@@ -94,6 +95,10 @@ public class Navegador {
 	
 	public void setHistoricoController(HistoricoController historicoController) {
 		this.historicoController = historicoController;
+	}
+	
+	public void setHistoricoControllerADM (HistoricoControllerADM historicoControllerADM) {
+		this.historicoControllerADM   = historicoControllerADM;
 	}
 
 }

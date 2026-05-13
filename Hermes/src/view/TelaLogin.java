@@ -15,6 +15,9 @@ import java.awt.Color;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class TelaLogin extends JPanel {
 
@@ -23,16 +26,12 @@ public class TelaLogin extends JPanel {
 	private JPasswordField pfSenha;
 	private JButton btnLogin;
 	private JButton btnCadastrarse;
+	//private Image imagemFundo;
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaLogin() {
 
 		setBackground(new Color(240, 240, 240));
 		setForeground(new Color(255, 255, 255));
-		// setTitle("Tela de Login");
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		setLayout(new MigLayout("", "[grow][grow 5][204:n,grow][grow]",
 				"[grow][grow 15][grow 5][grow 3][grow 5][grow 3][grow 8][grow 5][grow 5][grow 5][grow]"));
@@ -91,8 +90,15 @@ public class TelaLogin extends JPanel {
 		this.btnCadastrarse.setForeground(new Color(39, 79, 65));
 		this.btnCadastrarse.setBackground(new Color(160, 200, 172));
 		add(this.btnCadastrarse, "cell 1 9 2 1");
+		//this.imagemFundo = new ImageIcon(getClass().getResource("/Imagens/Capturadetela2026-05-13075157.png")).getImage();
 
 	}
+	
+//	@Override
+//	protected void paintComponent(Graphics g) {
+//		super.paintComponent(g);
+//		g.drawImage(imagemFundo, 0, 0, getWidth(), getHeight(), this);
+//	}
 
 	public JTextField gettfUsuario() {
 		return tfUsuario;

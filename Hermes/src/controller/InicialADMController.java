@@ -21,7 +21,7 @@ public class InicialADMController {
 		this.navegador = navegador;
 		this.menu = menu;
 		this.inicioADM.historico(e -> {
-			navegador.navegarPara("HISTORICO");
+			navegador.navegarPara("HISTORICO ADMIN");
 		});
 
 		this.inicioADM.verPatrimonio(e -> {
@@ -32,7 +32,7 @@ public class InicialADMController {
 			navegador.navegarPara("PERFIL");
 		});
 		this.inicioADM.chamado(e -> {
-			navegador.navegarPara("CHAMADO ADMIN");
+			navegador.navegarPara("HISTORICO ADMIN");
 		});
 	}
 
