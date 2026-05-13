@@ -20,7 +20,7 @@ public class PatrimonioDAO {
 		try {
 			conexao = BancoDeDados.conectar();
 			pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, patrimonio.getIdpatrimonio());
+			pstm.setString(1, patrimonio.getId_patrimonio());
 			pstm.setString(2, patrimonio.getStatus());
 			pstm.setString(3, patrimonio.getNome());
 			pstm.executeUpdate();
@@ -52,8 +52,8 @@ public class PatrimonioDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Patrimonio patrimonio = new Patrimonio(sql, sql, sql);
-				patrimonio.setIdpatrimonio(rset.getString("idPatrimonio"));
+				Patrimonio patrimonio = new Patrimonio(sql, sql, sql, sql);
+				patrimonio.setId_patrimonio(rset.getString("idPatrimonio"));
 				patrimonio.setNome(rset.getString("nome"));
 				patrimonio.setStatus(rset.getString("status"));
 
@@ -62,7 +62,7 @@ public class PatrimonioDAO {
 				EspacoDAO espacoDao = new EspacoDAO();
 				Espaco espacoPatrimonio = espacoDao.BuscarEspacoPorID(espaco);
 
-				patrimonio.setEspaco(espacoPatrimonio);
+				patrimonio.setEspaco(espaco);
 				listaPatrimonio.add(patrimonio);
 			}
 		} catch (SQLException e) {
@@ -85,7 +85,7 @@ public class PatrimonioDAO {
 			pstm = conexao.prepareStatement(sql);
 			pstm.setString(1, patrimonio.getNome());
 			pstm.setString(2, patrimonio.getStatus());
-			pstm.setString(3, patrimonio.getIdpatrimonio());
+			pstm.setString(3, patrimonio.getId_patrimonio());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

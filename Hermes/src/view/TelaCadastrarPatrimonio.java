@@ -27,11 +27,17 @@ public class TelaCadastrarPatrimonio extends JPanel {
 	private JTextField tfPatrimonio;
 	private JButton btnConcluir;
 	private JComboBox cbLocal, cbNome, cbStatus;
+	
+
 
 
 
 	/**
 	 * Create the panel.
+	 * @param status 
+	 * @param nome 
+	 * @param local 
+	 * @param id_patrimonio 
 	 */
 	public TelaCadastrarPatrimonio() {
 		setLayout(new BorderLayout(0, 0));
@@ -161,5 +167,7 @@ public class TelaCadastrarPatrimonio extends JPanel {
 	public void concluir(ActionListener actionListener) {
 		btnConcluir.addActionListener(actionListener);
 	}
+
+
 
 }

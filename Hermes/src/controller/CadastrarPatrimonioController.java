@@ -8,15 +8,18 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import models.Chamado;
+import models.ChamadoDAO;
 import models.Patrimonio;
 import models.PatrimonioDAO;
 import models.UsuarioDAO;
 import view.TelaCadastrarPatrimonio;
 import view.TelaCadastro;
 import view.TelaConta;
+import view.TelaNovoChamado;
 import view.TelaTabelaPatrimonios;
 
-public class CadastrarPatrimonioController extends ComponentAdapter{
+public class CadastrarPatrimonioController{
 
 	private TelaCadastrarPatrimonio cadastrarPatrimonio;
 	private PatrimonioDAO patrimonioDAO;
@@ -24,54 +27,61 @@ public class CadastrarPatrimonioController extends ComponentAdapter{
 	private TabelaController tabelaController;
 	private TelaTabelaPatrimonios tabelaPatrimonios;
 
-	public CadastrarPatrimonioController(TelaCadastrarPatrimonio cadastrarPatrimonio, PatrimonioDAO patrimonioDAO,
+	public CadastrarPatrimonioController(TelaCadastrarPatrimonio cadastrarPatrimonio, PatrimonioDAO patrimonioDAO, 
 			Navegador navegador, TabelaController tabelaController, TelaTabelaPatrimonios tabelaPatrimonios) {
 		super();
 		this.cadastrarPatrimonio = cadastrarPatrimonio;
-		this.patrimonioDAO = patrimonioDAO;
 		this.navegador = navegador;
+		this.patrimonioDAO = patrimonioDAO;
 		this.tabelaController = tabelaController;
 		this.tabelaPatrimonios = tabelaPatrimonios;
-		System.out.println("controller de patrimonio");
+
 		this.cadastrarPatrimonio.concluir(e -> {
 			cadastrarPatrimonio();
 		});
 
 	}
+
 	private void cadastrarPatrimonio() {
-		if (cadastrarPatrimonio.getTfPatrimonio().getText().isEmpty()) {
+		String id = (String) cadastrarPatrimonio.getTfPatrimonio().getText();
+		String nome = (String) cadastrarPatrimonio.getCbNome().getSelectedItem();
+		String espaco = (String) cadastrarPatrimonio.getCbLocal().getSelectedItem();
+		String status = (String) cadastrarPatrimonio.getCbStatus().getSelectedItem();
 
-			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
-			limparCampos();
+		if (id.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(cadastrarPatrimonio, "Descreva qual é o id do patrimônio", "Atenção", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
-		Object local = cadastrarPatrimonio.getCbLocal().getSelectedItem();
-		Object nome = cadastrarPatrimonio.getCbNome().getSelectedItem();
-		Object status = cadastrarPatrimonio.getCbStatus().getSelectedItem();
+        Integer idPatrimonio = null;
+        if (id != null && !id.trim().isEmpty()) {
+            try {
+            	idPatrimonio = Integer.valueOf(id);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(cadastrarPatrimonio, "O ID do Patrimônio deve conter apenas números!");
+                return;
+            }
+        }
+	        
+	        
+	        Patrimonio patrimonio = new Patrimonio(id, nome, espaco, status);
 	
+			try {
+			patrimonioDAO.adicionarPatrimonio(patrimonio);
+			JOptionPane.showMessageDialog(cadastrarPatrimonio, "Cadastro feito com sucesso!", "Sucesso",
+					JOptionPane.INFORMATION_MESSAGE);
 
-		if (local == null && nome == null && status == null) {
-			JOptionPane.showMessageDialog(null, "Selecione tudo");
-			return;
+			cadastrarPatrimonio.getTfPatrimonio().setText("");
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(cadastrarPatrimonio, "Erro ao cadastrar patrimônio ", "Erro", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
 		}
-
-		Patrimonio patrimonio = new Patrimonio(null, null, null);
-
-		patrimonio.setIdpatrimonio(cadastrarPatrimonio.getTfPatrimonio().getText());
-		//patrimonio.setStatus(cadastrarPatrimonio.getCbStatus.getSelectedItem());
-		System.out.println(cadastrarPatrimonio.getCbNome().getSelectedItem());
-		//patrimonio.setNome();
-		//patrimonio.setEspaco(cadastrarPatrimonio.getCbLocal.getSelectedItem());
-	
-
-		patrimonioDAO.adicionarPatrimonio(patrimonio);
-		tabelaPatrimonios.atualizarTabela();
-		limparCampos();
-
-		JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
 
 	}
+
+
+	
 	public void limparCampos() {
 		cadastrarPatrimonio.getTfPatrimonio().setText("");
 	}

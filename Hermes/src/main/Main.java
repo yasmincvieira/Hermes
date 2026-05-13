@@ -15,6 +15,8 @@ import controller.Menu;
 import controller.Navegador;
 import controller.NovoChamadoController;
 import controller.TabelaController;
+import controller.VizuChamadoController;
+import models.Chamado;
 import models.ChamadoDAO;
 import models.PatrimonioDAO;
 import models.UsuarioDAO;
@@ -31,6 +33,7 @@ import view.TelaInicialADM;
 import view.TelaLogin;
 import view.TelaNovoChamado;
 import view.TelaTabelaPatrimonios;
+import view.TelaVizuChamados;
 import view.TelaVizuChamadosADM;
 
 public class Main {
@@ -44,6 +47,7 @@ public class Main {
 		manager.setReshowDelay(100);
 
 		Janela janela = new Janela();
+
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
 
@@ -53,42 +57,41 @@ public class Main {
 		TelaContaADM telaContaADM = new TelaContaADM();
 		TelaHistoricoDeChamados telaHistoricoChamados = new TelaHistoricoDeChamados();
 		TelaInicial telaInicial = new TelaInicial();
-		TelaInicialADM telaInicialADM = new TelaInicialADM();
 		TelaNovoChamado telaNovoChamado = new TelaNovoChamado();
+		TelaCadastrarPatrimonio telaCadastrarPatrimonio = new TelaCadastrarPatrimonio();
 		TelaTabelaPatrimonios telaTabelaPatrimonios = new TelaTabelaPatrimonios();
+		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
 		TelaVizuChamadosADM telaVizuChamadosADm = new TelaVizuChamadosADM();
+		TelaInicialADM inicioADM = new TelaInicialADM();
+
 		MenuContraidoTeste menuCont = new MenuContraidoTeste();
 		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
-		TelaInicialADM inicioADM = new TelaInicialADM();
-		TelaCadastrarPatrimonio telaCadastrarPatrimonio = new TelaCadastrarPatrimonio();
-
-		
 		Menu menu = new Menu(janela, menuExp, menuCont);
 
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
-
 		menu.setNavegador(navegador);
 
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
-		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); 
-		TabelaController tabelaController = new TabelaController(telaTabelaPatrimonios, navegador, null);
-		CadastrarPatrimonioController cadastrarPatrimonio = new CadastrarPatrimonioController(telaCadastrarPatrimonio, patrimonioDAO, navegador, tabelaController, telaTabelaPatrimonios);
+		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu);
+		TabelaController tabelaController = new TabelaController(telaTabelaPatrimonios, navegador, patrimonioDAO);
+		CadastrarPatrimonioController cadastrarPatrimonio = new CadastrarPatrimonioController(telaCadastrarPatrimonio,
+				patrimonioDAO, navegador, tabelaController, telaTabelaPatrimonios);
+		
 		telaTabelaPatrimonios.adicionarOuvinte(tabelaController);
-		
-		
+
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
+//		Chamado chamado = new Chamado();
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
+//		VizuChamadoController vizuChamadoController = new VizuChamadoController(telaVizuChamados, chamado, chamadoDAO,
+//				navegador);
 
-		
-		
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
 		navegador.setInicialController(inicialController);
 		navegador.setContaController(contaController);
-		
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastro);
 		navegador.adicionarPainel("LOGIN", telaLogin);
