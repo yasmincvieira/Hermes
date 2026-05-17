@@ -13,9 +13,7 @@ import java.awt.Panel;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
-
 import models.Chamado;
-
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.ImageIcon;

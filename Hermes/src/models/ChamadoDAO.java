@@ -44,6 +44,24 @@ public class ChamadoDAO {
             }
         }
     }
+	
+	public void atualizarStatus(int idChamado, String novoStatus) {
+        String sql = "UPDATE novoChamado SET status = ? WHERE idChamado = ?";
+        Connection conexao = null;
+        PreparedStatement pstm = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, novoStatus);
+            pstm.setInt(2, idChamado);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
+    }
 
 	public List<Chamado> listarChamados() {
 		String sql = "SELECT * FROM novoChamado";
@@ -66,11 +84,18 @@ public class ChamadoDAO {
                         rset.getString("descricao"),
                         rset.getInt("idUsuario")
                     );
-                listaChamados.add(chamado);
+            		chamado.setIdChamado(rset.getInt("idChamado"));
+                
+	                String status = rset.getString("status");
+	                chamado.setStatus(status != null ? status : "Em análise");
+	                
+	                listaChamados.add(chamado);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
         return listaChamados;
     }
 	
@@ -88,14 +113,18 @@ public class ChamadoDAO {
             rset = pstm.executeQuery();
 
             while (rset.next()) {
-                Chamado chamado = new Chamado(sql, sql, idUsuario, sql, idUsuario);
+                Chamado chamado = new Chamado(
+                rset.getString("nome"),
+                rset.getString("lugar"),
+                rset.getInt("idPatrimonio"),
+                rset.getString("descricao"),
+                rset.getInt("idUsuario"));
+                
                 chamado.setIdChamado(rset.getInt("idChamado"));
-                chamado.setNome(rset.getString("nome"));
-                chamado.setLocal(rset.getString("lugar"));
-                chamado.setIdPatrimonio(rset.getInt("idPatrimonio"));
-                chamado.setDescricao(rset.getString("descricao"));
-                chamado.setIdUsuario(rset.getInt("idUsuario"));
-                chamado.setStatus(rset.getString("status"));
+                
+                String status = rset.getString("status");
+                chamado.setStatus(status != null ? status : "Em análise");
+                
                 listaChamados.add(chamado);
             }
         } catch (SQLException e) {

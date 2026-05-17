@@ -27,6 +27,7 @@ import view.TelaInicial;
 import view.TelaInicialADM;
 import view.TelaLogin;
 import view.TelaNovoChamado;
+import view.TelaNovoChamadosADM;
 import view.TelaTabelaPatrimonios;
 import view.TelaVizuChamados;
 import view.TelaVizuChamadosADM;
@@ -43,6 +44,7 @@ public class Main {
 
 		Janela janela = new Janela();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		ChamadoDAO chamadoDAO = new ChamadoDAO();
 
 		TelaLogin telaLogin = new TelaLogin();
 		TelaCadastro telaCadastro = new TelaCadastro();
@@ -51,6 +53,7 @@ public class Main {
 		TelaInicial telaInicial = new TelaInicial();
 		TelaInicialADM telaInicialADM = new TelaInicialADM();
 		TelaNovoChamado telaNovoChamado = new TelaNovoChamado();
+		TelaNovoChamadosADM telaNovosChamadosADM = new TelaNovoChamadosADM();
 		TelaTabelaPatrimonios telaTabelaPatrimonios = new TelaTabelaPatrimonios();
 		TelaVizuChamadosADM telaVizuChamadosADM = new TelaVizuChamadosADM();
 		MenuContraidoTeste menuCont = new MenuContraidoTeste();
@@ -67,7 +70,6 @@ public class Main {
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
 		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); 
-		ChamadoDAO chamadoDAO = new ChamadoDAO();
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
@@ -91,6 +93,7 @@ public class Main {
 		navegador.adicionarPainel("PERFIL", telaConta);
 		navegador.adicionarPainel("DETALHES CHAMADO", telaVizuChamados);
 		navegador.adicionarPainel("HISTORICO ADMIN", telaHistoricoChamadosADM);
+		navegador.adicionarPainel("NOVO CHAMADO ADMIN", telaNovosChamadosADM);
 
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);

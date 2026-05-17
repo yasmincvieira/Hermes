@@ -11,12 +11,9 @@ import java.awt.Label;
 import java.awt.Choice;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
-
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
-
 import models.Chamado;
-
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -26,8 +23,9 @@ public class TelaVizuChamadosADM extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextArea taChamado, taNomePatrimonio, taLocal, taDescricao;
-	private JComboBox cbStatus;
-	private JButton btnAtualizar;
+	private JComboBox<String> cbStatus;
+	private JButton btnAtualizar, btnVoltar;
+    private int idChamadoAtual;
 
 	public TelaVizuChamadosADM() {
 
@@ -39,10 +37,10 @@ public class TelaVizuChamadosADM extends JPanel {
 		add(panelVizuChamadosADM, BorderLayout.CENTER);
 		panelVizuChamadosADM.setLayout(new MigLayout("", "[][grow 5][grow][grow 5]", "[][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2]"));
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBackground(new Color(234, 242, 236));
-		btnNewButton.setIcon(new ImageIcon(TelaVizuChamadosADM.class.getResource("/Imagens/voltar20.png")));
-		panelVizuChamadosADM.add(btnNewButton, "cell 0 0,grow");
+		btnVoltar = new JButton("");
+		btnVoltar.setBackground(new Color(234, 242, 236));
+		btnVoltar.setIcon(new ImageIcon(TelaVizuChamadosADM.class.getResource("/Imagens/voltar20.png")));
+		panelVizuChamadosADM.add(btnVoltar, "cell 0 0,grow");
 
 		Panel panel_2 = new Panel();
 		panel_2.setBackground(new Color(160, 200, 172));
@@ -106,16 +104,27 @@ public class TelaVizuChamadosADM extends JPanel {
 
 	}
 	
-	public void atualizarStatus(ActionListener actionListener) {
-		this.btnAtualizar.addActionListener(actionListener);
-	}
-
 	public void preencherDados(Chamado chamado) {
         taChamado.setText("Chamado #" + chamado.getIdChamado());
         cbStatus.setActionCommand(chamado.getStatus());
         taNomePatrimonio.setText(chamado.getNome());
         taLocal.setText(chamado.getLocal());
         taDescricao.setText(chamado.getDescricao());
+    }
+	public String getStatusSelecionado() {
+        return (String) cbStatus.getSelectedItem();
+    }
+
+    public int getIdChamadoAtual() {
+        return idChamadoAtual;
+    }
+
+    public void setAtualizarListener(ActionListener listener) {
+        this.btnAtualizar.addActionListener(listener);
+    }
+
+    public void setVoltarListener(ActionListener listener) {
+        this.btnVoltar.addActionListener(listener);
     }
 
 }

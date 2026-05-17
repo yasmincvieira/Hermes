@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -24,16 +23,17 @@ public class TelaInicial extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton btnHistorico;
 	private JButton btnRealizarChamado;
+	private JButton btnVoltar;
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaInicial() {
 		setBackground(new Color(240, 240, 240));
-		// setTitle("Tela Inicial");
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		setLayout(new MigLayout("", "[grow][][][][grow]", "[grow][64.00][47.00][100.00][grow]"));
+		
+		btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(TelaInicial.class.getResource("/Imagens/voltar20.png")));
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		add(btnVoltar, "cell 0 0,grow");
 
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -59,6 +59,10 @@ public class TelaInicial extends JPanel {
 
 	public void irChamado(ActionListener actionListener) {
 		this.btnRealizarChamado.addActionListener(actionListener);
+	}
+	
+	public void voltar(ActionListener actionListener) {
+		this.btnVoltar.addActionListener(actionListener);
 	}
 
 }
