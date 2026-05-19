@@ -2,6 +2,8 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import models.Espaco;
+import models.EspacoDAO;
 import models.Patrimonio;
 import models.PatrimonioDAO;
 import view.TelaCadastrarPatrimonio;
@@ -23,6 +25,9 @@ public class CadastrarPatrimonioController {
 		this.patrimonioDAO = patrimonioDAO;
 		this.tabelaController = tabelaController;
 		this.tabelaPatrimonios = tabelaPatrimonios;
+		
+		EspacoDAO espacoDAO = new EspacoDAO();
+		this.cadastrarPatrimonio.carregarComBoxEspaco(espacoDAO.listarEspacos());
 
 		this.cadastrarPatrimonio.concluir(e -> {
 			cadastrarPatrimonio();
@@ -31,42 +36,40 @@ public class CadastrarPatrimonioController {
 	}
 
 	private void cadastrarPatrimonio() {
-		String id = (String) cadastrarPatrimonio.getTfPatrimonio().getText();
+		String id = (String) cadastrarPatrimonio.getTfPatrimonio().getText().trim();
 		String nome = (String) cadastrarPatrimonio.getCbNome().getSelectedItem();
-		String espaco = (String) cadastrarPatrimonio.getCbLocal().getSelectedItem();
+		Espaco espaco =  (Espaco) cadastrarPatrimonio.getCbLocal().getSelectedItem();
 		String status = (String) cadastrarPatrimonio.getCbStatus().getSelectedItem();
 
-		if (id.trim().isEmpty()) {
+		if (id.isEmpty()) {
 			JOptionPane.showMessageDialog(cadastrarPatrimonio, "Descreva qual é o id do patrimônio", "Atenção",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
-		String idPatrimonio = null;
-		if (id != null && !id.trim().isEmpty()) {
-			try {
-				idPatrimonio = String.valueOf(id);
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(cadastrarPatrimonio, "O ID do Patrimônio deve conter apenas números!");
-				return;
-			}
-		}
-
+		Integer idPatrimonio = null;
 		try {
-
-			Patrimonio patrimonio = new Patrimonio(idPatrimonio, status, nome, espaco);
-			patrimonioDAO.adicionarPatrimonio(patrimonio);
-			JOptionPane.showMessageDialog(cadastrarPatrimonio, "Cadastro feito com sucesso!", "Sucesso",
-					JOptionPane.INFORMATION_MESSAGE);
-
-			cadastrarPatrimonio.getTfPatrimonio().setText("");
-
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(cadastrarPatrimonio, "Erro ao cadastrar patrimônio ", "Erro",
-					JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+			idPatrimonio = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(cadastrarPatrimonio, "O ID do Patrimônio deve conter apenas números!",
+					"Atenção", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
+			try {
 
+				Patrimonio patrimonio = new Patrimonio(idPatrimonio, status, nome, espaco);
+		
+				patrimonioDAO.adicionarPatrimonio(patrimonio);
+				tabelaPatrimonios.atualizarTabela();
+				limparCampos();
+				JOptionPane.showMessageDialog(cadastrarPatrimonio, "Cadastro feito com sucesso!", "Sucesso",
+						JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(cadastrarPatrimonio, "Erro ao cadastrar patrimônio", "Erro",
+						JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
 	}
 
 	public void limparCampos() {

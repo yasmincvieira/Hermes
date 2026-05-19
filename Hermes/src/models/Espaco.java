@@ -52,7 +52,13 @@ public class Espaco {
 		return andar;
 	}
 
-	public void setAndar(String descricao) {
+	public void setAndar(String andar) {
 		this.andar = andar;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.nome_local+" - "+this.bloco + " - "+this.andar;
 	}
 }

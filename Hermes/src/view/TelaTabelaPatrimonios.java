@@ -92,6 +92,16 @@ public class TelaTabelaPatrimonios extends JPanel {
 		this.table = table;
 	}
 
+		public int getLinhaSelecionada() {
+			return table.getSelectedRow();
+		}
+	
+		public int getCodigoSelecionado() {
+			int linha = table.getSelectedRow();
+			if (linha == -1)
+				return -1; 
+			return (int) table.getValueAt(linha, 0);
+		}
 	public void excluirPatri(ActionListener actionListener) {
 		this.btnExcluirPatri.addActionListener(actionListener);
 	}

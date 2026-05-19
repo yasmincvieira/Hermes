@@ -2,6 +2,8 @@ package controller;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import models.Patrimonio;
 import models.Usuario;
 import view.Janela;
 import view.TelaLogin;
@@ -16,6 +18,7 @@ public class Navegador {
 	private Menu menu;
 	private Usuario usuarioLogado;
 	private ContaController contaController;
+	private Patrimonio patrimonioAdicionado;
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
@@ -83,6 +86,14 @@ public class Navegador {
 
 	public void setUsuarioLogado(Usuario usuario) {
 		this.usuarioLogado = usuario;
+	}
+	
+	public Patrimonio getPatrimonioAdicionado() {
+		return patrimonioAdicionado;
+	}
+
+	public void setPatrimonioAdicionado(Patrimonio patrimonio) {
+		this.patrimonioAdicionado = patrimonio;
 	}
 
 	public void setContaController(ContaController contaController) {

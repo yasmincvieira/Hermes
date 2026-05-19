@@ -15,16 +15,20 @@ public class PatrimonioDAO {
 	public void adicionarPatrimonio(Patrimonio patrimonio) {
 		String sql = "INSERT INTO patrimonio (idPatrimonio, status, nome, idEspaco) VALUES (?, ?, ?, ?)";
 		Connection conexao = null;
+		
 		PreparedStatement pstm = null;
+		
+		EspacoDAO espacoDao = new EspacoDAO();
+		
 
 		try {
 			conexao = BancoDeDados.conectar();
 			pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, patrimonio.getId_patrimonio());
+			pstm.setInt(1, patrimonio.getId_patrimonio());
 			pstm.setString(2, patrimonio.getStatus());
 			pstm.setString(3, patrimonio.getNome());
-			pstm.setString(4, patrimonio.getId_patrimonio());
-			pstm.executeUpdate();
+			pstm.setString(4, patrimonio.getEspaco().getNomeLocal());
+			pstm.executeUpdate(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -53,31 +57,33 @@ public class PatrimonioDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Patrimonio patrimonio = new Patrimonio(sql, sql, sql, sql);
-				patrimonio.setId_patrimonio(rset.getString("idPatrimonio"));
-				patrimonio.setNome(rset.getString("nome"));
-				patrimonio.setStatus(rset.getString("status"));
+				Patrimonio patrimonio = new Patrimonio();
+				patrimonio.setId_patrimonio(rset.getInt("idPatrimonio"));
+			    patrimonio.setNome(rset.getString("nome"));
+			    patrimonio.setStatus(rset.getString("status"));
 
 				String espaco = rset.getString("idEspaco");
 
 				EspacoDAO espacoDao = new EspacoDAO();
 				Espaco espacoPatrimonio = espacoDao.BuscarEspacoPorID(espaco);
+				
+				
 
-				patrimonio.setEspaco(espaco);
+				patrimonio.setEspaco(espacoPatrimonio);
 				listaPatrimonio.add(patrimonio);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			BancoDeDados.desconectar(conexao);
-			// Fechar recursos
+	
 		}
 		return listaPatrimonio;
 	}
 
 	// UPDATE - Atualizar um patrimônio existente
 	public void atualizarPatrimonio(Patrimonio patrimonio) {
-		String sql = "UPDATE patrimonio SET nome = ?, email = ? WHERE id = ?";
+		String sql = "UPDATE patrimonio SET nome = ?, status = ?, idEspaco = ? WHERE idPatrimonio = ?";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 
@@ -86,7 +92,8 @@ public class PatrimonioDAO {
 			pstm = conexao.prepareStatement(sql);
 			pstm.setString(1, patrimonio.getNome());
 			pstm.setString(2, patrimonio.getStatus());
-			pstm.setString(3, patrimonio.getId_patrimonio());
+			pstm.setString(3, patrimonio.getEspaco().getNomeLocal());
+			pstm.setInt(4, patrimonio.getId_patrimonio());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -96,15 +103,15 @@ public class PatrimonioDAO {
 	}
 
 	// DELETE - Excluir um patrimonio pelo ID
-	public void excluirPatrimonio(String idPatrimonio) {
-		String sql = "DELETE FROM patrimonio WHERE id = ?";
+	public void excluirPatrimonio(int idPatrimonio) {
+		String sql = "DELETE FROM patrimonio WHERE idPatrimonio = ?";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 
 		try {
 			conexao = BancoDeDados.conectar();
 			pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, idPatrimonio);
+			pstm.setInt(1, idPatrimonio);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

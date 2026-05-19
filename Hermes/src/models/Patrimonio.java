@@ -5,15 +5,23 @@ package models;
  */
 public class Patrimonio {
 
-	private String nome, id_patrimonio, status, espaco;
+	private String nome, status;
+	private int  id_patrimonio;
+	private Espaco espaco;
+	
+	public Patrimonio() {
+			
+		}
+		
 
-	public Patrimonio(String id_patrimonio, String status, String nome, String espaco) {
+	public Patrimonio(int id_patrimonio, String status, String nome, Espaco espaco) {
 		this.id_patrimonio = id_patrimonio;
 		this.status= status;
 		this.nome = nome;
 		this.espaco = espaco;
 	}
 
+	
 	public void imprimir() {
 		System.out.println("Id: " + this.id_patrimonio);
 		System.out.println("Nome: " + this.nome);
@@ -39,19 +47,19 @@ public class Patrimonio {
 		this.nome = nome;
 	}
 
-	public String getId_patrimonio() {
+	public int getId_patrimonio() {
 		return id_patrimonio;
 	}
 
-	public void setId_patrimonio(String id_patrimonio) {
+	public void setId_patrimonio(int id_patrimonio) {
 		this.id_patrimonio = id_patrimonio;
 	}
-
-	public String getEspaco() {
+	
+	public Espaco getEspaco() {
 		return espaco;
 	}
 
-	public void setEspaco(String espaco2) {
+	public void setEspaco(Espaco espaco) {
 		this.espaco = espaco;
 		
 	}
