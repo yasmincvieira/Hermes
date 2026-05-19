@@ -13,7 +13,7 @@ public class PatrimonioDAO {
 
 	// CREATE - Adicionar um novo usuário
 	public void adicionarPatrimonio(Patrimonio patrimonio) {
-		String sql = "INSERT INTO patrimonio (idPatrimonio, status, nome) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO patrimonio (idPatrimonio, status, nome, idEspaco) VALUES (?, ?, ?, ?)";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 
@@ -23,6 +23,7 @@ public class PatrimonioDAO {
 			pstm.setString(1, patrimonio.getId_patrimonio());
 			pstm.setString(2, patrimonio.getStatus());
 			pstm.setString(3, patrimonio.getNome());
+			pstm.setString(4, patrimonio.getId_patrimonio());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
