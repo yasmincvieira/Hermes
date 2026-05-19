@@ -8,6 +8,7 @@ import jakarta.mail.MessagingException;
 import models.Usuario;
 import models.UsuarioDAO;
 import view.TelaConta;
+import view.TelaContaADM;
 import view.TelaEscolhaAvatar;
 
 public class ContaController {
@@ -16,7 +17,7 @@ public class ContaController {
 	private UsuarioDAO user;
 	private Navegador navegador;
 
-	public ContaController(TelaConta conta, UsuarioDAO user, Navegador navegador, Menu menu) {
+	public ContaController(TelaConta conta, TelaContaADM telaContaADM, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
 		this.conta = conta;
 		this.user = user;

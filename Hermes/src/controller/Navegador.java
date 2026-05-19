@@ -80,12 +80,12 @@ public class Navegador {
 		this.menu = menu;
 	}
 
-	public Usuario getUsuarioLogado() {
-		return usuarioLogado;
-	}
-
 	public void setUsuarioLogado(Usuario usuario) {
 		this.usuarioLogado = usuario;
+	}
+	
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
 	}
 
 	public void setContaController(ContaController contaController) {

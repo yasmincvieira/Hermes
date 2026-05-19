@@ -46,7 +46,7 @@ public class MenuContraidoTeste extends JPanel {
 	}
 
 	public void mostrarMenuExpandidoAdm(MouseAdapter mouseAdapter) {
-		// TODO Auto-generated method stub
+		 this.lbAbrir.addMouseListener(mouseAdapter);
 		
 	}
 
