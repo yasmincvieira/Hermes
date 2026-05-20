@@ -14,6 +14,7 @@ public class TelaEscolhaAvatar extends JDialog {
 		setTitle("Escolha seu avatar");
 		setModal(true); // bloqueia a tela de trás
 		setSize(400, 200);
+		setBounds(100, 100, 800, 500);
 		setLocationRelativeTo(null);
 		setLayout(new MigLayout("", "[][][][][]", "[][]"));
 

@@ -19,7 +19,7 @@ public class TabelaController  extends ComponentAdapter {
 	private Navegador navegador;
 
 	public TabelaController(TelaTabelaPatrimonios telaTabelaPatrimonios, Navegador navegador,
-			PatrimonioDAO patrimonioDao) {
+			PatrimonioDAO patrimonioDAO) {
 		super();
 		this.telaTabelaPatrimonios = telaTabelaPatrimonios;
 		this.patrimonioDAO = patrimonioDAO;
@@ -42,12 +42,16 @@ public class TabelaController  extends ComponentAdapter {
 	    
 	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
 	    if (confirm == JOptionPane.YES_OPTION) {
-	    	PatrimonioDAO model = (PatrimonioDAO) telaTabelaPatrimonios.getTable().getModel();
-	    	int idPatrimonio = 0;
-	 
-	        patrimonioDAO.excluirPatrimonio(idPatrimonio); 
-	        telaTabelaPatrimonios.atualizarTabela();
-	        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+	    	
+	    	   String idString = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
+	           int idPatrimonio = Integer.parseInt(idString);
+	    
+	    
+	           patrimonioDAO.excluirPatrimonio(idPatrimonio); 
+	           
+	         
+	           telaTabelaPatrimonios.atualizarTabela();
+	           JOptionPane.showMessageDialog(null, "Patrimônio excluído com sucesso!");
 	    }
 	}
 
