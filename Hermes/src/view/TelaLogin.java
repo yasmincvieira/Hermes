@@ -7,10 +7,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+
 import java.awt.Color;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
@@ -69,6 +74,18 @@ public class TelaLogin extends JPanel {
 		this.btnLogin.setForeground(new Color(39, 79, 65));
 		this.btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(this.btnLogin, "cell 1 7 2 1,alignx center");
+		
+		this.registerKeyboardAction(
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						btnLogin.doClick(); 
+					}
+				},
+				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0),
+				JComponent.WHEN_IN_FOCUSED_WINDOW
+			);
+
 
 		this.pfSenha = new JPasswordField();
 		this.pfSenha.setBackground(new Color(78, 153, 126));

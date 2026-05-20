@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -14,8 +15,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -50,7 +54,8 @@ public class TelaInicial extends JPanel {
 		this.btnRealizarChamado.setBackground(new Color(122, 188, 170));
 		this.btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(this.btnRealizarChamado, "cell 3 3,grow");
-
+		
+	
 	}
 
 	public void historico(ActionListener actionListener) {
