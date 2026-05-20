@@ -25,13 +25,13 @@ public class MenuContraidoTeste extends JPanel {
 
 		setBackground(new Color(147, 195, 171));
 
-		setPreferredSize(new Dimension(55, 640));
+		setPreferredSize(new Dimension(44, 640));
 
 		setLayout(new MigLayout("", "[center]", "[91.00,top][597.00,bottom]"));
 
 		lbAbrir = new JLabel("");
 		lbAbrir.setIcon(new ImageIcon(MenuContraidoTeste.class.getResource("/Imagens/30Menu.png")));
-		add(lbAbrir, "cell 0 0,alignx center");
+		add(lbAbrir, "cell 0 0,alignx center,aligny top");
 
 		JLabel lbPerfil = new JLabel("");
 		lbPerfil.setIcon(new ImageIcon(MenuContraidoTeste.class.getResource("/Imagens/30Usuario.png")));

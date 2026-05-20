@@ -48,6 +48,11 @@ public class Menu {
                 navegador.navegarPara("HISTORICO");
         });
         
+        this.mnExp.irNovoChamado(e -> {
+            if (navegador != null)
+                navegador.navegarPara("CHAMADO");
+        });
+        
         this.mnExpAdm.irHistorico(e -> {
             if (navegador != null)
                 navegador.navegarPara("HISTORICO");

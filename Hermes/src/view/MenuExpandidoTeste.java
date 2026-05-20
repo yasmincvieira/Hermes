@@ -20,6 +20,7 @@ public class MenuExpandidoTeste extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFechar;
 	private JButton btnHistorico, btnSair, btnPerfil, btnInicio;
+	private JButton btnNovoChamado;
 
 	public MenuExpandidoTeste() {
 
@@ -42,6 +43,11 @@ public class MenuExpandidoTeste extends JPanel {
 		btnHistorico.setBackground(new Color(175, 207, 198));
 		btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		add(btnHistorico, "cell 0 2,grow");
+		
+		btnNovoChamado = new JButton("Novo Chamado");
+		btnNovoChamado.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNovoChamado.setBackground(new Color(175, 207, 198));
+		add(btnNovoChamado, "cell 0 3,growx,aligny top");
 
 		btnSair = new JButton("Sair");
 		btnSair.setBackground(new Color(175, 207, 198));
@@ -78,6 +84,9 @@ public class MenuExpandidoTeste extends JPanel {
 
 	public void irPerfil(ActionListener actionListener) {
 		this.btnPerfil.addActionListener(actionListener);
+	}
+	public void irNovoChamado(ActionListener actionListener) {
+		this.btnNovoChamado.addActionListener(actionListener);
 	}
 
 }
