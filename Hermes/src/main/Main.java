@@ -31,6 +31,7 @@ import view.TelaNovoChamadosADM;
 import view.TelaTabelaPatrimonios;
 import view.TelaVizuChamados;
 import view.TelaVizuChamadosADM;
+import view.TelinhaHistorico;
 
 public class Main {
 	public static void main(String[] args) {
@@ -41,31 +42,35 @@ public class Main {
 		manager.setInitialDelay(100);
 		manager.setDismissDelay(3000);
 		manager.setReshowDelay(100);
-
+		
+		//DAO
 		Janela janela = new Janela();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
 
+		//Telas
 		TelaLogin telaLogin = new TelaLogin();
 		TelaCadastro telaCadastro = new TelaCadastro();
 		TelaConta telaConta = new TelaConta();
-		TelaHistoricoDeChamados telaHistoricoChamados = new TelaHistoricoDeChamados();
 		TelaInicial telaInicial = new TelaInicial();
 		TelaInicialADM telaInicialADM = new TelaInicialADM();
 		TelaNovoChamado telaNovoChamado = new TelaNovoChamado();
 		TelaNovoChamadosADM telaNovosChamadosADM = new TelaNovoChamadosADM();
 		TelaTabelaPatrimonios telaTabelaPatrimonios = new TelaTabelaPatrimonios();
-		TelaVizuChamadosADM telaVizuChamadosADM = new TelaVizuChamadosADM();
 		MenuContraidoTeste menuCont = new MenuContraidoTeste();
 		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
 		TelaInicialADM inicioADM = new TelaInicialADM();
 		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
+		TelaVizuChamadosADM telaVizuChamadosADM = new TelaVizuChamadosADM();
+		TelaHistoricoDeChamados telaHistoricoChamados = new TelaHistoricoDeChamados();
 		TelaHistoricoDeChamadosADM telaHistoricoChamadosADM = new TelaHistoricoDeChamadosADM();
+		//TelinhaHistorico telinhaHistorico = new TelinhaHistorico();
 
 		Menu menu = new Menu(janela, menuExp, menuCont);
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
 		menu.setNavegador(navegador);
 
+		//Controllers
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
@@ -73,7 +78,7 @@ public class Main {
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
-		HistoricoControllerADM historicoControllerADM = new HistoricoControllerADM(telaHistoricoChamadosADM, telaVizuChamadosADM, chamadoDAO, navegador);
+		HistoricoControllerADM historicoControllerADM = new HistoricoControllerADM(telaNovosChamadosADM, telaHistoricoChamadosADM, telaVizuChamadosADM, chamadoDAO, navegador);
 		
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
@@ -82,6 +87,7 @@ public class Main {
 		navegador.setHistoricoController(historicoController);
 		navegador.setHistoricoControllerADM(historicoControllerADM);
 
+		//Paineis
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastro);
 		navegador.adicionarPainel("LOGIN", telaLogin);
 		navegador.adicionarPainel("INICIO", telaInicial);

@@ -103,14 +103,16 @@ public class TelaVizuChamadosADM extends JPanel {
 		panelVizuChamadosADM.add(btnAtualizar, "cell 2 9,growx");
 
 	}
-	
+
 	public void preencherDados(Chamado chamado) {
-        taChamado.setText("Chamado #" + chamado.getIdChamado());
-        cbStatus.setActionCommand(chamado.getStatus());
-        taNomePatrimonio.setText(chamado.getNome());
-        taLocal.setText(chamado.getLocal());
-        taDescricao.setText(chamado.getDescricao());
+		this.idChamadoAtual = chamado.getIdChamado(); 
+	    taChamado.setText("Chamado #" + chamado.getIdChamado());
+	    cbStatus.setSelectedItem(chamado.getStatus()); 
+	    taNomePatrimonio.setText(chamado.getNome());
+	    taLocal.setText(chamado.getLocal());
+	    taDescricao.setText(chamado.getDescricao());
     }
+	
 	public String getStatusSelecionado() {
         return (String) cbStatus.getSelectedItem();
     }

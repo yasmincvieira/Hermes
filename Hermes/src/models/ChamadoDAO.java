@@ -9,11 +9,11 @@ import java.util.List;
 
 public class ChamadoDAO {
 
-	public void adicionarChamado(Chamado chamado) {
-		String sql = "INSERT INTO novoChamado (nome, lugar, idPatrimonio, descricao, idUsuario) VALUES (?, ?, ?, ?, ?)";
-		Connection conexao = null;
+    public void adicionarChamado(Chamado chamado) {
+        String sql = "INSERT INTO novoChamado (nome, lugar, idPatrimonio, descricao, idUsuario, status) VALUES (?, ?, ?, ?, ?, ?)";
+        Connection conexao = null;
         PreparedStatement pstm = null;
-		
+
         try {
             conexao = BancoDeDados.conectar();
             if (conexao == null) {
@@ -29,23 +29,24 @@ public class ChamadoDAO {
             }
             pstm.setString(4, chamado.getDescricao());
             pstm.setInt(5, chamado.getIdUsuario());
+            pstm.setString(6, chamado.getStatus() != null ? chamado.getStatus() : "Em análise");
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao salvar no banco: " + e.getMessage());
         } finally {
-        BancoDeDados.desconectar(conexao);
-           if (pstm != null) {
-               try {
-            	   pstm.close();
-               } catch (SQLException e) {
-            	   e.printStackTrace();
+            BancoDeDados.desconectar(conexao);
+            if (pstm != null) {
+                try {
+                    pstm.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
-	
-	public void atualizarStatus(int idChamado, String novoStatus) {
+
+    public void atualizarStatus(int idChamado, String novoStatus) {
         String sql = "UPDATE novoChamado SET status = ? WHERE idChamado = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
@@ -63,33 +64,33 @@ public class ChamadoDAO {
         }
     }
 
-	public List<Chamado> listarChamados() {
-		String sql = "SELECT * FROM novoChamado";
-		List<Chamado> listaChamados = new ArrayList<>();
-		Connection conexao = null;
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
+    public List<Chamado> listarChamados() {
+        String sql = "SELECT * FROM novoChamado";
+        List<Chamado> listaChamados = new ArrayList<>();
+        Connection conexao = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null;
 
-		try {
-			conexao = BancoDeDados.conectar();
-			pstm = conexao.prepareStatement(sql);
-			rset = pstm.executeQuery();
-
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            rset = pstm.executeQuery();
 
             while (rset.next()) {
-            	Chamado chamado = new Chamado(
-            			rset.getString("nome"), 
-                        rset.getString("lugar"), 
-                        rset.getInt("idPatrimonio"), 
-                        rset.getString("descricao"),
-                        rset.getInt("idUsuario")
-                    );
-            		chamado.setIdChamado(rset.getInt("idChamado"));
+                Chamado chamado = new Chamado(
+                    rset.getString("nome"),
+                    rset.getString("lugar"),
+                    rset.getInt("idPatrimonio"),
+                    rset.getString("descricao"),
+                    rset.getInt("idUsuario")
+                );
+                chamado.setIdChamado(rset.getInt("idChamado"));
                 
-	                String status = rset.getString("status");
-	                chamado.setStatus(status != null ? status : "Em análise");
-	                
-	                listaChamados.add(chamado);
+                // Garante que o status nunca seja nulo ao vir do banco
+                String status = rset.getString("status");
+                chamado.setStatus(status != null ? status : "Em análise");
+                
+                listaChamados.add(chamado);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,8 +99,8 @@ public class ChamadoDAO {
         }
         return listaChamados;
     }
-	
-	public List<Chamado> listarChamadosPorUsuario(int idUsuario) {
+
+    public List<Chamado> listarChamadosPorUsuario(int idUsuario) {
         String sql = "SELECT * FROM novoChamado WHERE idUsuario = ?";
         List<Chamado> listaChamados = new ArrayList<>();
         Connection conexao = null;
@@ -114,12 +115,12 @@ public class ChamadoDAO {
 
             while (rset.next()) {
                 Chamado chamado = new Chamado(
-                rset.getString("nome"),
-                rset.getString("lugar"),
-                rset.getInt("idPatrimonio"),
-                rset.getString("descricao"),
-                rset.getInt("idUsuario"));
-                
+                    rset.getString("nome"),
+                    rset.getString("lugar"),
+                    rset.getInt("idPatrimonio"),
+                    rset.getString("descricao"),
+                    rset.getInt("idUsuario")
+                );
                 chamado.setIdChamado(rset.getInt("idChamado"));
                 
                 String status = rset.getString("status");
@@ -134,6 +135,4 @@ public class ChamadoDAO {
         }
         return listaChamados;
     }
-
-
 }

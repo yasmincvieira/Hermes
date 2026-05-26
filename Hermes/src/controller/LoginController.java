@@ -33,8 +33,6 @@ public class LoginController {
 		});
 	}
 
-	
-
 	private void verificarCadastroUsuario() {
 		List<Usuario> usuarios = user.listarUsuarios();
 
@@ -49,7 +47,7 @@ public class LoginController {
 				if (user.getNome().equals(login.gettfUsuario().getText())
 						&& user.getSenha().equals(login.getpfSenha().getText())) {
 
-					usuarioLogado = user; // <- salva o usuário encontrado
+					usuarioLogado = user;
 					usuarioEncontrado = true;
 					break;
 				}
@@ -69,6 +67,8 @@ public class LoginController {
 				navegador.navegarPara("INICIO");
 			}
 		}
+		
+		limparCamposLogin();
 
 	}
 

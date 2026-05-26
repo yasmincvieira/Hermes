@@ -43,7 +43,7 @@ public class Navegador {
 		if (nome.equals("HISTORICO") && historicoController != null) {
             historicoController.carregarHistorico();
         }
-		if ((nome.equals("TELA_NOVOS_CHAMADOS_ADM") || nome.equals("HISTORICO ADMIN")) && historicoControllerADM != null) {
+		if ((nome.equals("NOVO CHAMADO ADMIN") || nome.equals("HISTORICO ADMIN")) && historicoControllerADM != null) {
             historicoControllerADM.carregarChamados();
         }
 	}
