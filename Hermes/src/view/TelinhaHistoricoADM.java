@@ -35,6 +35,7 @@ public class TelinhaHistoricoADM extends JPanel {
         btnExcluir = new JButton("");
         btnExcluir.setBackground(new Color(187, 215, 194));
         btnExcluir.setIcon(new ImageIcon(TelinhaHistoricoADM.class.getResource("/Imagens/lixeira-de-reciclagem-removebg-preview.png")));
+        btnExcluir.setActionCommand(String.valueOf(chamado.getIdChamado()));
         add(btnExcluir, "cell 1 0,grow");
         
         JLabel lblStatus = new JLabel("Status: " + chamado.getStatus());

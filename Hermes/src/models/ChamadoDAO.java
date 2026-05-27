@@ -146,4 +146,22 @@ public class ChamadoDAO {
         }
         return listaChamados;
     }
+    
+    public void excluirChamado(int idChamado) {
+        String sql = "DELETE FROM novoChamado WHERE idChamado = ?";
+        Connection conexao = null;
+        PreparedStatement pstm = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, idChamado);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao excluir chamado: " + e.getMessage());
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
+    }
 }

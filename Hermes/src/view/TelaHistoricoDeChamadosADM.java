@@ -42,11 +42,12 @@ public class TelaHistoricoDeChamadosADM extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    public void atualizarChamados(List<Chamado> chamados, ActionListener verDetalhesListener) {
+    public void atualizarChamados(List<Chamado> chamados, ActionListener verDetalhesListener, ActionListener excluirListener) {
         containerChamados.removeAll();
 
         for (Chamado chamado : chamados) {
-            TelinhaHistorico card = new TelinhaHistorico(chamado, verDetalhesListener);
+            TelinhaHistoricoADM card = new TelinhaHistoricoADM(chamado, verDetalhesListener);
+            card.setExcluir(excluirListener);
             containerChamados.add(card);
             containerChamados.add(Box.createVerticalStrut(10));
         }

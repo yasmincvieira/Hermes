@@ -32,10 +32,6 @@ public class HistoricoControllerADM {
         this.telaDetalhesADM.setVoltar(e -> {
             navegador.navegarPara("INICIO ADMIN");
         });
-        
-//        this.telaDetalhesADM.setExcluir(e -> {
-//            navegador.navegarPara("INICIO ADMIN");
-//        });
     }
 
     public void carregarChamados() {
@@ -52,12 +48,27 @@ public class HistoricoControllerADM {
         }
 
         ActionListener verDetalhesListener = e -> {
-            int id = Integer.parseInt(e.getActionCommand());
-            abrirDetalhes(id);
+            String cmd = e.getActionCommand();
+            if (cmd != null && !cmd.isEmpty()) {
+                int id = Integer.parseInt(cmd);
+                abrirDetalhes(id);
+            }
         };
 
-        telaNovosChamados.atualizarChamados(novos, verDetalhesListener);
-        telaHistoricoGeral.atualizarChamados(historico, verDetalhesListener);
+        ActionListener excluirListener = e -> {
+            String cmd = e.getActionCommand();
+            if (cmd != null && !cmd.isEmpty()) {
+                int id = Integer.parseInt(cmd);
+                int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este chamado?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+                if (confirmacao == JOptionPane.YES_OPTION) {
+                    dao.excluirChamado(id);
+                    carregarChamados();
+                }
+            }
+        };
+
+        telaNovosChamados.atualizarChamados(novos, verDetalhesListener, excluirListener);
+        telaHistoricoGeral.atualizarChamados(historico, verDetalhesListener, excluirListener);
     }
 
     private void abrirDetalhes(int idChamado) {
@@ -93,4 +104,3 @@ public class HistoricoControllerADM {
     }
 
 }
-
