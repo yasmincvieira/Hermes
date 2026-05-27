@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -19,6 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ScrollPaneConstants;
 
+import models.Chamado;
+
 public class TelaNovoChamado extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -26,6 +30,11 @@ public class TelaNovoChamado extends JPanel {
 	private JButton btnRealizarChamado;
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
+	private JTextField textField;
+	private JTextField tfChamado;
+	private int contadorChamados = 0;
+	private java.util.List<Chamado> chamado = new java.util.ArrayList<>();
+	private java.util.List<Chamado> listaChamados;
 
 	/**
 	 * Create the panel.
@@ -90,16 +99,14 @@ public class TelaNovoChamado extends JPanel {
 		panelChamado.add(lbDescricao, "cell 1 8,alignx left,aligny top");
 
 		JScrollPane scrollPane = new JScrollPane();
-		// scrollPane.setPreferredSize(new Dimension(250, 300)); // Largura fixa e
-		// altura variável
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panelChamado.add(scrollPane, "cell 2 8,grow");
 
 		taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
 		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		taDescricao.setWrapStyleWord(true); // Quebra de linha em palavras completas
-		taDescricao.setLineWrap(true); // Habilita a quebra de linha automática
+		taDescricao.setWrapStyleWord(true); 
+		taDescricao.setLineWrap(true); 
 		scrollPane.setViewportView(taDescricao);
 
 		btnRealizarChamado = new JButton("Realizar chamado");
@@ -111,6 +118,8 @@ public class TelaNovoChamado extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("(opcional)");
 		lblNewLabel_1.setForeground(new Color(91, 91, 91));
 		panelChamado.add(lblNewLabel_1, "cell 1 6");
+		
+		tfChamado = new JTextField("0");
 
 	}
 
@@ -148,6 +157,14 @@ public class TelaNovoChamado extends JPanel {
 
 	public JComboBox getcbLocal() {
 		return cbLocal;
+	}
+	
+	public void atualizarContador(int quantidade) {
+		tfChamado.setText(String.valueOf(quantidade));
+	}
+
+	public void atualizarQntdChamado(int quantidade) {
+		textField.setText("" + quantidade);
 	}
 
 }

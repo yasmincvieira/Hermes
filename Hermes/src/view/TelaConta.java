@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 
+import models.Chamado;
 import models.Usuario;
 
 import java.awt.Color;
@@ -33,6 +34,11 @@ public class TelaConta extends JPanel {
 	private JLabel lbEditarSenha;
 	private JLabel lbEditarNome;
 	private JLabel lbTrocarFoto;
+	private JLabel lblContador;
+	private int contadorItens = 0;
+	private java.util.List<Chamado> chamado = new java.util.ArrayList<>();
+	private java.util.List<Chamado> listaChamados;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
@@ -89,7 +95,7 @@ public class TelaConta extends JPanel {
 		tfUsuario.setColumns(10);
 
 		tfSenha = new JTextField();
-		tfSenha.setBackground(new Color(255, 255, 255));
+		tfSenha.setBackground(new Color(216, 233, 221));
 		tfSenha.setEditable(false);
 		panel_1.add(tfSenha, "cell 1 6");
 		tfSenha.setColumns(10);
@@ -101,6 +107,7 @@ public class TelaConta extends JPanel {
 		tfEmail.setColumns(10);
 
 		tfChamados = new JTextField();
+		tfChamados.setBackground(new Color(216, 233, 221));
 		tfChamados.setEditable(false);
 		panel_1.add(tfChamados, "cell 1 10");
 		tfChamados.setColumns(10);
@@ -165,5 +172,20 @@ public class TelaConta extends JPanel {
 
 	public void escolherFoto(MouseListener mouseListener) {
 		this.lbTrocarFoto.addMouseListener(mouseListener);
+	}
+	
+	public interface OuvinteQntdChamado {
+	    void atualizarQuantidade(int novaQuantidade);
+	}
+	public void atualizarContador(int quantidade) {
+		lblContador.setText(String.valueOf(quantidade));
+	}
+
+	public void atualizarQntdChamado(int quantidade) {
+		tfChamados.setText("" + quantidade);
+	}
+
+	public void atualizarTotal(int total) {
+		tfChamados.setText(String.format("R$ ", total));
 	}
 }

@@ -60,6 +60,7 @@ public class NovoChamadoController {
 
 			chamado.gettaDescricao().setText("");
 			chamado.gettfPatrimonio().setText("");
+		
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
