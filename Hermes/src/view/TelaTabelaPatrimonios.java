@@ -22,12 +22,14 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class TelaTabelaPatrimonios extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -39,12 +41,11 @@ public class TelaTabelaPatrimonios extends JPanel {
 
 		JPanel paneltabelaPatrimonio = new JPanel();
 		add(paneltabelaPatrimonio, BorderLayout.CENTER);
-		paneltabelaPatrimonio.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow][grow][::60px]",
-				"[::60px,grow][100px:n,grow][grow][grow][grow]"));
+		paneltabelaPatrimonio.setLayout(new MigLayout("", "[grow][grow][177.00,grow][grow][grow][grow][::60px]", "[][::60px,grow][73.00][100px:n,grow][grow][grow][grow]"));
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(160, 200, 172));
-		paneltabelaPatrimonio.add(panel, "cell 0 0 2 1");
+		paneltabelaPatrimonio.add(panel, "cell 0 1 2 1");
 
 		JLabel lblNewLabel_1 = new JLabel("Patrimônios");
 		lblNewLabel_1.setForeground(new Color(38, 76, 63));
@@ -56,10 +57,18 @@ public class TelaTabelaPatrimonios extends JPanel {
 		lblNewLabel.setForeground(new Color(39, 79, 65));
 		lblNewLabel.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/40.png")));
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
-		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 0 4 1,alignx right");
+		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 1 4 1,alignx right");
+		
+		JPanel panel_1 = new JPanel();
+		paneltabelaPatrimonio.add(panel_1, "flowx,cell 2 2,grow");
+		panel_1.setLayout(new MigLayout("", "[225.00px]", "[76.00px]"));
+		
+		textField = new JTextField();
+		panel_1.add(textField, "cell 0 0,alignx center,aligny center");
+		textField.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
-		paneltabelaPatrimonio.add(scrollPane, "cell 1 1 5 2,grow");
+		paneltabelaPatrimonio.add(scrollPane, "cell 1 3 5 2,grow");
 
 		table = new JTable();
 		atualizarTabela();
@@ -69,19 +78,19 @@ public class TelaTabelaPatrimonios extends JPanel {
 		btnEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEditarPatri.setForeground(new Color(39, 79, 65));
 		btnEditarPatri.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnEditarPatri, "cell 2 4,alignx right");
+		paneltabelaPatrimonio.add(btnEditarPatri, "cell 2 6,alignx right");
 
 		btnAdicionarPatri = new JButton("Adicionar patrimônio");
 		btnAdicionarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnAdicionarPatri.setForeground(new Color(39, 79, 65));
 		btnAdicionarPatri.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnAdicionarPatri, "cell 3 4,alignx center");
+		paneltabelaPatrimonio.add(btnAdicionarPatri, "cell 3 6,alignx center");
 
 		btnExcluirPatri = new JButton("Excluir patrimônio");
 		btnExcluirPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnExcluirPatri.setForeground(new Color(39, 79, 65));
 		btnExcluirPatri.setBackground(new Color(144, 204, 171));
-		paneltabelaPatrimonio.add(btnExcluirPatri, "cell 4 4,alignx left");
+		paneltabelaPatrimonio.add(btnExcluirPatri, "cell 4 6,alignx left");
 	}
 
 	public JTable getTable() {

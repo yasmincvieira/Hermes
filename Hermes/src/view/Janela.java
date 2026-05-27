@@ -24,6 +24,7 @@ public class Janela extends JFrame {
 	public Janela() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Tela de Inicio");
 
 		setBounds(100, 100, 800, 500);
 
@@ -43,11 +44,11 @@ public class Janela extends JFrame {
 
 		panelTelas.setLayout(cardLayout);
 
-		setPreferredSize(new Dimension(800, 500)); // Tamanho de padrão
+		setPreferredSize(new Dimension(800, 500));
 
-		setMinimumSize(new Dimension(800, 500)); // Tamanho minimo
+		setMinimumSize(new Dimension(800, 500));
 
-		setLocationRelativeTo(null); // Tela Centralizada
+		setLocationRelativeTo(null);
 
 	}
 

@@ -33,9 +33,7 @@ public class TelaNovoChamado extends JPanel {
 	private JTextField textField;
 	private JTextField tfChamado;
 	private int contadorChamados = 0;
-	private java.util.List<Chamado> chamado = new java.util.ArrayList<>();
-	private java.util.List<Chamado> listaChamados;
-
+	private TelaConta telaConta;
 	/**
 	 * Create the panel.
 	 */
