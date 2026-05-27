@@ -10,7 +10,7 @@ public class Patrimonio {
 
 	public Patrimonio(String id_patrimonio, String status, String nome) {
 		this.id_patrimonio = id_patrimonio;
-		this.nome = status;
+		this.status = status;
 	}
 
 	public Patrimonio() {
@@ -35,6 +35,16 @@ public class Patrimonio {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+	public String getId_patrimonio() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setId_patrimonio(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
 
