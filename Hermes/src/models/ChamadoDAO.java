@@ -86,9 +86,14 @@ public class ChamadoDAO {
                 );
                 chamado.setIdChamado(rset.getInt("idChamado"));
                 
-                // Garante que o status nunca seja nulo ao vir do banco
                 String status = rset.getString("status");
                 chamado.setStatus(status != null ? status : "Em análise");
+                
+                java.sql.Date dataSql = rset.getDate("data_criacao");
+                if (dataSql != null) {
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                    chamado.setDataCriacao(sdf.format(dataSql));
+                }
                 
                 listaChamados.add(chamado);
             }
@@ -125,6 +130,12 @@ public class ChamadoDAO {
                 
                 String status = rset.getString("status");
                 chamado.setStatus(status != null ? status : "Em análise");
+                
+                java.sql.Date dataSql = rset.getDate("data_criacao");
+                if (dataSql != null) {
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                    chamado.setDataCriacao(sdf.format(dataSql));
+                }
                 
                 listaChamados.add(chamado);
             }

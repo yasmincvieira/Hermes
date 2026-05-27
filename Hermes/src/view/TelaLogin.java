@@ -83,8 +83,6 @@ public class TelaLogin extends JPanel {
 		lblNewLabel_3.setForeground(new Color(39, 79, 65));
 		panel.add(lblNewLabel_3);
 
-		TelaCadastro telaCadastro = new TelaCadastro();
-
 		this.btnCadastrarse = new JButton("Cadastre-se");
 		this.btnCadastrarse.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		this.btnCadastrarse.setForeground(new Color(39, 79, 65));

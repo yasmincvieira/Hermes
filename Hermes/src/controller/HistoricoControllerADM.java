@@ -27,10 +27,14 @@ public class HistoricoControllerADM {
         this.dao = dao;
         this.navegador = navegador;
 
-        this.telaDetalhesADM.setAtualizarListener(e -> atualizarStatusChamado());
+        this.telaDetalhesADM.setAtualizar(e -> atualizarStatusChamado());
         
-        this.telaDetalhesADM.setVoltarListener(e -> {
-            navegador.navegarPara("NOVO CHAMADO ADMIN");
+        this.telaDetalhesADM.setVoltar(e -> {
+            navegador.navegarPara("INICIO ADMIN");
+        });
+        
+        this.telaDetalhesADM.setVoltar(e -> {
+            navegador.navegarPara("INICIO ADMIN");
         });
     }
 
@@ -77,11 +81,13 @@ public class HistoricoControllerADM {
         String novoStatus = telaDetalhesADM.getStatusSelecionado();
 
         dao.atualizarStatus(id, novoStatus);
+        JOptionPane.showMessageDialog(telaDetalhesADM, "Status atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         carregarChamados();
         
         if ("Em análise".equalsIgnoreCase(novoStatus)) {
             navegador.navegarPara("NOVO CHAMADO ADMIN");
-        } else {
+        } 
+        else {
             navegador.navegarPara("HISTORICO ADMIN");
         }
     }

@@ -47,7 +47,7 @@ public class TelaVizuChamadosADM extends JPanel {
 		panelVizuChamadosADM.add(panel_2, "cell 1 0");
 
 		taChamado = new JTextArea();
-		taChamado.setEnabled(false);
+		taChamado.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		taChamado.setEditable(false);
 		panel_2.add(taChamado);
 
@@ -121,12 +121,13 @@ public class TelaVizuChamadosADM extends JPanel {
         return idChamadoAtual;
     }
 
-    public void setAtualizarListener(ActionListener listener) {
+    public void setAtualizar(ActionListener listener) {
         this.btnAtualizar.addActionListener(listener);
     }
 
-    public void setVoltarListener(ActionListener listener) {
+    public void setVoltar(ActionListener listener) {
         this.btnVoltar.addActionListener(listener);
     }
+
 
 }

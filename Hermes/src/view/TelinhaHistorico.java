@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 public class TelinhaHistorico extends JPanel {
 
@@ -24,23 +25,28 @@ public class TelinhaHistorico extends JPanel {
         setBorder(BorderFactory.createLineBorder(new Color(39, 79, 65), 1));
         setLayout(new MigLayout("", "[grow]", "[][][grow][]"));
         
-        setPreferredSize(new Dimension(300, 120));
+        setPreferredSize(new Dimension(300, 134));
         setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
 
         JLabel lblTitulo = new JLabel("Chamado " + chamado.getIdChamado() + " - " + chamado.getNome());
         lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
-        add(lblTitulo, "cell 0 0, growx");
+        add(lblTitulo, "cell 0 0,growx");
         
         JLabel lblStatus = new JLabel("Status: " + chamado.getStatus());
         lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        add(lblStatus, "cell 0 1, growx");
+        add(lblStatus, "cell 0 1,growx");
+        
+        String data = chamado.getDataCriacao() != null ? chamado.getDataCriacao() : "--/--/----";
+        JLabel lblData = new JLabel("Data: " + data);
+        lblData.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        add(lblData, "cell 0 2,growx");
         
         btnVerDetalhes = new JButton("Ver Detalhes...");
         btnVerDetalhes.setFont(new Font("Tahoma", Font.PLAIN, 13));
         btnVerDetalhes.setBackground(new Color(187, 215, 194));
         btnVerDetalhes.setActionCommand(String.valueOf(chamado.getIdChamado()));
         btnVerDetalhes.addActionListener(verDetalhesListener);
-        add(btnVerDetalhes, "cell 0 3, alignx left");
+        add(btnVerDetalhes, "cell 0 3,alignx left");
     }
 
     public Chamado getChamado() {

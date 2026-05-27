@@ -10,7 +10,7 @@ public class Chamado {
 	private String descricao;
 	private String status;
 	private Integer idUsuario;
-
+	private String dataCriacao;
 
     public Chamado(String nome, String local, Integer idPatrimonio, String descricao, Integer idUsuario) {
         this.nome = nome;
@@ -19,6 +19,7 @@ public class Chamado {
         this.descricao = descricao;
         this.idUsuario = idUsuario;
         this.status = "Em análise";
+        this.dataCriacao = null;
     }
     public int getIdChamado() {
         return idChamado;
@@ -74,6 +75,14 @@ public class Chamado {
 
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
+    }
+    
+    public String getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(String dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
 }

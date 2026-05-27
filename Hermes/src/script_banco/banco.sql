@@ -21,6 +21,7 @@ create table novoChamado(
     idPatrimonio int(255),
     descricao text not null,
     idUsuario int not null,
+    data_criacao date default (CURRENT_DATE),
     FOREIGN KEY (idUsuario) REFERENCES Usuarios(id)
 );
 select * from banco.novochamado;

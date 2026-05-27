@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import models.Usuario;
 import models.UsuarioDAO;
+import view.Mensagem;
 import view.TelaCadastro;
 import view.TelaConta;
 import view.TelaLogin;
@@ -60,6 +61,8 @@ public class CadastroController {
 		}
 
 		if (email.substring(0, email.indexOf("@")).contains(" ")) {
+			//Mensagem mensagem = new Mensagem("Por favor, insira um e-mail válido", "Erro");
+			//mensagem.setVisible(true);
 			JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "Erro",
 					JOptionPane.ERROR_MESSAGE);
 			return;
