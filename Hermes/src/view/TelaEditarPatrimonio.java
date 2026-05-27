@@ -5,9 +5,19 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+
+import models.Espaco;
+import models.PatrimonioDAO;
+import models.Patrimonio;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
@@ -16,6 +26,9 @@ public class TelaEditarPatrimonio extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JComboBox<Espaco> cbEspaco;  // ✅ Tipado com Espaco
+	private JComboBox<String> cbStatus;
+	private PatrimonioDAO patrimonioDAO;
 
 	/**
 	 * Create the panel.
@@ -62,12 +75,15 @@ public class TelaEditarPatrimonio extends JPanel {
 		add(textField_1, "cell 2 2,growx");
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_3_1_1 = new JLabel("Espaço");
-		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(lblNewLabel_3_1_1, "cell 1 3,alignx trailing");
+		 // --- Espaço ---
+        JLabel lblEspaco = new JLabel("Espaço");
+        lblEspaco.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        add(lblEspaco, "cell 1 3,alignx trailing");
+
+        cbEspaco = new JComboBox<>();
+        carregarEspacos(); // ✅ popula o combo com dados do banco
+        add(cbEspaco, "cell 2 3,growx");
 		
-		JComboBox cbEspaco = new JComboBox();
-		add(cbEspaco, "cell 2 3,growx");
 		
 		JLabel lblNewLabel_3_1_1_1 = new JLabel("Status");
 		lblNewLabel_3_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -84,5 +100,64 @@ public class TelaEditarPatrimonio extends JPanel {
 
 		
 	}
+
+	
+	 // ✅ Carrega a lista de espaços do banco no ComboBox
+    private void carregarEspacos() {
+        try {
+            List<Espaco> espacos = espacoDAO.listarTodos();
+            for (Espaco esp : espacos) {
+                cbEspaco.addItem(esp);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar espaços: " + ex.getMessage());
+        }
+    }
+
+    // ✅ Preenche os campos ao abrir a tela com um patrimônio existente
+    public void preencherCampos(String id) {
+        try {
+            Patrimonio p = patrimonioDAO.buscarPorId(id);
+            if (p != null) {
+                textField.setText(p.getId());
+                textField_1.setText(p.getNome());
+                cbStatus.setSelectedItem(p.getStatus());
+
+                // Seleciona o espaço correto no ComboBox pelo ID
+                for (int i = 0; i < cbEspaco.getItemCount(); i++) {
+                    if (cbEspaco.getItemAt(i).getId().equals(p.getEspaco().getId())) {
+                        cbEspaco.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Patrimônio não encontrado.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao buscar: " + ex.getMessage());
+        }
+    }
+
+    private void salvarAlteracoes() {
+        try {
+            Espaco espacoSelecionado = (Espaco) cbEspaco.getSelectedItem();
+
+            Patrimonio p = new Patrimonio();
+            p.setId(textField.getText().trim());
+            p.setNome(textField_1.getText().trim());
+            p.setEspaco(espacoSelecionado);           // ✅ objeto Espaco completo
+            p.setStatus((String) cbStatus.getSelectedItem());
+
+            boolean sucesso = patrimonioDAO.atualizar(p);
+
+            if (sucesso) {
+                JOptionPane.showMessageDialog(this, "Patrimônio atualizado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhum registro foi atualizado.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage());
+        }
+    }
 
 }

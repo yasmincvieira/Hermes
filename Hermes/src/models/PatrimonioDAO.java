@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import models.BancoDeDados;
 
 public class PatrimonioDAO {
+
+	private Statement ConexaoDB;
 
 	// CREATE - Adicionar um novo usuário
 	public void adicionarPatrimonio(Patrimonio patrimonio) {
@@ -20,7 +23,7 @@ public class PatrimonioDAO {
 		try {
 			conexao = BancoDeDados.conectar();
 			pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, patrimonio.getIdpatrimonio());
+			pstm.setString(1, patrimonio.getId_patrimonio());
 			pstm.setString(2, patrimonio.getStatus());
 			pstm.setString(3, patrimonio.getNome());
 			pstm.executeUpdate();
@@ -53,7 +56,7 @@ public class PatrimonioDAO {
 
 			while (rset.next()) {
 				Patrimonio patrimonio = new Patrimonio(sql, sql, sql);
-				patrimonio.setIdpatrimonio(rset.getString("idPatrimonio"));
+				patrimonio.setId_patrimonio(rset.getString("idPatrimonio"));
 				patrimonio.setNome(rset.getString("nome"));
 				patrimonio.setStatus(rset.getString("status"));
 
@@ -85,7 +88,7 @@ public class PatrimonioDAO {
 			pstm = conexao.prepareStatement(sql);
 			pstm.setString(1, patrimonio.getNome());
 			pstm.setString(2, patrimonio.getStatus());
-			pstm.setString(3, patrimonio.getIdpatrimonio());
+			pstm.setString(3, patrimonio.getId_patrimonio());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -111,4 +114,47 @@ public class PatrimonioDAO {
 			BancoDeDados.desconectar(conexao);
 		}
 	}
+	
+	public Patrimonio buscarPorId(String id) throws SQLException {
+        String sql = "SELECT p.*, e.id AS espaco_id, e.nome AS espaco_nome " +
+                     "FROM patrimonio p " +
+                     "JOIN espaco e ON p.espaco_id = e.id " +
+                     "WHERE p.id = ?";
+
+        try (Connection conn = ConexaoDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Espaco espaco = new Espaco();
+                espaco.setId(rs.getString("espaco_id"));
+                espaco.setNomeLocal(rs.getString("espaco_nome"));
+
+                Patrimonio p = new Patrimonio();
+                p.setId(rs.getString("id"));
+                p.setNome(rs.getString("nome"));
+                p.setEspaco(espaco);
+                p.setStatus(rs.getString("status"));
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public boolean atualizar(Patrimonio p) throws SQLException {
+        String sql = "UPDATE patrimonio SET nome = ?, espaco_id = ?, status = ? WHERE id = ?";
+
+        try (Connection conn = ConexaoDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, p.getNome());
+            ps.setString(2, p.getEspaco().getId()); // ✅ salva a FK do espaço
+            ps.setString(3, p.getStatus());
+            ps.setString(4, p.getId());             // ✅ ID como String
+
+            return ps.executeUpdate() > 0;
+        }
+    }
 }

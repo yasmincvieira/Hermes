@@ -13,6 +13,10 @@ public class Patrimonio {
 		this.nome = status;
 	}
 
+	public Patrimonio() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void imprimir() {
 		System.out.println("Id: " + this.id_patrimonio);
 		System.out.println("Nome: " + this.nome);
@@ -20,37 +24,17 @@ public class Patrimonio {
 		System.out.println("##################################");
 	}
 
-	// Getters e setters.
-	public String getIdpatrimonio() {
-		return id_patrimonio;
-	}
+    public String getId() { return id_patrimonio; }
+    public void setId(String id) { this.id_patrimonio = id; }
 
-	public void setIdpatrimonio(String id_patrimonio) {
-		this.id_patrimonio = id_patrimonio;
-	}
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-	public String getStatus() {
-		return status;
-	}
+    public Espaco getEspaco() { return espaco; }
+    public void setEspaco(Espaco espaco) { this.espaco = espaco; }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Espaco getEspaco() {
-		return espaco;
-	}
-
-	public void setEspaco(Espaco espaco) {
-		this.espaco = espaco;
-	}
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
 }
+

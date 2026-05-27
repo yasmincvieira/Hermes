@@ -18,6 +18,15 @@ public class Espaco {
 		this.andar = andar;
 
 	}
+	
+	@Override
+	public String toString() {
+	    return nome; // exibe o nome do espaço no ComboBox
+	}
+
+	public Espaco() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Método para exibir os dados do candidato.
@@ -54,5 +63,15 @@ public class Espaco {
 
 	public void setAndar(String descricao) {
 		this.andar = andar;
+	}
+
+	public void setId(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
