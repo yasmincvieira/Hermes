@@ -33,9 +33,9 @@ public class HistoricoControllerADM {
             navegador.navegarPara("INICIO ADMIN");
         });
         
-        this.telaDetalhesADM.setVoltar(e -> {
-            navegador.navegarPara("INICIO ADMIN");
-        });
+//        this.telaDetalhesADM.setExcluir(e -> {
+//            navegador.navegarPara("INICIO ADMIN");
+//        });
     }
 
     public void carregarChamados() {
