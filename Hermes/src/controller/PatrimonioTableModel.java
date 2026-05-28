@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 public class PatrimonioTableModel extends AbstractTableModel {
 
 	private final List<Patrimonio> dados;
-	private final String[] colunas = { "Nome", "Espaço", "Patrimônio", "Status" };
+	private final String[] colunas = { "Id", "Patrimônio", "Espaço", "Status" };
 
 	public PatrimonioTableModel(List<Patrimonio> dados) {
 		this.dados = dados;
@@ -39,11 +39,12 @@ public class PatrimonioTableModel extends AbstractTableModel {
 		Patrimonio p = dados.get(rowIndex);
 		switch (columnIndex) {
 		case 0:
-			return p.getNome();
+			return p.getId_patrimonio();
 		case 1:
-			return p.getEspaco().getNomeLocal();
+			return p.getNome();
+			
 		case 2:
-			return p.getIdpatrimonio();
+			return p.getEspaco();
 		case 3:
 			return p.getStatus();
 

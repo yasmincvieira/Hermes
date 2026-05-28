@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -21,15 +23,23 @@ import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ScrollPaneConstants;
 
+import models.Espaco;
+
 public class TelaCadastrarPatrimonio extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfPatrimonio;
 	private JButton btnConcluir;
-	private JComboBox cbLocal, cbNome;
+	private JComboBox cbNome, cbStatus, cbBloco, cbAndar;
+	JComboBox<Espaco> cbLocal;
 
 	/**
 	 * Create the panel.
+	 * 
+	 * @param status
+	 * @param nome
+	 * @param local
+	 * @param id_patrimonio
 	 */
 	public TelaCadastrarPatrimonio() {
 		setLayout(new BorderLayout(0, 0));
@@ -39,7 +49,7 @@ public class TelaCadastrarPatrimonio extends JPanel {
 		panelChamado.setBackground(new Color(234, 242, 236));
 		add(panelChamado, BorderLayout.CENTER);
 		panelChamado.setLayout(
-				new MigLayout("", "[grow][grow][grow][grow]", "[39.00,grow][49.00][][][][][][][23.00][][][]"));
+				new MigLayout("", "[grow][grow][grow][grow]", "[39.00,grow][49.00][][][][][][][][][][][23.00][][][]"));
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(160, 200, 172));
@@ -55,68 +65,94 @@ public class TelaCadastrarPatrimonio extends JPanel {
 		lblNewLabel_6.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/40.png")));
 		lblNewLabel_6.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
 		panelChamado.add(lblNewLabel_6, "cell 2 0 2 1,alignx right,aligny top");
+		
+				JLabel lbIDPatrimonio = new JLabel("ID do Patrimônio:");
+				lbIDPatrimonio.setBackground(new Color(240, 240, 240));
+				lbIDPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				panelChamado.add(lbIDPatrimonio, "flowy,cell 1 2,alignx left");
+		
+				tfPatrimonio = new JTextField();
+				tfPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				tfPatrimonio.setBackground(new Color(160, 200, 172));
+				panelChamado.add(tfPatrimonio, "cell 2 2,growx");
+				tfPatrimonio.setColumns(10);
+		
+				JLabel lbDescricao = new JLabel("Status:");
+				lbDescricao.setBackground(new Color(240, 240, 240));
+				lbDescricao.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				panelChamado.add(lbDescricao, "cell 1 4,alignx left,aligny top");
+		
+				cbStatus = new JComboBox();
+				cbStatus.setForeground(new Color(38, 73, 63));
+				cbStatus.setBackground(new Color(255, 255, 255));
+				cbStatus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				cbStatus.setModel(new DefaultComboBoxModel(new String[] {"Inativo", "Ativo", "Em manutenção" }));
+				panelChamado.add(cbStatus, "cell 2 4,grow");
+		
+				JLabel lbNomePatrimonio = new JLabel("Nome do Patrimônio:");
+				lbNomePatrimonio.setBackground(new Color(38, 76, 63));
+				lbNomePatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				panelChamado.add(lbNomePatrimonio, "cell 1 6,alignx left");
+		
+				cbNome = new JComboBox();
+				cbNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				cbNome.setModel(new DefaultComboBoxModel(new String[] { "Cadeira", "Mesa", "Quadro", "Ar-Condicionado" }));
+				cbNome.setForeground(new Color(38, 76, 63));
+				cbNome.setBackground(new Color(160, 200, 172));
+				panelChamado.add(cbNome, "cell 2 6,growx");
 
-		JLabel lbNomePatrimonio = new JLabel("Nome do Patrimônio:");
-		lbNomePatrimonio.setBackground(new Color(38, 76, 63));
-		lbNomePatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelChamado.add(lbNomePatrimonio, "cell 1 2,alignx left");
+		JLabel lblNewLabel_2 = new JLabel("Andar");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panelChamado.add(lblNewLabel_2, "cell 1 8,alignx left");
 
-		cbNome = new JComboBox();
-		cbNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbNome.setModel(new DefaultComboBoxModel(new String[] { "Cadeira", "Mesa", "Quadro", "Ar-Condicionado" }));
-		cbNome.setForeground(new Color(38, 76, 63));
-		cbNome.setBackground(new Color(160, 200, 172));
-		panelChamado.add(cbNome, "cell 2 2,growx");
-
-		JLabel lbLocal = new JLabel("Local:");
-		lbLocal.setBackground(new Color(38, 76, 63));
-		lbLocal.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelChamado.add(lbLocal, "cell 1 4,alignx left");
-
-		cbLocal = new JComboBox();
-		cbLocal.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbLocal.setModel(new DefaultComboBoxModel(new String[] { "Sala 1", "Sala 2", "Sala 3", "Sala 4", "Sala 5",
-				"Sala 6", "Sala 7", "Sala 8", "Sala 9", "Sala 10", "Sala 11", "Sala 12", "Sala 13", "Sala 14",
-				"Sala 15", "Sala 16", "Sala 17", "Sala 17", "Sala 18", "Sala 19", "Lab Info 1", "Lab Info 2",
-				"Lab Info 3", "Lab Info 4", "Lab Info 5", "Lab Info 6", "Lab Info 7", "Lab Química 1", "Lab Química 2",
-				"Lab Química 3", "Lab Química 4", "Lab Química 5", "Lab Química 6" }));
-		cbLocal.setForeground(new Color(38, 76, 63));
-		cbLocal.setBackground(new Color(160, 200, 172));
-		panelChamado.add(cbLocal, "cell 2 4,growx");
-
-		JLabel lbIDPatrimonio = new JLabel("ID do Patrimônio:");
-		lbIDPatrimonio.setBackground(new Color(240, 240, 240));
-		lbIDPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelChamado.add(lbIDPatrimonio, "flowy,cell 1 6,alignx left");
-
-		tfPatrimonio = new JTextField();
-		tfPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		tfPatrimonio.setBackground(new Color(160, 200, 172));
-		panelChamado.add(tfPatrimonio, "cell 2 6,growx");
-		tfPatrimonio.setColumns(10);
-
-		JLabel lbDescricao = new JLabel("Status:");
-		lbDescricao.setBackground(new Color(240, 240, 240));
-		lbDescricao.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelChamado.add(lbDescricao, "cell 1 8,alignx left,aligny top");
-
-		JComboBox comboBox = new JComboBox();
-		comboBox.setForeground(new Color(38, 73, 63));
-		comboBox.setBackground(new Color(255, 255, 255));
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Inativo", "Ativo", "Em manutenção" }));
-		panelChamado.add(comboBox, "cell 2 8,grow");
+		cbAndar = new JComboBox();
+		cbAndar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cbAndar.setModel(new DefaultComboBoxModel(new String[] { "Terreo", "1 andar", "2 andar" }));
+		panelChamado.add(cbAndar, "cell 2 8,growx");
+		
+				JLabel lbLocal = new JLabel("Local:");
+				lbLocal.setBackground(new Color(38, 76, 63));
+				lbLocal.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				panelChamado.add(lbLocal, "cell 1 10,alignx left");
+						
+								cbLocal = new JComboBox();
+								cbLocal.setFont(new Font("Tahoma", Font.PLAIN, 15));
+							
+								cbLocal.setForeground(new Color(38, 76, 63));
+								cbLocal.setBackground(new Color(160, 200, 172));
+								panelChamado.add(cbLocal, "cell 2 10,growx");
+						
+								JLabel lblNewLabel_1 = new JLabel("Bloco");
+								lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+								panelChamado.add(lblNewLabel_1, "cell 1 12,alignx left");
+				
+						cbBloco = new JComboBox();
+						cbBloco.setFont(new Font("Tahoma", Font.PLAIN, 15));
+						cbBloco.setModel(new DefaultComboBoxModel(new String[] { "Bloco 1", "Bloco 2" }));
+						panelChamado.add(cbBloco, "cell 2 12,growx");
 
 		btnConcluir = new JButton("Concluir");
 		btnConcluir.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnConcluir.setForeground(new Color(38, 76, 63));
 		btnConcluir.setBackground(new Color(160, 200, 172));
-		panelChamado.add(btnConcluir, "cell 2 10,alignx center");
+		panelChamado.add(btnConcluir, "cell 2 14,alignx center");
 
 	}
 
-	public void cadastrarPatrimonio(ActionListener actionListener) {
-		this.btnConcluir.addActionListener(actionListener);
+	public JComboBox getCbBloco() {
+		return cbBloco;
+	}
+
+	public void setCbBloco(JComboBox cbBloco) {
+		this.cbBloco = cbBloco;
+	}
+
+	public JComboBox getCbAndar() {
+		return cbAndar;
+	}
+
+	public void setCbAndar(JComboBox cbAndar) {
+		this.cbAndar = cbAndar;
 	}
 
 	public JTextField getTfPatrimonio() {
@@ -143,32 +179,25 @@ public class TelaCadastrarPatrimonio extends JPanel {
 		this.cbNome = cbNome;
 	}
 
-	public void setcbNome(JComboBox cbNome) {
-		this.cbNome = cbNome;
+	public JComboBox getCbStatus() {
+		return cbStatus;
 	}
 
-	public void setcbLocal(JComboBox cbLocal) {
-		this.cbLocal = cbLocal;
-	}
-
-	public JTextField gettfPatrimonio() {
-		return tfPatrimonio;
-	}
-
-	public void settfPatrimonio(JTextField tfPatrimonio) {
-		this.tfPatrimonio = tfPatrimonio;
-	}
-
-	public JComboBox getcbNome() {
-		return cbNome;
-	}
-
-	public JComboBox getcbLocal() {
-		return cbLocal;
+	public void setCbStatus(JComboBox cbStatus) {
+		this.cbStatus = cbStatus;
 	}
 
 	public void concluir(ActionListener actionListener) {
 		btnConcluir.addActionListener(actionListener);
+	}
+
+	public void carregarComBoxEspaco(List<Espaco> listarEspacos) {
+		for (Iterator iterator = listarEspacos.iterator(); iterator.hasNext();) {
+			Espaco espaco = (Espaco) iterator.next();
+			cbLocal.addItem(espaco);
+			
+		}
+		
 	}
 
 }

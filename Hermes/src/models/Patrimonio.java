@@ -5,14 +5,23 @@ package models;
  */
 public class Patrimonio {
 
-	private String nome, id_patrimonio, status;
+	private String nome, status;
+	private int  id_patrimonio;
 	private Espaco espaco;
+	
+	public Patrimonio() {
+			
+		}
+		
 
-	public Patrimonio(String id_patrimonio, String status, String nome) {
+	public Patrimonio(int id_patrimonio, String status, String nome, Espaco espaco) {
 		this.id_patrimonio = id_patrimonio;
-		this.nome = status;
+		this.status= status;
+		this.nome = nome;
+		this.espaco = espaco;
 	}
 
+	
 	public void imprimir() {
 		System.out.println("Id: " + this.id_patrimonio);
 		System.out.println("Nome: " + this.nome);
@@ -21,13 +30,6 @@ public class Patrimonio {
 	}
 
 	// Getters e setters.
-	public String getIdpatrimonio() {
-		return id_patrimonio;
-	}
-
-	public void setIdpatrimonio(String id_patrimonio) {
-		this.id_patrimonio = id_patrimonio;
-	}
 
 	public String getStatus() {
 		return status;
@@ -45,12 +47,22 @@ public class Patrimonio {
 		this.nome = nome;
 	}
 
+	public int getId_patrimonio() {
+		return id_patrimonio;
+	}
+
+	public void setId_patrimonio(int id_patrimonio) {
+		this.id_patrimonio = id_patrimonio;
+	}
+	
 	public Espaco getEspaco() {
 		return espaco;
 	}
 
 	public void setEspaco(Espaco espaco) {
 		this.espaco = espaco;
+		
 	}
 
+	
 }

@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -19,6 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ScrollPaneConstants;
 
+import models.Chamado;
+
 public class TelaNovoChamado extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -26,8 +30,18 @@ public class TelaNovoChamado extends JPanel {
 	private JButton btnRealizarChamado;
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
+<<<<<<< HEAD
 
 	
+=======
+	private JTextField textField;
+	private JTextField tfChamado;
+	private int contadorChamados = 0;
+	private TelaConta telaConta;
+	/**
+	 * Create the panel.
+	 */
+>>>>>>> origin/BranchLara_17
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
@@ -99,8 +113,13 @@ public class TelaNovoChamado extends JPanel {
 		taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
 		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
+<<<<<<< HEAD
 		taDescricao.setWrapStyleWord(true);
 		taDescricao.setLineWrap(true);
+=======
+		taDescricao.setWrapStyleWord(true); 
+		taDescricao.setLineWrap(true); 
+>>>>>>> origin/BranchLara_17
 		scrollPane.setViewportView(taDescricao);
 
 		btnRealizarChamado = new JButton("Realizar chamado");
@@ -112,6 +131,8 @@ public class TelaNovoChamado extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("(opcional)");
 		lblNewLabel_1.setForeground(new Color(91, 91, 91));
 		panelChamado.add(lblNewLabel_1, "cell 1 6");
+		
+		tfChamado = new JTextField("0");
 
 	}
 
@@ -149,6 +170,14 @@ public class TelaNovoChamado extends JPanel {
 
 	public JComboBox getcbLocal() {
 		return cbLocal;
+	}
+	
+	public void atualizarContador(int quantidade) {
+		tfChamado.setText(String.valueOf(quantidade));
+	}
+
+	public void atualizarQntdChamado(int quantidade) {
+		textField.setText("" + quantidade);
 	}
 
 }

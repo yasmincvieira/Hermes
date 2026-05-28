@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -10,14 +12,14 @@ import models.Patrimonio;
 import models.PatrimonioDAO;
 import view.TelaTabelaPatrimonios;
 
-public class TabelaController {
+public class TabelaController  extends ComponentAdapter {
 
 	private TelaTabelaPatrimonios telaTabelaPatrimonios;
 	private PatrimonioDAO patrimonioDAO;
 	private Navegador navegador;
 
 	public TabelaController(TelaTabelaPatrimonios telaTabelaPatrimonios, Navegador navegador,
-			PatrimonioDAO patrimonioDao) {
+			PatrimonioDAO patrimonioDAO) {
 		super();
 		this.telaTabelaPatrimonios = telaTabelaPatrimonios;
 		this.patrimonioDAO = patrimonioDAO;
@@ -25,23 +27,41 @@ public class TabelaController {
 		this.telaTabelaPatrimonios.excluirPatri(e -> {
 			excluirPatrimonio();
 		});
+		this.telaTabelaPatrimonios.adicionarPatri(e-> {
+			navegador.navegarPara("CADASTRAR PATRIMONIO");
+		});
 
 	}
 
 	private void excluirPatrimonio() {
-		int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
-
-		String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
-
-		int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-		if (confirm == JOptionPane.YES_OPTION) {
-			patrimonioDAO.excluirPatrimonio(idPatrimonio);
-			
-
-		}
-
+	    int linha = telaTabelaPatrimonios.getLinhaSelecionada();
+	    if (linha == -1) {
+	        JOptionPane.showMessageDialog(null, "Selecione um patrimonio para excluir!");
+	        return;
+	    }
+	    
+	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
+	    if (confirm == JOptionPane.YES_OPTION) {
+	    	
+	    	   String idString = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
+	           int idPatrimonio = Integer.parseInt(idString);
+	    
+	    
+	           patrimonioDAO.excluirPatrimonio(idPatrimonio); 
+	           
+	         
+	           telaTabelaPatrimonios.atualizarTabela();
+	           JOptionPane.showMessageDialog(null, "Patrimônio excluído com sucesso!");
+	    }
 	}
 
+	public void componentShown(ComponentEvent e) {
+		this.atualizarTabela();
+	}
+	public void atualizarTabela() {
+		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
+		List<Patrimonio> lista = patrimonioDAO.listarpatrimonio();
+		PatrimonioTableModel model = new PatrimonioTableModel(lista);
+	}
 
 }

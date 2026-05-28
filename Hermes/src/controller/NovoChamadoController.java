@@ -40,6 +40,7 @@ public class NovoChamadoController {
 			return;
 		}
 
+<<<<<<< HEAD
         Integer idPatrimonio = null;
         if (patrimonio != null && !patrimonio.trim().isEmpty()) {
             try {
@@ -60,6 +61,26 @@ public class NovoChamadoController {
 	    try {
 		dao.adicionarChamado(novoChamado);
 		JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+=======
+		Integer idPatrimonio = null;
+		if (patrimonio != null && !patrimonio.trim().isEmpty()) {
+			try {
+				idPatrimonio = Integer.valueOf(patrimonio);
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(chamado, "O ID do Patrimônio deve conter apenas números!");
+				return;
+			}
+		}
+
+		int idUsuario = navegador.getUsuarioLogado().getId();
+
+		Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
+
+		try {
+			dao.adicionarChamado(novoChamado);
+			JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",
+					JOptionPane.INFORMATION_MESSAGE);
+>>>>>>> origin/BranchLara_17
 
 		chamado.gettaDescricao().setText("");
 		chamado.gettfPatrimonio().setText("");
@@ -68,7 +89,5 @@ public class NovoChamadoController {
 			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
-
 	}
-
 }

@@ -38,7 +38,7 @@ public class EspacoDAO {
 
 	// READ - Listar todos os espaco
 	public List<Espaco> listarEspacos() {
-		String sql = "SELECT * FROM espaco";
+		String sql = "SELECT * FROM espacos";
 		List<Espaco> espacos = new ArrayList<>();
 		Connection conexao = null;
 		PreparedStatement pstm = null;
@@ -52,8 +52,8 @@ public class EspacoDAO {
 			while (rset.next()) {
 				Espaco espaco = new Espaco(sql, sql, sql);
 				espaco.setBloco(rset.getString("bloco"));
-				espaco.setNomeLocal(rset.getString("nome"));
-				espaco.setAndar(rset.getString("Andar"));
+				espaco.setNomeLocal(rset.getString("nome_local"));
+				espaco.setAndar(rset.getString("andar"));
 				espacos.add(espaco);
 			}
 		} catch (SQLException e) {
