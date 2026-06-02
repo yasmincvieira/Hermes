@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import models.Chamado;
 import models.ChamadoDAO;
+import view.Mensagem;
 import view.TelaHistoricoDeChamadosADM;
 import view.TelaNovoChamadosADM;
 import view.TelaVizuChamadosADM;
@@ -92,7 +93,7 @@ public class HistoricoControllerADM {
         String novoStatus = telaDetalhesADM.getStatusSelecionado();
 
         dao.atualizarStatus(id, novoStatus);
-        JOptionPane.showMessageDialog(telaDetalhesADM, "Status atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        Mensagem.mostrar("Status atualizado com sucesso!", "Sucesso");        
         carregarChamados();
         
         if ("Em análise".equalsIgnoreCase(novoStatus)) {

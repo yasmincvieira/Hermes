@@ -1,11 +1,11 @@
 package controller;
 
 import javax.swing.JOptionPane;
-
 import models.Espaco;
 import models.EspacoDAO;
 import models.Patrimonio;
 import models.PatrimonioDAO;
+import view.Mensagem;
 import view.TelaCadastrarPatrimonio;
 import view.TelaTabelaPatrimonios;
 
@@ -42,8 +42,7 @@ public class CadastrarPatrimonioController {
 		String status = (String) cadastrarPatrimonio.getCbStatus().getSelectedItem();
 
 		if (id.isEmpty()) {
-			JOptionPane.showMessageDialog(cadastrarPatrimonio, "Descreva qual é o id do patrimônio", "Atenção",
-					JOptionPane.ERROR_MESSAGE);
+			Mensagem.mostrar("Descreva qual é o id do patrimônio", "Atenção");
 			return;
 		}
 
@@ -51,8 +50,7 @@ public class CadastrarPatrimonioController {
 		try {
 			idPatrimonio = Integer.parseInt(id);
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(cadastrarPatrimonio, "O ID do Patrimônio deve conter apenas números!",
-					"Atenção", JOptionPane.ERROR_MESSAGE);
+			Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");
 			return;
 		}
 			try {
@@ -62,12 +60,9 @@ public class CadastrarPatrimonioController {
 				patrimonioDAO.adicionarPatrimonio(patrimonio);
 				tabelaPatrimonios.atualizarTabela();
 				limparCampos();
-				JOptionPane.showMessageDialog(cadastrarPatrimonio, "Cadastro feito com sucesso!", "Sucesso",
-						JOptionPane.INFORMATION_MESSAGE);
-
+				Mensagem.mostrar("Cadastro feito com sucesso!", "Sucesso");
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(cadastrarPatrimonio, "Erro ao cadastrar patrimônio", "Erro",
-						JOptionPane.ERROR_MESSAGE);
+				Mensagem.mostrar("Erro ao cadastrar patrimônio", "Erro");
 				e.printStackTrace();
 			}
 	}

@@ -50,28 +50,26 @@ public class CadastroController {
 		String senha = cadastro.getpfSenhaC().getText();
 
 		if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-			JOptionPane.showMessageDialog(cadastro, "Preencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
+			Mensagem.mostrar("Preencha todos os campos", "Atenção");			
 			return;
 		}
 
 		if (!email.contains("@")) {
-			JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "E-mail Inválido",
-					JOptionPane.WARNING_MESSAGE);
+			Mensagem.mostrar("Por favor, insira um e-mail válido", "E-mail Inválido");
 			return;
 		}
 
 		if (email.substring(0, email.indexOf("@")).contains(" ")) {
 			//Mensagem mensagem = new Mensagem("Por favor, insira um e-mail válido", "Erro");
 			//mensagem.setVisible(true);
-			JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "Erro",
-					JOptionPane.ERROR_MESSAGE);
+			Mensagem.mostrar("Por favor, insira um e-mail válido", "Erro");
 			return;
 		}
 
 		if (cadastro.gettfUsuarioC().getText().isEmpty() || cadastro.gettfEmailC().getText().isEmpty()
 				|| cadastro.getpfSenhaC().getText().isEmpty()) {
 
-			JOptionPane.showMessageDialog(cadastro, "Prencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
+			Mensagem.mostrar("Prencha todos os campos", "Atenção");			
 			return;
 		}
 		Usuario novoUsuario = new Usuario();
@@ -82,7 +80,7 @@ public class CadastroController {
 		user.adicionarUsuario(novoUsuario);
 		conta.preencherDados(novoUsuario);
 
-		JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+		Mensagem.mostrar("Usuário cadastrado com sucesso!", "Sucesso");
 		this.navegador.navegarPara("INICIO");
 
 		limparCamposLogin();
