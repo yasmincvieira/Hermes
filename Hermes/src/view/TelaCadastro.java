@@ -10,13 +10,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 
 public class TelaCadastro extends JPanel {
@@ -96,6 +99,18 @@ public class TelaCadastro extends JPanel {
 		this.btnCadastrar.setBackground(new Color(160, 200, 172));
 		this.btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(this.btnCadastrar, "cell 1 9 2 1,alignx center");
+		
+		this.registerKeyboardAction(
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						btnCadastrar.doClick(); 
+					}
+				},
+				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0),
+				JComponent.WHEN_IN_FOCUSED_WINDOW
+			);
+
 
 	}
 

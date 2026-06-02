@@ -63,6 +63,7 @@ public class TabelaController  extends ComponentAdapter {
 		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
 		List<Patrimonio> lista = patrimonioDAO.listarpatrimonio();
 		PatrimonioTableModel model = new PatrimonioTableModel(lista);
+
 	}
 
 }

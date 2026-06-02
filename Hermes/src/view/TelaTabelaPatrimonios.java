@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.PatrimonioTableModel;
 import controller.TabelaController;
@@ -23,13 +24,17 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.Label;
 
 public class TelaTabelaPatrimonios extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
-	private JTextField textField;
+	private JTextField tfBusca;
+	private TableRowSorter<PatrimonioTableModel> rowSorter;
 
 	/**
 	 * Create the panel.
@@ -59,13 +64,20 @@ public class TelaTabelaPatrimonios extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
 		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 1 4 1,alignx right");
 		
-		JPanel panel_1 = new JPanel();
-		paneltabelaPatrimonio.add(panel_1, "flowx,cell 2 2,grow");
-		panel_1.setLayout(new MigLayout("", "[225.00px]", "[76.00px]"));
+		tfBusca = new JTextField();
+//		tfBusca.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyReleased(KeyEvent e) {
+//				filtrar();
+//			}
+//		});
 		
-		textField = new JTextField();
-		panel_1.add(textField, "cell 0 0,alignx center,aligny center");
-		textField.setColumns(10);
+		Label label = new Label("Buscar");
+		label.setFont(new Font("Dialog", Font.PLAIN, 19));
+		paneltabelaPatrimonio.add(label, "cell 1 2,alignx right");
+		
+		paneltabelaPatrimonio.add(tfBusca, "cell 2 2,growx");
+		tfBusca.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
 		paneltabelaPatrimonio.add(scrollPane, "cell 1 3 5 2,grow");
@@ -91,6 +103,8 @@ public class TelaTabelaPatrimonios extends JPanel {
 		btnExcluirPatri.setForeground(new Color(39, 79, 65));
 		btnExcluirPatri.setBackground(new Color(144, 204, 171));
 		paneltabelaPatrimonio.add(btnExcluirPatri, "cell 4 6,alignx left");
+		
+//		rowSorter = new TableRowSorter<>(PatrimonioTableModel);
 	}
 
 	public JTable getTable() {
@@ -132,5 +146,13 @@ public class TelaTabelaPatrimonios extends JPanel {
 	}
 	public void adicionarOuvinte(ComponentListener listener) {
 		this.addComponentListener(listener);
+	}
+	private void filtrar() {
+		String busca = tfBusca.getText().trim();
+		
+		if(busca.length()==0) {
+			rowSorter.addRowSorterListener(table);
+		}
+		
 	}
 }
