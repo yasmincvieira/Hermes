@@ -18,12 +18,11 @@ public class Navegador {
 	private Menu menu;
 	private Usuario usuarioLogado;
 	private ContaController contaController;
-<<<<<<< HEAD
 	private HistoricoController historicoController;
 	private HistoricoControllerADM historicoControllerADM;
-=======
+
 	private Patrimonio patrimonioAdicionado;
->>>>>>> origin/BranchLara_17
+
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
@@ -38,13 +37,14 @@ public class Navegador {
 	public void navegarPara(String nome) {
 		this.janela.mostrarTela(nome);
 
-		if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO") || nome.equals("INICIO")) {
-			menu.removerMenu();
-		} else {
-			menu.mostrarPanelCont();
-		}
+		if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO") || nome.equals("INICIO") || nome.equals("INICIO ADMIN")) {
+			 menu.removerMenu();
+			} else {
+			    menu.mostrarPanelCont();
+			}
 		if (nome.equals("PERFIL") && usuarioLogado != null) {
 			contaController.preencherDados();
+			contaController.atualizarContagem(); 
 		}
 		if (nome.equals("HISTORICO") && historicoController != null) {
             historicoController.carregarHistorico();

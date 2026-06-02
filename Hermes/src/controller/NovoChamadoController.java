@@ -16,13 +16,14 @@ public class NovoChamadoController {
 	private TelaNovoChamado chamado;
 	private ChamadoDAO dao;
 	private Navegador navegador;
+	private ContaController contaController;
 
-	public NovoChamadoController(TelaNovoChamado chamado, ChamadoDAO dao, Navegador navegador) {
+	public NovoChamadoController(TelaNovoChamado chamado, ChamadoDAO dao, Navegador navegador, ContaController contaController) {
 		super();
 		this.chamado = chamado;
 		this.dao = dao;
 		this.navegador = navegador;
-
+		this.contaController = contaController;
 		this.chamado.realizarChamado(e -> {
 			realizarChamado();
 		});
@@ -40,7 +41,6 @@ public class NovoChamadoController {
 			return;
 		}
 
-<<<<<<< HEAD
         Integer idPatrimonio = null;
         if (patrimonio != null && !patrimonio.trim().isEmpty()) {
             try {
@@ -60,27 +60,9 @@ public class NovoChamadoController {
 	
 	    try {
 		dao.adicionarChamado(novoChamado);
+		contaController.atualizarContagem();
 		JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
-=======
-		Integer idPatrimonio = null;
-		if (patrimonio != null && !patrimonio.trim().isEmpty()) {
-			try {
-				idPatrimonio = Integer.valueOf(patrimonio);
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(chamado, "O ID do Patrimônio deve conter apenas números!");
-				return;
-			}
-		}
 
-		int idUsuario = navegador.getUsuarioLogado().getId();
-
-		Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
-
-		try {
-			dao.adicionarChamado(novoChamado);
-			JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",
-					JOptionPane.INFORMATION_MESSAGE);
->>>>>>> origin/BranchLara_17
 
 		chamado.gettaDescricao().setText("");
 		chamado.gettfPatrimonio().setText("");

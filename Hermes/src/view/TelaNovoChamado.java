@@ -30,10 +30,7 @@ public class TelaNovoChamado extends JPanel {
 	private JButton btnRealizarChamado;
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
-<<<<<<< HEAD
 
-	
-=======
 	private JTextField textField;
 	private JTextField tfChamado;
 	private int contadorChamados = 0;
@@ -41,7 +38,7 @@ public class TelaNovoChamado extends JPanel {
 	/**
 	 * Create the panel.
 	 */
->>>>>>> origin/BranchLara_17
+
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
@@ -113,13 +110,10 @@ public class TelaNovoChamado extends JPanel {
 		taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
 		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
-<<<<<<< HEAD
-		taDescricao.setWrapStyleWord(true);
-		taDescricao.setLineWrap(true);
-=======
+
 		taDescricao.setWrapStyleWord(true); 
 		taDescricao.setLineWrap(true); 
->>>>>>> origin/BranchLara_17
+
 		scrollPane.setViewportView(taDescricao);
 
 		btnRealizarChamado = new JButton("Realizar chamado");

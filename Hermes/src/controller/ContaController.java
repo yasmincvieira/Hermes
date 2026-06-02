@@ -109,6 +109,19 @@ public class ContaController {
 	}
 
 	private void verificarExcluir() {
+		  int confirmacao = JOptionPane.showConfirmDialog(
+			        null,
+			        "Tem certeza que deseja excluir sua conta?\nEsta ação não pode ser desfeita.", "Confirmar exclusão", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE
+			    );
+
+			    if (confirmacao == JOptionPane.YES_OPTION) {
+			        Usuario usuarioLogado = navegador.getUsuarioLogado();
+			        user.excluirChamadosDoUsuario(usuarioLogado.getId());
+			        user.excluirUsuario(usuarioLogado.getId());           
+			        navegador.setUsuarioLogado(null);    
+			        JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!");
+			        navegador.navegarPara("LOGIN");
+			    }
 
 	}
 
@@ -125,6 +138,10 @@ public class ContaController {
 			conta.atualizarFoto(avatarEscolhido);
 			JOptionPane.showMessageDialog(null, "Avatar atualizado com sucesso!");
 		}
+	}
+	public void atualizarContagem() {
+	    int total = user.contarChamadosPorUsuario(navegador.getUsuarioLogado().getId());
+	    conta.atualizarQntdChamado(total);
 	}
 
 }

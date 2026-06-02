@@ -43,5 +43,6 @@ public class MenuContraidoTeste extends JPanel {
 		this.lbAbrir.addMouseListener(mouseListener);
 
 	}
+	
 
 }
