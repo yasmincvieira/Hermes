@@ -43,7 +43,7 @@ public class PatrimonioTableModel extends AbstractTableModel {
 		case 1:
 			return p.getEspaco().getNomeLocal();
 		case 2:
-			return p.getIdpatrimonio();
+			return p.getId_patrimonio();
 		case 3:
 			return p.getStatus();
 

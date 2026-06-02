@@ -45,11 +45,10 @@ public class EspacoDAO {
             rset = pstm.executeQuery();
 
             while (rset.next()) {
-                Espaco espaco = new Espaco();                          // ✅ era new Espaco(sql,sql,sql)
-                espaco.setId_espaco(rset.getString("id_espaco"));      // ✅ carrega o ID
+                Espaco espaco = new Espaco();                         
                 espaco.setBloco(rset.getString("bloco"));
-                espaco.setNomeLocal(rset.getString("nome_local"));     // ✅ era "nome"
-                espaco.setAndar(rset.getString("andar"));              // ✅ era "Andar" (case-sensitive)
+                espaco.setNomeLocal(rset.getString("nome_local"));    
+                espaco.setAndar(rset.getString("andar"));             
                 espacos.add(espaco);
             }
         } catch (SQLException e) {
@@ -60,8 +59,8 @@ public class EspacoDAO {
         return espacos;
     }
 
-    public Espaco BuscarEspacoPorID(String id_espaco) {
-        String sql = "SELECT * FROM espaco WHERE id_espaco = ?"; // ✅ busca por ID, não nome_local
+    public Espaco BuscarEspacoPorID(String nome_local) {
+        String sql = "SELECT * FROM espaco WHERE nome_local = ?"; 
         Connection conexao = null;
         PreparedStatement pstm = null;
         ResultSet rset = null;
@@ -69,12 +68,11 @@ public class EspacoDAO {
         try {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, id_espaco);
+            pstm.setString(1, nome_local);
             rset = pstm.executeQuery();
 
             if (rset.next()) {
-                Espaco espaco = new Espaco();                          // ✅ era new Espaco(sql,sql,sql)
-                espaco.setId_espaco(rset.getString("id_espaco"));      // ✅ carrega o ID
+                Espaco espaco = new Espaco();                        
                 espaco.setBloco(rset.getString("bloco"));
                 espaco.setNomeLocal(rset.getString("nome_local"));
                 espaco.setAndar(rset.getString("andar"));

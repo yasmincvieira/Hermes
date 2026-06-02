@@ -19,6 +19,7 @@ public class InicialController {
 		this.inicio = inicio;
 		this.navegador = navegador;
 		this.menu = menu;
+		
 		this.inicio.historico(e -> {
 			navegador.navegarPara("HISTORICO");
 		});
@@ -26,6 +27,8 @@ public class InicialController {
 		this.inicio.irChamado(e -> {
 			navegador.navegarPara("CHAMADO");
 		});
+		
+		
 	}
 
 }

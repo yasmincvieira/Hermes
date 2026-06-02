@@ -5,6 +5,7 @@ import javax.swing.JTextField;
 import models.Usuario;
 import view.Janela;
 import view.TelaLogin;
+import view.TelaTabelaPatrimonios;
 
 public class Navegador {
 
@@ -17,6 +18,8 @@ public class Navegador {
 	private Usuario usuarioLogado;
 	private ContaController contaController;
 	private HistoricoController historicoController;
+	private TelaTabelaPatrimonios telaTabelaPatrimonios;
+	private TabelaController TabelaController;
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
@@ -27,6 +30,7 @@ public class Navegador {
 	public void adicionarPainel(String nome, JPanel tela) {
 		this.janela.adicionarTela(nome, tela);
 	}
+	
 
 	public void navegarPara(String nome) {
 		this.janela.mostrarTela(nome);
@@ -71,6 +75,14 @@ public class Navegador {
 	public void setInicialController(InicialController inicialController) {
 		this.inicialController = inicialController;
 	}
+	
+	public TabelaController getTabelaController(TabelaController tabelaController) {
+		return tabelaController;
+	}
+	
+	public void setTabelaController1(TabelaController tabelaController) {
+		this.TabelaController = tabelaController;
+	}
 
 	public Menu getMenu(Menu menu) {
 		return menu;
@@ -94,6 +106,11 @@ public class Navegador {
 	
 	public void setHistoricoController(HistoricoController historicoController) {
 		this.historicoController = historicoController;
+	}
+
+	public void setTabelaController(TabelaController tabelaController) {
+		this.TabelaController = tabelaController;
+		
 	}
 
 }

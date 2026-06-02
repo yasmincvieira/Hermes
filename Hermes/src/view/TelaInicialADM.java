@@ -64,5 +64,6 @@ public class TelaInicialADM extends JPanel {
 	public void verPerfil(ActionListener actionListener) {
 		this.btnVerPerfil.addActionListener(actionListener);
 	}
+	
 
 }

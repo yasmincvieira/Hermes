@@ -9,22 +9,32 @@ import javax.swing.JOptionPane;
 
 import models.Patrimonio;
 import models.PatrimonioDAO;
+import view.TelaCadastrarPatrimonio;
+import view.TelaEditarPatrimonio;
 import view.TelaTabelaPatrimonios;
 
 public class TabelaController {
 
+	private TelaEditarPatrimonio telaEditarPatrimonio;
 	private TelaTabelaPatrimonios telaTabelaPatrimonios;
 	private PatrimonioDAO patrimonioDAO;
 	private Navegador navegador;
 	
-	public TabelaController(TelaTabelaPatrimonios telaTabelaPatrimonios, Navegador navegador,
-			PatrimonioDAO patrimonioDao) {
+	public TabelaController(TelaTabelaPatrimonios telaTabelaPatrimonios, TelaEditarPatrimonio telaEditarPatrimonio,
+			TelaCadastrarPatrimonio telaCadastrarPatrimonio, PatrimonioDAO patrimonioDAO, Navegador navegador,Menu menu) {
 		super();
+		
 		this.telaTabelaPatrimonios = telaTabelaPatrimonios;
+		this.telaEditarPatrimonio = telaEditarPatrimonio;
 		this.patrimonioDAO = patrimonioDAO;
+		this.navegador = navegador;
 
 		this.telaTabelaPatrimonios.excluirPatri(e -> {
 			excluirPatrimonio();
+		});
+		
+		this.telaTabelaPatrimonios.editarPatri(e -> {
+		    this.navegador.navegarPara("EDITAR PATRIMONIO");
 		});
 
 	}

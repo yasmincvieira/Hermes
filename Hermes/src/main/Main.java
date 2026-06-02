@@ -15,15 +15,19 @@ import controller.LoginController;
 import controller.Menu;
 import controller.Navegador;
 import controller.NovoChamadoController;
+import controller.TabelaController;
 import models.ChamadoDAO;
 import models.UsuarioDAO;
+import models.PatrimonioDAO;
 import view.Janela;
 import view.MenuContraidoTeste;
 import view.MenuExpandidoAdm;
 import view.MenuExpandidoTeste;
+import view.TelaCadastrarPatrimonio;
 import view.TelaCadastro;
 import view.TelaConta;
 import view.TelaContaADM;
+import view.TelaEditarPatrimonio;
 import view.TelaHistoricoDeChamados;
 import view.TelaInicial;
 import view.TelaInicialADM;
@@ -45,6 +49,7 @@ public class Main {
 
 		Janela janela = new Janela();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
 
 		TelaLogin telaLogin = new TelaLogin();
 		TelaCadastro telaCadastro = new TelaCadastro();
@@ -61,10 +66,15 @@ public class Main {
 		MenuExpandidoAdm menuExpAdm = new MenuExpandidoAdm();
 		TelaInicialADM inicioADM = new TelaInicialADM();
 		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
+		TelaTabelaPatrimonios telaTabelaParimonios = new TelaTabelaPatrimonios();
+		TelaEditarPatrimonio telaEditarPatrimonio = new TelaEditarPatrimonio();
+		TelaCadastrarPatrimonio telaCadastrarPatrimonio =  new TelaCadastrarPatrimonio();
+		
 
 		Menu menu = new Menu(janela, menuExp, menuCont, menuExpAdm);
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
 		menu.setNavegador(navegador);
+		
 
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
@@ -74,6 +84,7 @@ public class Main {
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
+		TabelaController tabelaController = new TabelaController (telaTabelaPatrimonios, telaEditarPatrimonio, telaCadastrarPatrimonio, patrimonioDAO, navegador, menu);
 
 		
 		navegador.setCadastroController(cadastroController);
@@ -89,13 +100,14 @@ public class Main {
 		navegador.adicionarPainel("HISTORICO", telaHistoricoChamados);
 		navegador.adicionarPainel("CHAMADO", telaNovoChamado);
 		navegador.adicionarPainel("INICIO ADMIN", inicioADM);
-		navegador.adicionarPainel("PATRIMONIO", telaTabelaPatrimonios);
+	
 		navegador.adicionarPainel("CHAMADO ADMIN", telaVizuChamadosADM);
 		navegador.adicionarPainel("PERFIL", telaConta);
 		navegador.adicionarPainel("PERFIL ADM", telaContaADM);
 		navegador.adicionarPainel("DETALHES_CHAMADO", telaVizuChamados);
 		navegador.adicionarPainel("TABELA", telaTabelaPatrimonios);
 		navegador.adicionarPainel("NOVOS_CHAMADOS", telaVizuChamados);
+		navegador.adicionarPainel("EDITAR PATRIMONIO", telaEditarPatrimonio);
 
 
 		janela.setLocationRelativeTo(null);

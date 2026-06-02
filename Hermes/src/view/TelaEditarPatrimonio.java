@@ -57,7 +57,7 @@ public class TelaEditarPatrimonio extends JPanel {
         add(lblId, "cell 1 1,alignx trailing");
 
         textField = new JTextField();
-        textField.setEditable(false); // ✅ ID não deve ser editado
+        textField.setEditable(false); 
         add(textField, "cell 2 1,growx");
         textField.setColumns(10);
 
@@ -84,7 +84,7 @@ public class TelaEditarPatrimonio extends JPanel {
         lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 17));
         add(lblStatus, "cell 1 4,alignx trailing");
 
-        cbStatus = new JComboBox<>(new String[]{"Ativo", "Inativo", "Em manutenção"}); // ✅ tipado e com opções
+        cbStatus = new JComboBox<>(new String[]{"Ativo", "Inativo", "Em manutenção"}); 
         add(cbStatus, "cell 2 4,growx");
 
         // --- Botão ---
@@ -94,7 +94,7 @@ public class TelaEditarPatrimonio extends JPanel {
         btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 15));
         add(btnSalvar, "cell 2 5,alignx right,aligny top");
 
-        btnSalvar.addActionListener(e -> salvarAlteracoes()); // ✅ estava faltando
+        btnSalvar.addActionListener(e -> salvarAlteracoes());
     }
 
     private void carregarEspacos() {
@@ -112,11 +112,11 @@ public class TelaEditarPatrimonio extends JPanel {
         try {
             Patrimonio p = patrimonioDAO.buscarPorId(id);
             if (p != null) {
-                textField.setText(p.getId_patrimonio());  // ✅ era getId()
+                textField.setText(p.getId_patrimonio());  
                 textField_1.setText(p.getNome());
                 cbStatus.setSelectedItem(p.getStatus());
 
-                // ✅ comparava getNomeLocal() com getAndar(), corrigido para getId_espaco()
+            
                 for (int i = 0; i < cbEspaco.getItemCount(); i++) {
                     if (cbEspaco.getItemAt(i).getId_espaco()
                             .equals(p.getEspaco().getId_espaco())) {
@@ -137,7 +137,7 @@ public class TelaEditarPatrimonio extends JPanel {
             Espaco espacoSelecionado = (Espaco) cbEspaco.getSelectedItem();
 
             Patrimonio p = new Patrimonio();
-            p.setId_patrimonio(textField.getText().trim()); // ✅ era setId()
+            p.setId_patrimonio(textField.getText().trim()); 
             p.setNome(textField_1.getText().trim());
             p.setEspaco(espacoSelecionado);
             p.setStatus((String) cbStatus.getSelectedItem());
