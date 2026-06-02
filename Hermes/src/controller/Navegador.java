@@ -18,12 +18,10 @@ public class Navegador {
 	private Menu menu;
 	private Usuario usuarioLogado;
 	private ContaController contaController;
-<<<<<<< HEAD
 	private HistoricoController historicoController;
 	private HistoricoControllerADM historicoControllerADM;
-=======
 	private Patrimonio patrimonioAdicionado;
->>>>>>> origin/BranchLara_17
+
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
