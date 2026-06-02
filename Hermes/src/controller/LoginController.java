@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import models.Usuario;
 import models.UsuarioDAO;
+import view.Mensagem;
 import view.TelaLogin;
 
 public class LoginController {
@@ -38,8 +39,8 @@ public class LoginController {
 
 		if (login.gettfUsuario().getText().isEmpty() || login.getpfSenha().getText().isEmpty()) {
 
-			JOptionPane.showMessageDialog(login, "Prencha todos os campos", "Atenção", JOptionPane.ERROR_MESSAGE);
-		} else {
+			Mensagem.mostrar("Prencha todos os campos", "Atenção");		
+			} else {
 			boolean usuarioEncontrado = false;
 
 			for (Usuario user : usuarios) {
@@ -54,7 +55,7 @@ public class LoginController {
 			}
 
 			if (!usuarioEncontrado) {
-				JOptionPane.showMessageDialog(login, "Usuário não encontrado", "Atenção", JOptionPane.WARNING_MESSAGE);
+				Mensagem.mostrar("Usuário não encontrado", "Atenção");				
 				return;
 
 			}

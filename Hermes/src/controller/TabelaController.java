@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import models.Patrimonio;
 import models.PatrimonioDAO;
+import view.Mensagem;
 import view.TelaTabelaPatrimonios;
 
 public class TabelaController  extends ComponentAdapter {
@@ -36,7 +37,7 @@ public class TabelaController  extends ComponentAdapter {
 	private void excluirPatrimonio() {
 	    int linha = telaTabelaPatrimonios.getLinhaSelecionada();
 	    if (linha == -1) {
-	        JOptionPane.showMessageDialog(null, "Selecione um patrimonio para excluir!");
+	    	Mensagem.mostrar("Selecione um patrimonio para excluir!", "Atenção");
 	        return;
 	    }
 	    
@@ -51,7 +52,7 @@ public class TabelaController  extends ComponentAdapter {
 	           
 	         
 	           telaTabelaPatrimonios.atualizarTabela();
-	           JOptionPane.showMessageDialog(null, "Patrimônio excluído com sucesso!");
+	           Mensagem.mostrar("Patrimônio excluído com sucesso!", "Sucesso");
 	    }
 	}
 

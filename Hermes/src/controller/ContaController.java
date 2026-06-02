@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import jakarta.mail.MessagingException;
 import models.Usuario;
 import models.UsuarioDAO;
+import view.Mensagem;
 import view.TelaConta;
 import view.TelaEscolhaAvatar;
 
@@ -56,8 +57,8 @@ public class ContaController {
 	}
 
 	private void alterarSenha() {
-		Usuario usuarioLogado = navegador.getUsuarioLogado(); // <- pega do navegador
-		String codigo = String.valueOf((int) (Math.random() * 900000) + 100000); // 6 dígitos
+		Usuario usuarioLogado = navegador.getUsuarioLogado(); 
+		String codigo = String.valueOf((int) (Math.random() * 900000) + 100000); 
 
 		try {
 			EmailService.enviarCodigo(usuarioLogado.getEmail(), codigo);
@@ -72,21 +73,21 @@ public class ContaController {
 				String novaSenha = JOptionPane.showInputDialog(null, "Digite a nova senha:");
 
 				if (novaSenha == null || novaSenha.isBlank()) {
-					JOptionPane.showMessageDialog(null, "Senha não pode ser vazia!");
+					Mensagem.mostrar("Senha não pode ser vazia!", "Atenção");
 					return;
 				}
 
 				usuarioLogado.setSenha(novaSenha);
 				user.atualizarSenha(usuarioLogado.getId(), novaSenha);
 				conta.preencherDados(usuarioLogado);
-				JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
+				Mensagem.mostrar("Senha alterada com sucesso!", "Sucesso");
 
 			} else {
-				JOptionPane.showMessageDialog(null, "Código incorreto! Tente novamente.");
+				Mensagem.mostrar("Código incorreto! Tente novamente.", "Erro");
 			}
 
 		} catch (MessagingException ex) {
-			JOptionPane.showMessageDialog(null, "Erro ao enviar email: " + ex.getMessage());
+			Mensagem.mostrar("Erro ao enviar email: " + ex.getMessage(), "Erro");
 		}
 	}
 
@@ -95,17 +96,17 @@ public class ContaController {
 
 		String novoNome = JOptionPane.showInputDialog(null, "Digite o novo nome:", usuarioLogado.getNome()); 
 		if (novoNome == null)
-			return; // cancelou
+			return; 
 
 		if (novoNome.isBlank()) {
-			JOptionPane.showMessageDialog(null, "Nome não pode ser vazio!");
+			Mensagem.mostrar("Nome não pode ser vazio!", "Atenção");
 			return;
 		}
 
 		usuarioLogado.setNome(novoNome);
 		user.atualizarUsuario(usuarioLogado);
 		conta.preencherDados(usuarioLogado);
-		JOptionPane.showMessageDialog(null, "Nome alterado com sucesso!");
+		Mensagem.mostrar("Nome alterado com sucesso!", "Sucesso");
 	}
 
 	private void verificarExcluir() {
@@ -114,7 +115,7 @@ public class ContaController {
 
 	private void escolherAvatar() {
 		TelaEscolhaAvatar tela = new TelaEscolhaAvatar();
-		tela.setVisible(true); // bloqueia até o usuário escolher
+		tela.setVisible(true); 
 
 		String avatarEscolhido = tela.getAvatarEscolhido();
 
@@ -123,7 +124,7 @@ public class ContaController {
 			usuarioLogado.setFoto(avatarEscolhido);
 			user.atualizarFoto(usuarioLogado.getId(), avatarEscolhido);
 			conta.atualizarFoto(avatarEscolhido);
-			JOptionPane.showMessageDialog(null, "Avatar atualizado com sucesso!");
+			Mensagem.mostrar("Avatar atualizado com sucesso!", "Sucesso");
 		}
 	}
 

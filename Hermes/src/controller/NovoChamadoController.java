@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import models.Chamado;
 import models.ChamadoDAO;
 import models.Usuario;
+import view.Mensagem;
 import view.TelaNovoChamado;
 
 public class NovoChamadoController {
@@ -36,7 +37,7 @@ public class NovoChamadoController {
 		String descricao = chamado.gettaDescricao().getText();
 
 		if (descricao.trim().isEmpty()) {
-			JOptionPane.showMessageDialog(chamado, "Descreva qual é o problema", "Atenção", JOptionPane.ERROR_MESSAGE);
+			Mensagem.mostrar("Descreva qual é o problema", "Atenção");			
 			return;
 		}
 
@@ -45,32 +46,31 @@ public class NovoChamadoController {
             try {
             	idPatrimonio = Integer.valueOf(patrimonio);
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(chamado, "O ID do Patrimônio deve conter apenas números!");
-                return;
+            	Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");                
+            	return;
             }
         }
-        if (navegador.getUsuarioLogado() == null) {
-            JOptionPane.showMessageDialog(chamado, "Erro: Nenhum usuário logado!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+//        if (navegador.getUsuarioLogado() == null) {
+//            JOptionPane.showMessageDialog(chamado, "Erro: Nenhum usuário logado!", "Erro", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
 	        
 	    int idUsuario = navegador.getUsuarioLogado().getId();
 	    Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
 	
 	    try {
 		dao.adicionarChamado(novoChamado);
-		JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+		Mensagem.mostrar("Chamado feito com sucesso!", "Sucesso");		
 		if (patrimonio != null && !patrimonio.trim().isEmpty()) {
 			try {
 				idPatrimonio = Integer.valueOf(patrimonio);
 			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(chamado, "O ID do Patrimônio deve conter apenas números!");
-				return;
+				Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");				return;
 			}
 		}
 	    } catch (Exception e) {
-			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+	    	Mensagem.mostrar("Erro ao salvar chamado!", "Erro");			
+	    	e.printStackTrace();
 		}
 	    
 //		int idUsuario = navegador.getUsuarioLogado().getId();
