@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 
 import controller.PatrimonioTableModel;
 import controller.TabelaController;
@@ -23,13 +25,19 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaTabelaPatrimonios extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
-	private JTextField textField;
+	private JTextField tfBusca;
+	private TableRowSorter<PatrimonioTableModel> rowSorter;
+	 private PatrimonioTableModel patrimonioTableModel;
 
 	/**
 	 * Create the panel.
@@ -59,21 +67,25 @@ public class TelaTabelaPatrimonios extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
 		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 1 4 1,alignx right");
 		
-		JPanel panel_1 = new JPanel();
-		paneltabelaPatrimonio.add(panel_1, "flowx,cell 2 2,grow");
-		panel_1.setLayout(new MigLayout("", "[225.00px]", "[76.00px]"));
-		
-		textField = new JTextField();
-		panel_1.add(textField, "cell 0 0,alignx center,aligny center");
-		textField.setColumns(10);
+		tfBusca = new JTextField();
+		tfBusca.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				filtrar();
+			}
+		});
+		paneltabelaPatrimonio.add(tfBusca, "cell 2 2,growx");
+		tfBusca.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
 		paneltabelaPatrimonio.add(scrollPane, "cell 1 3 5 2,grow");
 
 		table = new JTable();
 		atualizarTabela();
+		rowSorter = new TableRowSorter<>(patrimonioTableModel);
+		table.setRowSorter(rowSorter);
 		scrollPane.setViewportView(table);
-
+	
 		btnEditarPatri = new JButton("Editar patrimônios");
 		btnEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEditarPatri.setForeground(new Color(39, 79, 65));
@@ -91,15 +103,19 @@ public class TelaTabelaPatrimonios extends JPanel {
 		btnExcluirPatri.setForeground(new Color(39, 79, 65));
 		btnExcluirPatri.setBackground(new Color(144, 204, 171));
 		paneltabelaPatrimonio.add(btnExcluirPatri, "cell 4 6,alignx left");
+		
+		rowSorter = new TableRowSorter<>(patrimonioTableModel);
 	}
 
 	public JTable getTable() {
 		return table;
 	}
+	
 
 	public void setTable(JTable table) {
 		this.table = table;
 	}
+	
 
 		public int getLinhaSelecionada() {
 			return table.getSelectedRow();
@@ -123,14 +139,25 @@ public class TelaTabelaPatrimonios extends JPanel {
 		this.btnAdicionarPatri.addActionListener(actionListener);
 	}
 
-	public void atualizarTabela() {
-		PatrimonioDAO patrimonioDao = new PatrimonioDAO();
-		List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
-		PatrimonioTableModel model = new PatrimonioTableModel(lista);
-		table.setModel(model);
 
-	}
+	public void atualizarTabela() {
+        PatrimonioDAO patrimonioDao = new PatrimonioDAO();
+        List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
+        patrimonioTableModel = new PatrimonioTableModel(lista);
+     
+        table.setModel(patrimonioTableModel); 
+    }
+
 	public void adicionarOuvinte(ComponentListener listener) {
 		this.addComponentListener(listener);
+	}
+	private void filtrar() {
+//		String busca = tfBusca.getText().trim();
+//		
+//		if(busca.length() == 0) {
+//			rowSorter.setRowFilter(null);
+//		}else {
+//			rowSorter.setRowFilter(RowFilter.regexFilter("(?i)")+busca);
+//		}
 	}
 }
