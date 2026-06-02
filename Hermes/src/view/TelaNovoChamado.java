@@ -8,11 +8,9 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -20,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ScrollPaneConstants;
-
 import models.Chamado;
 
 public class TelaNovoChamado extends JPanel {
@@ -30,18 +27,11 @@ public class TelaNovoChamado extends JPanel {
 	private JButton btnRealizarChamado;
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
-<<<<<<< HEAD
-
-	
-=======
 	private JTextField textField;
 	private JTextField tfChamado;
 	private int contadorChamados = 0;
 	private TelaConta telaConta;
-	/**
-	 * Create the panel.
-	 */
->>>>>>> origin/BranchLara_17
+
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
@@ -113,15 +103,11 @@ public class TelaNovoChamado extends JPanel {
 		taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
 		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
-<<<<<<< HEAD
 		taDescricao.setWrapStyleWord(true);
 		taDescricao.setLineWrap(true);
-=======
 		taDescricao.setWrapStyleWord(true); 
 		taDescricao.setLineWrap(true); 
->>>>>>> origin/BranchLara_17
 		scrollPane.setViewportView(taDescricao);
-
 		btnRealizarChamado = new JButton("Realizar chamado");
 		btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRealizarChamado.setForeground(new Color(38, 76, 63));
