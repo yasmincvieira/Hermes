@@ -18,6 +18,7 @@ public class Navegador {
 	private Menu menu;
 	private Usuario usuarioLogado;
 	private ContaController contaController;
+
 	private ContaADMController contaADMController;
 	private HistoricoController historicoController;
 	private HistoricoControllerADM historicoControllerADM;

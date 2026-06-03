@@ -9,7 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-
 import controller.PatrimonioTableModel;
 import controller.TabelaController;
 import models.Patrimonio;
@@ -25,10 +24,16 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 import javax.swing.RowFilter;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.Label;
+
 
 public class TelaTabelaPatrimonios extends JPanel {
 
@@ -37,7 +42,8 @@ public class TelaTabelaPatrimonios extends JPanel {
 	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
 	private JTextField tfBusca;
 	private TableRowSorter<PatrimonioTableModel> rowSorter;
-	 private PatrimonioTableModel patrimonioTableModel;
+	private PatrimonioTableModel patrimonioTableModel;
+
 
 	/**
 	 * Create the panel.
@@ -68,12 +74,20 @@ public class TelaTabelaPatrimonios extends JPanel {
 		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 1 4 1,alignx right");
 		
 		tfBusca = new JTextField();
+
 		tfBusca.addKeyListener(new KeyAdapter() {
 		    @Override
 		    public void keyReleased(KeyEvent e) {
 		        filtrar();
 		    }
 		});
+
+		
+		Label label = new Label("Buscar");
+		label.setFont(new Font("Dialog", Font.PLAIN, 19));
+		paneltabelaPatrimonio.add(label, "cell 1 2,alignx right");
+		
+
 		paneltabelaPatrimonio.add(tfBusca, "cell 2 2,growx");
 		tfBusca.setColumns(10);
 
@@ -153,7 +167,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 	}
 	private void filtrar() {
 		String busca = tfBusca.getText().trim();
-		
+
 		if(busca.length() == 0) {
 			rowSorter.setRowFilter(null);
 		}else {

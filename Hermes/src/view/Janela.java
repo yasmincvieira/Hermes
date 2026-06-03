@@ -61,6 +61,8 @@ public class Janela extends JFrame {
 		this.cardLayout.show(this.panelTelas, nome);
 
 		this.panelAtual = nome;
+		
+		 this.setTitle(nome); 
 
 		this.pack();
 

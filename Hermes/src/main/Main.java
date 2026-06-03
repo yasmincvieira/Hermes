@@ -4,7 +4,6 @@ import java.awt.Font;
 import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
-
 import controller.CadastrarPatrimonioController;
 import controller.CadastroController;
 import controller.ContaADMController;
@@ -53,14 +52,12 @@ public class Main {
 		
 		//DAO
 		Janela janela = new Janela();
-
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
+
 
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
 
 		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
-		
-	
 		
 
 
@@ -68,6 +65,7 @@ public class Main {
 		TelaLogin telaLogin = new TelaLogin();
 		TelaCadastro telaCadastro = new TelaCadastro();
 		TelaConta telaConta = new TelaConta();
+
 
 		TelaContaADM telaContaADM = new TelaContaADM();
 	
@@ -81,6 +79,7 @@ public class Main {
 
 		TelaCadastrarPatrimonio telaCadastrarPatrimonio = new TelaCadastrarPatrimonio();
 		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
+
 
 		TelaInicialADM inicioADM = new TelaInicialADM();
 		TelaVizuChamadosADM telaVizuChamadosADM = new TelaVizuChamadosADM();
@@ -107,16 +106,12 @@ public class Main {
 		HistoricoControllerADM historicoControllerADM = new HistoricoControllerADM(telaNovosChamadosADM, telaHistoricoChamadosADM, telaVizuChamadosADM, chamadoDAO, navegador);
 		
 
-	
+
 		TabelaController tabelaController = new TabelaController(telaTabelaPatrimonios, navegador, patrimonioDAO);
 		CadastrarPatrimonioController cadastrarPatrimonio = new CadastrarPatrimonioController(telaCadastrarPatrimonio,
 				patrimonioDAO, navegador, tabelaController, telaTabelaPatrimonios);
 		
 		telaTabelaPatrimonios.adicionarOuvinte(tabelaController);
-;
-//		Chamado chamado = new Chamado();
-//		VizuChamadoController vizuChamadoController = new VizuChamadoController(telaVizuChamados, chamado, chamadoDAO,
-//				navegador);
 
 
 		navegador.setCadastroController(cadastroController);
@@ -141,7 +136,6 @@ public class Main {
 		navegador.adicionarPainel("DETALHES CHAMADO", telaVizuChamados);
 		navegador.adicionarPainel("HISTORICO ADMIN", telaHistoricoChamadosADM);
 		navegador.adicionarPainel("NOVO CHAMADO ADMIN", telaNovosChamadosADM);
-
 		navegador.adicionarPainel("PERFIL ADM", telaContaADM);
 		navegador.adicionarPainel("CADASTRAR PATRIMONIO", telaCadastrarPatrimonio);
 
