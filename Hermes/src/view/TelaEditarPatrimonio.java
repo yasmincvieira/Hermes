@@ -122,8 +122,16 @@ public class TelaEditarPatrimonio extends JPanel {
 
             
                 for (int i = 0; i < cbEspaco.getItemCount(); i++) {
-                    if (cbEspaco.getItemAt(i).getId_espaco()
-                            .equals(p.getEspaco().getId_espaco())) {
+
+                    Espaco espacoCombo = cbEspaco.getItemAt(i);
+
+                    if (espacoCombo != null
+                            && espacoCombo.getId_espaco() != null
+                            && p.getEspaco() != null
+                            && p.getEspaco().getId_espaco() != null
+                            && espacoCombo.getId_espaco()
+                                    .equals(p.getEspaco().getId_espaco())) {
+
                         cbEspaco.setSelectedIndex(i);
                         break;
                     }
@@ -157,11 +165,6 @@ public class TelaEditarPatrimonio extends JPanel {
             JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage());
         }
     }
-    
-    public void preencherCampos(Patrimonio patrimonio) {
-    	if (patrimonio != null) {
-    		tfID.setText(patrimonio.getId());
-    		tfPatrimonio.setText(patrimonio.getNome());
-    	}
-    }
+
+
 }

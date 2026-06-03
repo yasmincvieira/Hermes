@@ -44,8 +44,11 @@ public class TabelaController {
 		            JOptionPane.WARNING_MESSAGE);
 		        return;
 		    }
-		    String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
+
+		    // Pega o ID da coluna 0 da linha selecionada
+		    String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 2).toString();
 		    
+		    // Preenche os campos ANTES de navegar
 		    telaEditarPatrimonio.preencherCampos(idPatrimonio);
 		    
 		    this.navegador.navegarPara("EDITAR PATRIMONIO");

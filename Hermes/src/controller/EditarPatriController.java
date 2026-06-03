@@ -31,8 +31,10 @@ public class EditarPatriController {
 	public void preencherCampos() {
 		Patrimonio patrimonioAdicionado = navegador.getPatrimonioAdicionado();
 		
+		
 	if  (patrimonioAdicionado != null) {
-		telaEditarPatrimonio.preencherCampos(patrimonioAdicionado);
+		String id = patrimonioAdicionado.getId();
+		telaEditarPatrimonio.preencherCampos(id);
 	}
 	}
 	

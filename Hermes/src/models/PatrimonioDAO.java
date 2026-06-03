@@ -68,47 +68,58 @@ public class PatrimonioDAO {
 
   
     public Patrimonio buscarPorId(String id) {
-    	System.out.println("=== buscarPorId chamado com id: [" + id + "] ===");
-        String sql = "SELECT p.idPatrimonio, p.nome, p.status, p.idEspaco, " +
-                     "e.nome_local, e.bloco, e.andar " +
-                     "FROM patrimonio p " +
-                     "JOIN espaco e ON p.idEspaco = e.nome_local " +
-                     "WHERE p.idPatrimonio = ?";
+
+        String sql =
+            "SELECT p.idPatrimonio, p.nome, p.status, p.idEspaco, " +
+            "e.idEspaco, e.nome_local, e.bloco, e.andar " +
+            "FROM patrimonio p " +
+            "JOIN espaco e ON p.idEspaco = e.idEspaco " +
+            "WHERE p.idPatrimonio = ?";
+
         Connection conexao = null;
         PreparedStatement pstm = null;
         ResultSet rset = null;
 
         try {
+
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
-            pstm.setInt(1, Integer.parseInt(id)); 
+
+            pstm.setString(1, id);
+
             rset = pstm.executeQuery();
-            
-            System.out.println("Buscando patrimônio com id: " + id);
-            rset = pstm.executeQuery();
-            System.out.println("Teve resultado: " + rset.next());
 
             if (rset.next()) {
+
                 Espaco espaco = new Espaco();
+
+                espaco.setId_espaco(rset.getString("idEspaco"));
                 espaco.setNomeLocal(rset.getString("nome_local"));
                 espaco.setBloco(rset.getString("bloco"));
                 espaco.setAndar(rset.getString("andar"));
 
-                Patrimonio p = new Patrimonio();
-                p.setId_patrimonio(rset.getString("idPatrimonio"));
-                p.setNome(rset.getString("nome"));
-                p.setStatus(rset.getString("status"));
-                p.setEspaco(espaco);
-                return p;
+                Patrimonio patrimonio = new Patrimonio();
+
+                patrimonio.setId_patrimonio(
+                    rset.getString("idPatrimonio"));
+
+                patrimonio.setNome(
+                    rset.getString("nome"));
+
+                patrimonio.setStatus(
+                    rset.getString("status"));
+
+                patrimonio.setEspaco(espaco);
+
+                return patrimonio;
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             BancoDeDados.desconectar(conexao);
-            if (pstm != null) {
-                try { pstm.close(); } catch (SQLException e) { e.printStackTrace(); }
-            }
         }
+
         return null;
     }
     
