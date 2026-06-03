@@ -69,10 +69,10 @@ public class TelaTabelaPatrimonios extends JPanel {
 		
 		tfBusca = new JTextField();
 		tfBusca.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				filtrar();
-			}
+		    @Override
+		    public void keyReleased(KeyEvent e) {
+		        filtrar();
+		    }
 		});
 		paneltabelaPatrimonio.add(tfBusca, "cell 2 2,growx");
 		tfBusca.setColumns(10);
@@ -81,9 +81,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 		paneltabelaPatrimonio.add(scrollPane, "cell 1 3 5 2,grow");
 
 		table = new JTable();
-		atualizarTabela();
-		rowSorter = new TableRowSorter<>(patrimonioTableModel);
-		table.setRowSorter(rowSorter);
+		atualizarTabela(); 
 		scrollPane.setViewportView(table);
 	
 		btnEditarPatri = new JButton("Editar patrimônios");
@@ -104,7 +102,6 @@ public class TelaTabelaPatrimonios extends JPanel {
 		btnExcluirPatri.setBackground(new Color(144, 204, 171));
 		paneltabelaPatrimonio.add(btnExcluirPatri, "cell 4 6,alignx left");
 		
-		rowSorter = new TableRowSorter<>(patrimonioTableModel);
 	}
 
 	public JTable getTable() {
@@ -141,23 +138,26 @@ public class TelaTabelaPatrimonios extends JPanel {
 
 
 	public void atualizarTabela() {
-        PatrimonioDAO patrimonioDao = new PatrimonioDAO();
-        List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
-        patrimonioTableModel = new PatrimonioTableModel(lista);
-     
-        table.setModel(patrimonioTableModel); 
-    }
+	    PatrimonioDAO patrimonioDao = new PatrimonioDAO();
+	    List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
+	    patrimonioTableModel = new PatrimonioTableModel(lista);
+	    table.setModel(patrimonioTableModel);
+
+	    // Recriar o rowSorter sempre que o model mudar
+	    rowSorter = new TableRowSorter<>(patrimonioTableModel);
+	    table.setRowSorter(rowSorter);
+	}
 
 	public void adicionarOuvinte(ComponentListener listener) {
 		this.addComponentListener(listener);
 	}
 	private void filtrar() {
-//		String busca = tfBusca.getText().trim();
-//		
-//		if(busca.length() == 0) {
-//			rowSorter.setRowFilter(null);
-//		}else {
-//			rowSorter.setRowFilter(RowFilter.regexFilter("(?i)")+busca);
-//		}
+		String busca = tfBusca.getText().trim();
+		
+		if(busca.length() == 0) {
+			rowSorter.setRowFilter(null);
+		}else {
+			rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + busca));
+		}
 	}
 }

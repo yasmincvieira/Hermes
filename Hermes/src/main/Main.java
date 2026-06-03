@@ -7,6 +7,7 @@ import javax.swing.plaf.FontUIResource;
 
 import controller.CadastrarPatrimonioController;
 import controller.CadastroController;
+import controller.ContaADMController;
 import controller.ContaController;
 import controller.HistoricoController;
 import controller.HistoricoControllerADM;
@@ -58,6 +59,9 @@ public class Main {
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
 
 		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
+		
+	
+		
 
 
 		//Telas
@@ -95,7 +99,8 @@ public class Main {
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
 
-		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); 
+		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu);
+		ContaADMController contaADMController = new ContaADMController(telaContaADM, usuarioDAO, navegador, menu);
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador, contaController);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
@@ -118,6 +123,7 @@ public class Main {
 		navegador.setLoginController(loginController);
 		navegador.setInicialController(inicialController);
 		navegador.setContaController(contaController);
+		navegador.setContaADMController(contaADMController); 
 		navegador.setHistoricoController(historicoController);
 		navegador.setHistoricoControllerADM(historicoControllerADM);
 

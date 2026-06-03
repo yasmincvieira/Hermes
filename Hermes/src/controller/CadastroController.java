@@ -63,8 +63,6 @@ public class CadastroController {
 		}
 
 		if (email.substring(0, email.indexOf("@")).contains(" ")) {
-			//Mensagem mensagem = new Mensagem("Por favor, insira um e-mail válido", "Erro");
-			//mensagem.setVisible(true);
 			JOptionPane.showMessageDialog(cadastro, "Por favor, insira um e-mail válido", "Erro",
 					JOptionPane.ERROR_MESSAGE);
 			return;

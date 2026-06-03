@@ -35,7 +35,6 @@ public class MenuContraidoTeste extends JPanel {
 		JLabel lbPerfil = new JLabel("");
 		lbPerfil.setIcon(new ImageIcon(MenuContraidoTeste.class.getResource("/Imagens/30Usuario.png")));
 		add(lbPerfil, "cell 0 1");
-
 	}
 
 	public void mostrarMenuExpandido(MouseListener mouseListener) {
