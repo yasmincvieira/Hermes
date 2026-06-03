@@ -68,9 +68,7 @@ public class LoginController {
 				navegador.navegarPara("INICIO");
 			}
 		}
-		
 		limparCamposLogin();
-
 	}
 
 

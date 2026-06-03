@@ -18,8 +18,11 @@ public class Navegador {
 	private Menu menu;
 	private Usuario usuarioLogado;
 	private ContaController contaController;
+
+	private ContaADMController contaADMController;
 	private HistoricoController historicoController;
 	private HistoricoControllerADM historicoControllerADM;
+
 	private Patrimonio patrimonioAdicionado;
 
 
@@ -36,14 +39,18 @@ public class Navegador {
 	public void navegarPara(String nome) {
 		this.janela.mostrarTela(nome);
 
-		if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO") || nome.equals("INICIO")) {
-			menu.removerMenu();
-		} else {
-			menu.mostrarPanelCont();
-		}
+		if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO") || nome.equals("INICIO") || nome.equals("INICIO ADMIN")) {
+			 menu.removerMenu();
+			} else {
+			    menu.mostrarPanelCont();
+			}
 		if (nome.equals("PERFIL") && usuarioLogado != null) {
 			contaController.preencherDados();
+			contaController.atualizarContagem(); 
 		}
+		   if (nome.equals("PERFIL ADM") && usuarioLogado != null && contaADMController != null) {
+		        contaADMController.preencherDados();
+		    }
 		if (nome.equals("HISTORICO") && historicoController != null) {
             historicoController.carregarHistorico();
         }
@@ -114,6 +121,9 @@ public class Navegador {
 	
 	public void setHistoricoControllerADM (HistoricoControllerADM historicoControllerADM) {
 		this.historicoControllerADM   = historicoControllerADM;
+	}
+	public void setContaADMController(ContaADMController contaADMController) {
+	    this.contaADMController = contaADMController;
 	}
 
 }

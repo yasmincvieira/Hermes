@@ -6,6 +6,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import controller.CadastrarPatrimonioController;
 import controller.CadastroController;
+import controller.ContaADMController;
 import controller.ContaController;
 import controller.HistoricoController;
 import controller.HistoricoControllerADM;
@@ -52,23 +53,35 @@ public class Main {
 		//DAO
 		Janela janela = new Janela();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
-		//Chamado chamado = new Chamado();
+
 		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
+		
+
 
 		//Telas
 		TelaLogin telaLogin = new TelaLogin();
 		TelaCadastro telaCadastro = new TelaCadastro();
 		TelaConta telaConta = new TelaConta();
+
+
 		TelaContaADM telaContaADM = new TelaContaADM();
+	
+
 		TelaInicial telaInicial = new TelaInicial();
 		TelaNovoChamado telaNovoChamado = new TelaNovoChamado();
+
 		TelaNovoChamadosADM telaNovosChamadosADM = new TelaNovoChamadosADM();
 		TelaTabelaPatrimonios telaTabelaPatrimonios = new TelaTabelaPatrimonios();
+
+
 		TelaCadastrarPatrimonio telaCadastrarPatrimonio = new TelaCadastrarPatrimonio();
+		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
+
 
 		TelaInicialADM inicioADM = new TelaInicialADM();
-		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
 		TelaVizuChamadosADM telaVizuChamadosADM = new TelaVizuChamadosADM();
 		TelaHistoricoDeChamados telaHistoricoChamados = new TelaHistoricoDeChamados();
 		TelaHistoricoDeChamadosADM telaHistoricoChamadosADM = new TelaHistoricoDeChamadosADM();
@@ -81,24 +94,31 @@ public class Main {
 		menu.setNavegador(navegador);
 
 		//Controllers
-		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta);
+		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta, menu);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
-		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu); 
-		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador);
+
+		ContaController contaController = new ContaController(telaConta, usuarioDAO, navegador, menu);
+		ContaADMController contaADMController = new ContaADMController(telaContaADM, usuarioDAO, navegador, menu);
+		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador, contaController);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
 		HistoricoControllerADM historicoControllerADM = new HistoricoControllerADM(telaNovosChamadosADM, telaHistoricoChamadosADM, telaVizuChamadosADM, chamadoDAO, navegador);
+		
+
+
 		TabelaController tabelaController = new TabelaController(telaTabelaPatrimonios, navegador, patrimonioDAO);
 		CadastrarPatrimonioController cadastrarPatrimonio = new CadastrarPatrimonioController(telaCadastrarPatrimonio,
 				patrimonioDAO, navegador, tabelaController, telaTabelaPatrimonios);
 		
 		telaTabelaPatrimonios.adicionarOuvinte(tabelaController);
 
+
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
 		navegador.setInicialController(inicialController);
 		navegador.setContaController(contaController);
+		navegador.setContaADMController(contaADMController); 
 		navegador.setHistoricoController(historicoController);
 		navegador.setHistoricoControllerADM(historicoControllerADM);
 
@@ -112,11 +132,13 @@ public class Main {
 		navegador.adicionarPainel("PATRIMONIO", telaTabelaPatrimonios);
 		navegador.adicionarPainel("CHAMADO ADMIN", telaVizuChamadosADM);
 		navegador.adicionarPainel("PERFIL", telaConta);
+
 		navegador.adicionarPainel("DETALHES CHAMADO", telaVizuChamados);
 		navegador.adicionarPainel("HISTORICO ADMIN", telaHistoricoChamadosADM);
 		navegador.adicionarPainel("NOVO CHAMADO ADMIN", telaNovosChamadosADM);
 		navegador.adicionarPainel("PERFIL ADM", telaContaADM);
 		navegador.adicionarPainel("CADASTRAR PATRIMONIO", telaCadastrarPatrimonio);
+
 
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);

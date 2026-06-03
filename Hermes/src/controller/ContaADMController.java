@@ -7,27 +7,27 @@ import javax.swing.JOptionPane;
 import jakarta.mail.MessagingException;
 import models.Usuario;
 import models.UsuarioDAO;
-import view.Mensagem;
 import view.TelaConta;
+import view.TelaContaADM;
 import view.TelaEscolhaAvatar;
 
-public class ContaController {
+public class ContaADMController {
 
-	private TelaConta conta;
+	private TelaContaADM contaADM;
 	private UsuarioDAO user;
 	private Navegador navegador;
 
-	public ContaController(TelaConta conta, UsuarioDAO user, Navegador navegador, Menu menu) {
+	public ContaADMController(TelaContaADM contaADM, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
-		this.conta = conta;
+		this.contaADM = contaADM;
 		this.user = user;
 		this.navegador = navegador;
 
-		this.conta.excluirConta(e -> {
+		this.contaADM.excluirConta(e -> {
 			verificarExcluir();
 
 		});
-		this.conta.editarSenha(new MouseAdapter() {
+		this.contaADM.editarSenha(new MouseAdapter() {
 
 			@Override
 
@@ -37,24 +37,26 @@ public class ContaController {
 			}
 
 		});
-		this.conta.editarNome(new MouseAdapter() {
+		this.contaADM.editarNome(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
 				alterarNome();
 			}
 		});
-		this.conta.escolherFoto(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				escolherAvatar();
-			}
-		});
-
+		
+		this.preencherDados();
 	}
 
 	public void preencherDados() {
-		conta.preencherDados(navegador.getUsuarioLogado());
+	    Usuario usuarioLogado = navegador.getUsuarioLogado();
+	    
+	    if (usuarioLogado != null) {
+	        contaADM.preencherDados(usuarioLogado);
+	    } else {
+	        System.out.println("Aviso: Tentativa de preencher dados do Admin, mas nenhum usuário está logado ainda.");
+	    }
 	}
+
 
 	private void alterarSenha() {
 		Usuario usuarioLogado = navegador.getUsuarioLogado(); 
@@ -67,27 +69,27 @@ public class ContaController {
 					"Um código foi enviado para: " + usuarioLogado.getEmail() + "\n\nDigite o código recebido:");
 
 			if (digitado == null)
-				return; // usuário cancelou
+				return; 
 
 			if (codigo.equals(digitado.trim())) {
 				String novaSenha = JOptionPane.showInputDialog(null, "Digite a nova senha:");
 
 				if (novaSenha == null || novaSenha.isBlank()) {
-					Mensagem.mostrar("Senha não pode ser vazia!", "Atenção");
+					JOptionPane.showMessageDialog(null, "Senha não pode ser vazia!");
 					return;
 				}
 
 				usuarioLogado.setSenha(novaSenha);
 				user.atualizarSenha(usuarioLogado.getId(), novaSenha);
-				conta.preencherDados(usuarioLogado);
-				Mensagem.mostrar("Senha alterada com sucesso!", "Sucesso");
+				contaADM.preencherDados(usuarioLogado);
+				JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
 
 			} else {
-				Mensagem.mostrar("Código incorreto! Tente novamente.", "Erro");
+				JOptionPane.showMessageDialog(null, "Código incorreto! Tente novamente.");
 			}
 
 		} catch (MessagingException ex) {
-			Mensagem.mostrar("Erro ao enviar email: " + ex.getMessage(), "Erro");
+			JOptionPane.showMessageDialog(null, "Erro ao enviar email: " + ex.getMessage());
 		}
 	}
 
@@ -99,14 +101,14 @@ public class ContaController {
 			return; 
 
 		if (novoNome.isBlank()) {
-			Mensagem.mostrar("Nome não pode ser vazio!", "Atenção");
+			JOptionPane.showMessageDialog(null, "Nome não pode ser vazio!");
 			return;
 		}
 
 		usuarioLogado.setNome(novoNome);
 		user.atualizarUsuario(usuarioLogado);
-		conta.preencherDados(usuarioLogado);
-		Mensagem.mostrar("Nome alterado com sucesso!", "Sucesso");
+		contaADM.preencherDados(usuarioLogado);
+		JOptionPane.showMessageDialog(null, "Nome alterado com sucesso!");
 	}
 
 	private void verificarExcluir() {
@@ -124,25 +126,6 @@ public class ContaController {
 			        navegador.navegarPara("LOGIN");
 			    }
 
-	}
-
-	private void escolherAvatar() {
-		TelaEscolhaAvatar tela = new TelaEscolhaAvatar();
-		tela.setVisible(true); 
-
-		String avatarEscolhido = tela.getAvatarEscolhido();
-
-		if (avatarEscolhido != null) {
-			Usuario usuarioLogado = navegador.getUsuarioLogado();
-			usuarioLogado.setFoto(avatarEscolhido);
-			user.atualizarFoto(usuarioLogado.getId(), avatarEscolhido);
-			conta.atualizarFoto(avatarEscolhido);
-			Mensagem.mostrar("Avatar atualizado com sucesso!", "Sucesso");
-		}
-	}
-	public void atualizarContagem() {
-	    int total = user.contarChamadosPorUsuario(navegador.getUsuarioLogado().getId());
-	    conta.atualizarQntdChamado(total);
 	}
 
 }

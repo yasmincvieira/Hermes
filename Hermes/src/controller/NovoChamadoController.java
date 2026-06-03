@@ -17,13 +17,14 @@ public class NovoChamadoController {
 	private TelaNovoChamado chamado;
 	private ChamadoDAO dao;
 	private Navegador navegador;
+	private ContaController contaController;
 
-	public NovoChamadoController(TelaNovoChamado chamado, ChamadoDAO dao, Navegador navegador) {
+	public NovoChamadoController(TelaNovoChamado chamado, ChamadoDAO dao, Navegador navegador, ContaController contaController) {
 		super();
 		this.chamado = chamado;
 		this.dao = dao;
 		this.navegador = navegador;
-
+		this.contaController = contaController;
 		this.chamado.realizarChamado(e -> {
 			realizarChamado();
 		});
@@ -60,6 +61,7 @@ public class NovoChamadoController {
 	
 	    try {
 		dao.adicionarChamado(novoChamado);
+
 		Mensagem.mostrar("Chamado feito com sucesso!", "Sucesso");		
 		if (patrimonio != null && !patrimonio.trim().isEmpty()) {
 			try {
@@ -71,6 +73,20 @@ public class NovoChamadoController {
 	    } catch (Exception e) {
 	    	Mensagem.mostrar("Erro ao salvar chamado!", "Erro");			
 	    	e.printStackTrace();
+
+		contaController.atualizarContagem();
+		JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+
+
+
+		chamado.gettaDescricao().setText("");
+		chamado.gettfPatrimonio().setText("");
+//// Aqui deu erro  do merge, precisamos ver o codigo
+		} catch (Exception e) {
+
+			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+
 		}
 	    
 //		int idUsuario = navegador.getUsuarioLogado().getId();

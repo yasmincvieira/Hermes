@@ -32,6 +32,7 @@ public class TelaNovoChamado extends JPanel {
 	private int contadorChamados = 0;
 	private TelaConta telaConta;
 
+
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
@@ -103,10 +104,11 @@ public class TelaNovoChamado extends JPanel {
 		taDescricao = new JTextArea();
 		taDescricao.setBackground(new Color(160, 200, 172));
 		taDescricao.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		taDescricao.setWrapStyleWord(true);
-		taDescricao.setLineWrap(true);
+
+
 		taDescricao.setWrapStyleWord(true); 
 		taDescricao.setLineWrap(true); 
+
 		scrollPane.setViewportView(taDescricao);
 		btnRealizarChamado = new JButton("Realizar chamado");
 		btnRealizarChamado.setFont(new Font("Tahoma", Font.PLAIN, 16));

@@ -144,4 +144,40 @@ public class UsuarioDAO {
 			BancoDeDados.desconectar(conexao);
 		}
 	}
+	public int contarChamadosPorUsuario(int idUsuario) {
+	    String sql = "SELECT COUNT(*) FROM novoChamado WHERE idUsuario = ?";
+	    Connection conexao = null;
+	    PreparedStatement pstm = null;
+	    ResultSet rset = null;
+	    try {
+	        conexao = BancoDeDados.conectar();
+	        pstm = conexao.prepareStatement(sql);
+	        pstm.setInt(1, idUsuario);
+	        rset = pstm.executeQuery();
+	        if (rset.next()) {
+	            return rset.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        BancoDeDados.desconectar(conexao);
+	    }
+	    return 0;
+	}
+	
+	public void excluirChamadosDoUsuario(int idUsuario) {
+	    String sql = "DELETE FROM novoChamado WHERE idUsuario = ?";
+	    Connection conexao = null;
+	    PreparedStatement pstm = null;
+	    try {
+	        conexao = BancoDeDados.conectar();
+	        pstm = conexao.prepareStatement(sql);
+	        pstm.setInt(1, idUsuario);
+	        pstm.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        BancoDeDados.desconectar(conexao);
+	    }
+	}
 }

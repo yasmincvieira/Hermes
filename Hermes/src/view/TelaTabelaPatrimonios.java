@@ -24,9 +24,16 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import javax.swing.RowFilter;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Label;
+
 
 public class TelaTabelaPatrimonios extends JPanel {
 
@@ -35,6 +42,8 @@ public class TelaTabelaPatrimonios extends JPanel {
 	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
 	private JTextField tfBusca;
 	private TableRowSorter<PatrimonioTableModel> rowSorter;
+	private PatrimonioTableModel patrimonioTableModel;
+
 
 	/**
 	 * Create the panel.
@@ -65,17 +74,20 @@ public class TelaTabelaPatrimonios extends JPanel {
 		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 1 4 1,alignx right");
 		
 		tfBusca = new JTextField();
-//		tfBusca.addKeyListener(new KeyAdapter() {
-//			@Override
-//			public void keyReleased(KeyEvent e) {
-//				filtrar();
-//			}
-//		});
+
+		tfBusca.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyReleased(KeyEvent e) {
+		        filtrar();
+		    }
+		});
+
 		
 		Label label = new Label("Buscar");
 		label.setFont(new Font("Dialog", Font.PLAIN, 19));
 		paneltabelaPatrimonio.add(label, "cell 1 2,alignx right");
 		
+
 		paneltabelaPatrimonio.add(tfBusca, "cell 2 2,growx");
 		tfBusca.setColumns(10);
 
@@ -83,9 +95,9 @@ public class TelaTabelaPatrimonios extends JPanel {
 		paneltabelaPatrimonio.add(scrollPane, "cell 1 3 5 2,grow");
 
 		table = new JTable();
-		atualizarTabela();
+		atualizarTabela(); 
 		scrollPane.setViewportView(table);
-
+	
 		btnEditarPatri = new JButton("Editar patrimônios");
 		btnEditarPatri.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEditarPatri.setForeground(new Color(39, 79, 65));
@@ -104,16 +116,17 @@ public class TelaTabelaPatrimonios extends JPanel {
 		btnExcluirPatri.setBackground(new Color(144, 204, 171));
 		paneltabelaPatrimonio.add(btnExcluirPatri, "cell 4 6,alignx left");
 		
-//		rowSorter = new TableRowSorter<>(PatrimonioTableModel);
 	}
 
 	public JTable getTable() {
 		return table;
 	}
+	
 
 	public void setTable(JTable table) {
 		this.table = table;
 	}
+	
 
 		public int getLinhaSelecionada() {
 			return table.getSelectedRow();
@@ -137,22 +150,28 @@ public class TelaTabelaPatrimonios extends JPanel {
 		this.btnAdicionarPatri.addActionListener(actionListener);
 	}
 
-	public void atualizarTabela() {
-		PatrimonioDAO patrimonioDao = new PatrimonioDAO();
-		List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
-		PatrimonioTableModel model = new PatrimonioTableModel(lista);
-		table.setModel(model);
 
+	public void atualizarTabela() {
+	    PatrimonioDAO patrimonioDao = new PatrimonioDAO();
+	    List<Patrimonio> lista = patrimonioDao.listarpatrimonio();
+	    patrimonioTableModel = new PatrimonioTableModel(lista);
+	    table.setModel(patrimonioTableModel);
+
+	    // Recriar o rowSorter sempre que o model mudar
+	    rowSorter = new TableRowSorter<>(patrimonioTableModel);
+	    table.setRowSorter(rowSorter);
 	}
+
 	public void adicionarOuvinte(ComponentListener listener) {
 		this.addComponentListener(listener);
 	}
 	private void filtrar() {
 		String busca = tfBusca.getText().trim();
-		
-		if(busca.length()==0) {
-			rowSorter.addRowSorterListener(table);
+
+		if(busca.length() == 0) {
+			rowSorter.setRowFilter(null);
+		}else {
+			rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + busca));
 		}
-		
 	}
 }

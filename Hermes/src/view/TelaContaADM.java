@@ -58,81 +58,78 @@ public class TelaContaADM extends JPanel {
 		lbTrocarFoto.setIcon(new ImageIcon(TelaContaADM.class.getResource("/ImagensPerfil/foto1.png")));
 		lbTrocarFoto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		panel_1.add(lbTrocarFoto, "cell 1 2,alignx right,aligny center");
+				
+						JLabel lblNewLabel_2 = new JLabel("Usuário:");
+						lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+						panel_1.add(lblNewLabel_2, "cell 0 4,alignx right");
+		
+				lbEditarNome = new JLabel("Editar usuario");
+				lbEditarNome.setForeground(new Color(128, 0, 255));
+				panel_1.add(lbEditarNome, "cell 2 4");
+				
+						lbEditarNome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						lbEditarNome.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								lbEditarNome.setForeground(Color.BLUE);
+							}
 
-		JLabel lblNewLabel_2 = new JLabel("Usuário:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_1.add(lblNewLabel_2, "flowx,cell 1 4");
+							@Override
+							public void mouseExited(MouseEvent e) {
+								lbEditarNome.setForeground(new Color(128, 0, 255));
+							}
+						});
+				
+						JLabel lblNewLabel_3 = new JLabel("Senha:");
+						lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+						panel_1.add(lblNewLabel_3, "cell 0 6,alignx right");
+		
+				lbEditarSenha = new JLabel("Editar senha");
+				lbEditarSenha.setForeground(new Color(128, 0, 255));
+				panel_1.add(lbEditarSenha, "cell 2 6");
+				
+						lbEditarSenha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						lbEditarSenha.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								lbEditarSenha.setForeground(Color.BLUE);
+							}
 
-		JLabel lblNewLabel_3 = new JLabel("Senha:");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_1.add(lblNewLabel_3, "flowx,cell 1 6");
-
-		JLabel lblNewLabel_4 = new JLabel("E-Mail:");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_1.add(lblNewLabel_4, "flowx,cell 1 8");
+							@Override
+							public void mouseExited(MouseEvent e) {
+								lbEditarSenha.setForeground(new Color(128, 0, 255)); // volta à cor original
+							}
+						});
 
 		tfUsuario = new JTextField();
-		tfUsuario.setEnabled(false);
-		tfUsuario.setForeground(new Color(216, 233, 222));
 		tfUsuario.setEditable(false);
-		tfUsuario.setBackground(new Color(216, 233, 222));
-		panel_1.add(tfUsuario, "cell 1 4");
+		tfUsuario.setForeground(new Color(0, 0, 0));
+		tfUsuario.setBackground(new Color(209, 222, 216));
+		panel_1.add(tfUsuario, "cell 1 4,growx");
 		tfUsuario.setColumns(10);
 
 		tfSenha = new JTextField();
-		tfSenha.setEnabled(false);
 		tfSenha.setEditable(false);
-		tfSenha.setBackground(new Color(216, 233, 222));
-		tfSenha.setForeground(new Color(216, 233, 222));
-		panel_1.add(tfSenha, "cell 1 6");
+		tfSenha.setBackground(new Color(209, 222, 216));
+		tfSenha.setForeground(new Color(0, 0, 0));
+		panel_1.add(tfSenha, "cell 1 6,growx");
 		tfSenha.setColumns(10);
+		
+				JLabel lblNewLabel_4 = new JLabel("E-Mail:");
+				lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				panel_1.add(lblNewLabel_4, "cell 0 8,alignx right");
 
 		tfEmail = new JTextField();
-		tfEmail.setForeground(new Color(216, 233, 222));
-		tfEmail.setEnabled(false);
-		tfEmail.setBackground(new Color(216, 233, 222));
 		tfEmail.setEditable(false);
-		panel_1.add(tfEmail, "cell 1 8");
+		tfEmail.setForeground(new Color(0, 0, 0));
+		tfEmail.setBackground(new Color(209, 222, 216));
+		panel_1.add(tfEmail, "cell 1 8,growx");
 		tfEmail.setColumns(10);
-
-		lbEditarSenha = new JLabel("Editar senha");
-		lbEditarSenha.setForeground(new Color(128, 0, 255));
-		panel_1.add(lbEditarSenha, "cell 1 6");
-
-		lbEditarNome = new JLabel("Editar usuario");
-		lbEditarNome.setForeground(new Color(128, 0, 255));
-		panel_1.add(lbEditarNome, "cell 1 4");
-
-		lbEditarSenha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lbEditarSenha.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lbEditarSenha.setForeground(Color.BLUE);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lbEditarSenha.setForeground(new Color(128, 0, 255)); // volta à cor original
-			}
-		});
-
-		lbEditarNome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 				btnExcluirConta = new JButton("Excluir conta");
 				btnExcluirConta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 				btnExcluirConta.setBackground(new Color(160, 200, 172));
 				panel_1.add(btnExcluirConta, "cell 0 10,alignx right");
-		lbEditarNome.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lbEditarNome.setForeground(Color.BLUE);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lbEditarNome.setForeground(new Color(128, 0, 255));
-			}
-		});
 
 	}
 
@@ -149,10 +146,13 @@ public class TelaContaADM extends JPanel {
 	}
 
 	public void preencherDados(Usuario usuario) {
-		tfUsuario.setText(usuario.getNome());
-		tfSenha.setText(usuario.getSenha());
-		tfEmail.setText(usuario.getEmail());
+	    if (usuario != null) {
+	        tfUsuario.setText(usuario.getNome());
+	        tfEmail.setText(usuario.getEmail());
+	        tfSenha.setText(usuario.getSenha());
+	    }
 	}
+
 
 	public void atualizarFoto(String nomeFoto) {
 		lbTrocarFoto.setIcon(new ImageIcon(TelaContaADM.class.getResource("/ImagensPerfil/" + nomeFoto)));

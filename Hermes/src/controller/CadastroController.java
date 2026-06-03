@@ -21,13 +21,15 @@ public class CadastroController {
 	private UsuarioDAO user;
 	private Navegador navegador;
 	private TelaConta conta;
+	private Menu menu;
 
-	public CadastroController(TelaCadastro cadastro, UsuarioDAO user, Navegador navegador, TelaConta conta) {
+	public CadastroController(TelaCadastro cadastro, UsuarioDAO user, Navegador navegador, TelaConta conta, Menu menu) {
 		super();
 		this.cadastro = cadastro;
 		this.user = user;
 		this.navegador = navegador;
 		this.conta = conta;
+		this.menu = menu;
 
 		this.cadastro.cadastrar(e -> {
 			verificarCadastroUsuario();
@@ -60,9 +62,11 @@ public class CadastroController {
 		}
 
 		if (email.substring(0, email.indexOf("@")).contains(" ")) {
+
 			//Mensagem mensagem = new Mensagem("Por favor, insira um e-mail válido", "Erro");
 			//mensagem.setVisible(true);
 			Mensagem.mostrar("Por favor, insira um e-mail válido", "Erro");
+
 			return;
 		}
 
@@ -71,13 +75,24 @@ public class CadastroController {
 
 			Mensagem.mostrar("Prencha todos os campos", "Atenção");			
 			return;
+		
+		} else {
+		
+		for (Usuario u : user.listarUsuarios()) {
+			if (u.getEmail().equals(cadastro.gettfEmailC().getText())) {
+				JOptionPane.showMessageDialog(null, "Este e-mail já está cadastrado no sistema.", "E-mail Duplicado", JOptionPane.WARNING_MESSAGE);
+				return; 
+			}
 		}
+
 		Usuario novoUsuario = new Usuario();
 		novoUsuario.setNome(cadastro.gettfUsuarioC().getText());
 		novoUsuario.setEmail(cadastro.gettfEmailC().getText());
 		novoUsuario.setSenha(cadastro.getpfSenhaC().getText());
-
 		user.adicionarUsuario(novoUsuario);
+		
+		navegador.setUsuarioLogado(novoUsuario); 
+		menu.setUsuarioLogado(novoUsuario); 
 		conta.preencherDados(novoUsuario);
 
 		Mensagem.mostrar("Usuário cadastrado com sucesso!", "Sucesso");
@@ -85,8 +100,8 @@ public class CadastroController {
 
 		limparCamposLogin();
 
+		}
 	}
-
 	public void limparCamposLogin() {
 		cadastro.gettfEmailC().setText("");
 		cadastro.gettfUsuarioC().setText("");
