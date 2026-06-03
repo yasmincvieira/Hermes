@@ -2,6 +2,8 @@ package controller;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import models.Patrimonio;
 import models.Usuario;
 import view.Janela;
 import view.TelaLogin;
@@ -20,6 +22,8 @@ public class Navegador {
 	private HistoricoController historicoController;
 	private TelaTabelaPatrimonios telaTabelaPatrimonios;
 	private TabelaController TabelaController;
+	private EditarPatriController editarPatriController;
+	private Patrimonio patrimonioAdicionado;
 
 	public Navegador(Janela janela, TelaLogin login, Menu menu) {
 		this.janela = janela;
@@ -31,6 +35,7 @@ public class Navegador {
 		this.janela.adicionarTela(nome, tela);
 	}
 	
+
 
 	public void navegarPara(String nome) {
 		this.janela.mostrarTela(nome);
@@ -46,7 +51,12 @@ public class Navegador {
 		if (nome.equals("HISTORICO") && historicoController != null) {
             historicoController.carregarHistorico();
         }
+		if (nome.equals("EDITAR PATRIMONIO") && TabelaController != null) {
+	        TabelaController.preencherEdicao();
+	    }
 	}
+	
+
 
 	public void sair() {
 		this.janela.dispose();
@@ -99,7 +109,15 @@ public class Navegador {
 	public Usuario getUsuarioLogado() {
 		return usuarioLogado;
 	}
-
+	
+	public Patrimonio getPatrimonioAdicionado() {
+		return patrimonioAdicionado;
+	}
+	
+	public void setPatrimonioAdicionado(Patrimonio patrimonio) {
+		this.patrimonioAdicionado = patrimonio;
+	}
+	
 	public void setContaController(ContaController contaController) {
 		this.contaController = contaController;
 	}
@@ -112,5 +130,9 @@ public class Navegador {
 		this.TabelaController = tabelaController;
 		
 	}
+	public void setEditarPatriController(EditarPatriController editarPatriController) {
+		this.editarPatriController = editarPatriController;
+	}
+	
 
 }

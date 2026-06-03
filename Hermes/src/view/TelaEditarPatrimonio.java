@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.*;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import models.Espaco;
 import models.EspacoDAO;
@@ -16,8 +17,8 @@ import net.miginfocom.swing.MigLayout;
 public class TelaEditarPatrimonio extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textField;
-    private JTextField textField_1;
+    private JTextField tfID;
+    private JTextField tfPatrimonio;
     private JComboBox<Espaco> cbEspaco;
     private JComboBox<String> cbStatus;
 
@@ -32,7 +33,8 @@ public class TelaEditarPatrimonio extends JPanel {
             "[grow][163.00,grow][370.00,grow][grow]",
             "[137.00,grow][43][43][43][43][72.00,grow]"));
 
-        JLabel lblNewLabel = new JLabel("New label");
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(new ImageIcon(TelaEditarPatrimonio.class.getResource("/Imagens/botao-voltar40.png")));
         add(lblNewLabel, "cell 0 0,alignx left,aligny top");
 
         JPanel panel = new JPanel();
@@ -56,19 +58,19 @@ public class TelaEditarPatrimonio extends JPanel {
         lblId.setFont(new Font("Tahoma", Font.PLAIN, 17));
         add(lblId, "cell 1 1,alignx trailing");
 
-        textField = new JTextField();
-        textField.setEditable(false); 
-        add(textField, "cell 2 1,growx");
-        textField.setColumns(10);
+        tfID = new JTextField();
+        tfID.setEditable(false); 
+        add(tfID, "cell 2 1,growx");
+        tfID.setColumns(10);
 
         // --- Nome ---
         JLabel lblPatrimonio = new JLabel("Patrimônio");
         lblPatrimonio.setFont(new Font("Tahoma", Font.PLAIN, 17));
         add(lblPatrimonio, "cell 1 2,alignx trailing");
 
-        textField_1 = new JTextField();
-        add(textField_1, "cell 2 2,growx");
-        textField_1.setColumns(10);
+        tfPatrimonio = new JTextField();
+        add(tfPatrimonio, "cell 2 2,growx");
+        tfPatrimonio.setColumns(10);
 
         // --- Espaço ---
         JLabel lblEspaco = new JLabel("Espaço");
@@ -93,6 +95,8 @@ public class TelaEditarPatrimonio extends JPanel {
         btnSalvar.setForeground(new Color(0, 64, 0));
         btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 15));
         add(btnSalvar, "cell 2 5,alignx right,aligny top");
+        
+    
 
         btnSalvar.addActionListener(e -> salvarAlteracoes());
     }
@@ -112,8 +116,8 @@ public class TelaEditarPatrimonio extends JPanel {
         try {
             Patrimonio p = patrimonioDAO.buscarPorId(id);
             if (p != null) {
-                textField.setText(p.getId_patrimonio());  
-                textField_1.setText(p.getNome());
+                tfID.setText(p.getId_patrimonio());  
+                tfPatrimonio.setText(p.getNome());
                 cbStatus.setSelectedItem(p.getStatus());
 
             
@@ -137,8 +141,8 @@ public class TelaEditarPatrimonio extends JPanel {
             Espaco espacoSelecionado = (Espaco) cbEspaco.getSelectedItem();
 
             Patrimonio p = new Patrimonio();
-            p.setId_patrimonio(textField.getText().trim()); 
-            p.setNome(textField_1.getText().trim());
+            p.setId_patrimonio(tfID.getText().trim()); 
+            p.setNome(tfPatrimonio.getText().trim());
             p.setEspaco(espacoSelecionado);
             p.setStatus((String) cbStatus.getSelectedItem());
 
@@ -152,5 +156,12 @@ public class TelaEditarPatrimonio extends JPanel {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage());
         }
+    }
+    
+    public void preencherCampos(Patrimonio patrimonio) {
+    	if (patrimonio != null) {
+    		tfID.setText(patrimonio.getId());
+    		tfPatrimonio.setText(patrimonio.getNome());
+    	}
     }
 }

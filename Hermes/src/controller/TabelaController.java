@@ -19,6 +19,7 @@ public class TabelaController {
 	private TelaTabelaPatrimonios telaTabelaPatrimonios;
 	private PatrimonioDAO patrimonioDAO;
 	private Navegador navegador;
+	private java.util.List<Patrimonio> listaPatrimonio;
 	
 	public TabelaController(TelaTabelaPatrimonios telaTabelaPatrimonios, TelaEditarPatrimonio telaEditarPatrimonio,
 			TelaCadastrarPatrimonio telaCadastrarPatrimonio, PatrimonioDAO patrimonioDAO, Navegador navegador,Menu menu) {
@@ -34,24 +35,49 @@ public class TabelaController {
 		});
 		
 		this.telaTabelaPatrimonios.editarPatri(e -> {
+		    int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
+
+		    if (linhaSelecionada == -1) {
+		        JOptionPane.showMessageDialog(null,
+		            "Selecione um patrimônio para editar.",
+		            "Aviso",
+		            JOptionPane.WARNING_MESSAGE);
+		        return;
+		    }
+		    String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
+		    
+		    telaEditarPatrimonio.preencherCampos(idPatrimonio);
+		    
 		    this.navegador.navegarPara("EDITAR PATRIMONIO");
 		});
-
+		}
+	
+	public void preencherEdicao() {
+	    int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
+	    if (linhaSelecionada != -1) {
+	        String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
+	        telaEditarPatrimonio.preencherCampos(idPatrimonio);
+	    }
 	}
 
 	private void excluirPatrimonio() {
-		int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
+	    int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
 
-		String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
+	    if (linhaSelecionada == -1) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Selecione um patrimônio para excluir.", 
+	            "Aviso", 
+	            JOptionPane.WARNING_MESSAGE);
+	        return;
+	    }
 
-		int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
+	    String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
 
-		if (confirm == JOptionPane.YES_OPTION) {
-			patrimonioDAO.excluirPatrimonio(idPatrimonio);
-			
+	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
-		}
-
+	    if (confirm == JOptionPane.YES_OPTION) {
+	        patrimonioDAO.excluirPatrimonio(idPatrimonio);
+	    }
 	}
 	
 

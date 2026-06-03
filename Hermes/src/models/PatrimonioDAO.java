@@ -68,9 +68,11 @@ public class PatrimonioDAO {
 
   
     public Patrimonio buscarPorId(String id) {
-        String sql = "SELECT p.*, e.idEspaco AS espaco_id, e.nome AS espaco_nome " +
+    	System.out.println("=== buscarPorId chamado com id: [" + id + "] ===");
+        String sql = "SELECT p.idPatrimonio, p.nome, p.status, p.idEspaco, " +
+                     "e.nome_local, e.bloco, e.andar " +
                      "FROM patrimonio p " +
-                     "JOIN espaco e ON p.idEspaco = e.idEspaco " +
+                     "JOIN espaco e ON p.idEspaco = e.nome_local " +
                      "WHERE p.idPatrimonio = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
@@ -79,21 +81,24 @@ public class PatrimonioDAO {
         try {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, id);
+            pstm.setInt(1, Integer.parseInt(id)); 
             rset = pstm.executeQuery();
+            
+            System.out.println("Buscando patrimônio com id: " + id);
+            rset = pstm.executeQuery();
+            System.out.println("Teve resultado: " + rset.next());
 
             if (rset.next()) {
                 Espaco espaco = new Espaco();
-                espaco.setId_espaco(rset.getString("id_espaco"));
-                espaco.setNomeLocal(rset.getString("nome_local"));  
-                espaco.setBloco(rset.getString("bloco")); 
-                espaco.setAndar(rset.getString("andar"));  
+                espaco.setNomeLocal(rset.getString("nome_local"));
+                espaco.setBloco(rset.getString("bloco"));
+                espaco.setAndar(rset.getString("andar"));
 
                 Patrimonio p = new Patrimonio();
-                p.setId_patrimonio(rset.getString("idPatrimonio")); 
+                p.setId_patrimonio(rset.getString("idPatrimonio"));
                 p.setNome(rset.getString("nome"));
-                p.setEspaco(espaco);
                 p.setStatus(rset.getString("status"));
+                p.setEspaco(espaco);
                 return p;
             }
         } catch (SQLException e) {
@@ -106,7 +111,7 @@ public class PatrimonioDAO {
         }
         return null;
     }
-
+    
 
     public boolean atualizar(Patrimonio p) {
         String sql = "UPDATE patrimonio SET nome = ?, idEspaco = ?, status = ? WHERE idPatrimonio = ?";
@@ -117,7 +122,7 @@ public class PatrimonioDAO {
             conexao = BancoDeDados.conectar(); 
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, p.getNome());
-            pstm.setString(2, p.getEspaco().getNomeLocal()); 
+            pstm.setString(2, p.getEspaco().getNomeLocal());
             pstm.setString(3, p.getStatus());
             pstm.setString(4, p.getId_patrimonio());      
             return pstm.executeUpdate() > 0;
