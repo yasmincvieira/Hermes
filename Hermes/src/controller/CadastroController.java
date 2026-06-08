@@ -37,6 +37,10 @@ public class CadastroController {
 				navegador.navegarPara("LOGIN");
 			}
 		});
+		
+		this.cadastro.irLogin(e -> {
+			navegador.navegarPara("LOGIN");
+		});
 
 	}
 

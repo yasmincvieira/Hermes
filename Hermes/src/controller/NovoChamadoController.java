@@ -15,15 +15,21 @@ public class NovoChamadoController {
 	private TelaNovoChamado chamado;
 	private ChamadoDAO dao;
 	private Navegador navegador;
+	private Object inicio;
 
 	public NovoChamadoController(TelaNovoChamado chamado, ChamadoDAO dao, Navegador navegador) {
 		super();
 		this.chamado = chamado;
 		this.dao = dao;
 		this.navegador = navegador;
+		this.inicio = inicio;
 
 		this.chamado.realizarChamado(e -> {
 			realizarChamado();
+		});
+		
+		this.chamado.irInicio(e -> {
+			navegador.navegarPara("INICIO");
 		});
 
 	}

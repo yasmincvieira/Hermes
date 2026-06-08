@@ -5,7 +5,10 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -26,6 +29,7 @@ public class TelaNovoChamado extends JPanel {
 	private JButton btnRealizarChamado;
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
+	private JLabel lbVoltar;
 
 	/**
 	 * Create the panel.
@@ -38,6 +42,10 @@ public class TelaNovoChamado extends JPanel {
 		panelChamado.setBackground(new Color(234, 242, 236));
 		add(panelChamado, BorderLayout.CENTER);
 		panelChamado.setLayout(new MigLayout("", "[grow][grow 5][grow][grow]", "[][][][][][][][][grow][][][]"));
+		
+		JLabel lbVoltar = new JLabel("");
+		lbVoltar.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/botao-voltar40.png")));
+		panelChamado.add(lbVoltar, "cell 0 0,aligny top");
 
 		JLabel lblNewLabel_6 = new JLabel("HERMES");
 		lblNewLabel_6.setForeground(new Color(39, 79, 65));
@@ -148,6 +156,15 @@ public class TelaNovoChamado extends JPanel {
 
 	public JComboBox getcbLocal() {
 		return cbLocal;
+	}
+	
+	public void irInicio(ActionListener actionListener) {
+	    this.lbVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
 	}
 
 }

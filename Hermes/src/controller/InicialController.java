@@ -28,6 +28,11 @@ public class InicialController {
 			navegador.navegarPara("CHAMADO");
 		});
 		
+		this.inicio.irLogin(e -> {
+			navegador.navegarPara("LOGIN");
+		});
+		
+		
 		
 	}
 

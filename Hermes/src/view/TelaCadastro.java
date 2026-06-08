@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
@@ -51,8 +53,8 @@ public class TelaCadastro extends JPanel {
 		this.btnCadastrar = new JButton("Cadastrar");
 
 		this.lbVoltar = new JLabel("");
-		this.lbVoltar.setIcon(new ImageIcon(TelaCadastro.class.getResource("/Imagens/voltar20.png")));
-		add(this.lbVoltar, "cell 0 0");
+		this.lbVoltar.setIcon(new ImageIcon(TelaCadastro.class.getResource("/Imagens/botao-voltar40.png")));
+		add(this.lbVoltar, "cell 0 0,aligny top");
 
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -127,8 +129,18 @@ public class TelaCadastro extends JPanel {
 		this.btnCadastrar.addActionListener(actionListener);
 	}
 
-	public void voltar(MouseListener mouseListener) {
-		this.lbVoltar.addMouseListener(mouseListener);
+	public void irLogin(ActionListener actionListener) {
+	    this.lbVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
+	}
+
+	public void voltar(MouseAdapter mouseAdapter) {
+	
+		
 	}
 
 }
