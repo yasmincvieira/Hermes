@@ -68,12 +68,11 @@ public class PatrimonioDAO {
 
   
     public Patrimonio buscarPorId(String id) {
-
         String sql =
             "SELECT p.idPatrimonio, p.nome, p.status, p.idEspaco, " +
-            "e.idEspaco, e.nome_local, e.bloco, e.andar " +
+            "e.nome_local, e.bloco, e.andar " +
             "FROM patrimonio p " +
-            "JOIN espaco e ON p.idEspaco = e.idEspaco " +
+            "JOIN espaco e ON p.idEspaco = e.nome_local " +
             "WHERE p.idPatrimonio = ?";
 
         Connection conexao = null;
@@ -81,39 +80,26 @@ public class PatrimonioDAO {
         ResultSet rset = null;
 
         try {
-
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
-
             pstm.setString(1, id);
-
             rset = pstm.executeQuery();
 
             if (rset.next()) {
-
                 Espaco espaco = new Espaco();
-
-                espaco.setId_espaco(rset.getString("idEspaco"));
+                espaco.setId_espaco(rset.getString("nome_local")); // ← corrigido
                 espaco.setNomeLocal(rset.getString("nome_local"));
                 espaco.setBloco(rset.getString("bloco"));
                 espaco.setAndar(rset.getString("andar"));
 
                 Patrimonio patrimonio = new Patrimonio();
-
-                patrimonio.setId_patrimonio(
-                    rset.getString("idPatrimonio"));
-
-                patrimonio.setNome(
-                    rset.getString("nome"));
-
-                patrimonio.setStatus(
-                    rset.getString("status"));
-
+                patrimonio.setId_patrimonio(rset.getString("idPatrimonio"));
+                patrimonio.setNome(rset.getString("nome"));
+                patrimonio.setStatus(rset.getString("status"));
                 patrimonio.setEspaco(espaco);
 
                 return patrimonio;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -122,7 +108,6 @@ public class PatrimonioDAO {
 
         return null;
     }
-    
 
     public boolean atualizar(Patrimonio p) {
         String sql = "UPDATE patrimonio SET nome = ?, idEspaco = ?, status = ? WHERE idPatrimonio = ?";

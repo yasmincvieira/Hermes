@@ -16,7 +16,6 @@ import controller.Menu;
 import controller.Navegador;
 import controller.NovoChamadoController;
 import controller.TabelaController;
-import controller.EditarPatriController;
 import models.ChamadoDAO;
 import models.UsuarioDAO;
 import models.PatrimonioDAO;
@@ -87,15 +86,14 @@ public class Main {
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
 		TabelaController tabelaController = new TabelaController (telaTabelaPatrimonios, telaEditarPatrimonio, telaCadastrarPatrimonio, patrimonioDAO, navegador, menu);
-		EditarPatriController editarPatriController = new EditarPatriController (telaTabelaPatrimonios,telaEditarPatrimonio, telaCadastrarPatrimonio, patrimonioDAO, navegador, menu);
-
 		
+		navegador.setTabelaController(tabelaController);
 		navegador.setCadastroController(cadastroController);
 		navegador.setLoginController(loginController);
 		navegador.setInicialController(inicialController);
 		navegador.setContaController(contaController);
 		navegador.setHistoricoController(historicoController);
-		navegador.setEditarPatriController(editarPatriController);
+	
 
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastro);

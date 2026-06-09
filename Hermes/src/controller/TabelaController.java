@@ -1,93 +1,72 @@
 package controller;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import models.Patrimonio;
 import models.PatrimonioDAO;
 import view.TelaCadastrarPatrimonio;
-import view.TelaEditarPatrimonio;
 import view.TelaTabelaPatrimonios;
+import view.TelaEditarPatrimonio;
 
 public class TabelaController {
+    private TelaEditarPatrimonio telaEditarPatrimonio;
+    private TelaTabelaPatrimonios telaTabelaPatrimonios;
+    private PatrimonioDAO patrimonioDAO;
+    private Navegador navegador;
 
-	private TelaEditarPatrimonio telaEditarPatrimonio;
-	private TelaTabelaPatrimonios telaTabelaPatrimonios;
-	private PatrimonioDAO patrimonioDAO;
-	private Navegador navegador;
-	private java.util.List<Patrimonio> listaPatrimonio;
-	
-	public TabelaController(TelaTabelaPatrimonios telaTabelaPatrimonios, TelaEditarPatrimonio telaEditarPatrimonio,
-			TelaCadastrarPatrimonio telaCadastrarPatrimonio, PatrimonioDAO patrimonioDAO, Navegador navegador,Menu menu) {
-		super();
-		
-		this.telaTabelaPatrimonios = telaTabelaPatrimonios;
-		this.telaEditarPatrimonio = telaEditarPatrimonio;
-		this.patrimonioDAO = patrimonioDAO;
-		this.navegador = navegador;
+    public TabelaController(TelaTabelaPatrimonios telaTabelaPatrimonios, TelaEditarPatrimonio telaEditarPatrimonio,
+            TelaCadastrarPatrimonio telaCadastrarPatrimonio, PatrimonioDAO patrimonioDAO, Navegador navegador, Menu menu) {
 
-		this.telaTabelaPatrimonios.excluirPatri(e -> {
-			excluirPatrimonio();
-		});
-		
-		this.telaTabelaPatrimonios.irInicioADM(e -> {
-			navegador.navegarPara("INICIO ADMIN");
-		});
-		
-		this.telaTabelaPatrimonios.editarPatri(e -> {
-		    int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
+        this.telaTabelaPatrimonios = telaTabelaPatrimonios;
+        this.telaEditarPatrimonio = telaEditarPatrimonio;
+        this.patrimonioDAO = patrimonioDAO;
+        this.navegador = navegador;
 
-		    if (linhaSelecionada == -1) {
-		        JOptionPane.showMessageDialog(null,
-		            "Selecione um patrimônio para editar.",
-		            "Aviso",
-		            JOptionPane.WARNING_MESSAGE);
-		        return;
-		    }
+        this.telaEditarPatrimonio.salvar(e -> salvarEdicao());
+        this.telaEditarPatrimonio.voltar(e -> navegador.navegarPara("TABELA"));
 
-		    // Pega o ID da coluna 0 da linha selecionada
-		    String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 2).toString();
-		    
-		    // Preenche os campos ANTES de navegar
-		    telaEditarPatrimonio.preencherCampos(idPatrimonio);
-		    
-		    this.navegador.navegarPara("EDITAR PATRIMONIO");
-		});
-		}
-	
-	public void preencherEdicao() {
-	    int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
-	    if (linhaSelecionada != -1) {
-	        String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
-	        telaEditarPatrimonio.preencherCampos(idPatrimonio);
-	    }
-	}
+        this.telaTabelaPatrimonios.excluirPatri(e -> excluirPatrimonio());
+        this.telaTabelaPatrimonios.irInicioADM(e -> navegador.navegarPara("INICIO ADMIN"));
 
-	private void excluirPatrimonio() {
-	    int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
+        this.telaTabelaPatrimonios.editarPatri(e -> {
+            int linha = telaTabelaPatrimonios.getTable().getSelectedRow();
+            if (linha == -1) {
+                JOptionPane.showMessageDialog(null, "Selecione um patrimônio.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 2).toString();
+            Patrimonio p = patrimonioDAO.buscarPorId(id);
+            telaEditarPatrimonio.preencherCampos(p);
+            navegador.navegarPara("EDITAR PATRIMONIO");
+        });
+    }
 
-	    if (linhaSelecionada == -1) {
-	        JOptionPane.showMessageDialog(null, 
-	            "Selecione um patrimônio para excluir.", 
-	            "Aviso", 
-	            JOptionPane.WARNING_MESSAGE);
-	        return;
-	    }
+    private void salvarEdicao() {
+        Patrimonio p = new Patrimonio();
+        p.setId_patrimonio(telaEditarPatrimonio.getIdPatrimonio());
+        p.setNome(telaEditarPatrimonio.getNomePatrimonio());
+        p.setEspaco(telaEditarPatrimonio.getEspacoSelecionado());
+        p.setStatus(telaEditarPatrimonio.getStatusSelecionado());
 
-	    String idPatrimonio = (String) telaTabelaPatrimonios.getTable().getValueAt(linhaSelecionada, 0);
+        boolean sucesso = patrimonioDAO.atualizar(p);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(null, "Patrimônio atualizado com sucesso!");
+            navegador.navegarPara("TABELA");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar.");
+        }
+    }
 
-	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-	    if (confirm == JOptionPane.YES_OPTION) {
-	        patrimonioDAO.excluirPatrimonio(idPatrimonio);
-	    }
-	}
-	
-
-
-
+    private void excluirPatrimonio() {
+        int linha = telaTabelaPatrimonios.getTable().getSelectedRow();
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um patrimônio para excluir.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
+        int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            patrimonioDAO.excluirPatrimonio(id);
+        }
+    }
 }
