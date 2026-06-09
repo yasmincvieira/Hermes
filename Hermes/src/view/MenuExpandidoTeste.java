@@ -1,11 +1,9 @@
-
 package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
@@ -20,13 +18,14 @@ public class MenuExpandidoTeste extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFechar;
 	private JButton btnHistorico, btnSair, btnPerfil, btnInicio;
+	
+	// CORRIGIDO: Atributo global adicionado para o Controller conseguir acessá-lo de fora
+	private JLabelRedondo lbPerfil;
 
 	public MenuExpandidoTeste() {
 
 		setBackground(new Color(147, 195, 171));
-
 		setPreferredSize(new Dimension(200, 640));
-
 		setLayout(new MigLayout("gap 18", "[200.00,grow]", "[35.00][31.00][31.00][372.00][31.00][31.00]"));
 
 		lbFechar = new JLabel("");
@@ -48,9 +47,18 @@ public class MenuExpandidoTeste extends JPanel {
 		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		add(btnSair, "cell 0 4,grow");
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(MenuExpandidoTeste.class.getResource("/Imagens/30Usuario.png")));
-		add(lblNewLabel_1, "flowx,cell 0 5");
+		// CORRIGIDO: Inicialização do componente redondo de tamanho fixo 35x35
+		lbPerfil = new JLabelRedondo();
+		lbPerfil.setIcon(new ImageIcon(MenuExpandidoTeste.class.getResource("/Imagens/30Usuario.png")));
+		lbPerfil.setConfiguracaoBorda(new Color(39, 79, 65), 1);
+		
+		Dimension tamMenuExp = new Dimension(35, 35);
+		lbPerfil.setPreferredSize(tamMenuExp);
+		lbPerfil.setMinimumSize(tamMenuExp);
+		lbPerfil.setMaximumSize(tamMenuExp);
+		
+		// CORRIGIDO: Travado as dimensões rígidas no MigLayout (w 35!, h 35!) para não esticar a imagem
+		add(lbPerfil, "flowx,cell 0 5,alignx left, w 35!, h 35!");
 
 		btnPerfil = new JButton("Ver Perfil");
 		btnPerfil.setBackground(new Color(175, 207, 198));
@@ -59,8 +67,13 @@ public class MenuExpandidoTeste extends JPanel {
 
 	}
 
-	public void mostrarMenuContraido(MouseListener mouseListener) {
+	// CORRIGIDO: Método público adicionado para que o Controller possa atualizar o avatar dinamicamente
+	public void atualizarFotoMenu(String nomeFoto) {
+		lbPerfil.setIcon(new ImageIcon(MenuExpandidoTeste.class.getResource("/ImagensPerfil/" + nomeFoto)));
+		lbPerfil.repaint();
+	}
 
+	public void mostrarMenuContraido(MouseListener mouseListener) {
 		this.lbFechar.addMouseListener(mouseListener);
 	}
 
@@ -79,5 +92,4 @@ public class MenuExpandidoTeste extends JPanel {
 	public void irPerfil(ActionListener actionListener) {
 		this.btnPerfil.addActionListener(actionListener);
 	}
-
 }

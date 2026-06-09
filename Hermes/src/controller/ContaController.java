@@ -4,10 +4,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import jakarta.mail.MessagingException;
 import models.Usuario;
 import models.UsuarioDAO;
 import view.Mensagem;
+import view.MensagemInput;
+import view.MensagemSN;
 import view.TelaConta;
 import view.TelaEscolhaAvatar;
 
@@ -16,12 +20,14 @@ public class ContaController {
 	private TelaConta conta;
 	private UsuarioDAO user;
 	private Navegador navegador;
+	private Menu menu;
 
 	public ContaController(TelaConta conta, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
 		this.conta = conta;
 		this.user = user;
 		this.navegador = navegador;
+		this.menu = menu;
 
 		this.conta.excluirConta(e -> {
 			verificarExcluir();
@@ -57,78 +63,81 @@ public class ContaController {
 	}
 
 	private void alterarSenha() {
-		Usuario usuarioLogado = navegador.getUsuarioLogado(); 
-		String codigo = String.valueOf((int) (Math.random() * 900000) + 100000); 
+		new Thread(() -> {
+			Usuario usuarioLogado = navegador.getUsuarioLogado();
+			String codigo = String.valueOf((int) (Math.random() * 900000) + 100000);
 
-		try {
-			EmailService.enviarCodigo(usuarioLogado.getEmail(), codigo);
+			try {
+				EmailService.enviarCodigo(usuarioLogado.getEmail(), codigo);
 
-			String digitado = JOptionPane.showInputDialog(null,
-					"Um código foi enviado para: " + usuarioLogado.getEmail() + "\n\nDigite o código recebido:");
+				String digitado = MensagemInput.mostrarInput(
+						"Um código foi enviado para: " + usuarioLogado.getEmail() + "\nDigite o código recebido:",
+						"Atenção");
 
-			if (digitado == null)
-				return; // usuário cancelou
-
-			if (codigo.equals(digitado.trim())) {
-				String novaSenha = JOptionPane.showInputDialog(null, "Digite a nova senha:");
-
-				if (novaSenha == null || novaSenha.isBlank()) {
-					Mensagem.mostrar("Senha não pode ser vazia!", "Atenção");
+				if (digitado == null)
 					return;
+
+				if (codigo.equals(digitado.trim())) {
+					String novaSenha = MensagemInput.mostrarInput("Digite a nova senha:", "Alterar senha");
+
+					if (novaSenha == null || novaSenha.isBlank()) {
+						SwingUtilities.invokeLater(() -> Mensagem.mostrar("Senha não pode ser vazia!", "Atenção"));
+						return;
+					}
+
+					usuarioLogado.setSenha(novaSenha);
+					user.atualizarSenha(usuarioLogado.getId(), novaSenha);
+					conta.preencherDados(usuarioLogado);
+					Mensagem.mostrar("Senha alterada com sucesso!", "Sucesso");
+
+				} else {
+					SwingUtilities.invokeLater(() -> Mensagem.mostrar("Código incorreto! Tente novamente.", "Erro"));
 				}
 
-				usuarioLogado.setSenha(novaSenha);
-				user.atualizarSenha(usuarioLogado.getId(), novaSenha);
-				conta.preencherDados(usuarioLogado);
-				Mensagem.mostrar("Senha alterada com sucesso!", "Sucesso");
-
-			} else {
-				Mensagem.mostrar("Código incorreto! Tente novamente.", "Erro");
+			} catch (MessagingException ex) {
+				SwingUtilities.invokeLater(() -> Mensagem.mostrar("Erro ao enviar email: " + ex.getMessage(), "Erro"));
 			}
-
-		} catch (MessagingException ex) {
-			Mensagem.mostrar("Erro ao enviar email: " + ex.getMessage(), "Erro");
-		}
+		}).start();
 	}
 
 	private void alterarNome() {
-		Usuario usuarioLogado = navegador.getUsuarioLogado();
-
-		String novoNome = JOptionPane.showInputDialog(null, "Digite o novo nome:", usuarioLogado.getNome()); 
-		if (novoNome == null)
-			return; 
-
-		if (novoNome.isBlank()) {
-			Mensagem.mostrar("Nome não pode ser vazio!", "Atenção");
-			return;
-		}
-
-		usuarioLogado.setNome(novoNome);
-		user.atualizarUsuario(usuarioLogado);
-		conta.preencherDados(usuarioLogado);
-		Mensagem.mostrar("Nome alterado com sucesso!", "Sucesso");
+	    new Thread(() -> {
+	        Usuario usuarioLogado = navegador.getUsuarioLogado();
+	        String novoNome = MensagemInput.mostrarInput("Digite o novo nome:", "Alterar nome");
+	        
+	        if (novoNome == null) return;
+	        
+	        if (novoNome.isBlank()) {
+	            SwingUtilities.invokeLater(() -> Mensagem.mostrar("Nome não pode ser vazio!", "Atenção"));
+	            return;
+	        }
+	        
+	        usuarioLogado.setNome(novoNome);
+	        user.atualizarUsuario(usuarioLogado);
+	        SwingUtilities.invokeLater(() -> {
+	            conta.preencherDados(usuarioLogado);
+	            Mensagem.mostrar("Nome alterado com sucesso!", "Sucesso");
+	        });
+	    }).start();
 	}
 
 	private void verificarExcluir() {
-		  int confirmacao = JOptionPane.showConfirmDialog(
-			        null,
-			        "Tem certeza que deseja excluir sua conta?\nEsta ação não pode ser desfeita.", "Confirmar exclusão", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE
-			    );
+		MensagemSN.mostrarSN("Tem certeza que deseja excluir sua conta?\nEsta ação não pode ser desfeita.", "Atenção",
+				e -> {
+					Usuario usuarioLogado = navegador.getUsuarioLogado();
+					user.excluirChamadosDoUsuario(usuarioLogado.getId());
+					user.excluirUsuario(usuarioLogado.getId());
+					navegador.setUsuarioLogado(null);
+					JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!");
+					navegador.navegarPara("LOGIN");
+				}, e -> {
 
-			    if (confirmacao == JOptionPane.YES_OPTION) {
-			        Usuario usuarioLogado = navegador.getUsuarioLogado();
-			        user.excluirChamadosDoUsuario(usuarioLogado.getId());
-			        user.excluirUsuario(usuarioLogado.getId());           
-			        navegador.setUsuarioLogado(null);    
-			        JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!");
-			        navegador.navegarPara("LOGIN");
-			    }
-
+				});
 	}
 
 	private void escolherAvatar() {
 		TelaEscolhaAvatar tela = new TelaEscolhaAvatar();
-		tela.setVisible(true); 
+		tela.setVisible(true);
 
 		String avatarEscolhido = tela.getAvatarEscolhido();
 
@@ -136,13 +145,20 @@ public class ContaController {
 			Usuario usuarioLogado = navegador.getUsuarioLogado();
 			usuarioLogado.setFoto(avatarEscolhido);
 			user.atualizarFoto(usuarioLogado.getId(), avatarEscolhido);
+
 			conta.atualizarFoto(avatarEscolhido);
+
+			if (menu != null) {
+				menu.atualizarFotoMenu(avatarEscolhido);
+			}
+
 			Mensagem.mostrar("Avatar atualizado com sucesso!", "Sucesso");
 		}
 	}
+
 	public void atualizarContagem() {
-	    int total = user.contarChamadosPorUsuario(navegador.getUsuarioLogado().getId());
-	    conta.atualizarQntdChamado(total);
+		int total = user.contarChamadosPorUsuario(navegador.getUsuarioLogado().getId());
+		conta.atualizarQntdChamado(total);
 	}
 
 }

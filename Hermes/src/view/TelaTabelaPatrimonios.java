@@ -128,16 +128,23 @@ public class TelaTabelaPatrimonios extends JPanel {
 	}
 	
 
-		public int getLinhaSelecionada() {
-			return table.getSelectedRow();
-		}
-	
-		public int getCodigoSelecionado() {
-			int linha = table.getSelectedRow();
-			if (linha == -1)
-				return -1; 
-			return (int) table.getValueAt(linha, 0);
-		}
+	public int getLinhaSelecionada() {
+	  int linhaVisivel = table.getSelectedRow();
+	    if (linhaVisivel == -1) {
+	        return -1;
+	    }
+	    return table.convertRowIndexToModel(linhaVisivel);
+	}
+
+
+	public int getCodigoSelecionado() {
+		int linhaVisivel = table.getSelectedRow();
+	    if (linhaVisivel == -1) {
+	        return -1; 
+	    }
+	    int linhaModel = table.convertRowIndexToModel(linhaVisivel);
+	    return (int) table.getModel().getValueAt(linhaModel, 0);
+	}
 	public void excluirPatri(ActionListener actionListener) {
 		this.btnExcluirPatri.addActionListener(actionListener);
 	}
@@ -157,7 +164,6 @@ public class TelaTabelaPatrimonios extends JPanel {
 	    patrimonioTableModel = new PatrimonioTableModel(lista);
 	    table.setModel(patrimonioTableModel);
 
-	    // Recriar o rowSorter sempre que o model mudar
 	    rowSorter = new TableRowSorter<>(patrimonioTableModel);
 	    table.setRowSorter(rowSorter);
 	}
@@ -166,12 +172,17 @@ public class TelaTabelaPatrimonios extends JPanel {
 		this.addComponentListener(listener);
 	}
 	private void filtrar() {
-		String busca = tfBusca.getText().trim();
+	    if (rowSorter == null) {
+	        return;
+	    }
 
-		if(busca.length() == 0) {
-			rowSorter.setRowFilter(null);
-		}else {
-			rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + busca));
-		}
+	    String busca = tfBusca.getText().trim();
+
+	    if (busca.length() == 0) {
+	        rowSorter.setRowFilter(null);
+	    } else {
+	        rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + java.util.regex.Pattern.quote(busca)));
+	    }
 	}
+
 }

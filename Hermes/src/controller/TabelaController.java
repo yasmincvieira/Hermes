@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import models.Patrimonio;
 import models.PatrimonioDAO;
 import view.Mensagem;
+import view.MensagemSN;
 import view.TelaTabelaPatrimonios;
 
 public class TabelaController  extends ComponentAdapter {
@@ -37,23 +38,22 @@ public class TabelaController  extends ComponentAdapter {
 	private void excluirPatrimonio() {
 	    int linha = telaTabelaPatrimonios.getLinhaSelecionada();
 	    if (linha == -1) {
-	    	Mensagem.mostrar("Selecione um patrimonio para excluir!", "Atenção");
+	        Mensagem.mostrar("Selecione um patrimonio para excluir!", "Atenção");
 	        return;
 	    }
-	    
-	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
-	    if (confirm == JOptionPane.YES_OPTION) {
-	    	
-	    	   String idString = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
-	           int idPatrimonio = Integer.parseInt(idString);
-	    
-	    
-	           patrimonioDAO.excluirPatrimonio(idPatrimonio); 
-	           
-	         
-	           telaTabelaPatrimonios.atualizarTabela();
-	           Mensagem.mostrar("Patrimônio excluído com sucesso!", "Sucesso");
-	    }
+
+	    MensagemSN.mostrarSN(
+	        "Deseja excluir?",
+	        "Confirmação",
+	        sim -> {
+	            String idString = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
+	            int idPatrimonio = Integer.parseInt(idString);
+	            patrimonioDAO.excluirPatrimonio(idPatrimonio);
+	            telaTabelaPatrimonios.atualizarTabela();
+	            Mensagem.mostrar("Patrimônio excluído com sucesso!", "Sucesso");
+	        },
+	        nao -> {}
+	    );
 	}
 
 	public void componentShown(ComponentEvent e) {

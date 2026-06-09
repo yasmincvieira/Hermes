@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import models.Chamado;
 import models.ChamadoDAO;
 import view.Mensagem;
+import view.MensagemSN;
 import view.TelaHistoricoDeChamadosADM;
 import view.TelaNovoChamadosADM;
 import view.TelaVizuChamadosADM;
@@ -60,16 +61,20 @@ public class HistoricoControllerADM {
             String cmd = e.getActionCommand();
             if (cmd != null && !cmd.isEmpty()) {
                 int id = Integer.parseInt(cmd);
-                int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este chamado?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
-                if (confirmacao == JOptionPane.YES_OPTION) {
-                    dao.excluirChamado(id);
-                    carregarChamados();
-                }
+                MensagemSN.mostrarSN(
+                    "Tem certeza que deseja excluir este chamado?",
+                    "Confirmar Exclusão",
+                    sim -> {
+                        dao.excluirChamado(id);
+                        carregarChamados();
+                    },
+                    nao -> {}
+                );
             }
         };
-
-        telaNovosChamados.atualizarChamados(novos, verDetalhesListener, excluirListener);
-        telaHistoricoGeral.atualizarChamados(historico, verDetalhesListener, excluirListener);
+   
+    telaNovosChamados.atualizarChamados(novos, verDetalhesListener, excluirListener);
+    telaHistoricoGeral.atualizarChamados(historico, verDetalhesListener, excluirListener);
     }
 
     private void abrirDetalhes(int idChamado) {

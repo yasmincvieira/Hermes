@@ -80,7 +80,7 @@ public class CadastroController {
 		
 		for (Usuario u : user.listarUsuarios()) {
 			if (u.getEmail().equals(cadastro.gettfEmailC().getText())) {
-				JOptionPane.showMessageDialog(null, "Este e-mail já está cadastrado no sistema.", "E-mail Duplicado", JOptionPane.WARNING_MESSAGE);
+				Mensagem.mostrar("Este e-mail já está cadastrado no sistema.", "E-mail Duplicado");
 				return; 
 			}
 		}

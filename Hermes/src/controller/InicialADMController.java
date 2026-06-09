@@ -22,7 +22,7 @@ public class InicialADMController {
         });
 
         this.inicioADM.verPerfil(e -> {
-            navegador.navegarPara("PERFIL");
+            navegador.navegarPara("PERFIL ADM");
         });
 
         this.inicioADM.chamado(e -> {

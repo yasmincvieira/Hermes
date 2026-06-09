@@ -32,13 +32,15 @@ public class TelaConta extends JPanel {
 	private JTextField tfEmail;
 	private JLabel lbEditarSenha;
 	private JLabel lbEditarNome;
-	private JLabel lbTrocarFoto;
+	private JLabelRedondo lbTrocarFoto;
 	private JTextField tfChamados;
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaConta() {
+	    System.out.println(">>> CONSTRUTOR TelaConta");
+
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
 		setBounds(100, 100, 800, 500);
@@ -56,7 +58,8 @@ public class TelaConta extends JPanel {
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
 		panel_1.add(lblNewLabel, "cell 2 0,alignx right");
 
-		lbTrocarFoto = new JLabel("");
+
+		lbTrocarFoto = new JLabelRedondo(); 
 		lbTrocarFoto.setIcon(new ImageIcon(TelaConta.class.getResource("/ImagensPerfil/foto1.png")));
 		lbTrocarFoto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		panel_1.add(lbTrocarFoto, "cell 1 2,alignx right,aligny center");

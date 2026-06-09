@@ -37,6 +37,8 @@ public class TelaContaADM extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaContaADM() {
+	    System.out.println(">>> CONSTRUTOR TelaContaADM");
+
 		setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 800, 500);
 		setBounds(100, 100, 800, 500);

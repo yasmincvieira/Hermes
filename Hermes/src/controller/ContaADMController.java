@@ -4,9 +4,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import jakarta.mail.MessagingException;
 import models.Usuario;
 import models.UsuarioDAO;
+import view.Mensagem;
+import view.MensagemInput;
+import view.MensagemSN;
 import view.TelaConta;
 import view.TelaContaADM;
 import view.TelaEscolhaAvatar;
@@ -65,67 +70,71 @@ public class ContaADMController {
 		try {
 			EmailService.enviarCodigo(usuarioLogado.getEmail(), codigo);
 
-			String digitado = JOptionPane.showInputDialog(null,
-					"Um código foi enviado para: " + usuarioLogado.getEmail() + "\n\nDigite o código recebido:");
+			String digitado = MensagemInput.mostrarInput(
+					"Um código foi enviado para: " + usuarioLogado.getEmail() + "Digite o código recebido:", "Atenção");
 
 			if (digitado == null)
 				return; 
 
 			if (codigo.equals(digitado.trim())) {
-				String novaSenha = JOptionPane.showInputDialog(null, "Digite a nova senha:");
+				String novaSenha = MensagemInput.mostrarInput(null, "Digite a nova senha:");
 
 				if (novaSenha == null || novaSenha.isBlank()) {
-					JOptionPane.showMessageDialog(null, "Senha não pode ser vazia!");
+					Mensagem.mostrar("Senha não pode ser vazia!", "Atenção");
 					return;
 				}
 
 				usuarioLogado.setSenha(novaSenha);
 				user.atualizarSenha(usuarioLogado.getId(), novaSenha);
 				contaADM.preencherDados(usuarioLogado);
-				JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
+				Mensagem.mostrar("Senha alterada com sucesso!", "Sucesso");
 
 			} else {
-				JOptionPane.showMessageDialog(null, "Código incorreto! Tente novamente.");
+				Mensagem.mostrar("Código incorreto! Tente novamente.","Erro");
 			}
 
 		} catch (MessagingException ex) {
-			JOptionPane.showMessageDialog(null, "Erro ao enviar email: " + ex.getMessage());
+		    Mensagem.mostrar("Erro ao enviar email: " + ex.getMessage(), "Erro");
 		}
 	}
 
 	private void alterarNome() {
-		Usuario usuarioLogado = navegador.getUsuarioLogado();
-
-		String novoNome = JOptionPane.showInputDialog(null, "Digite o novo nome:", usuarioLogado.getNome()); 
-		if (novoNome == null)
-			return; 
-
-		if (novoNome.isBlank()) {
-			JOptionPane.showMessageDialog(null, "Nome não pode ser vazio!");
-			return;
-		}
-
-		usuarioLogado.setNome(novoNome);
-		user.atualizarUsuario(usuarioLogado);
-		contaADM.preencherDados(usuarioLogado);
-		JOptionPane.showMessageDialog(null, "Nome alterado com sucesso!");
+	    new Thread(() -> {
+	        Usuario usuarioLogado = navegador.getUsuarioLogado();
+	        String novoNome = MensagemInput.mostrarInput("Digite o novo nome:", "Alterar nome");
+	        
+	        if (novoNome == null) return;
+	        
+	        if (novoNome.isBlank()) {
+	            SwingUtilities.invokeLater(() -> Mensagem.mostrar("Nome não pode ser vazio!", "Atenção"));
+	            return;
+	        }
+	        
+	        usuarioLogado.setNome(novoNome);
+	        user.atualizarUsuario(usuarioLogado);
+	        
+	        SwingUtilities.invokeLater(() -> {
+	            contaADM.preencherDados(usuarioLogado);
+	            Mensagem.mostrar("Nome alterado com sucesso!", "Sucesso");
+	        });
+	    }).start();
 	}
 
 	private void verificarExcluir() {
-		  int confirmacao = JOptionPane.showConfirmDialog(
-			        null,
-			        "Tem certeza que deseja excluir sua conta?\nEsta ação não pode ser desfeita.", "Confirmar exclusão", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE
-			    );
-
-			    if (confirmacao == JOptionPane.YES_OPTION) {
-			        Usuario usuarioLogado = navegador.getUsuarioLogado();
-			        user.excluirChamadosDoUsuario(usuarioLogado.getId());
-			        user.excluirUsuario(usuarioLogado.getId());           
-			        navegador.setUsuarioLogado(null);    
-			        JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!");
-			        navegador.navegarPara("LOGIN");
-			    }
-
+	    MensagemSN.mostrarSN(
+	        "Tem certeza que deseja excluir sua conta?\nEsta ação não pode ser desfeita.", "Atenção",
+	        e -> {
+	            Usuario usuarioLogado = navegador.getUsuarioLogado();
+	            user.excluirChamadosDoUsuario(usuarioLogado.getId());
+	            user.excluirUsuario(usuarioLogado.getId());
+	            navegador.setUsuarioLogado(null);
+	            JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!");
+	            navegador.navegarPara("LOGIN");
+	        },
+	        e -> {
+	           
+	        }
+	    );
 	}
 
 }

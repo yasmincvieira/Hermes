@@ -67,7 +67,8 @@ public class NovoChamadoController {
 			try {
 				idPatrimonio = Integer.valueOf(patrimonio);
 			} catch (NumberFormatException e) {
-				Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");				return;
+				Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");				
+				return;
 			}
 		}
 	    } catch (Exception e) {

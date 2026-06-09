@@ -15,6 +15,7 @@ import view.MenuContraidoTeste;
 import view.MenuExpandidoTeste;
 
 import view.Janela;
+import view.MensagemSN;
 
 public class Menu {
 
@@ -92,8 +93,8 @@ public class Menu {
 	}
 
 	private void irPerfil() {
-		navegador.setUsuarioLogado(usuarioLogado);
 		
+		navegador.setUsuarioLogado(usuarioLogado);
 		if(this.usuarioLogado.isAdmin()) {
 			navegador.navegarPara("PERFIL ADM");
 		} else {
@@ -122,14 +123,12 @@ public class Menu {
 	}
 
 	private void dispose() {
-
-		int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmar Ação",
-				JOptionPane.YES_NO_OPTION);
-
-		if (resposta == JOptionPane.YES_OPTION) {
-			System.exit(0);
-		}
-
+	    MensagemSN.mostrarSN(
+	        "Deseja realmente sair?",
+	        "Confirmar Ação",
+	        sim -> System.exit(0),
+	        nao -> {}
+	    );
 	}
 
 	public void mostrarPanelCont() {
@@ -175,4 +174,15 @@ public class Menu {
 
 		}
 	}
+	public void atualizarFotoMenu(String avatarEscolhido) {
+	   
+	    if (this.mnExp != null) {
+	        this.mnExp.atualizarFotoMenu(avatarEscolhido);
+	    }
+	    
+	    if (this.mnCont != null) {
+	        this.mnCont.atualizarFotoMenu(avatarEscolhido);
+	    }
+	}
+
 }

@@ -57,15 +57,24 @@ public class Janela extends JFrame {
 	}
 
 	public void mostrarTela(String nome) {
-
-		this.cardLayout.show(this.panelTelas, nome);
-
-		this.panelAtual = nome;
-		
-		 this.setTitle(nome); 
-
-		this.pack();
-
+	    this.cardLayout.show(this.panelTelas, nome);
+	    this.panelAtual = nome;
+	    
+	    switch (nome) {
+	        case "LOGIN": setTitle("Login"); break;
+	        case "CADASTRO USUARIO": setTitle("Cadastro"); break;
+	        case "INICIO": setTitle("Início"); break;
+	        case "INICIO ADMIN": setTitle("Início - Admin"); break;
+	        case "PERFIL": setTitle("Meu Perfil"); break;
+	        case "PERFIL ADM": setTitle("Perfil - Administrador"); break;
+	        case "HISTORICO": setTitle("Histórico de Chamados"); break;
+	        case "HISTORICO ADMIN": setTitle("Histórico - Admin"); break;
+	        case "CHAMADO": setTitle("Novo Chamado"); break;
+	        case "PATRIMONIO": setTitle("Patrimônios"); break;
+	        default: setTitle(nome); break;
+	    }
+	    
+	    this.pack();
 	}
 
 	public String getPanelAtual() {
