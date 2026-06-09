@@ -22,6 +22,10 @@ public class ContaController {
 		this.conta = conta;
 		this.user = user;
 		this.navegador = navegador;
+		
+		this.conta.irInicioADM(e -> {
+			navegador.navegarPara("INICIO ADMIN");
+		});
 
 		this.conta.excluirConta(e -> {
 			verificarExcluir();

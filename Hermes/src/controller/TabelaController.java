@@ -34,6 +34,10 @@ public class TabelaController {
 			excluirPatrimonio();
 		});
 		
+		this.telaTabelaPatrimonios.irInicioADM(e -> {
+			navegador.navegarPara("INICIO ADMIN");
+		});
+		
 		this.telaTabelaPatrimonios.editarPatri(e -> {
 		    int linhaSelecionada = telaTabelaPatrimonios.getTable().getSelectedRow();
 

@@ -32,6 +32,7 @@ public class TelaContaADM extends JPanel {
 	private JLabel lbEditarSenha;
 	private JLabel lbEditarNome;
 	private JLabel lbTrocarFoto;
+	private JLabel btVoltar;
 
 	/**
 	 * Create the panel.
@@ -46,6 +47,10 @@ public class TelaContaADM extends JPanel {
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new MigLayout("", "[grow][grow][grow]",
 				"[grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][][][]"));
+		
+		btVoltar = new JLabel("");
+		btVoltar.setIcon(new ImageIcon(TelaContaADM.class.getResource("/Imagens/botao-voltar40.png")));
+		panel_1.add(btVoltar, "cell 0 0,aligny top");
 
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -160,5 +165,14 @@ public class TelaContaADM extends JPanel {
 
 	public void escolherFoto(MouseListener mouseListener) {
 		this.lbTrocarFoto.addMouseListener(mouseListener);
+	}
+	
+	public void irInicioADM(ActionListener actionListener) {
+	    this.btVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
 	}
 }

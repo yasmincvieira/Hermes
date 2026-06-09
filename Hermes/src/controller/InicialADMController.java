@@ -38,6 +38,10 @@ public class InicialADMController {
 		this.inicioADM.verPatrimonio(e -> {
 			navegador.navegarPara("TABELA");
 		});
+		
+		this.inicioADM.irLogin(e -> {
+			navegador.navegarPara("LOGIN");
+		});
 	}
 
 }

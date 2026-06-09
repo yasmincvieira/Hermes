@@ -13,7 +13,10 @@ import models.Patrimonio;
 import models.PatrimonioDAO;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 	private JTable table;
 	private JButton btnAdicionarPatri, btnEditarPatri, btnExcluirPatri;
 	private Object btnTabela;
+	private JLabel btVoltar; 
 
 	/**
 	 * Create the panel.
@@ -40,9 +44,9 @@ public class TelaTabelaPatrimonios extends JPanel {
 		add(paneltabelaPatrimonio, BorderLayout.CENTER);
 		paneltabelaPatrimonio.setLayout(new MigLayout("", "[5,grow 5][grow][grow][grow][grow][grow][grow][::60px]", "[::60px,grow][100px:n,grow][grow][grow][grow]"));
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/botao-voltar40.png")));
-		paneltabelaPatrimonio.add(lblNewLabel_2, "cell 0 0,aligny top");
+		btVoltar = new JLabel("");
+		btVoltar.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/botao-voltar40.png")));
+		paneltabelaPatrimonio.add(btVoltar, "cell 0 0,aligny top");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(160, 200, 172));
@@ -128,4 +132,16 @@ public class TelaTabelaPatrimonios extends JPanel {
 		});
 
 	}
+	
+	public void irInicioADM(ActionListener actionListener) {
+	    this.btVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
+	}
+
+	
+
 }

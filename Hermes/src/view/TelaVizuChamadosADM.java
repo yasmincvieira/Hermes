@@ -10,6 +10,11 @@ import java.awt.Color;
 import java.awt.Label;
 import java.awt.Choice;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
@@ -19,6 +24,7 @@ import javax.swing.ImageIcon;
 public class TelaVizuChamadosADM extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JLabel btVoltar;
 
 	/**
 	 * Create the panel.
@@ -31,7 +37,11 @@ public class TelaVizuChamadosADM extends JPanel {
 		JPanel panelVizuChamadosADM = new JPanel();
 		panelVizuChamadosADM.setBackground(new Color(234, 242, 236));
 		add(panelVizuChamadosADM, BorderLayout.CENTER);
-		panelVizuChamadosADM.setLayout(new MigLayout("", "[][grow 5][grow][grow 5]", "[][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 3]"));
+		panelVizuChamadosADM.setLayout(new MigLayout("", "[54.00][grow 5][grow][grow 5]", "[][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 3]"));
+		
+		btVoltar = new JLabel("");
+		btVoltar.setIcon(new ImageIcon(TelaVizuChamadosADM.class.getResource("/Imagens/botao-voltar40.png")));
+		panelVizuChamadosADM.add(btVoltar, "cell 0 0,aligny top");
 
 		Panel panel_2 = new Panel();
 		panel_2.setBackground(new Color(160, 200, 172));
@@ -80,6 +90,15 @@ public class TelaVizuChamadosADM extends JPanel {
 		taDescricao.setBackground(new Color(160, 200, 172));
 		panelVizuChamadosADM.add(taDescricao, "cell 2 7,grow");
 
+	}
+	
+	public void irInicioADM(ActionListener actionListener) {
+	    this.btVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
 	}
 
 }

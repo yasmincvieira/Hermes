@@ -16,14 +16,11 @@ public class VizuChamadoController {
 		this.chamado = chamado;
 		this.chamadoDAO = chamadoDAO;
 		this.navegador = navegador;
-		
-		this.tela.voltar(e -> {
-			voltarTela();
+
+		this.tela.irInicioADM(e -> {
+			navegador.navegarPara("INICIO ADMIN");
 		});
 	}
 	
-	private void voltarTela(){
-		
-	}
 
 }

@@ -43,7 +43,7 @@ public class TelaNovoChamado extends JPanel {
 		add(panelChamado, BorderLayout.CENTER);
 		panelChamado.setLayout(new MigLayout("", "[grow][grow 5][grow][grow]", "[][][][][][][][][grow][][][]"));
 		
-		JLabel lbVoltar = new JLabel("");
+		lbVoltar = new JLabel("");
 		lbVoltar.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/botao-voltar40.png")));
 		panelChamado.add(lbVoltar, "cell 0 0,aligny top");
 
