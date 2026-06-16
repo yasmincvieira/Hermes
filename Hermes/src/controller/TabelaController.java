@@ -61,7 +61,7 @@ public class TabelaController  extends ComponentAdapter {
                 JOptionPane.showMessageDialog(null, "Selecione um patrimônio.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 2).toString();
+            String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
             Patrimonio p = patrimonioDAO.buscarPorId(id);
             telaEditarPatrimonio.preencherCampos(p);
             navegador.navegarPara("EDITAR PATRIMONIO");
