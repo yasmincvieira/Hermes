@@ -83,10 +83,10 @@ public class NovoChamadoController {
 		chamado.gettaDescricao().setText("");
 		chamado.gettfPatrimonio().setText("");
 //// Aqui deu erro  do merge, precisamos ver o codigo
-		} catch (Exception e) {
-
-			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+//		} catch (Exception e) {
+//
+//			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
+//			e.printStackTrace();
 
 		}
 	    

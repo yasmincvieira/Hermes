@@ -69,19 +69,20 @@ public class TelaConta extends JPanel {
 		panel_1.add(lblNewLabel_2, "flowx,cell 1 4");
 		
 				lbEditarNome = new JLabel("Editar usuario");
-				lbEditarNome.setForeground(new Color(128, 0, 255));
+				lbEditarNome.setBackground(new Color(109, 171, 128));
+				lbEditarNome.setForeground(new Color(39, 79, 65));
 				panel_1.add(lbEditarNome, "cell 2 4");
 				
 						lbEditarNome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 						lbEditarNome.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseEntered(MouseEvent e) {
-								lbEditarNome.setForeground(Color.BLUE);
+								lbEditarNome.setForeground(new Color(109, 171, 128));
 							}
 
 							@Override
 							public void mouseExited(MouseEvent e) {
-								lbEditarNome.setForeground(new Color(128, 0, 255));
+								lbEditarNome.setForeground(new Color(39, 79, 65));
 							}
 						});
 
@@ -90,19 +91,20 @@ public class TelaConta extends JPanel {
 		panel_1.add(lblNewLabel_3, "flowx,cell 1 6");
 		
 				lbEditarSenha = new JLabel("Editar senha");
-				lbEditarSenha.setForeground(new Color(128, 0, 255));
+				lbEditarSenha.setBackground(new Color(109, 171, 128));
+				lbEditarSenha.setForeground(new Color(39, 79, 65));
 				panel_1.add(lbEditarSenha, "cell 2 6");
 				
 						lbEditarSenha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 						lbEditarSenha.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseEntered(MouseEvent e) {
-								lbEditarSenha.setForeground(Color.BLUE);
+								lbEditarSenha.setForeground(new Color(109, 171, 128));
 							}
 
 							@Override
 							public void mouseExited(MouseEvent e) {
-								lbEditarSenha.setForeground(new Color(128, 0, 255)); // volta à cor original
+								lbEditarSenha.setForeground(new Color(39, 79, 65)); 
 							}
 						});
 
