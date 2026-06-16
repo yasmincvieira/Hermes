@@ -51,10 +51,6 @@ public class NovoChamadoController {
             	return;
             }
         }
-//        if (navegador.getUsuarioLogado() == null) {
-//            JOptionPane.showMessageDialog(chamado, "Erro: Nenhum usuário logado!", "Erro", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
 	        
 	    int idUsuario = navegador.getUsuarioLogado().getId();
 	    Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
@@ -71,40 +67,20 @@ public class NovoChamadoController {
 				return;
 			}
 		}
-	    } catch (Exception e) {
-	    	Mensagem.mostrar("Erro ao salvar chamado!", "Erro");			
-	    	e.printStackTrace();
 
 		contaController.atualizarContagem();
-		JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
 
 
 
 		chamado.gettaDescricao().setText("");
 		chamado.gettfPatrimonio().setText("");
-//// Aqui deu erro  do merge, precisamos ver o codigo
-//		} catch (Exception e) {
-//
-//			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
-//			e.printStackTrace();
+		} catch (Exception e) {
+
+			Mensagem.mostrar("Erro ao salvar chamado: ", "Erro");
+			e.printStackTrace();
 
 		}
-	    
-//		int idUsuario = navegador.getUsuarioLogado().getId();
-//
-//		Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
-//
-//		try {
-//			dao.adicionarChamado(novoChamado);
-//			JOptionPane.showMessageDialog(chamado, "Chamado feito com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-//
-//		chamado.gettaDescricao().setText("");
-//		chamado.gettfPatrimonio().setText("");
-//
-//		} catch (Exception e) {
-//			JOptionPane.showMessageDialog(chamado, "Erro ao salvar chamado: ", "Erro", JOptionPane.ERROR_MESSAGE);
-//			e.printStackTrace();
-//		}
+
 	    
 	
 	}
