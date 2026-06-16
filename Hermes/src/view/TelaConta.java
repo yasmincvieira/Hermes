@@ -32,8 +32,13 @@ public class TelaConta extends JPanel {
 	private JTextField tfEmail;
 	private JLabel lbEditarSenha;
 	private JLabel lbEditarNome;
+<<<<<<< HEAD
 	private JLabelRedondo lbTrocarFoto;
 	private JTextField tfChamados;
+=======
+	private JLabel lbTrocarFoto;
+	private JLabel btVoltar;
+>>>>>>> origin/branchJulia_voltar
 
 	/**
 	 * Create the panel.
@@ -50,6 +55,10 @@ public class TelaConta extends JPanel {
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new MigLayout("", "[grow][grow][grow]",
 				"[grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][][][]"));
+		
+		btVoltar = new JLabel("");
+		btVoltar.setIcon(new ImageIcon(TelaConta.class.getResource("/Imagens/botao-voltar40.png")));
+		panel_1.add(btVoltar, "cell 0 0,aligny top");
 
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -174,9 +183,20 @@ public class TelaConta extends JPanel {
 		this.lbTrocarFoto.addMouseListener(mouseListener);
 	}
 	
+<<<<<<< HEAD
 	public void atualizarQntdChamado(int quantidade) {
 		tfChamados.setText("" + quantidade);
 	}
 
 	
+=======
+	public void irInicioADM(ActionListener actionListener) {
+	    this.btVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
+	}
+>>>>>>> origin/branchJulia_voltar
 }

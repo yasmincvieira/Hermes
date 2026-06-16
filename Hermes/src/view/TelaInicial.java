@@ -18,7 +18,12 @@ import javax.swing.JComponent;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.awt.event.KeyEvent;
+=======
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+>>>>>>> origin/branchJulia_voltar
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -27,11 +32,16 @@ public class TelaInicial extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton btnHistorico;
 	private JButton btnRealizarChamado;
+	private JLabel btVoltar;
 
 	public TelaInicial() {
 		setBackground(new Color(240, 240, 240));
 		setBounds(100, 100, 800, 500);
 		setLayout(new MigLayout("", "[grow][][][][grow]", "[grow][64.00][47.00][100.00][grow]"));
+		
+		btVoltar = new JLabel("");
+		btVoltar.setIcon(new ImageIcon(TelaInicial.class.getResource("/Imagens/botao-voltar40.png")));
+		add(btVoltar, "cell 0 0,aligny top");
 
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
@@ -60,5 +70,16 @@ public class TelaInicial extends JPanel {
 		this.btnRealizarChamado.addActionListener(actionListener);
 	}
 	
+<<<<<<< HEAD
+=======
+	public void irLogin(ActionListener actionListener) {
+	    this.btVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
+	}
+>>>>>>> origin/branchJulia_voltar
 
 }

@@ -10,7 +10,15 @@ import java.awt.Color;
 import java.awt.Label;
 import java.awt.Choice;
 import java.awt.Panel;
+<<<<<<< HEAD
 import java.awt.event.ActionListener;
+=======
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+>>>>>>> origin/branchJulia_voltar
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import models.Chamado;
@@ -22,10 +30,14 @@ import javax.swing.JButton;
 public class TelaVizuChamadosADM extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+<<<<<<< HEAD
 	private JTextArea taChamado, taNomePatrimonio, taLocal, taDescricao;
 	private JComboBox<String> cbStatus;
 	private JButton btnAtualizar, btnVoltar;
     private int idChamadoAtual;
+=======
+	private JLabel btVoltar;
+>>>>>>> origin/branchJulia_voltar
 
 	public TelaVizuChamadosADM() {
 
@@ -35,12 +47,20 @@ public class TelaVizuChamadosADM extends JPanel {
 		JPanel panelVizuChamadosADM = new JPanel();
 		panelVizuChamadosADM.setBackground(new Color(234, 242, 236));
 		add(panelVizuChamadosADM, BorderLayout.CENTER);
+<<<<<<< HEAD
 		panelVizuChamadosADM.setLayout(new MigLayout("", "[][grow 5][grow][grow 5]", "[][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2]"));
 		
 		btnVoltar = new JButton("");
 		btnVoltar.setBackground(new Color(234, 242, 236));
 		btnVoltar.setIcon(new ImageIcon(TelaVizuChamadosADM.class.getResource("/Imagens/voltar20.png")));
 		panelVizuChamadosADM.add(btnVoltar, "cell 0 0,grow");
+=======
+		panelVizuChamadosADM.setLayout(new MigLayout("", "[54.00][grow 5][grow][grow 5]", "[][grow 3][grow 2][grow 3][grow 2][grow 3][grow 2][grow 3][grow 3]"));
+		
+		btVoltar = new JLabel("");
+		btVoltar.setIcon(new ImageIcon(TelaVizuChamadosADM.class.getResource("/Imagens/botao-voltar40.png")));
+		panelVizuChamadosADM.add(btVoltar, "cell 0 0,aligny top");
+>>>>>>> origin/branchJulia_voltar
 
 		Panel panel_2 = new Panel();
 		panel_2.setBackground(new Color(160, 200, 172));
@@ -102,6 +122,15 @@ public class TelaVizuChamadosADM extends JPanel {
 		btnAtualizar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelVizuChamadosADM.add(btnAtualizar, "cell 2 9,growx");
 
+	}
+	
+	public void irInicioADM(ActionListener actionListener) {
+	    this.btVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
 	}
 
 	public void preencherDados(Chamado chamado) {

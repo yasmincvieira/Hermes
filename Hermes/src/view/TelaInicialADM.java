@@ -5,7 +5,14 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+=======
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+>>>>>>> origin/branchJulia_voltar
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.Color;
@@ -14,12 +21,18 @@ public class TelaInicialADM extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JButton btnVerPatrimonio, btnNovosChamados, btnHistoricoChamado, btnVerPerfil;
+	private JLabel btVoltar;
 
 	public TelaInicialADM() {
 		setBackground(new Color(240, 240, 240));
 		setBounds(100, 100, 800, 500);
 		setLayout(new MigLayout("", "[grow][grow][grow 10][grow 50][grow]",
 				"[grow][grow][grow 10][grow][grow 10][grow][grow]"));
+		
+		btVoltar = new JLabel("");
+		btVoltar.setIcon(new ImageIcon(TelaInicialADM.class.getResource("/Imagens/botao-voltar40.png")));
+		add(btVoltar, "cell 0 0,aligny top");
+		
 		JLabel lblNewLabel = new JLabel("HERMES");
 		lblNewLabel.setForeground(new Color(39, 79, 65));
 		lblNewLabel.setIcon(new ImageIcon(TelaInicialADM.class.getResource("/Imagens/40.png")));
@@ -63,5 +76,16 @@ public class TelaInicialADM extends JPanel {
 	public void verPerfil(ActionListener actionListener) {
 		this.btnVerPerfil.addActionListener(actionListener);
 	}
+	
+	public void irLogin(ActionListener actionListener) {
+	    this.btVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
+	}
+
+	
 
 }

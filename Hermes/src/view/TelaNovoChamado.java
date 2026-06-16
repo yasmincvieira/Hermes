@@ -5,9 +5,16 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
+=======
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+>>>>>>> origin/branchJulia_voltar
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,11 +34,15 @@ public class TelaNovoChamado extends JPanel {
 	private JButton btnRealizarChamado;
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
+<<<<<<< HEAD
 	private JTextField textField;
 	private JTextField tfChamado;
 	private int contadorChamados = 0;
 	private TelaConta telaConta;
 
+=======
+	private JLabel lbVoltar;
+>>>>>>> origin/branchJulia_voltar
 
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
@@ -41,6 +52,10 @@ public class TelaNovoChamado extends JPanel {
 		panelChamado.setBackground(new Color(234, 242, 236));
 		add(panelChamado, BorderLayout.CENTER);
 		panelChamado.setLayout(new MigLayout("", "[grow][grow 5][grow][grow]", "[][][][][][][][][grow][][][]"));
+		
+		lbVoltar = new JLabel("");
+		lbVoltar.setIcon(new ImageIcon(TelaNovoChamado.class.getResource("/Imagens/botao-voltar40.png")));
+		panelChamado.add(lbVoltar, "cell 0 0,aligny top");
 
 		JLabel lblNewLabel_6 = new JLabel("HERMES");
 		lblNewLabel_6.setForeground(new Color(39, 79, 65));
@@ -160,12 +175,22 @@ public class TelaNovoChamado extends JPanel {
 		return cbLocal;
 	}
 	
+<<<<<<< HEAD
 	public void atualizarContador(int quantidade) {
 		tfChamado.setText(String.valueOf(quantidade));
 	}
 
 	public void atualizarQntdChamado(int quantidade) {
 		textField.setText("" + quantidade);
+=======
+	public void irInicio(ActionListener actionListener) {
+	    this.lbVoltar.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
+	        }
+	    });
+>>>>>>> origin/branchJulia_voltar
 	}
 
 }

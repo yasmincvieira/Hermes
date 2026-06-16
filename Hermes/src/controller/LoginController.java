@@ -6,7 +6,11 @@ import javax.swing.JOptionPane;
 
 import models.Usuario;
 import models.UsuarioDAO;
+<<<<<<< HEAD
 import view.Mensagem;
+=======
+import view.TelaInicial;
+>>>>>>> origin/branchJulia_voltar
 import view.TelaLogin;
 
 public class LoginController {
@@ -16,13 +20,15 @@ public class LoginController {
 	private Navegador navegador;
 	private Usuario usuarioLogado;
 	private Menu menu;
+	private TelaInicial inicio;
 
-	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, Menu menu) {
+	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, Menu menu, TelaInicial inicio) {
 		super();
 		this.login = login;
 		this.user = user;
 		this.navegador = navegador;
 		this.menu = menu;
+		this.inicio = inicio;
 
 		this.login.logar(e -> {
 			verificarCadastroUsuario();

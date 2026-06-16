@@ -13,6 +13,7 @@ import view.Mensagem;
 import view.MensagemInput;
 import view.MensagemSN;
 import view.TelaConta;
+import view.TelaContaADM;
 import view.TelaEscolhaAvatar;
 
 public class ContaController {
@@ -22,12 +23,19 @@ public class ContaController {
 	private Navegador navegador;
 	private Menu menu;
 
-	public ContaController(TelaConta conta, UsuarioDAO user, Navegador navegador, Menu menu) {
+	public ContaController(TelaConta conta, TelaContaADM telaContaADM, UsuarioDAO user, Navegador navegador, Menu menu) {
 		super();
 		this.conta = conta;
 		this.user = user;
 		this.navegador = navegador;
+<<<<<<< HEAD
 		this.menu = menu;
+=======
+		
+		this.conta.irInicioADM(e -> {
+			navegador.navegarPara("INICIO ADMIN");
+		});
+>>>>>>> origin/branchJulia_voltar
 
 		this.conta.excluirConta(e -> {
 			verificarExcluir();

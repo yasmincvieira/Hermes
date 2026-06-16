@@ -55,7 +55,11 @@ public class PatrimonioTableModel extends AbstractTableModel {
 			return p.getNome();
 			
 		case 2:
+<<<<<<< HEAD
 			return p.getEspaco();
+=======
+			return p.getId_patrimonio();
+>>>>>>> origin/branchJulia_voltar
 		case 3:
 			return p.getStatus();
 
