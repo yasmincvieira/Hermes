@@ -31,7 +31,7 @@ public class HistoricoControllerADM {
 
         this.telaDetalhesADM.setAtualizar(e -> atualizarStatusChamado());
         
-        this.telaDetalhesADM.setVoltar(e -> {
+        this.telaDetalhesADM.irInicioADM(e -> {
             navegador.navegarPara("INICIO ADMIN");
         });
     }

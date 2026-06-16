@@ -9,7 +9,6 @@ import java.util.List;
 
 public class PatrimonioDAO {
 
-<<<<<<< HEAD
 	// CREATE - Adicionar um novo usuário
 	public void adicionarPatrimonio(Patrimonio patrimonio) {
 		String sql = "INSERT INTO patrimonio (idPatrimonio, status, nome, idEspaco) VALUES (?, ?, ?, ?)";
@@ -41,30 +40,7 @@ public class PatrimonioDAO {
 			}
 		}
 	}
-=======
-    // CREATE
-    public void adicionarPatrimonio(Patrimonio patrimonio) {
-        String sql = "INSERT INTO patrimonio (idPatrimonio, status, nome) VALUES (?, ?, ?)";
-        Connection conexao = null;
-        PreparedStatement pstm = null;
 
-        try {
-            conexao = BancoDeDados.conectar();
-            pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, patrimonio.getId_patrimonio());
-            pstm.setString(2, patrimonio.getStatus());
-            pstm.setString(3, patrimonio.getNome());
-            pstm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            BancoDeDados.desconectar(conexao);
-            if (pstm != null) {
-                try { pstm.close(); } catch (SQLException e) { e.printStackTrace(); }
-            }
-        }
-    }
->>>>>>> origin/branchJulia_voltar
 
     // READ - Listar todos
     public List<Patrimonio> listarpatrimonio() {
@@ -79,32 +55,17 @@ public class PatrimonioDAO {
             pstm = conexao.prepareStatement(sql);
             rset = pstm.executeQuery();
 
-<<<<<<< HEAD
 			while (rset.next()) {
 				Patrimonio patrimonio = new Patrimonio();
 				patrimonio.setId_patrimonio(rset.getInt("idPatrimonio"));
 			    patrimonio.setNome(rset.getString("nome"));
 			    patrimonio.setStatus(rset.getString("status"));
-=======
-            while (rset.next()) {
-                Patrimonio patrimonio = new Patrimonio();
-                patrimonio.setId_patrimonio(rset.getString("idPatrimonio"));
-                patrimonio.setNome(rset.getString("nome"));
-                patrimonio.setStatus(rset.getString("status"));
->>>>>>> origin/branchJulia_voltar
 
                 String idEspaco = rset.getString("idEspaco");
                 EspacoDAO espacoDao = new EspacoDAO();
                 Espaco espacoPatrimonio = espacoDao.BuscarEspacoPorID(idEspaco);
                 patrimonio.setEspaco(espacoPatrimonio);
 
-<<<<<<< HEAD
-				EspacoDAO espacoDao = new EspacoDAO();
-				Espaco espacoPatrimonio = espacoDao.BuscarEspacoPorID(espaco);
-				
-				
-
-				patrimonio.setEspaco(espacoPatrimonio);
 				listaPatrimonio.add(patrimonio);
 			}
 		} catch (SQLException e) {
@@ -155,17 +116,6 @@ public class PatrimonioDAO {
 		}
 	}
 
-}
-=======
-                listaPatrimonio.add(patrimonio);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            BancoDeDados.desconectar(conexao);
-        }
-        return listaPatrimonio;
-    }
 
   
     public Patrimonio buscarPorId(String id) {
@@ -173,7 +123,7 @@ public class PatrimonioDAO {
             "SELECT p.idPatrimonio, p.nome, p.status, p.idEspaco, " +
             "e.nome_local, e.bloco, e.andar " +
             "FROM patrimonio p " +
-            "JOIN espaco e ON p.idEspaco = e.nome_local " +
+            "JOIN espacos e ON p.idEspaco = e.nome_local " +
             "WHERE p.idPatrimonio = ?";
 
         Connection conexao = null;
@@ -194,7 +144,7 @@ public class PatrimonioDAO {
                 espaco.setAndar(rset.getString("andar"));
 
                 Patrimonio patrimonio = new Patrimonio();
-                patrimonio.setId_patrimonio(rset.getString("idPatrimonio"));
+                patrimonio.setId_patrimonio(rset.getInt("idPatrimonio"));
                 patrimonio.setNome(rset.getString("nome"));
                 patrimonio.setStatus(rset.getString("status"));
                 patrimonio.setEspaco(espaco);
@@ -221,7 +171,7 @@ public class PatrimonioDAO {
             pstm.setString(1, p.getNome());
             pstm.setString(2, p.getEspaco().getNomeLocal());
             pstm.setString(3, p.getStatus());
-            pstm.setString(4, p.getId_patrimonio());      
+            pstm.setInt(4, p.getId_patrimonio());      
             return pstm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -252,4 +202,3 @@ public class PatrimonioDAO {
         }
     }
 }
->>>>>>> origin/branchJulia_voltar

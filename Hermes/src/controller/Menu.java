@@ -88,6 +88,35 @@ public class Menu {
             if (navegador != null)
                 navegador.navegarPara("NOVOS_CHAMADOS");
         });
+        
+        
+        
+        
+        
+        
+        
+
+
+      		this.mnCont.mostrarMenuExpandido(new MouseAdapter() {
+
+      			@Override
+
+      			public void mouseClicked(MouseEvent e) {
+
+      				mostrarPanelExp();
+
+      			}
+
+      			public void iniciarMenu() {
+      				menuAtual = mnCont;
+      				janela.mudarMenu(menuAtual);
+      			}
+
+      		});
+
+      	
+        
+        
     }
     //identifica se o usuário é ADM ou não
     public void setUsuarioLogado(Usuario usuario) {
@@ -106,13 +135,16 @@ public class Menu {
             });
         } else {
             this.mnCont.mostrarMenuExpandido(new MouseAdapter() {
-                @Override
+                //@Override
                 public void mouseClicked(MouseEvent e) {
                     mostrarPanelExp(); // abre o menu comum
                 }
             });
         }
     }
+
+    
+    
 
     private void irInicio() {
         navegador.setUsuarioLogado(usuarioLogado);
@@ -125,14 +157,6 @@ public class Menu {
 
     public void setNavegador(Navegador navegador) {
         this.navegador = navegador;
-    }
-
-    private void dispose() {
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmar Ação",
-                JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
     }
 
     public void mostrarPanelCont() {
@@ -156,49 +180,7 @@ public class Menu {
         janela.repaint();
     }
 
-<<<<<<< HEAD
-			public void mouseClicked(MouseEvent e) {
-
-				mostrarPanelCont();
-			}
-
-		});
-		this.mnExp.sair(e -> {
-			dispose();
-		});
-		this.mnExp.irHistorico(e -> {
-			if (navegador != null)
-				navegador.navegarPara("HISTORICO");
-		});
-		this.mnExp.irInicio(e -> {
-			if (navegador != null)
-				irInicio();
-		});
-		this.mnExp.irPerfil(e -> {
-
-			if (navegador != null)
-				irPerfil();
-
-		});
-
-		this.mnCont.mostrarMenuExpandido(new MouseAdapter() {
-
-			@Override
-
-			public void mouseClicked(MouseEvent e) {
-
-				mostrarPanelExp();
-
-			}
-
-			public void iniciarMenu() {
-				menuAtual = mnCont;
-				janela.mudarMenu(menuAtual);
-			}
-
-		});
-
-	}
+	
 
 	private void irPerfil() {
 		
@@ -211,24 +193,24 @@ public class Menu {
 		
 	}
 
-	private void irInicio() {
-		navegador.setUsuarioLogado(usuarioLogado);
-
-		if (this.usuarioLogado.isAdmin()) {
-			navegador.navegarPara("INICIO ADMIN");
-		} else {
-			navegador.navegarPara("INICIO");
-		}
-
-	}
+//	private void irInicio() {
+//		navegador.setUsuarioLogado(usuarioLogado);
+//
+//		if (this.usuarioLogado.isAdmin()) {
+//			navegador.navegarPara("INICIO ADMIN");
+//		} else {
+//			navegador.navegarPara("INICIO");
+//		}
+//
+//	}
 	
-	public void setUsuarioLogado(Usuario usuarios) {
-	    this.usuarioLogado = usuarios;
-	}
-
-	public void setNavegador(Navegador navegador) {
-		this.navegador = navegador;
-	}
+//	public void setUsuarioLogado(Usuario usuarios) {
+//	    this.usuarioLogado = usuarios;
+//	}
+//
+//	public void setNavegador(Navegador navegador) {
+//		this.navegador = navegador;
+//	}
 
 	private void dispose() {
 	    MensagemSN.mostrarSN(
@@ -239,49 +221,49 @@ public class Menu {
 	    );
 	}
 
-	public void mostrarPanelCont() {
+//	public void mostrarPanelCont() {
+//
+//		menuAtual = mnCont;
+//
+//		janela.mudarMenu(menuAtual);
+//
+//	}
+//
+//	public void mostrarPanelExp() {
+//
+//		menuAtual = mnExp;
+//
+//		janela.mudarMenu(menuAtual);
+//
+//	}
+//
+//	public void removerMenu() {
+//
+//		janela.getPanelMenu().removeAll();
+//
+//		janela.revalidate();
+//
+//		janela.repaint();
+//
+//	}
 
-		menuAtual = mnCont;
-
-		janela.mudarMenu(menuAtual);
-
-	}
-
-	public void mostrarPanelExp() {
-
-		menuAtual = mnExp;
-
-		janela.mudarMenu(menuAtual);
-
-	}
-
-	public void removerMenu() {
-
-		janela.getPanelMenu().removeAll();
-
-		janela.revalidate();
-
-		janela.repaint();
-
-	}
-
-	public void iniciar() {
-
-		if (janela.getPanelAtual().equals("LOGIN") || janela.getPanelAtual().equals("CADASTRO")
-				|| janela.getPanelAtual().equals("INICIO")) {
-			janela.setVisible(true);
-			removerMenu();
-
-		} else {
-
-			janela.setVisible(true);
-
-			menuAtual = mnCont;
-
-			janela.mudarMenu(menuAtual);
-
-		}
-	}
+//	public void iniciar() {
+//
+//		if (janela.getPanelAtual().equals("LOGIN") || janela.getPanelAtual().equals("CADASTRO")
+//				|| janela.getPanelAtual().equals("INICIO")) {
+//			janela.setVisible(true);
+//			removerMenu();
+//
+//		} else {
+//
+//			janela.setVisible(true);
+//
+//			menuAtual = mnCont;
+//
+//			janela.mudarMenu(menuAtual);
+//
+//		}
+//	}
 	public void atualizarFotoMenu(String avatarEscolhido) {
 	   
 	    if (this.mnExp != null) {
@@ -293,8 +275,7 @@ public class Menu {
 	    }
 	}
 
-}
-=======
+
     public void iniciar() {
         if (janela.getPanelAtual().equals("LOGIN") || janela.getPanelAtual().equals("CADASTRO")
                 || janela.getPanelAtual().equals("INICIO")) {
@@ -307,4 +288,3 @@ public class Menu {
         }
     }
 }
->>>>>>> origin/branchJulia_voltar

@@ -18,12 +18,9 @@ import javax.swing.JComponent;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
 import java.awt.event.KeyEvent;
-=======
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
->>>>>>> origin/branchJulia_voltar
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -70,8 +67,6 @@ public class TelaInicial extends JPanel {
 		this.btnRealizarChamado.addActionListener(actionListener);
 	}
 	
-<<<<<<< HEAD
-=======
 	public void irLogin(ActionListener actionListener) {
 	    this.btVoltar.addMouseListener(new MouseAdapter() {
 	        @Override
@@ -80,6 +75,5 @@ public class TelaInicial extends JPanel {
 	        }
 	    });
 	}
->>>>>>> origin/branchJulia_voltar
 
 }

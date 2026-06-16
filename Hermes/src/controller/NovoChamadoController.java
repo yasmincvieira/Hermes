@@ -17,23 +17,17 @@ public class NovoChamadoController {
 	private TelaNovoChamado chamado;
 	private ChamadoDAO dao;
 	private Navegador navegador;
-<<<<<<< HEAD
 	private ContaController contaController;
-=======
-	private Object inicio;
->>>>>>> origin/branchJulia_voltar
+	//private Object inicio;
 
 	public NovoChamadoController(TelaNovoChamado chamado, ChamadoDAO dao, Navegador navegador, ContaController contaController) {
 		super();
 		this.chamado = chamado;
 		this.dao = dao;
 		this.navegador = navegador;
-<<<<<<< HEAD
 		this.contaController = contaController;
-=======
-		this.inicio = inicio;
+	//	this.inicio = inicio;
 
->>>>>>> origin/branchJulia_voltar
 		this.chamado.realizarChamado(e -> {
 			realizarChamado();
 		});

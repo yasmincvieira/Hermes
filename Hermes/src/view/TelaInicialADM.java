@@ -7,12 +7,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
-=======
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
->>>>>>> origin/branchJulia_voltar
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.Color;

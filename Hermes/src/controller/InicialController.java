@@ -28,15 +28,10 @@ public class InicialController {
 			navegador.navegarPara("CHAMADO");
 		});
 		
-<<<<<<< HEAD
-=======
 		this.inicio.irLogin(e -> {
 			navegador.navegarPara("LOGIN");
 		});
 		
-		
-		
->>>>>>> origin/branchJulia_voltar
 	}
 
 }

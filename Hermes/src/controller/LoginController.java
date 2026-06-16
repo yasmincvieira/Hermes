@@ -6,11 +6,8 @@ import javax.swing.JOptionPane;
 
 import models.Usuario;
 import models.UsuarioDAO;
-<<<<<<< HEAD
 import view.Mensagem;
-=======
 import view.TelaInicial;
->>>>>>> origin/branchJulia_voltar
 import view.TelaLogin;
 
 public class LoginController {

@@ -7,14 +7,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
->>>>>>> origin/branchJulia_voltar
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,15 +31,12 @@ public class TelaNovoChamado extends JPanel {
 	private JButton btnRealizarChamado;
 	private JComboBox cbLocal, cbNome;
 	private JTextArea taDescricao;
-<<<<<<< HEAD
 	private JTextField textField;
 	private JTextField tfChamado;
 	private int contadorChamados = 0;
 	private TelaConta telaConta;
 
-=======
 	private JLabel lbVoltar;
->>>>>>> origin/branchJulia_voltar
 
 	public TelaNovoChamado() {
 		setLayout(new BorderLayout(0, 0));
@@ -175,14 +169,14 @@ public class TelaNovoChamado extends JPanel {
 		return cbLocal;
 	}
 	
-<<<<<<< HEAD
 	public void atualizarContador(int quantidade) {
 		tfChamado.setText(String.valueOf(quantidade));
 	}
 
 	public void atualizarQntdChamado(int quantidade) {
 		textField.setText("" + quantidade);
-=======
+	}
+	
 	public void irInicio(ActionListener actionListener) {
 	    this.lbVoltar.addMouseListener(new MouseAdapter() {
 	        @Override
@@ -190,7 +184,5 @@ public class TelaNovoChamado extends JPanel {
 	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
 	        }
 	    });
->>>>>>> origin/branchJulia_voltar
 	}
-
 }

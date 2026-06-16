@@ -12,10 +12,6 @@ public class Espaco {
 
     public Espaco() {}
 
-    @Override
-    public String toString() {
-        return nome_local; 
-    }
 
     public void imprimir() {
         System.out.println("ID: " + this.id_espaco);
@@ -35,14 +31,6 @@ public class Espaco {
     public String getBloco() { return bloco; }
     public void setBloco(String bloco) { this.bloco = bloco; }
 
-<<<<<<< HEAD
-	public String getBloco() {
-		return bloco;
-	}
-
-	public void setBloco(String bloco) {
-		this.bloco = bloco;
-	}
 
 	public String getAndar() {
 		return andar;
@@ -57,8 +45,4 @@ public class Espaco {
 		// TODO Auto-generated method stub
 		return this.nome_local+" - "+this.bloco + " - "+this.andar;
 	}
-=======
-    public String getAndar() { return andar; }
-    public void setAndar(String andar) { this.andar = andar; } 
->>>>>>> origin/branchJulia_voltar
 }

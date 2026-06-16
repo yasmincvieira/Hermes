@@ -18,13 +18,10 @@ public class MenuExpandidoTeste extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFechar;
 	private JButton btnHistorico, btnSair, btnPerfil, btnInicio;
-<<<<<<< HEAD
 	
 	// CORRIGIDO: Atributo global adicionado para o Controller conseguir acessá-lo de fora
 	private JLabelRedondo lbPerfil;
-=======
 	private JButton btnNovoChamado;
->>>>>>> origin/branchJulia_voltar
 
 	public MenuExpandidoTeste() {
 
@@ -101,11 +98,8 @@ public class MenuExpandidoTeste extends JPanel {
 	public void irPerfil(ActionListener actionListener) {
 		this.btnPerfil.addActionListener(actionListener);
 	}
-<<<<<<< HEAD
-=======
 	public void irNovoChamado(ActionListener actionListener) {
 		this.btnNovoChamado.addActionListener(actionListener);
 	}
 
->>>>>>> origin/branchJulia_voltar
 }

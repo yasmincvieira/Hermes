@@ -1,10 +1,7 @@
 package controller;
-import javax.swing.JPanel;
-<<<<<<< HEAD
-import javax.swing.JTextField;
 
-=======
->>>>>>> origin/branchJulia_voltar
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import models.Patrimonio;
 import models.Usuario;
 import view.Janela;
@@ -23,38 +20,30 @@ public class Navegador {
     private TabelaController tabelaController;
     private Patrimonio patrimonioAdicionado;
 
-<<<<<<< HEAD
-	private Janela janela;
-	private TelaLogin login;
-	private LoginController loginController;
-	private CadastroController cadastroController;
-	private InicialController inicialController;
-	private Menu menu;
-	private Usuario usuarioLogado;
-	private ContaController contaController;
+//	private Janela janela;
+//	private TelaLogin login;
+//	private LoginController loginController;
+//	private CadastroController cadastroController;
+//	private InicialController inicialController;
+//	private Menu menu;
+//	private Usuario usuarioLogado;
+//	private ContaController contaController;
 
 	private ContaADMController contaADMController;
-	private HistoricoController historicoController;
+	//private HistoricoController historicoController;
 	private HistoricoControllerADM historicoControllerADM;
 
-	private Patrimonio patrimonioAdicionado;
+	//private Patrimonio patrimonioAdicionado;
 
-=======
     public Navegador(Janela janela, TelaLogin login, Menu menu) {
         this.janela = janela;
         this.login = login;
         this.menu = menu;
     }
->>>>>>> origin/branchJulia_voltar
 
     public void adicionarPainel(String nome, JPanel tela) {
         this.janela.adicionarTela(nome, tela);
     }
-
-<<<<<<< HEAD
-	public void adicionarPainel(String nome, JPanel tela) {
-		this.janela.adicionarTela(nome, tela);
-	}
 
 	public void navegarPara(String nome) {
 		this.janela.mostrarTela(nome);
@@ -78,22 +67,6 @@ public class Navegador {
             historicoControllerADM.carregarChamados();
         }
 	}
-=======
-    public void navegarPara(String nome) {
-        this.janela.mostrarTela(nome);
-        if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO") || nome.equals("INICIO")) {
-            menu.removerMenu();
-        } else {
-            menu.mostrarPanelCont();
-        }
-        if (nome.equals("PERFIL") && usuarioLogado != null) {
-            contaController.preencherDados();
-        }
-        if (nome.equals("HISTORICO") && historicoController != null) {
-            historicoController.carregarHistorico();
-        }
-    }
->>>>>>> origin/branchJulia_voltar
 
     public void sair() {
         this.janela.dispose();
@@ -110,7 +83,6 @@ public class Navegador {
     public void setInicialController(InicialController inicialController) {
         this.inicialController = inicialController;
     }
-
    
     public void setTabelaController(TabelaController tabelaController) {
         this.tabelaController = tabelaController;
@@ -136,10 +108,6 @@ public class Navegador {
         return usuarioLogado;
     }
 
-<<<<<<< HEAD
-	public void setUsuarioLogado(Usuario usuario) {
-		this.usuarioLogado = usuario;
-	}
 	
 	public Patrimonio getPatrimonioAdicionado() {
 		return patrimonioAdicionado;
@@ -149,13 +117,6 @@ public class Navegador {
 		this.patrimonioAdicionado = patrimonio;
 	}
 
-	public void setContaController(ContaController contaController) {
-		this.contaController = contaController;
-	}
-	
-	public void setHistoricoController(HistoricoController historicoController) {
-		this.historicoController = historicoController;
-	}
 	
 	public void setHistoricoControllerADM (HistoricoControllerADM historicoControllerADM) {
 		this.historicoControllerADM   = historicoControllerADM;
@@ -165,13 +126,4 @@ public class Navegador {
 	}
 
 }
-=======
-    public Patrimonio getPatrimonioAdicionado() {
-        return patrimonioAdicionado;
-    }
 
-    public void setPatrimonioAdicionado(Patrimonio patrimonio) {
-        this.patrimonioAdicionado = patrimonio;
-    }
-}
->>>>>>> origin/branchJulia_voltar

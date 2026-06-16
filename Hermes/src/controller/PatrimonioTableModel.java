@@ -33,9 +33,8 @@ public class PatrimonioTableModel extends AbstractTableModel {
 		return dados.size();
 	}
 
-	@Override
+	
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return colunas.length;
 	}
 
@@ -53,16 +52,10 @@ public class PatrimonioTableModel extends AbstractTableModel {
 			return p.getId_patrimonio();
 		case 1:
 			return p.getNome();
-			
 		case 2:
-<<<<<<< HEAD
 			return p.getEspaco();
-=======
-			return p.getId_patrimonio();
->>>>>>> origin/branchJulia_voltar
 		case 3:
 			return p.getStatus();
-
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + columnIndex);
 		}

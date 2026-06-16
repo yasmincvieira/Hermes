@@ -31,7 +31,6 @@ public class EspacoDAO {
         }
     }
 
-<<<<<<< HEAD
 	// READ - Listar todos os espaco
 	public List<Espaco> listarEspacos() {
 		String sql = "SELECT * FROM espacos";
@@ -39,38 +38,13 @@ public class EspacoDAO {
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null; // Objeto que guarda o resultado da consulta
-=======
-    // ✅ método renomeado para listarTodos() — usado na TelaEditarPatrimonio
-    public List<Espaco> listarTodos() {
-        String sql = "SELECT * FROM espaco";
-        List<Espaco> espacos = new ArrayList<>();
-        Connection conexao = null;
-        PreparedStatement pstm = null;
-        ResultSet rset = null;
->>>>>>> origin/branchJulia_voltar
 
         try {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
             rset = pstm.executeQuery();
 
-<<<<<<< HEAD
-			while (rset.next()) {
-				Espaco espaco = new Espaco(sql, sql, sql);
-				espaco.setBloco(rset.getString("bloco"));
-				espaco.setNomeLocal(rset.getString("nome_local"));
-				espaco.setAndar(rset.getString("andar"));
-				espacos.add(espaco);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			BancoDeDados.desconectar(conexao);
-			// Fechar recursos
-		}
-		return espacos;
-	}
-=======
+
             while (rset.next()) {
                 Espaco espaco = new Espaco();                         
                 espaco.setBloco(rset.getString("bloco"));
@@ -85,10 +59,10 @@ public class EspacoDAO {
         }
         return espacos;
     }
->>>>>>> origin/branchJulia_voltar
+
 
     public Espaco BuscarEspacoPorID(String nome_local) {
-        String sql = "SELECT * FROM espaco WHERE nome_local = ?"; 
+        String sql = "SELECT * FROM espacos WHERE nome_local = ?"; 
         Connection conexao = null;
         PreparedStatement pstm = null;
         ResultSet rset = null;

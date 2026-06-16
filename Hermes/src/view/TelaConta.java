@@ -32,13 +32,9 @@ public class TelaConta extends JPanel {
 	private JTextField tfEmail;
 	private JLabel lbEditarSenha;
 	private JLabel lbEditarNome;
-<<<<<<< HEAD
 	private JLabelRedondo lbTrocarFoto;
 	private JTextField tfChamados;
-=======
-	private JLabel lbTrocarFoto;
 	private JLabel btVoltar;
->>>>>>> origin/branchJulia_voltar
 
 	/**
 	 * Create the panel.
@@ -183,13 +179,11 @@ public class TelaConta extends JPanel {
 		this.lbTrocarFoto.addMouseListener(mouseListener);
 	}
 	
-<<<<<<< HEAD
 	public void atualizarQntdChamado(int quantidade) {
 		tfChamados.setText("" + quantidade);
 	}
 
 	
-=======
 	public void irInicioADM(ActionListener actionListener) {
 	    this.btVoltar.addMouseListener(new MouseAdapter() {
 	        @Override
@@ -198,5 +192,4 @@ public class TelaConta extends JPanel {
 	        }
 	    });
 	}
->>>>>>> origin/branchJulia_voltar
 }

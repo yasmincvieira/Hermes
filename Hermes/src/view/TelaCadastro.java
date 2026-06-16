@@ -14,12 +14,9 @@ import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
 import java.awt.event.KeyEvent;
-=======
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
->>>>>>> origin/branchJulia_voltar
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;

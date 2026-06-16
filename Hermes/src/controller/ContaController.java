@@ -28,14 +28,11 @@ public class ContaController {
 		this.conta = conta;
 		this.user = user;
 		this.navegador = navegador;
-<<<<<<< HEAD
 		this.menu = menu;
-=======
 		
 		this.conta.irInicioADM(e -> {
 			navegador.navegarPara("INICIO ADMIN");
 		});
->>>>>>> origin/branchJulia_voltar
 
 		this.conta.excluirConta(e -> {
 			verificarExcluir();

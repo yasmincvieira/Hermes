@@ -99,7 +99,7 @@ public class TelaEditarPatrimonio extends JPanel {
 	
 	private void carregarEspacos() {
         try {
-            List<Espaco> espacos = espacoDAO.listarTodos();
+            List<Espaco> espacos = espacoDAO.listarEspacos();
             for (Espaco esp : espacos) {
                 cbEspaco.addItem(esp);
             }
@@ -109,7 +109,7 @@ public class TelaEditarPatrimonio extends JPanel {
     }
 
     public void preencherCampos(Patrimonio p) {
-        tfID.setText(p.getId_patrimonio());
+        tfID.setText(String.valueOf( p.getId_patrimonio()));
         tfPatrimonio.setText(p.getNome());
         cbStatus.setSelectedItem(p.getStatus());
         for (int i = 0; i < cbEspaco.getItemCount(); i++) {
