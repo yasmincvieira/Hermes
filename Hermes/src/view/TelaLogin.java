@@ -8,14 +8,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-
 import java.awt.Color;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
@@ -23,8 +21,11 @@ import javax.swing.JPasswordField;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
 
-public class TelaLogin extends JPanel {
+public class TelaLogin extends TelaComFundo {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfUsuario;
@@ -92,7 +93,7 @@ public class TelaLogin extends JPanel {
 		add(this.pfSenha, "cell 2 5,grow");
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(240, 240, 240));
+		panel.setBackground(new Color(255, 255, 255));
 		add(panel, "flowx,cell 1 9 2 1,alignx center,growy");
 
 		JLabel lblNewLabel_3 = new JLabel("Ainda não tem uma conta?");

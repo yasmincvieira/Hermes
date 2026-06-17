@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -24,7 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 
-public class TelaCadastro extends JPanel {
+public class TelaCadastro extends TelaComFundo {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

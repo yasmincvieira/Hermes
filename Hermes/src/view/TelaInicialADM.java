@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.Color;
 
-public class TelaInicialADM extends JPanel {
+public class TelaInicialADM extends TelaComFundo {
 
 	private static final long serialVersionUID = 1L;
 	private JButton btnVerPatrimonio, btnNovosChamados, btnHistoricoChamado, btnVerPerfil;
