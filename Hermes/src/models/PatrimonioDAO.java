@@ -13,14 +13,14 @@ public class PatrimonioDAO {
 	public void adicionarPatrimonio(Patrimonio patrimonio) {
 		String sql = "INSERT INTO patrimonio (idPatrimonio, status, nome, idEspaco) VALUES (?, ?, ?, ?)";
 		Connection conexao = null;
-		
 		PreparedStatement pstm = null;
-		
 		EspacoDAO espacoDao = new EspacoDAO();
 		
-
 		try {
 			conexao = BancoDeDados.conectar();
+			if (conexao == null) {
+				throw new RuntimeException("Não foi possível conectar ao banco de dados.");
+			}
 			pstm = conexao.prepareStatement(sql);
 			pstm.setInt(1, patrimonio.getId_patrimonio());
 			pstm.setString(2, patrimonio.getStatus());
@@ -29,6 +29,7 @@ public class PatrimonioDAO {
 			pstm.executeUpdate(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Erro ao inserir patrimônio: " + e.getMessage());
 		} finally {
 			BancoDeDados.desconectar(conexao);
 			if (pstm != null) {
@@ -40,7 +41,6 @@ public class PatrimonioDAO {
 			}
 		}
 	}
-
 
     // READ - Listar todos
     public List<Patrimonio> listarpatrimonio() {
@@ -116,8 +116,6 @@ public class PatrimonioDAO {
 		}
 	}
 
-
-  
     public Patrimonio buscarPorId(String id) {
         String sql =
             "SELECT p.idPatrimonio, p.nome, p.status, p.idEspaco, " +
@@ -184,21 +182,4 @@ public class PatrimonioDAO {
         }
     }
 
-    // DELETE
-    public void excluirPatrimonio(String idPatrimonio) {
-        String sql = "DELETE FROM patrimonio WHERE idPatrimonio = ?";
-        Connection conexao = null;
-        PreparedStatement pstm = null;
-
-        try {
-            conexao = BancoDeDados.conectar();
-            pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, idPatrimonio);
-            pstm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            BancoDeDados.desconectar(conexao);
-        }
-    }
 }

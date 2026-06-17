@@ -19,22 +19,9 @@ public class Navegador {
     private HistoricoController historicoController;
     private TabelaController tabelaController;
     private Patrimonio patrimonioAdicionado;
-
-//	private Janela janela;
-//	private TelaLogin login;
-//	private LoginController loginController;
-//	private CadastroController cadastroController;
-//	private InicialController inicialController;
-//	private Menu menu;
-//	private Usuario usuarioLogado;
-//	private ContaController contaController;
-
 	private ContaADMController contaADMController;
-	//private HistoricoController historicoController;
 	private HistoricoControllerADM historicoControllerADM;
-
-	//private Patrimonio patrimonioAdicionado;
-
+	
     public Navegador(Janela janela, TelaLogin login, Menu menu) {
         this.janela = janela;
         this.login = login;
@@ -116,7 +103,6 @@ public class Navegador {
         return usuarioLogado;
     }
 
-	
 	public Patrimonio getPatrimonioAdicionado() {
 		return patrimonioAdicionado;
 	}
@@ -124,7 +110,6 @@ public class Navegador {
 	public void setPatrimonioAdicionado(Patrimonio patrimonio) {
 		this.patrimonioAdicionado = patrimonio;
 	}
-
 	
 	public void setHistoricoControllerADM (HistoricoControllerADM historicoControllerADM) {
 		this.historicoControllerADM   = historicoControllerADM;

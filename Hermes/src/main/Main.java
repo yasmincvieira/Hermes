@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.Font;
-
 import javax.swing.JPanel;
 import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
@@ -53,7 +52,6 @@ public class Main {
 		UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.PLAIN, 18)));
 
 		ToolTipManager manager = ToolTipManager.sharedInstance();
-
 		manager.setInitialDelay(100);
 		manager.setDismissDelay(3000);
 		manager.setReshowDelay(100);
@@ -62,19 +60,11 @@ public class Main {
 		Janela janela = new Janela();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
-
-
 		ChamadoDAO chamadoDAO = new ChamadoDAO();
-
 		
-
-
 		//Telas
-		
 		MenuExpandidoADMInicio menuExpAdmInicio = new MenuExpandidoADMInicio();
 		MenuExpandidoTestInicio menuExpInicio = new MenuExpandidoTestInicio();
-
-		
 		TelaLogin telaLogin = new TelaLogin();
 		TelaCadastro telaCadastro = new TelaCadastro();
 		TelaConta telaConta = new TelaConta();
@@ -82,59 +72,36 @@ public class Main {
 		TelaHistoricoDeChamados telaHistoricoChamados = new TelaHistoricoDeChamados();
 		TelaInicial telaInicial = new TelaInicial();
 		TelaNovoChamado telaNovoChamado = new TelaNovoChamado();
-
 		TelaNovoChamadosADM telaNovosChamadosADM = new TelaNovoChamadosADM();
 		TelaTabelaPatrimonios telaTabelaPatrimonios = new TelaTabelaPatrimonios();
 		TelaVizuChamadosADM telaVizuChamadosADM = new TelaVizuChamadosADM();
 		MenuContraidoTeste menuCont = new MenuContraidoTeste();
 		MenuExpandidoTeste menuExp = new MenuExpandidoTeste();
 		MenuExpandidoAdm menuExpAdm = new MenuExpandidoAdm();
-		
 		TelaInicialADM inicioADM = new TelaInicialADM();
 		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
 		TelaTabelaPatrimonios telaTabelaParimonios = new TelaTabelaPatrimonios();
 		TelaEditarPatrimonio telaEditarPatrimonio = new TelaEditarPatrimonio();
 		TelaCadastrarPatrimonio telaCadastrarPatrimonio =  new TelaCadastrarPatrimonio();
-		
-
-
-		
 		TelaHistoricoDeChamadosADM telaHistoricoChamadosADM = new TelaHistoricoDeChamadosADM();
-		//TelinhaHistorico telinhaHistorico = new TelinhaHistorico();
-
-		
 		Menu menu = new Menu(janela, menuExp, menuCont, menuExpAdm, menuExpAdmInicio, menuExpInicio);
 		Navegador navegador = new Navegador(janela, telaLogin, menu);
 		menu.setNavegador(navegador);
-		
 
 		//Controllers
 		CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador, telaConta, menu);
 		InicialController inicialController = new InicialController(telaInicial, navegador, menu);
-
-		
 		ContaController contaController = new ContaController(telaConta,telaContaADM, usuarioDAO, navegador, menu);
 		ContaADMController contaADMController = new ContaADMController(telaContaADM, usuarioDAO, navegador, menu);
 		NovoChamadoController novoChamadoController = new NovoChamadoController(telaNovoChamado, chamadoDAO, navegador, contaController);
 		InicialADMController inicialAdmController = new InicialADMController(inicioADM, navegador, menu);
 		HistoricoController historicoController = new HistoricoController(telaHistoricoChamados, telaVizuChamados, chamadoDAO, navegador);
 		HistoricoControllerADM historicoControllerADM = new HistoricoControllerADM(telaNovosChamadosADM, telaHistoricoChamadosADM, telaVizuChamadosADM, chamadoDAO, navegador);
-		
-
 		TabelaController tabelaController = new TabelaController (telaTabelaPatrimonios, telaEditarPatrimonio, telaCadastrarPatrimonio, patrimonioDAO, navegador, menu);
-		
-		CadastrarPatrimonioController cadastrarPatrimonio = new CadastrarPatrimonioController(telaCadastrarPatrimonio,
-				patrimonioDAO, navegador, tabelaController, telaTabelaPatrimonios);
+		CadastrarPatrimonioController cadastrarPatrimonio = new CadastrarPatrimonioController(telaCadastrarPatrimonio,patrimonioDAO, navegador, tabelaController, telaTabelaPatrimonios);
+		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu, telaInicial);
 		
 		telaTabelaPatrimonios.adicionarOuvinte(tabelaController);
-
-
-		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador, menu, telaInicial);
-		 
-		
-		
-		
-		
 		
 		navegador.setTabelaController(tabelaController);
 		navegador.setCadastroController(cadastroController);
@@ -152,11 +119,8 @@ public class Main {
 		navegador.adicionarPainel("HISTORICO", telaHistoricoChamados);
 		navegador.adicionarPainel("CHAMADO", telaNovoChamado);
 		navegador.adicionarPainel("INICIO ADMIN", inicioADM);
-	
 		navegador.adicionarPainel("CHAMADO ADMIN", telaVizuChamadosADM);
 		navegador.adicionarPainel("PERFIL", telaConta);
-
-		
 		navegador.adicionarPainel("PERFIL ADM", telaContaADM);
 		navegador.adicionarPainel("TABELA", telaTabelaPatrimonios);
 		navegador.adicionarPainel("CADASTRAR PATRIMONIO", telaCadastrarPatrimonio);
@@ -164,13 +128,8 @@ public class Main {
 		navegador.adicionarPainel("NOVO CHAMADO ADMIN", telaNovosChamadosADM);
 		navegador.adicionarPainel("NOVOS_CHAMADOS", telaVizuChamados);
 		navegador.adicionarPainel("EDITAR PATRIMONIO", telaEditarPatrimonio);
-		
-		
-
 		navegador.adicionarPainel("DETALHES CHAMADO", telaVizuChamados);
 		
-
-
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 

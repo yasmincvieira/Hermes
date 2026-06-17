@@ -61,34 +61,24 @@ public class NovoChamadoController {
 	        
 	    int idUsuario = navegador.getUsuarioLogado().getId();
 	    Chamado novoChamado = new Chamado(nome, local, idPatrimonio, descricao, idUsuario);
-	
-	    try {
-		dao.adicionarChamado(novoChamado);
-
-		Mensagem.mostrar("Chamado feito com sucesso!", "Sucesso");		
-		if (patrimonio != null && !patrimonio.trim().isEmpty()) {
-			try {
-				idPatrimonio = Integer.valueOf(patrimonio);
-			} catch (NumberFormatException e) {
-				Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");				
-				return;
-			}
-		}
-
-		contaController.atualizarContagem();
-
-
-
-		chamado.gettaDescricao().setText("");
-		chamado.gettfPatrimonio().setText("");
-		} catch (Exception e) {
-
-			Mensagem.mostrar("Erro ao salvar chamado: ", "Erro");
-			e.printStackTrace();
-
-		}
-
 	    
-	
+	    try {
+			dao.adicionarChamado(novoChamado);
+			Mensagem.mostrar("Chamado feito com sucesso!", "Sucesso");		
+			if (patrimonio != null && !patrimonio.trim().isEmpty()) {
+				try {
+					idPatrimonio = Integer.valueOf(patrimonio);
+				} catch (NumberFormatException e) {
+					Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");				
+					return;
+				}
+			}
+			contaController.atualizarContagem();
+			chamado.gettaDescricao().setText("");
+			chamado.gettfPatrimonio().setText("");
+			} catch (Exception e) {
+				Mensagem.mostrar("Erro ao salvar chamado: ", "Erro");
+				e.printStackTrace();
+			}
 	}
 }

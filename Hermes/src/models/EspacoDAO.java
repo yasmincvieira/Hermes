@@ -10,12 +10,15 @@ import java.util.List;
 public class EspacoDAO {
 
     public void adicionarEspaco(Espaco espaco) {
-        String sql = "INSERT INTO espaco (bloco, nome_local, andar) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO espacos (bloco, nome_local, andar) VALUES (?, ?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
         try {
             conexao = BancoDeDados.conectar();
+            if (conexao == null) {
+                throw new RuntimeException("Não foi possível conectar ao banco de dados.");
+            }
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, espaco.getBloco());
             pstm.setString(2, espaco.getNomeLocal());
@@ -23,6 +26,7 @@ public class EspacoDAO {
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("Erro ao cadastrar espaço: " + e.getMessage());
         } finally {
             BancoDeDados.desconectar(conexao);
             if (pstm != null) {
@@ -43,7 +47,6 @@ public class EspacoDAO {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
             rset = pstm.executeQuery();
-
 
             while (rset.next()) {
                 Espaco espaco = new Espaco();                         

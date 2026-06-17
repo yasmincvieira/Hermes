@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import models.Patrimonio;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,10 +12,8 @@ public class PatrimonioTableModel extends AbstractTableModel {
 
 	public PatrimonioTableModel(List<Patrimonio> dados) {
 		this.dados = dados;
-		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 	    switch (columnIndex) {
 	        case 0: return Integer.class;
@@ -27,24 +24,18 @@ public class PatrimonioTableModel extends AbstractTableModel {
 	    }
 	}
 
-	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
 		return dados.size();
 	}
 
-	
 	public int getColumnCount() {
 		return colunas.length;
 	}
 
-	@Override
 	public String getColumnName(int column) {
-		// TODO Auto-generated method stub
 		return colunas[column];
 	}
 
-	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Patrimonio p = dados.get(rowIndex);
 		switch (columnIndex) {

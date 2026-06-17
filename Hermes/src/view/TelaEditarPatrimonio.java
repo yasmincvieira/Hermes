@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import models.Espaco;
 import models.EspacoDAO;
 import models.Patrimonio;
@@ -63,7 +61,6 @@ public class TelaEditarPatrimonio extends JPanel {
         add(lblId, "cell 1 1,alignx trailing");
 
         tfID = new JTextField();
-        tfID.setEditable(false);
         add(tfID, "cell 2 1,growx");
 
         JLabel lblPatrimonio = new JLabel("Patrimônio");
@@ -95,8 +92,6 @@ public class TelaEditarPatrimonio extends JPanel {
         add(btnSalvar, "cell 2 5,alignx right,aligny top");
     }
 
-
-	
 	private void carregarEspacos() {
         try {
             List<Espaco> espacos = espacoDAO.listarEspacos();
@@ -104,7 +99,7 @@ public class TelaEditarPatrimonio extends JPanel {
                 cbEspaco.addItem(esp);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar espaços: " + ex.getMessage());
+            Mensagem.mostrar("Erro ao carregar espaços: ", "Erro" + ex.getMessage());
         }
     }
 

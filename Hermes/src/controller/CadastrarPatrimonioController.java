@@ -38,7 +38,33 @@ public class CadastrarPatrimonioController {
 	private void cadastrarPatrimonio() {
 		String id = (String) cadastrarPatrimonio.getTfPatrimonio().getText().trim();
 		String nome = (String) cadastrarPatrimonio.getCbNome().getSelectedItem();
-		Espaco espaco =  (Espaco) cadastrarPatrimonio.getCbLocal().getSelectedItem();
+			Object itemSelecionado = cadastrarPatrimonio.getCbLocal().getSelectedItem();
+			Espaco espaco = null;
+			EspacoDAO espacoDAO = new EspacoDAO();
+			
+			if (itemSelecionado instanceof Espaco) {
+				espaco = (Espaco) itemSelecionado;
+			} else if (itemSelecionado instanceof String) {
+				String nomeLocal = (String) itemSelecionado;
+				espaco = espacoDAO.BuscarEspacoPorID(nomeLocal);
+				
+				// Se o local não existe no banco, vamos cadastrá-lo agora para evitar erro de FK
+				if (espaco == null) {
+					try {
+						espaco = new Espaco();
+						espaco.setNomeLocal(nomeLocal);
+						espaco.setBloco((String) cadastrarPatrimonio.getCbBloco().getSelectedItem());
+						espaco.setAndar((String) cadastrarPatrimonio.getCbAndar().getSelectedItem());
+						
+						espacoDAO.adicionarEspaco(espaco);
+					} catch (Exception e) {
+						Mensagem.mostrar("Erro ao preparar o local: " + e.getMessage(), "Erro");
+						return;
+					}
+				}
+			}
+			
+			
 		String status = (String) cadastrarPatrimonio.getCbStatus().getSelectedItem();
 
 		if (id.isEmpty()) {
@@ -53,18 +79,19 @@ public class CadastrarPatrimonioController {
 			Mensagem.mostrar("O ID do Patrimônio deve conter apenas números!", "Atenção");
 			return;
 		}
-			try {
+		try {
 
-				Patrimonio patrimonio = new Patrimonio(idPatrimonio, status, nome, espaco);
-		
-				patrimonioDAO.adicionarPatrimonio(patrimonio);
-				tabelaPatrimonios.atualizarTabela();
-				limparCampos();
-				Mensagem.mostrar("Cadastro feito com sucesso!", "Sucesso");
-			} catch (Exception e) {
-				Mensagem.mostrar("Erro ao cadastrar patrimônio", "Erro");
-				e.printStackTrace();
-			}
+			Patrimonio patrimonio = new Patrimonio(idPatrimonio, status, nome, espaco);
+	
+			patrimonioDAO.adicionarPatrimonio(patrimonio);
+			tabelaPatrimonios.atualizarTabela();
+			limparCampos();
+			Mensagem.mostrar("Cadastro feito com sucesso!", "Sucesso");
+			navegador.navegarPara("TABELA");
+		} catch (Exception e) {
+			Mensagem.mostrar("Erro ao cadastrar patrimônio"+ e.getMessage(), "Erro");
+			e.printStackTrace();
+		}
 	}
 
 	public void limparCampos() {

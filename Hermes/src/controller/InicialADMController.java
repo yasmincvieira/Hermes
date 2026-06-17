@@ -1,11 +1,9 @@
 package controller;
 
 import javax.swing.JOptionPane;
-
 import models.Usuario;
 import view.MensagemSN;
 import view.TelaInicialADM;
-
 
 public class InicialADMController {
 
@@ -19,14 +17,9 @@ public class InicialADMController {
         this.navegador = navegador;
         this.menu = menu;
 		
-		this.inicioADM.historico(e -> {
-			navegador.navegarPara("HISTORICO");
-		});
-
         this.inicioADM.historico(e -> {
             navegador.navegarPara("HISTORICO ADMIN");
         });
-
         this.inicioADM.verPatrimonio(e -> {
             navegador.navegarPara("PATRIMONIO");
         });
@@ -34,22 +27,12 @@ public class InicialADMController {
 			navegador.navegarPara("PERFIL ADM");
 		});
 		this.inicioADM.chamado(e -> {
-			navegador.navegarPara("CHAMADO ADMIN");
+			navegador.navegarPara("NOVO CHAMADO ADMIN");
 		});
 		this.inicioADM.verPatrimonio(e -> {
 			navegador.navegarPara("TABELA");
 		});
-	
-        this.inicioADM.verPerfil(e -> {
-            navegador.navegarPara("PERFIL ADM");
-        });
-
-        this.inicioADM.chamado(e -> {
-            navegador.navegarPara("NOVO CHAMADO ADMIN");
-        });
-        
         this.inicioADM.irLogin(e -> verificarIrLogin());
-
 	}
 
 		private void verificarIrLogin() {
@@ -63,7 +46,4 @@ public class InicialADMController {
 		        e -> {}
 		    );
 		}
-    
-    
-    
 }

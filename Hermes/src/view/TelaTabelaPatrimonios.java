@@ -8,12 +8,10 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
 import controller.PatrimonioTableModel;
 import controller.TabelaController;
 import models.Patrimonio;
 import models.PatrimonioDAO;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,21 +20,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
 import javax.swing.RowFilter;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Label;
-
 
 public class TelaTabelaPatrimonios extends JPanel {
 
@@ -46,13 +39,9 @@ public class TelaTabelaPatrimonios extends JPanel {
 	private JTextField tfBusca;
 	private TableRowSorter<PatrimonioTableModel> rowSorter;
 	private PatrimonioTableModel patrimonioTableModel;
-
 	private Object btnTabela;
 	private JLabel btVoltar; 
 
-	/**
-	 * Create the panel.
-	 */
 	public TelaTabelaPatrimonios() {
 
 		setBounds(100, 100, 1100, 700);
@@ -73,8 +62,6 @@ public class TelaTabelaPatrimonios extends JPanel {
 		btVoltar.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/botao-voltar40.png")));
 		paneltabelaPatrimonio.add(btVoltar, "cell 0 0,aligny top");
 
-
-
 		JLabel lblNewLabel_1 = new JLabel("Patrimônios");
 		lblNewLabel_1.setForeground(new Color(38, 76, 63));
 		panel.add(lblNewLabel_1);
@@ -85,19 +72,15 @@ public class TelaTabelaPatrimonios extends JPanel {
 		lblNewLabel.setForeground(new Color(39, 79, 65));
 		lblNewLabel.setIcon(new ImageIcon(TelaTabelaPatrimonios.class.getResource("/Imagens/40.png")));
 		lblNewLabel.setFont(new Font("OCR-A BT", Font.PLAIN, 50));
-//<<<<<<< HEAD
 		paneltabelaPatrimonio.add(lblNewLabel, "cell 3 1 4 1,alignx right");
 		
 		tfBusca = new JTextField();
-
 		tfBusca.addKeyListener(new KeyAdapter() {
-		    @Override
 		    public void keyReleased(KeyEvent e) {
 		        filtrar();
 		    }
 		});
 
-		
 		Label label = new Label("Buscar");
 		label.setFont(new Font("Dialog", Font.PLAIN, 19));
 		paneltabelaPatrimonio.add(label, "cell 1 2,alignx right");
@@ -156,12 +139,10 @@ public class TelaTabelaPatrimonios extends JPanel {
 		return table;
 	}
 	
-
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 	
-
 	public int getLinhaSelecionada() {
 	  int linhaVisivel = table.getSelectedRow();
 	    if (linhaVisivel == -1) {
@@ -169,7 +150,6 @@ public class TelaTabelaPatrimonios extends JPanel {
 	    }
 	    return table.convertRowIndexToModel(linhaVisivel);
 	}
-
 
 	public int getCodigoSelecionado() {
 		int linhaVisivel = table.getSelectedRow();
@@ -179,6 +159,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 	    int linhaModel = table.convertRowIndexToModel(linhaVisivel);
 	    return (int) table.getModel().getValueAt(linhaModel, 0);
 	}
+	
 	public void excluirPatri(ActionListener actionListener) {
 		this.btnExcluirPatri.addActionListener(actionListener);
 	}
@@ -190,8 +171,6 @@ public class TelaTabelaPatrimonios extends JPanel {
 	public void adicionarPatri(ActionListener actionListener) {
 		this.btnAdicionarPatri.addActionListener(actionListener);
 	}
-
-	
 
 	public void atualizarTabela() {
 	    PatrimonioDAO patrimonioDao = new PatrimonioDAO();
@@ -206,6 +185,7 @@ public class TelaTabelaPatrimonios extends JPanel {
 	public void adicionarOuvinte(ComponentListener listener) {
 		this.addComponentListener(listener);
 	}
+	
 	private void filtrar() {
 	    if (rowSorter == null) {
 	        return;
@@ -222,7 +202,6 @@ public class TelaTabelaPatrimonios extends JPanel {
 	
 	public void irInicioADM(ActionListener actionListener) {
 	    this.btVoltar.addMouseListener(new MouseAdapter() {
-	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
 	        }

@@ -5,9 +5,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import models.Patrimonio;
 import models.PatrimonioDAO;
 import view.Mensagem;
@@ -41,7 +39,6 @@ public class TabelaController  extends ComponentAdapter {
 
         this.telaEditarPatrimonio.salvar(e -> salvarEdicao());
         this.telaEditarPatrimonio.voltar(e -> navegador.navegarPara("TABELA"));
-
         this.telaTabelaPatrimonios.excluirPatri(e -> excluirPatrimonio());
         this.telaTabelaPatrimonios.irInicioADM(e -> navegador.navegarPara("INICIO ADMIN"));
     }
@@ -58,7 +55,7 @@ public class TabelaController  extends ComponentAdapter {
 	    this.telaTabelaPatrimonios.editarPatri(e -> {
 	        int linha = telaTabelaPatrimonios.getTable().getSelectedRow();
 	        if (linha == -1) {
-	            JOptionPane.showMessageDialog(null, "Selecione um patrimônio.", "Aviso", JOptionPane.WARNING_MESSAGE);
+	            Mensagem.mostrar("Selecione um patrimônio.", "Aviso");
 	            return;
 	        }
 	        String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
@@ -77,14 +74,12 @@ public class TabelaController  extends ComponentAdapter {
 
         boolean sucesso = patrimonioDAO.atualizar(p);
         if (sucesso) {
-            JOptionPane.showMessageDialog(null, "Patrimônio atualizado com sucesso!");
+            Mensagem.mostrar("Patrimônio atualizado com sucesso!", "Sucesso");
             navegador.navegarPara("TABELA");
         } else {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar.");
+            Mensagem.mostrar("Erro ao atualizar!", "Erro");
         }
     }
-
-    
 
 	private void excluirPatrimonio() {
 	    int linha = telaTabelaPatrimonios.getLinhaSelecionada();

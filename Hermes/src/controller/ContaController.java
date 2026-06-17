@@ -31,7 +31,7 @@ public class ContaController {
 		this.menu = menu;
 		
 		this.conta.irInicioADM(e -> {
-			navegador.navegarPara("INICIO ADMIN");
+			navegador.navegarPara("INICIO");
 		});
 
 		this.conta.excluirConta(e -> {

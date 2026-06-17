@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.Color;
@@ -76,7 +75,6 @@ public class TelaInicialADM extends JPanel {
 	
 	public void irLogin(ActionListener actionListener) {
 	    this.btVoltar.addMouseListener(new MouseAdapter() {
-	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
 	        }

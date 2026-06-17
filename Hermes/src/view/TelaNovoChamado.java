@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -179,7 +178,6 @@ public class TelaNovoChamado extends JPanel {
 	
 	public void irInicio(ActionListener actionListener) {
 	    this.lbVoltar.addMouseListener(new MouseAdapter() {
-	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
 	        }

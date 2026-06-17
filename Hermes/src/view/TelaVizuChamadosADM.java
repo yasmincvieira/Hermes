@@ -120,7 +120,6 @@ public class TelaVizuChamadosADM extends JPanel {
 	
 	public void irInicioADM(ActionListener actionListener) {
 	    this.btVoltar.addMouseListener(new MouseAdapter() {
-	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            actionListener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, null));
 	        }
@@ -147,10 +146,5 @@ public class TelaVizuChamadosADM extends JPanel {
     public void setAtualizar(ActionListener listener) {
         this.btnAtualizar.addActionListener(listener);
     }
-
-  //  public void setVoltar(ActionListener listener) {
-    //    this.btVoltar.addActionListener(listener);
-   // }
-
 
 }
