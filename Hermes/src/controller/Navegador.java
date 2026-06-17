@@ -37,10 +37,6 @@ public class Navegador {
 
         if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO")) {
             menu.removerMenu();
-        } else if (nome.equals("INICIO ADMIN")) {
-            menu.mostrarPanelExpAdmInicio();
-        } else if (nome.equals("INICIO")) {
-            menu.mostrarPanelExpInicio();
         } else {
             menu.mostrarPanelCont();
         }

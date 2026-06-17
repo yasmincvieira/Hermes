@@ -26,9 +26,6 @@ public class TabelaController  extends ComponentAdapter {
 		this.telaTabelaPatrimonios = telaTabelaPatrimonios;
 		this.patrimonioDAO = patrimonioDAO;
 
-		this.telaTabelaPatrimonios.excluirPatri(e -> {
-			excluirPatrimonio();
-		});
 		this.telaTabelaPatrimonios.adicionarPatri(e-> {
 			navegador.navegarPara("CADASTRAR PATRIMONIO");
 		});
@@ -41,9 +38,21 @@ public class TabelaController  extends ComponentAdapter {
         this.telaEditarPatrimonio.voltar(e -> navegador.navegarPara("TABELA"));
         this.telaTabelaPatrimonios.excluirPatri(e -> excluirPatrimonio());
         this.telaTabelaPatrimonios.irInicioADM(e -> navegador.navegarPara("INICIO ADMIN"));
+        this.telaTabelaPatrimonios.editarPatri(e -> editarPatrimonio());
     }
     
-
+    private void editarPatrimonio() {
+        int linha = telaTabelaPatrimonios.getTable().getSelectedRow();
+        if (linha == -1) {
+            Mensagem.mostrar("Selecione um patrimônio.", "Aviso");
+            return;
+        }
+        String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
+        Patrimonio p = patrimonioDAO.buscarPorId(id);
+        telaEditarPatrimonio.preencherCampos(p);
+        navegador.navegarPara("EDITAR PATRIMONIO");
+    }
+    
 	public void componentShown(ComponentEvent e) {
 		this.atualizarTabela();
 	}
@@ -52,17 +61,6 @@ public class TabelaController  extends ComponentAdapter {
 	    PatrimonioTableModel model = new PatrimonioTableModel(lista);
 	    telaTabelaPatrimonios.getTable().setModel(model);
 
-	    this.telaTabelaPatrimonios.editarPatri(e -> {
-	        int linha = telaTabelaPatrimonios.getTable().getSelectedRow();
-	        if (linha == -1) {
-	            Mensagem.mostrar("Selecione um patrimônio.", "Aviso");
-	            return;
-	        }
-	        String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
-	        Patrimonio p = patrimonioDAO.buscarPorId(id);
-	        telaEditarPatrimonio.preencherCampos(p);
-	        navegador.navegarPara("EDITAR PATRIMONIO");
-	    });
 	}
 
     private void salvarEdicao() {

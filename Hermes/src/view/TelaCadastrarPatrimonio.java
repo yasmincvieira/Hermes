@@ -115,8 +115,8 @@ public class TelaCadastrarPatrimonio extends JPanel {
 				"Sala 6", "Sala 7", "Sala 8", "Sala 9", "Sala 10", "Sala 11", "Sala 12", "Sala 13", "Sala 14",
 				"Sala 15", "Sala 16", "Sala 17", "Sala 17", "Sala 18", "Sala 19", "Lab Info 1", "Lab Info 2",
 				"Lab Info 3", "Lab Info 4", "Lab Info 5", "Lab Info 6", "Lab Info 7", "Lab Química 1", "Lab Química 2",
-				"Lab Química 3", "Lab Química 4", "Lab Química 5", "Lab Química 6", "Quadra", "Banheiro Feminino(Descreva Bloco e Andar)",
-				"Banheiro Masculino(Descreva Bloco e Andar)", "Corredor(Descreva Bloco e Andar)","Cantina", "Pátio", "Auditório", "Hall",
+				"Lab Química 3", "Lab Química 4", "Lab Química 5", "Lab Química 6", "Quadra", "Banheiro Feminino",
+				"Banheiro Masculino", "Corredor","Cantina", "Pátio", "Auditório", "Hall",
 				"Copa Alunos", "Copa Professores", "Portaria" }));
 		cbLocal.setForeground(new Color(38, 76, 63));
 		cbLocal.setBackground(new Color(160, 200, 172));

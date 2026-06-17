@@ -162,11 +162,13 @@ public class TelaConta extends JPanel {
 		tfEmail.setText(usuario.getEmail());
 		String foto = usuario.getFoto();
 	    if (foto != null && !foto.isEmpty()) {
+	    	System.out.println(foto);
 	        atualizarFoto(foto);
 	    }
 	}
 
 	public void atualizarFoto(String nomeFoto) {
+		System.out.println(TelaConta.class.getResource("/ImagensPerfil/" + nomeFoto));
 		lbTrocarFoto.setIcon(new ImageIcon(TelaConta.class.getResource("/ImagensPerfil/" + nomeFoto)));
 	}
 

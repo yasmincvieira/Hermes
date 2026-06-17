@@ -30,6 +30,7 @@ public class ChamadoDAO {
             pstm.setString(4, chamado.getDescricao());
             pstm.setInt(5, chamado.getIdUsuario());
             pstm.setString(6, chamado.getStatus() != null ? chamado.getStatus() : "Em análise");
+            System.out.println(pstm);
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
