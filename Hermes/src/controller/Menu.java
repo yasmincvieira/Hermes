@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 import models.Usuario;
 import models.UsuarioDAO;
 import view.MenuContraidoTeste;
+import view.MenuExpandidoADMInicio;
 import view.MenuExpandidoAdm;
+import view.MenuExpandidoTestInicio;
 import view.MenuExpandidoTeste;
 import view.Janela;
 import view.MensagemSN;
@@ -22,13 +24,20 @@ public class Menu {
     private Navegador navegador;
     private Usuario usuarioLogado;
     private UsuarioDAO user;
+    private MenuExpandidoADMInicio mnExpAdmInicio;
+    private MenuExpandidoTestInicio mnExpInicio;
 
-    public Menu(Janela janela, MenuExpandidoTeste mnExp, MenuContraidoTeste mnCont, MenuExpandidoAdm mnExpAdm) {
+
+    public Menu(Janela janela, MenuExpandidoTeste mnExp, MenuContraidoTeste mnCont, 
+            MenuExpandidoAdm mnExpAdm, MenuExpandidoADMInicio mnExpAdmInicio, 
+            MenuExpandidoTestInicio mnExpInicio) {
         this.janela = janela;
         this.mnExp = mnExp;
         this.mnExpAdm = mnExpAdm;
         this.mnCont = mnCont;
         menuAtual = mnCont;
+        this.mnExpAdmInicio = mnExpAdmInicio;
+        this.mnExpInicio = mnExpInicio;
         janela.mudarMenu(menuAtual);
 
   
@@ -38,6 +47,39 @@ public class Menu {
                 mostrarPanelCont();
             }
         });
+        
+ this.mnExpAdmInicio.sair(e -> dispose());
+        
+        this.mnExpAdmInicio.irHistorico(e -> { 
+        	if (navegador != null) navegador.navegarPara("HISTORICO ADMIN"); });
+        
+        this.mnExpAdmInicio.irTabela(e -> {
+        	if (navegador != null) navegador.navegarPara("TABELA"); });
+        this.mnExpAdmInicio.irNovosChamados(e -> {
+        	if (navegador != null) navegador.navegarPara("NOVOS_CHAMADOS"); });
+        
+        this.mnExpAdmInicio.irPerfil(e -> {
+        	if (navegador != null) navegador.navegarPara("PERFIL ADM"); });
+        
+        this.mnExpAdmInicio.mostrarMenuContraido(new MouseAdapter() {
+            @Override public void mouseClicked(MouseEvent e) { mostrarPanelCont(); }
+        });
+        
+        
+        this.mnExpInicio.sair(e -> dispose());
+        this.mnExpInicio.irHistorico(e -> {
+        	if (navegador != null) navegador.navegarPara("HISTORICO"); });
+        
+        this.mnExpInicio.irNovoChamado(e -> {
+        	if (navegador != null) navegador.navegarPara("CHAMADO"); });
+        
+        this.mnExpInicio.irPerfil(e -> { 
+        	if (navegador != null) navegador.navegarPara("PERFIL"); });
+        
+        this.mnExpInicio.mostrarMenuContraido(new MouseAdapter() {
+            @Override public void mouseClicked(MouseEvent e) { mostrarPanelCont(); }
+        });
+        
         //botôes menu
         
         this.mnExp.sair(e -> dispose());
@@ -89,13 +131,7 @@ public class Menu {
                 navegador.navegarPara("NOVOS_CHAMADOS");
         });
         
-        
-        
-        
-        
-        
-        
-
+       
 
       		this.mnCont.mostrarMenuExpandido(new MouseAdapter() {
 
@@ -113,11 +149,22 @@ public class Menu {
       			}
 
       		});
-
-      	
-        
+      		
+     
         
     }
+    
+    public void mostrarPanelExpAdmInicio() {
+        menuAtual = mnExpAdmInicio;
+        janela.mudarMenu(menuAtual);
+    }
+
+    public void mostrarPanelExpInicio() {
+        menuAtual = mnExpInicio;
+        janela.mudarMenu(menuAtual);
+    }
+    
+    
     //identifica se o usuário é ADM ou não
     public void setUsuarioLogado(Usuario usuario) {
         this.usuarioLogado = usuario;
@@ -142,9 +189,6 @@ public class Menu {
             });
         }
     }
-
-    
-    
 
     private void irInicio() {
         navegador.setUsuarioLogado(usuarioLogado);
@@ -179,8 +223,6 @@ public class Menu {
         janela.revalidate();
         janela.repaint();
     }
-
-	
 
 	private void irPerfil() {
 		

@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import models.Usuario;
 import models.UsuarioDAO;
+import view.MensagemSN;
 import view.TelaInicial;
 
 public class InicialController {
@@ -28,10 +29,25 @@ public class InicialController {
 			navegador.navegarPara("CHAMADO");
 		});
 		
-		this.inicio.irLogin(e -> {
-			navegador.navegarPara("LOGIN");
-		});
 		
+		this.inicio.irLogin(e -> verificarIrLogin());
+
 	}
+
+		private void verificarIrLogin() {
+		    MensagemSN.mostrarSN(
+		        "Tem certeza que deseja voltar a tela de login?",
+		        "Confirmação",
+		        e -> {
+		            navegador.setUsuarioLogado(null);
+		            navegador.navegarPara("LOGIN");
+		        },
+		        e -> {}
+		    );
+		}
+
+    
+		
+
 
 }

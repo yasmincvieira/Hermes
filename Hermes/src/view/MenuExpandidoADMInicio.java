@@ -1,4 +1,3 @@
-
 package view;
 
 import java.awt.Color;
@@ -15,15 +14,15 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 
-public class MenuExpandidoAdm extends JPanel {
+public class MenuExpandidoADMInicio extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFechar;
-	private JButton btnHistorico, btnSair, btnPerfilAdm, btnInicioAdm;
+	private JButton btnHistorico, btnSair, btnPerfilAdm;
 	private JButton btnTabela;
 	private JButton btnNovosChamados;
 
-	public MenuExpandidoAdm() {
+	public MenuExpandidoADMInicio() {
 
 		setBackground(new Color(147, 195, 171));
 
@@ -34,26 +33,21 @@ public class MenuExpandidoAdm extends JPanel {
 		lbFechar = new JLabel("");
 		lbFechar.setIcon(new ImageIcon(MenuExpandidoTeste.class.getResource("/Imagens/30FecharMenu.png")));
 		add(lbFechar, "cell 0 0,alignx right");
-
-		btnInicioAdm = new JButton("Início");
-		btnInicioAdm.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnInicioAdm.setBackground(new Color(175, 207, 198));
-		add(btnInicioAdm, "cell 0 1,grow");
-
-		btnHistorico = new JButton("Histórico");
-		btnHistorico.setBackground(new Color(175, 207, 198));
-		btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(btnHistorico, "cell 0 2,grow");
+		
+				btnHistorico = new JButton("Histórico");
+				btnHistorico.setBackground(new Color(175, 207, 198));
+				btnHistorico.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				add(btnHistorico, "cell 0 1,grow");
 		
 		btnNovosChamados = new JButton("Novos Chamados");
 		btnNovosChamados.setBackground(new Color(175, 205, 198));
 		btnNovosChamados.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(btnNovosChamados, "cell 0 3,growx");
+		add(btnNovosChamados, "cell 0 2,growx");
 		
 		btnTabela = new JButton("Tabela de Patrimônios");
 		btnTabela.setBackground(new Color(175, 205, 198));
 		btnTabela.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(btnTabela, "cell 0 4,growx,aligny top");
+		add(btnTabela, "cell 0 3,growx,aligny top");
 
 		btnSair = new JButton("Sair");
 		btnSair.setBackground(new Color(175, 207, 198));
@@ -82,10 +76,6 @@ public class MenuExpandidoAdm extends JPanel {
 
 	public void sair(ActionListener actionListener) {
 		this.btnSair.addActionListener(actionListener);
-	}
-
-	public void irInicioADM(ActionListener actionListener) {
-		this.btnInicioAdm.addActionListener(actionListener);
 	}
 
 	public void irPerfil(ActionListener actionListener) {

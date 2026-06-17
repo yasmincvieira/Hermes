@@ -51,22 +51,22 @@ public class TabelaController  extends ComponentAdapter {
 		this.atualizarTabela();
 	}
 	public void atualizarTabela() {
-		PatrimonioDAO patrimonioDAO = new PatrimonioDAO();
-		List<Patrimonio> lista = patrimonioDAO.listarpatrimonio();
-		PatrimonioTableModel model = new PatrimonioTableModel(lista);
+	    List<Patrimonio> lista = patrimonioDAO.listarpatrimonio();
+	    PatrimonioTableModel model = new PatrimonioTableModel(lista);
+	    telaTabelaPatrimonios.getTable().setModel(model);
 
 	    this.telaTabelaPatrimonios.editarPatri(e -> {
-            int linha = telaTabelaPatrimonios.getTable().getSelectedRow();
-            if (linha == -1) {
-                JOptionPane.showMessageDialog(null, "Selecione um patrimônio.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
-            Patrimonio p = patrimonioDAO.buscarPorId(id);
-            telaEditarPatrimonio.preencherCampos(p);
-            navegador.navegarPara("EDITAR PATRIMONIO");
-        });
-    }
+	        int linha = telaTabelaPatrimonios.getTable().getSelectedRow();
+	        if (linha == -1) {
+	            JOptionPane.showMessageDialog(null, "Selecione um patrimônio.", "Aviso", JOptionPane.WARNING_MESSAGE);
+	            return;
+	        }
+	        String id = telaTabelaPatrimonios.getTable().getValueAt(linha, 0).toString();
+	        Patrimonio p = patrimonioDAO.buscarPorId(id);
+	        telaEditarPatrimonio.preencherCampos(p);
+	        navegador.navegarPara("EDITAR PATRIMONIO");
+	    });
+	}
 
     private void salvarEdicao() {
         Patrimonio p = new Patrimonio();

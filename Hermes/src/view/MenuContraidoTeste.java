@@ -29,10 +29,6 @@ public class MenuContraidoTeste extends JPanel {
 		// AJUSTADO: Adicionado explicitamente na célula da primeira linha
 		add(lbAbrir, "cell 0 0, alignx center, aligny top");
 
-		JLabel lbPerfil = new JLabel("");
-		lbPerfil.setIcon(new ImageIcon(MenuContraidoTeste.class.getResource("/Imagens/30Usuario.png")));
-		add(lbPerfil, "cell 0 1");
-
 		lbPerfilCont = new JLabelRedondo();
 		lbPerfilCont.setIcon(new ImageIcon(MenuContraidoTeste.class.getResource("/Imagens/30Usuario.png")));
 		

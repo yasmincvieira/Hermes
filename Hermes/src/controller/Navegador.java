@@ -45,28 +45,36 @@ public class Navegador {
         this.janela.adicionarTela(nome, tela);
     }
 
-	public void navegarPara(String nome) {
-		this.janela.mostrarTela(nome);
+    public void navegarPara(String nome) {
+        this.janela.mostrarTela(nome);
 
-		if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO") || nome.equals("INICIO") || nome.equals("INICIO ADMIN")) {
-			 menu.removerMenu();
-			} else {
-			    menu.mostrarPanelCont();
-			}
-		if (nome.equals("PERFIL") && usuarioLogado != null) {
-			contaController.preencherDados();
-			contaController.atualizarContagem(); 
-		}
-		   if (nome.equals("PERFIL ADM") && usuarioLogado != null && contaADMController != null) {
-		        contaADMController.preencherDados();
-		    }
-		if (nome.equals("HISTORICO") && historicoController != null) {
+        if (nome.equals("LOGIN") || nome.equals("CADASTRO USUARIO")) {
+            menu.removerMenu();
+        } else if (nome.equals("INICIO ADMIN")) {
+            menu.mostrarPanelExpAdmInicio();
+        } else if (nome.equals("INICIO")) {
+            menu.mostrarPanelExpInicio();
+        } else {
+            menu.mostrarPanelCont();
+        }
+
+        if (nome.equals("PERFIL") && usuarioLogado != null) {
+            contaController.preencherDados();
+            contaController.atualizarContagem(); 
+        }
+        if (nome.equals("PERFIL ADM") && usuarioLogado != null && contaADMController != null) {
+            contaADMController.preencherDados();
+        }
+        if (nome.equals("HISTORICO") && historicoController != null) {
             historicoController.carregarHistorico();
         }
-		if ((nome.equals("NOVO CHAMADO ADMIN") || nome.equals("HISTORICO ADMIN")) && historicoControllerADM != null) {
+        if ((nome.equals("NOVO CHAMADO ADMIN") || nome.equals("HISTORICO ADMIN")) && historicoControllerADM != null) {
             historicoControllerADM.carregarChamados();
         }
-	}
+        if (nome.equals("TABELA") && tabelaController != null) {
+            tabelaController.atualizarTabela();
+        }
+    }
 
     public void sair() {
         this.janela.dispose();
