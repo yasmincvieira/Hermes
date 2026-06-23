@@ -46,18 +46,24 @@ public class LoginController {
 				if (user.getNome().equals(login.gettfUsuario().getText())
 						&& user.getSenha().equals(login.getpfSenha().getText())) {
 					usuarioLogado = user;
+					if (usuarioLogado.getFoto() != null && !usuarioLogado.getFoto().isEmpty()) {
+			            menu.atualizarFotoMenu(usuarioLogado.getFoto());
+					}
 					usuarioEncontrado = true;
 					break;
 				}
 			}
 
 			if (!usuarioEncontrado) {
-				Mensagem.mostrar("Usuário não encontrado", "Atenção");				
+				Mensagem.mostrar("Usuário não encontrado", "Atenção");	
+				limparCamposLogin();
 				return;
 			}
+			
 			navegador.setUsuarioLogado(usuarioLogado);
 			
 			this.menu.setUsuarioLogado(usuarioLogado); 
+			
 
 			if (usuarioLogado.isAdmin()) {
 				navegador.navegarPara("INICIO ADMIN");

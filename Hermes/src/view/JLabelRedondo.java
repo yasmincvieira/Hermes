@@ -16,11 +16,11 @@ public class JLabelRedondo extends JLabel {
     private Color corBorda = Color.GRAY;
     private int espessuraBorda = 1;
     
-    // Define o tamanho padrão fixo para todos os avatares (Pode alterar aqui se quiser maior ou menor)
+   
     private static final int TAMANHO_FIXO = 120; 
 
     public JLabelRedondo() {
-        // Garante que o componente avise o layout manager sobre seu tamanho exato
+     
         Dimension dim = new Dimension(TAMANHO_FIXO, TAMANHO_FIXO);
         setPreferredSize(dim);
         setMinimumSize(dim);

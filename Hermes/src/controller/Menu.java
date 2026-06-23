@@ -48,6 +48,14 @@ public class Menu {
             }
         });
         
+        this.mnExpAdm.mostrarMenuContraido(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                mostrarPanelCont();
+            }
+        });
+        
+        
  this.mnExpAdmInicio.sair(e -> dispose());
         
         this.mnExpAdmInicio.irHistorico(e -> { 
@@ -98,7 +106,7 @@ public class Menu {
         
         this.mnExpAdm.irHistorico(e -> {
             if (navegador != null)
-                navegador.navegarPara("HISTORICO");
+                navegador.navegarPara("HISTORICO ADMIN");
         });
 
         this.mnExp.irInicio(e -> {
@@ -128,7 +136,7 @@ public class Menu {
 
         this.mnExpAdm.irNovosChamados(e -> {
             if (navegador != null)
-                navegador.navegarPara("NOVOS_CHAMADOS");
+                navegador.navegarPara("NOVO CHAMADO ADMIN");
         });
         
        

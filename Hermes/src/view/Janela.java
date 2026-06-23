@@ -3,6 +3,8 @@ package view;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
+import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -23,6 +25,7 @@ public class Janela extends JFrame {
 
 	public Janela() {
 
+		this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/HERMES.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Tela de Inicio");
 

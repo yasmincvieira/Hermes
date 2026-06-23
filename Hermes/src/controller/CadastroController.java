@@ -67,8 +67,7 @@ public class CadastroController {
 
 		if (email.substring(0, email.indexOf("@")).contains(" ")) {
 
-			//Mensagem mensagem = new Mensagem("Por favor, insira um e-mail válido", "Erro");
-			//mensagem.setVisible(true);
+			
 			Mensagem.mostrar("Por favor, insira um e-mail válido", "Erro");
 
 			return;
@@ -93,20 +92,22 @@ public class CadastroController {
 		novoUsuario.setNome(cadastro.gettfUsuarioC().getText());
 		novoUsuario.setEmail(cadastro.gettfEmailC().getText());
 		novoUsuario.setSenha(cadastro.getpfSenhaC().getText());
+		novoUsuario.setFoto("foto1.png");
 		user.adicionarUsuario(novoUsuario);
 		
 		navegador.setUsuarioLogado(novoUsuario); 
-		menu.setUsuarioLogado(novoUsuario); 
+		menu.setUsuarioLogado(novoUsuario);
+		menu.atualizarFotoMenu("foto1.png");
 		conta.preencherDados(novoUsuario);
 
 		Mensagem.mostrar("Usuário cadastrado com sucesso!", "Sucesso");
 		this.navegador.navegarPara("INICIO");
 
-		limparCamposLogin();
+		limparCamposCadastro();
 
 		}
 	}
-	public void limparCamposLogin() {
+	public void limparCamposCadastro() {
 		cadastro.gettfEmailC().setText("");
 		cadastro.gettfUsuarioC().setText("");
 		cadastro.getpfSenhaC().setText("");

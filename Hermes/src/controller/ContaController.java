@@ -130,10 +130,9 @@ public class ContaController {
 		MensagemSN.mostrarSN("Tem certeza que deseja excluir sua conta?\nEsta ação não pode ser desfeita.", "Atenção",
 				e -> {
 					Usuario usuarioLogado = navegador.getUsuarioLogado();
-					user.excluirChamadosDoUsuario(usuarioLogado.getId());
 					user.excluirUsuario(usuarioLogado.getId());
 					navegador.setUsuarioLogado(null);
-					JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!");
+					Mensagem.mostrar("Conta excluída com sucesso!", "sucesso");
 					navegador.navegarPara("LOGIN");
 				}, e -> {
 

@@ -13,22 +13,30 @@ public class UsuarioDAO {
 
 	// CREATE - Adicionar um novo usuário
 	public void adicionarUsuario(Usuario usuario) {
-		String sql = "INSERT INTO usuarios (id, nome, email, senha, admin) VALUES (0, ?, ?, ?, ?)";
+		String sql = "INSERT INTO usuarios (nome, email, senha, admin) VALUES (?, ?, ?, ?)";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
+		ResultSet generatedKeys = null;
 
 		try {
 			conexao = BancoDeDados.conectar();
-			pstm = conexao.prepareStatement(sql);
+			pstm = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS); //" PreparedStatement.RETURN_GENERATED_KEYS" acrescentei isso pois quando é apagado uma conta e dps é feita ela novamente, dá erro no novoChamado e isso pede o id gerado de volta																			
 			pstm.setString(1, usuario.getNome());
 			pstm.setString(2, usuario.getEmail());
 			pstm.setString(3, usuario.getSenha());
 			pstm.setBoolean(4, usuario.isAdmin());
 			pstm.executeUpdate();
+			generatedKeys = pstm.getGeneratedKeys();
+			if (generatedKeys.next()) {
+			     usuario.setId(generatedKeys.getInt(1));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			BancoDeDados.desconectar(conexao);
+			  if (generatedKeys != null) {
+				  try { generatedKeys.close(); } catch (SQLException e) { e.printStackTrace(); }
+			  }
 			if (pstm != null) {
 				try {
 					pstm.close();

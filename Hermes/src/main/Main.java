@@ -80,7 +80,7 @@ public class Main {
 		MenuExpandidoAdm menuExpAdm = new MenuExpandidoAdm();
 		TelaInicialADM inicioADM = new TelaInicialADM();
 		TelaVizuChamados telaVizuChamados = new TelaVizuChamados();
-		TelaTabelaPatrimonios telaTabelaParimonios = new TelaTabelaPatrimonios();
+		TelaVizuChamados telaVizuChamadosDetalhes = new TelaVizuChamados();
 		TelaEditarPatrimonio telaEditarPatrimonio = new TelaEditarPatrimonio();
 		TelaCadastrarPatrimonio telaCadastrarPatrimonio =  new TelaCadastrarPatrimonio();
 		TelaHistoricoDeChamadosADM telaHistoricoChamadosADM = new TelaHistoricoDeChamadosADM();
@@ -128,7 +128,7 @@ public class Main {
 		navegador.adicionarPainel("NOVO CHAMADO ADMIN", telaNovosChamadosADM);
 		navegador.adicionarPainel("NOVOS_CHAMADOS", telaVizuChamados);
 		navegador.adicionarPainel("EDITAR PATRIMONIO", telaEditarPatrimonio);
-		navegador.adicionarPainel("DETALHES CHAMADO", telaVizuChamados);
+		navegador.adicionarPainel("DETALHES CHAMADO", telaVizuChamadosDetalhes);
 		
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
