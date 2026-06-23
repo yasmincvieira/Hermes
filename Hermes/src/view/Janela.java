@@ -25,7 +25,7 @@ public class Janela extends JFrame {
 
 	public Janela() {
 
-		//this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/HERMES.png")).getImage());
+		//this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/logohermes.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Tela de Inicio");
 
